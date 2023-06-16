@@ -3,7 +3,8 @@ package com.springlec.base.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /*
-06/16 : User 회원가입 구현 시작
+23/06/16 : User 아이디 중복 체크 구현 시작 -> 23/06/16 : 완료.
+23/06/16 : User 회원가입 구현 시작 -> 23/06/16 : 완료.
 */
 
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ public class UserController {
 	UserService userService;
 	
 	@RequestMapping("/sign_up")
+	@ResponseBody
 	public int createUser(User user) throws Exception {
 		return userService.signUp(user);
 	}

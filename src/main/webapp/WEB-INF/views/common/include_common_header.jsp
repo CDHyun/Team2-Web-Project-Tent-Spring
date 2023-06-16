@@ -437,9 +437,9 @@ function emptySessionUser() {
 	            uBirthday: ruBirthday,
 	            uPhone: ruPhone,
 	            uEmail: ruEmail,
-	            uAddress: ruAddress,
-	            uDetailAddress: ruDetailAddress,
-	            uZipcode: ruZipcode
+	            uaAddress: ruAddress,
+	            uaDetailAddress: ruDetailAddress,
+	            uaZipcode: ruZipcode
 	        },
 	        success: function(result) {
 	            console.log(result);
