@@ -51,7 +51,7 @@
 </div>
 <!-- Header End -->
 <h3 class="content">상품조회</h3><br/><br/>
- <form action="adminindex.do" method="post" class="content">
+ <form action="listQuery" method="post" class="content">
   검색 선택 :
   <select name="query">
     <option value="pBrandName" selected="selected">브랜드명</option>

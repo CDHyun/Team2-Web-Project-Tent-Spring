@@ -50,9 +50,9 @@
 </head>
 <body>
   <!-- Header Start -->
-  <div class="header">
-    <jsp:include page="/adminSidebar.jsp" />
-  </div>
+ <div class="header">
+  <jsp:include page="adminSidebar.jsp" />
+</div>
   <!-- Header End -->
   
   <h3 class="content2">상품등록</h3><br/><br/>

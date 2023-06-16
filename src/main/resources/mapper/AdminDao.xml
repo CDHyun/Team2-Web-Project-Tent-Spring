@@ -2,10 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.springlec.base.dao.AdminDao">
-
+	<!-- 상품관리  -->
 	<select id="selectlist" resultType="com.springlec.base.model.Admin">
-		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  FROM product p, 
-		productoption po, productfile pf where p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0
+		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  
+		FROM product p, productoption po, productfile pf 
+		where p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 
 	</select>
+	<!-- 검색  -->
+	<select id="querySelect" resultType="com.springlec.base.model.Admin">
+		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  
+		FROM product p, productoption po, productfile pf 
+		where p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 and ${query} like #{content}
+	</select>
+	<!-- 날짜별 매출 계산  -->
+	<select id="dailySale" resultType="com.springlec.base.model.Admin">
+		SELECT pc.pcInsertDate, p.pBrandName, p.pName, pc.pcQty, pc.pcQty*p.pPrice 
+		FROM product p, purchase pc 
+		WHERE p.pCode = pc.pCode and pc.pcInsertDate between #{startDate} and #{endDate} order by pc.pcInsertDate
+	</select>
+		
+	<!-- 막대차트그리기 - SET sql_mode 포함 -->
+	<sql id="setSqlMode">
+	  SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+	</sql>
+	
+	<!-- 막대차트 -->
+	<select id="chart" resultType="com.springlec.base.model.Admin">
+	  <include refid="setSqlMode" />
+	  SELECT DAYNAME(pc.pcInsertDate), SUM(p.pPrice * pc.pcQty) FROM purchase pc, product p GROUP BY DAYNAME(pc.pcInsertDate)
+	  ORDER BY FIELD(DAYNAME(pc.pcInsertDate), 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+	</select>
+
 	
 </mapper>

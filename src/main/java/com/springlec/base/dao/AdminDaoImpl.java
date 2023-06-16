@@ -17,4 +17,25 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectList(nameSpace + ".selectlist");
 	}
 
+	@Override
+	public List<Admin> querySelect(String query, String content) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".querySelect");
+	}
+
+	@Override
+	public List<Admin> dailySale(String startDate, String endDate) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".dailySale");
+	}
+
+	@Override
+	public List<Admin> chart() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".chart");
+	}
+
+	
+	
+
 }
