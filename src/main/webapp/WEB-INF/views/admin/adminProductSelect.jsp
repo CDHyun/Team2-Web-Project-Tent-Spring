@@ -47,7 +47,7 @@
 <body>
 <!-- Header Start -->
 <div class="header">
-  <jsp:include page="adminSidebar" />
+  <jsp:include page="adminSidebar.jsp" />
 </div>
 <!-- Header End -->
 <h3 class="content">상품조회</h3><br/><br/>
