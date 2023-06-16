@@ -3,16 +3,18 @@
 
 <mapper namespace="com.springlec.base.dao.UserDao">
 
-	<select id="userInfo" resultType="com.springlec.base.model.User">
-		SELECT * FROM user u, userAddress ad
+	<insert id="signUp1">
+		INSERT INTO user(uid, uPassword, uName, uNickName, uPhone, uEmail, uGender, uBirthday, uInsertDate)
+		VALUES(#{uid}, #{uPassword}, #{uName}, #{uNickName}, #{uPhone}, #{uEmail}, #{uGender}, #{uBirthday}, now())
+	</insert>
+	
+	<insert id="signUp2">
+		INSERT INTO userAddress(uaNo, uid, uaAddress, uaDetailAddress, uaZipcode)
+		VALUES(#{uaNo}, #{uid}, #{uaAddress}, #{uaDetailAddress}, #{uaZipcode})
+	</insert>
+	
+	<select id="checkDuplicateId" resultType="int">
+		SELECT count(*) FROM user WHERE uid = #{uid}
 	</select>
 	
-	<insert id="writeDao">
-		INSERT INTO addressInfo(aName, aPhone, aAddress, aEmail, aRelation) VALUES(#{aName}, #{aPhone}, #{aAddress}, #{aEmail}, #{aRelation})
-	</insert>
-
-	<select id="viewDao" resultType="com.springlec.base.model.User">
-		SELECT * FROM addressInfo WHERE aNo = #{aNo}
-	</select>
-
 </mapper>

@@ -11,6 +11,8 @@
   	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   
 <script type="text/javascript">
+
+// 로그인 확인
 function loginCheck() {
     var luid = $("#luid").val();
     var luPassword = $("#luPassword").val();
@@ -175,6 +177,7 @@ function emptySessionUser() {
 		}
 	};
 	
+	// 중복 체크
 	function checkDuplicateId() {
 	    const ruid = $('#ruid').val();
 	    var regExpuid = /^[a-z|A-Z|0-9]*$/;
@@ -204,10 +207,10 @@ function emptySessionUser() {
 	    }
 	    console.log(ruid);
 	    $.ajax({
-	        type: 'POST',
-	        url: './UserCheckDuplicateCommand',
+	        type: 'GET',
+	        url: 'checkDuplicateId',
 	        data: {
-	            ruid: ruid
+	            uid: ruid
 	        },
 	        success: function(result) {
 	            console.log(result);
@@ -424,19 +427,19 @@ function emptySessionUser() {
 	    console.log(ruid);
 	    $.ajax({
 	        type: 'POST',
-	        url: './UserSignUpCommand',
+	        url: 'sign_up',
 	        data: {
-	            ruid: ruid,
-	            ruPassword: ruPassword,
-	            ruName: ruName,
-	            ruNickName: ruNickName,
-	            ruGender: ruGender,
-	            ruBirthday: ruBirthday,
-	            ruPhone: ruPhone,
-	            ruEmail: ruEmail,
-	            ruAddress: ruAddress,
-	            ruDetailAddress: ruDetailAddress,
-	            ruZipcode: ruZipcode
+	            uid: ruid,
+	            uPassword: ruPassword,
+	            uName: ruName,
+	            uNickName: ruNickName,
+	            uGender: ruGender,
+	            uBirthday: ruBirthday,
+	            uPhone: ruPhone,
+	            uEmail: ruEmail,
+	            uAddress: ruAddress,
+	            uDetailAddress: ruDetailAddress,
+	            uZipcode: ruZipcode
 	        },
 	        success: function(result) {
 	            console.log(result);
