@@ -214,7 +214,7 @@ function emptySessionUser() {
 	        },
 	        success: function(result) {
 	            console.log(result);
-	            if (result === "0") {
+	            if (result == 0) {
 	                Swal.fire({
 	                    icon: 'warning',
 	                    title: "사용 가능한 아이디입니다."
@@ -443,7 +443,7 @@ function emptySessionUser() {
 	        },
 	        success: function(result) {
 	            console.log(result);
-	            if (result === "1") {
+	            if (result == 1) {
 	                Swal.fire({
 	                    icon: 'question',
 	                    title: "회원가입을 축하합니다! \n바로 로그인 하시겠습니까?"
