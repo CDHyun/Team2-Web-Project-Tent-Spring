@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.AdminDao">
+
+	<select id="selectlist" resultType="com.springlec.base.model.Admin">
+		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  FROM product p, 
+		productoption po, productfile pf where p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0
+	</select>
+	
+</mapper>
