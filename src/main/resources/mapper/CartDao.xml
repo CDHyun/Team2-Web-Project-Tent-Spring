@@ -6,9 +6,11 @@
 <mapper namespace="com.springlec.base.dao.CartDao">
 	
 	<!-- 카트 리스트 보여주기  -->
-	<insert id="listDao">
-			INSERT INTO cart (uid, cQty, cpColor, pCode) VALUES (#{uid}, #{cQty}, #{cpColor}, #{pCode})
-	</insert>
+	<select id="listDao">
+		select c.cpColor,c.cNo,c.pCode,pf.pfRealName, p.pName, p.pPrice, c.cQty, (c.cQty*p.pPrice) 
+		from product p, cart c, productfile pf, user u, productoption po 
+		where pf.pCode = p.pCode and p.pCode = c.pCode and u.uid = c.uid and c.cpColor = po.pColor and pf.pCode = c.pCode and po.pCode = p.pCode and u.uid = 'donghyun'
+	</select>
 	
 	<!-- 카트 데이터 입력  -->
 
