@@ -79,10 +79,10 @@
   <div class="sidebar">
     <br/><br/><br/><br/><br/><br/>
     <ul>
-      <li><a href="adminfirst.do" style="color: #000000;">메인</a></li>
-      <li class="active"><a href="adminindex.do" style="color: #000000;">상품관리</a>
+      <li><a href="adminfirst" style="color: #000000;">메인</a></li>
+      <li class="active"><a href="adminindex" style="color: #000000;">상품관리</a>
         <ul class="sub-menu">
-          <li><a href="adminProductInsert.jsp" style="color: #000000;">상품추가</a></li>
+          <li><a href="writeForm" style="color: #000000;">상품추가</a></li>
           <li><a href="adminUpdate.do" style="color: #000000;">상품수정</a></li>
           <li><a href="adminDelete.do" style="color: #000000;">상품삭제</a></li>
         </ul>

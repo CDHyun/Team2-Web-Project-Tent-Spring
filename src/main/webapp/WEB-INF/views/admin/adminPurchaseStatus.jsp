@@ -66,8 +66,8 @@ function changeStatus() {
 
     <!-- Header Start -->
     <div class="header">
-        <jsp:include page="/adminSidebar.jsp" />
-    </div>
+  <jsp:include page="adminSidebar.jsp" />
+</div>
     <!-- Header End -->
 <h2 class="content">주문 처리 시스템</h2>
         <table border="" class="content">

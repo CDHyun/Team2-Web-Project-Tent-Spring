@@ -13,6 +13,11 @@
 <title>공지작성</title>
 </head>
 <body>
+<!-- Header Start -->
+<div class="header">
+  <jsp:include page="adminSidebar.jsp" />
+</div>
+  <!-- Header End -->
 <form action="adminNoticeEnd.do" method="post">
 
 	<div class="container">

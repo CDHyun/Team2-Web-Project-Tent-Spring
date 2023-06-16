@@ -53,9 +53,9 @@
 <body>
 
   <!-- Header Start -->
-  <div class="header">
-    <jsp:include page="/adminSidebar.jsp" />
-  </div>
+<div class="header">
+  <jsp:include page="adminSidebar.jsp" />
+</div>
   <!-- Header End -->
 
 

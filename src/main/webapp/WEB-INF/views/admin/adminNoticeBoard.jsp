@@ -49,8 +49,8 @@
 <body>
 <!-- Header Start -->
   <div class="header">
-    <jsp:include page="/adminSidebar.jsp" />
-  </div>
+  <jsp:include page="adminSidebar.jsp" />
+</div>
   <!-- Header End -->
   	<h3 class="container">공지사항</h3>
 	<div class="container">

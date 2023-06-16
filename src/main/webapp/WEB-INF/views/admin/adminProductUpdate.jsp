@@ -56,8 +56,8 @@
 
 <!-- Header Start -->
 	<div class="header">
-		<jsp:include page="/adminSidebar.jsp" />
-	</div>
+  <jsp:include page="adminSidebar.jsp" />
+</div>
 	<!-- Header End -->
 	
 	<div class="card content" style="width: 25rem;" >
