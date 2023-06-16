@@ -10,7 +10,7 @@
 	
 	<insert id="signUp2">
 		INSERT INTO userAddress(uaNo, uid, uaAddress, uaDetailAddress, uaZipcode)
-		VALUES(#{uaNo}, #{uid}, #{uaAddress}, #{uaDetailAddress}, #{uaZipcode})
+		VALUES(1, #{uid}, #{uaAddress}, #{uaDetailAddress}, #{uaZipcode})
 	</insert>
 	
 	<select id="checkDuplicateId" resultType="int">

@@ -20,9 +20,9 @@ public class UserServiceImpl implements UserService {
 		int insertRowCount1 = userDao.signUp1(user);
 		int insertRowCount2 = userDao.signUp2(user);
 		if(insertRowCount1 > 0 && insertRowCount2 > 0) {
-			return -1;	// 실패
+			return 1;	// 성공
 		}
-		return insertRowCount1;	// 성공
+		return -1;	// 실패
 	}
 
 	@Override
