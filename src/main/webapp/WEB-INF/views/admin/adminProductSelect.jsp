@@ -47,11 +47,11 @@
 <body>
 <!-- Header Start -->
 <div class="header">
-  <jsp:include page="/adminSidebar.jsp" />
+  <jsp:include page="adminSidebar" />
 </div>
 <!-- Header End -->
 <h3 class="content">상품조회</h3><br/><br/>
-<form action="adminindex.do" method="get" class="content">
+ <form action="adminindex.do" method="post" class="content">
   검색 선택 :
   <select name="query">
     <option value="pBrandName" selected="selected">브랜드명</option>
@@ -114,14 +114,14 @@
 
 
 <div class="content">
-  <%
-    int lastpage = (int) request.getAttribute("d_count");
-    int itemsPerPage = 7; // 페이지당 항목 개수
-    int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
+    <%
+   // int lastpage = (int) request.getAttribute("d_count");
+    //int itemsPerPage = 7; // 페이지당 항목 개수
+   //int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
     
-    for (int i = 1; i <= totalPages; i++) {
-      out.print("<a href='adminindex.do?vpage=" + i + "'>" + i + "</a> ");
-    }
+   // for (int i = 1; i <= totalPages; i++) {
+    //  out.print("<a href='adminindex.do?vpage=" + i + "'>" + i + "</a> ");
+   // }
   %>
 </div>
 
