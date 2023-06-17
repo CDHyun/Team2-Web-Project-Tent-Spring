@@ -50,19 +50,19 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void insert1(String pName, String pBrandName, String pPrice, String cgNo) throws Exception {
+	public void insert1(String pName, String pBrandName, int pPrice, int cgNo) throws Exception {
 		// TODO Auto-generated method stub
 		 sqlSession.insert(nameSpace + ".insert1");
 	}
 
 	@Override
-	public void insert2( String pStock, String pColor,String pCode) throws Exception {
+	public void insert2(int pCode, int pStock,String pColor, String pName) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.insert(nameSpace + ".insert2");
 	}
 
 	@Override
-	public void upload(String pfName, String pfRealName, String pfHoverName, String pfHoverRealName, String pCode)
+	public void upload(String pfName, String pfRealName, String pfHoverName,String pfHoverRealName,int pCode)
 			throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.insert(nameSpace + ".upload");
