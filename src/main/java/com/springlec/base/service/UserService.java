@@ -48,6 +48,9 @@ public interface UserService {
 	// 배송지 추가
 	public int add_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent);
 	
+	// 배송지 수정
+	public int modify_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent);
+	
 	
 	
 	

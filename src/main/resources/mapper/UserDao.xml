@@ -85,7 +85,12 @@
 	    INSERT INTO userAddress (uid, uaNo, uaAddress, uaDetailAddress, uaZipcode, uaContent)
 	    VALUES (#{uid}, #{uaNo}, #{uaAddress}, #{uaDetailAddress}, #{uaZipcode}, #{uaContent})
 	</insert>
-
+	
+	<!-- 배송지 수정 -->
+	<update id="modify_address">
+		UPDATE userAddress SET uaAddress = #{uaAddress}, uaDetailAddress = #{uaDetailAddress}, uaZipcode = #{uaZipcode}, uaContent = #{uaContent}
+		WHERE uid = #{uid} AND uaNo = #{uaNo}
+	</update>
 	
 	
 	
