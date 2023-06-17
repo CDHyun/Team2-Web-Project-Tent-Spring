@@ -23,6 +23,10 @@ public class Product {
 	String pfHoverName;		// 올린 호버 이미지 이름
 	String pfHoverRealName;	// 프로젝트에 저장되는 실제 호버 이미지 이름
 	
+	/* ProductOption */
+	String pColor;			// 상품 색상
+	int pStock;				// 색상별 수량
+	
 	/* Search */
 	String queryContent;	// 사용자가 검색창에 입력한 내용
 	
@@ -33,7 +37,7 @@ public class Product {
 
 	public Product(int cgNo, String cgName, int pCode, String pName, String pBrandName, int pPrice, String pInsertDate,
 			String pUpdateDate, String pDeleteDate, boolean pDeleted, String pfName, String pfRealName,
-			String pfHoverName, String pfHoverRealName, String queryContent) {
+			String pfHoverName, String pfHoverRealName, String pColor, int pStock, String queryContent) {
 		super();
 		this.cgNo = cgNo;
 		this.cgName = cgName;
@@ -49,10 +53,13 @@ public class Product {
 		this.pfRealName = pfRealName;
 		this.pfHoverName = pfHoverName;
 		this.pfHoverRealName = pfHoverRealName;
+		this.pColor = pColor;
+		this.pStock = pStock;
 		this.queryContent = queryContent;
 	}
 
-	
+
+
 	/********* getter & setter **********/
 	public int getCgNo() {
 		return cgNo;
@@ -172,6 +179,22 @@ public class Product {
 
 	public void setQueryContent(String queryContent) {
 		this.queryContent = queryContent;
+	}
+
+	public String getpColor() {
+		return pColor;
+	}
+
+	public void setpColor(String pColor) {
+		this.pColor = pColor;
+	}
+
+	public int getpStock() {
+		return pStock;
+	}
+
+	public void setpStock(int pStock) {
+		this.pStock = pStock;
 	}
 	
 }	// End Class

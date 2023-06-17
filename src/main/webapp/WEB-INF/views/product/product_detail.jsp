@@ -13,7 +13,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
 	<link rel="stylesheet" href="css/shop/product.css">
 	<script type="text/javascript">
@@ -165,11 +165,11 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="common/include_common_header.jsp"/>
+  	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
     
     <!-- Quick View Modal Area -->
-    <jsp:include page="common/include_product_quickview_modal.jsp"/>
+    <jsp:include page="../common/include_product_quickview_modal.jsp"/>
     <!-- Quick View Modal Area end -->
 
     <!-- Breadcumb Area -->
@@ -195,7 +195,6 @@
                 <div class="col-12 col-lg-6">
                     <div class="single_product_thumb">
                         <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-                            <c:forEach items="${productInfo}" var="product">
                             <!-- Carousel Inner -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -294,12 +293,12 @@
 						<div class="widget p-0 color mb-3">
                             <h6 class="widget-title">Color</h6>
                             <div class="widget-desc d-flex">
-									<c:forEach items="${colorList}" var="color">
+								<c:forEach items="${colorList}" var="color">
                                 <div class="custom-control custom-radio">
                                     	<input type="radio" id="${color.pColor}" name="customRadio" class="custom-control-input" value="${color.pColor}">
                                     	<label class="custom-control-label ${color.pColor}" for="${color.pColor}"></label>
                                 </div>
-									</c:forEach>
+								</c:forEach>
                             </div>
                         </div>
 
@@ -518,21 +517,20 @@
             </div>
         </div>
     </section>
-    </c:forEach>
     <!-- Single Product Details Area End -->
     
     
 
     <!-- Related Products Area -->
-	<jsp:include page="common/include_related_product_list.jsp"/>
+	<jsp:include page="../common/include_related_product_list.jsp"/>
     <!-- Related Products Area -->
 
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	<script src="js/shop/product.js?after"></script>
 	<script src="js/shop/review.js?after"></script>
 

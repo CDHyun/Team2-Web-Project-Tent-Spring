@@ -299,8 +299,8 @@
 	                                <div class="single-product-area mb-30">
 	                                    <div class="product_image">
 	                                        <!-- Product Image -->
-	                                        <a href="product_detail.do?pCode=${product.pCode}"><img class="normal_img" src="images/product/${product.pfRealName}" alt=""></a>
-	                                         <a href="product_detail.do?pCode=${product.pCode}"><img class="hover_img" src="images/product/${product.pfHoverRealName}" alt=""></a>
+	                                        <a href="product_detail?pCode=${product.pCode}"><img class="normal_img" src="images/product/${product.pfRealName}" alt=""></a>
+	                                         <a href="product_detail?pCode=${product.pCode}"><img class="hover_img" src="images/product/${product.pfHoverRealName}" alt=""></a>
 		
 	                                        <!-- Product Badge -->
 	                                        <div class="product_badge">
