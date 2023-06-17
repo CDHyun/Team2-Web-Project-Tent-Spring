@@ -15,5 +15,11 @@ public interface BoardService {
 	// 게시글 작성
 	public int write_board(Board board) throws Exception;
 	
+	// 게시글 조회수 증가
+	public int increaseViewCount(int bNo) throws Exception;
+	
+	// 게시글 상세 보기
+	public Board board_detail(int bNo) throws Exception;
+		
 	
 }	// End Class

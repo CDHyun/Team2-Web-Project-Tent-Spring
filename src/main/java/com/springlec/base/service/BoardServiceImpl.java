@@ -41,4 +41,14 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.write_board(board);
 	}
 
+	@Override
+	public Board board_detail(int bNo) throws Exception {
+		return boardDao.board_detail(bNo);
+	}
+
+	@Override
+	public int increaseViewCount(int bNo) throws Exception {
+		return boardDao.increaseViewCount(bNo);
+	}
+
 }

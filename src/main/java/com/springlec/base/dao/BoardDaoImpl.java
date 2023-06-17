@@ -27,4 +27,14 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.insert(nameSpace + ".write_board");
 	}
 
+	@Override
+	public int increaseViewCount(int bNo) throws Exception {
+		return sqlSession.update(nameSpace + ".IncreaseViewCount");
+	}
+
+	@Override
+	public Board board_detail(int bNo) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".board_detail");
+	}
+
 }	// End Class

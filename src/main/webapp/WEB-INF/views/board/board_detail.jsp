@@ -16,7 +16,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/board.css">
     <link rel="stylesheet" href="css/shop/comment.css">
@@ -272,7 +272,7 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="common/include_common_header.jsp"/>
+  	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
     
     <!-- Breadcumb Area -->
@@ -297,7 +297,6 @@
 					<div class="shortcodes_title mb-30">
 						<h4>Board View</h4>
 					</div>
-					<c:forEach items="${boardDetail}" var="board">
 						<c:set var="bNo" value="${board.bNo}"></c:set>
 						<div class="shortcodes_content">
 							<div class="table-responsive">
@@ -387,8 +386,6 @@
 								</div>
 							</div>
 							<!-- boardModifyModal End -->
-						
-					</c:forEach>
 				</div>
 			</div>
 			<br/><br/>
@@ -581,11 +578,11 @@
 			</div>
 			
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 	<script src="js/shop/board.js?after"></script>
 	<script src="js/shop/comment.js"></script>

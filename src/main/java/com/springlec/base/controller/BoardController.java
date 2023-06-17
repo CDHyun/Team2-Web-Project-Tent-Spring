@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springlec.base.model.Board;
@@ -51,6 +52,18 @@ public class BoardController {
 		board.setuNickName((String)session.getAttribute("SUNICKNAME"));
 		boardService.write_board(board);
 		return "redirect:board_list";
+	}
+	
+	@RequestMapping("board_detail")
+	public String board_detail(HttpServletRequest request, Model model) throws Exception {
+		Board board = boardService.board_detail(Integer.parseInt(request.getParameter("bNo")));
+		model.addAttribute("board", board);
+		return "board/board_detail";
+	}
+	
+	@RequestMapping("increaseViewCount")
+	public void increaseViewCount(HttpServletRequest request) throws Exception {
+		boardService.increaseViewCount(Integer.parseInt(request.getParameter("bNo")));
 	}
 	
 	
