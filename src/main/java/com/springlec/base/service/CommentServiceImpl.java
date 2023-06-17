@@ -31,4 +31,9 @@ public class CommentServiceImpl implements CommentService {
 		return commentDao.commentList(bNo, startRow, endRow);
 	}
 
+	@Override
+	public int write_parent_comment(Comment comment) throws Exception {
+		return commentDao.write_parent_comment(comment);
+	}
+
 }

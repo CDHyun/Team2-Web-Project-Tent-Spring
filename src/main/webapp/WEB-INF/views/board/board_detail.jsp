@@ -513,7 +513,7 @@
 		<div class="modal-content">
 			<div class="container">
 				<h5 class="mb-3" style="display: inline-block; text-align: center;">Comment</h5>
-				<form id="parent_comment_form" action="parent_comment_write?bNo=${bNo}" method="post">
+				<form id="parent_comment_form" action="write_parent_comment?bNo=${bNo}" method="post">
 						<div class="form-group">
 							<label for="uid">작성자 : ${SUNICKNAME}</label>
 						</div>

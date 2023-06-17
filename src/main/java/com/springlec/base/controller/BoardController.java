@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  23/06/17 : Board 페이지 구현 시작 -> 23/06/17 : 리스트 출력, 검색, 페이징 구현 완료.
  23/06/17 : 게시판 글 상세보기, 조회수 증가 구현 시작 -> 23/06/17 : 완료.
  23/06/17 : 게시판 글 작성, 삭제, 수정 구현 시작 -> 23/06/17 : 완료.
- 23/06/17 : 댓글 리스트 불러오기 구현 시작 -> 
+ 23/06/17 : 댓글 리스트 불러오기 구현 시작 -> 23/06/17 : 리스트 출력, 페이징 구현 완료.
  */
 
 import org.springframework.stereotype.Controller;
@@ -99,6 +99,15 @@ public class BoardController {
 		return result;
 	}
 	
+	@RequestMapping("write_parent_comment")
+	public String write_parent_comment(Comment comment, HttpServletRequest request, HttpSession session) throws Exception {
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		comment.setUid((String)session.getAttribute("SUID"));
+		comment.setuNickName((String)session.getAttribute("SUNICKNAME"));
+		comment.setbNo(bNo);
+		commentService.write_parent_comment(comment);
+		return "redirect:board_detail?bNo=" + bNo;
+	}
 	
 	
 	

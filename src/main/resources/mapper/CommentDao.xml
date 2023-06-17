@@ -26,7 +26,13 @@
 	    WHERE row_num >= #{startRow} AND row_num &lt;= #{endRow}
 	    ORDER BY cmRef ASC, cmRefOrder ASC
 	</select>
-
+	
+	<!-- 부모 댓글 작성 -->
+	<insert id="write_parent_comment">
+	INSERT INTO comment (bNo, uid, uNickName, cmContent, cmRef, cmInsertDate)
+	SELECT #{bNo}, #{uid}, #{uNickName}, #{cmContent}, COALESCE(MAX(cmRef), 0) + 1, NOW() FROM comment
+	WHERE bNo = #{bNo}
+	</insert>
 	
 	<!-- 게시글 작성 -->
 	<insert id="write_board">
