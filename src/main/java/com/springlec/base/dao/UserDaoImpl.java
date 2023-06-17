@@ -1,5 +1,7 @@
 package com.springlec.base.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.springlec.base.model.User;
@@ -73,6 +75,11 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int delete_account(String uid) throws Exception {
 		return sqlSession.update(nameSpace + ".delete_account");
+	}
+
+	@Override
+	public List<User> my_address(String uid) throws Exception {
+		return sqlSession.selectList(nameSpace + ".my_address");
 	}
 	
 	

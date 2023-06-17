@@ -47,4 +47,7 @@ public interface UserDao {
 	// 유저 회원 탈퇴
 	public int delete_account(String uid) throws Exception;
 	
+	// 배송지 조회
+	public List<User> my_address(String uid) throws Exception;
+	
 }	// End Class

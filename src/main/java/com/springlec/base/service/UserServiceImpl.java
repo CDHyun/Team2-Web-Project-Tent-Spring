@@ -1,5 +1,7 @@
 package com.springlec.base.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -106,6 +108,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int delete_account(String uid) throws Exception {
 		return userDao.delete_account(uid);
+	}
+
+	@Override
+	public List<User> my_address(String uid) throws Exception {
+		return userDao.my_address(uid);
 	}
 
 
