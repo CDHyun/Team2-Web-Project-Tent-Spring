@@ -37,10 +37,12 @@
 		SELECT * FROM board WHERE bNo = #{bNo}
 	</select>
 	
-	
-	
 	<update id="increaseViewCount">
 		UPDATE board SET bViewCount = bViewCount +1 WHERE bNo = #{bNo}
+	</update>
+	
+	<update id="delete_board">
+		UPDATE board SET bDeleted = 1, bDeleteDate = now() WHERE bNo = #{bNo}
 	</update>
 
 

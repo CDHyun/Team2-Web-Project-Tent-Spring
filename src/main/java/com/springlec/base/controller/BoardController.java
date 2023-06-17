@@ -61,6 +61,13 @@ public class BoardController {
 		return "board/board_detail";
 	}
 	
+	@RequestMapping("delete_board")
+	@ResponseBody
+	public int delete_board(HttpServletRequest request) throws Exception {
+		int result = boardService.delete_board(Integer.parseInt(request.getParameter("bNo")));
+		return result;
+	}
+	
 	
 	
 	
