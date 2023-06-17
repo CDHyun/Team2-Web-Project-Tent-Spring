@@ -71,7 +71,7 @@
 		<c:forEach items="${list}" var="dto" varStatus="st">
 			<tr>
 				<td>${st.index+1}</td>
-				<td><a href="adminProductDetail.do?pCode=${dto.pCode}"> ${dto.pCode}</a></td>
+				<td><a href="adminProductDetail?pCode=${dto.pCode}&pColor=${dto.pColor}"> ${dto.pCode}</a></td>
 				<td>${dto.pBrandName}</td>
 				<td>${dto.pName}</td>
 				<td>${dto.pColor}</td>
@@ -85,13 +85,13 @@
 
 <div class="content">
   <%
-    int lastpage = (int) request.getAttribute("d_count");
-    int itemsPerPage = 7; // 페이지당 항목 개수
-    int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
+  //  int lastpage = (int) request.getAttribute("d_count");
+  //  int itemsPerPage = 7; // 페이지당 항목 개수
+  //  int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
     
-    for (int i = 1; i <= totalPages; i++) {
-      out.print("<a href='adminUpdate.do?vpage=" + i + "'>" + i + "</a> ");
-    }
+ //   for (int i = 1; i <= totalPages; i++) {
+  //    out.print("<a href='adminUpdate.do?vpage=" + i + "'>" + i + "</a> ");
+ //   }
   %>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

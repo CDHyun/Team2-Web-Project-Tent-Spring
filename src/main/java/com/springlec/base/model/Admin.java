@@ -60,7 +60,7 @@ public class Admin {
 	}
 	
 	
-	
+
 	public Admin(int pCode, String pName, String pBrandName, int pPrice, Date pInsertdate, Date pupdatedate,
 			Date pdeletedate, String pfName, String pfRealName, int cgNo, String cgName, String pColor, int pStock,
 			String pfHoverName, String pfHoverRealName, int pcNo, String uid, int pcQty, int pcStatus,
