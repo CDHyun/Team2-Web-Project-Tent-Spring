@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.BoardDao">
+
+
+	<!-- 게시글 개수 카운트 -->
+	<select id="boardCount" resultType="int">
+		SELECT COUNT(*) FROM board WHERE bDeleted = 0 AND bTitle LIKE concat('%', #{query}, '%') AND bContent LIKE concat('%', #{query}, '%')
+	</select>
+
+
+
+	<sql id="searchQuery">
+	    SELECT bNo, uid, uNickName, bCgNo, bTitle, bContent, bInsertDate, bViewCount
+	    FROM board
+	    WHERE bDeleted = 0 AND (bTitle LIKE CONCAT('%', #{query}, '%') OR bContent
+	    LIKE CONCAT('%', #{query}, '%'))
+	</sql>
+	
+	<select id="boardList" resultType="com.springlec.base.model.Board">
+	    SELECT * FROM (
+	        SELECT derivedTable.*, ROW_NUMBER() OVER () AS row_num FROM (
+	            <include refid="searchQuery"/>
+	        ) AS derivedTable
+	    ) AS finalResult
+	    WHERE row_num >= #{startRow} AND row_num &lt;= #{endRow}
+	    ORDER BY bNo DESC;
+	</select>
+
+
+
+	
+	
+	
+	
+	
+	
+</mapper>

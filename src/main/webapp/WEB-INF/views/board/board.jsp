@@ -16,7 +16,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/board.css">
 	<script type="text/javascript">
@@ -55,7 +55,7 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="common/include_common_header.jsp"/>
+  	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
     
     <!-- Breadcumb Area -->
@@ -83,9 +83,9 @@
                     </div>
                     
                     <div class="pretty-search-form">
-					  <form action="board_list.do" method="get">
+					  <form action="board_list?pageNo=1" method="get">
 					    <div class="input-group">
-					      <input type="search" class="form-control" name="queryContent" placeholder="Search">
+					      <input type="search" class="form-control" name="query" placeholder="Search">
 					      <div class="input-group-append">
 					        <button type="submit" class="btn btn-secondary btn-sm">
 					          <i class="fa fa-search" style="width: 100%; height: 100% font-size: 30px;"></i>
@@ -114,7 +114,7 @@
 									    <tr>
 									        <th scope="row" style="text-align: center; vertical-align: middle;">${board.bNo}</th>
 									        <td style="text-align: center; vertical-align: middle;">
-									            <a href="board_detail.do?bNo=${board.bNo}">${board.bTitle}</a>
+									            <a href="board_detail?bNo=${board.bNo}">${board.bTitle}</a>
 									        </td>
 									        <td style="text-align: center; vertical-align: middle;">${board.uNickName}</td>
 									        <c:set var="dateString" value="${board.bInsertDate}" />
@@ -143,10 +143,10 @@
 			        <ul class="pagination pagination-sm justify-content-center">
 			            <c:if test="${pageMaker.page > 1}">
 			                <li class="page-item">
-			                    <a class="page-link" href="board_list.do?pageNo=1&queryContent=${param.queryContent}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+			                    <a class="page-link" href="board_list?pageNo=1&query=${param.query}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
 			                </li>
 			                <li class="page-item">
-			                    <a class="page-link" href="board_list.do?pageNo=${pageMaker.page - 1}&queryContent=${param.queryContent}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+			                    <a class="page-link" href="board_list?pageNo=${pageMaker.page - 1}&query=${param.query}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
 			                </li>
 			            </c:if>
 			<c:set var="halfDisplayPage" value="${Math.floor(pageMaker.displayPage/2)}" />
@@ -162,16 +162,16 @@
 			
 			<c:forEach var="pageNum" begin="${startPage}" end="${endPage}" step="1">
 			    <li class="page-item ${pageNum eq pageMaker.page ? 'active' : ''}">
-			        <a class="page-link" href="board_list.do?pageNo=${pageNum}&queryContent=${param.queryContent}">${pageNum}</a>
+			        <a class="page-link" href="board_list?pageNo=${pageNum}&query=${param.query}">${pageNum}</a>
 			    </li>
 			</c:forEach>
 			
 			            <c:if test="${pageMaker.next}">
 						    <li class="page-item">
-						        <a class="page-link" href="board_list.do?pageNo=${pageMaker.page + 1}&queryContent=${param.queryContent}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+						        <a class="page-link" href="board_list?pageNo=${pageMaker.page + 1}&query=${param.query}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
 						    </li>
 						    <li class="page-item">
-						        <a class="page-link" href="board_list.do?pageNo=${pageMaker.totalPage}&queryContent=${param.queryContent}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+						        <a class="page-link" href="board_list?pageNo=${pageMaker.totalPage}&query=${param.query}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 						    </li>
 						</c:if>
 			        </ul>
@@ -243,11 +243,11 @@
 	<!-- boardWriteModal End -->
 	
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 	<script src="js/shop/board.js?after" defer></script>
 

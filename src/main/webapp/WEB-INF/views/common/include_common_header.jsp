@@ -109,9 +109,7 @@ function loginCheck() {
                     icon: 'success',
                     title: "로그인 성공! \n 환영합니다."
                 }).then(() => {
-                    setTimeout(function() {
-                        $("#user_login_form").submit();
-                    }, 1500);
+                    $("#user_login_form").submit();
                 });
             }
         },
