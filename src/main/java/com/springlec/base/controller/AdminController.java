@@ -142,7 +142,12 @@ public class AdminController {
 		//@RequestMapping("/adminUpdateAction")
 		
 
-
+		// 상품 삭제
+		@RequestMapping("/adminDeleteAction")
+		public String deleteProduct(HttpServletRequest request, Model model) throws Exception{
+			adminService.deleteProduct(Integer.parseInt(request.getParameter("pCode")),request.getParameter("pColor"));
+			return "redirect:adminUpdate";
+		}
 		
 		// 주문처리
 		@RequestMapping("/adminpurchaseCheck")

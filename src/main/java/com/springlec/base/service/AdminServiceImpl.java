@@ -111,4 +111,11 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+
+	@Override
+	public void deleteProduct(int pCode, String pColor) throws Exception {
+		// TODO Auto-generated method stub
+		adminDao.deleteProduct(pCode, pColor);
+	}
+
 }
