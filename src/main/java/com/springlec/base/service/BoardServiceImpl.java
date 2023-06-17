@@ -43,12 +43,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Board board_detail(int bNo) throws Exception {
+		boardDao.increaseViewCount(bNo);
 		return boardDao.board_detail(bNo);
 	}
 
-	@Override
-	public int increaseViewCount(int bNo) throws Exception {
-		return boardDao.increaseViewCount(bNo);
-	}
 
-}
+}	// End Class
