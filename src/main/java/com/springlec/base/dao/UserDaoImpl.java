@@ -96,6 +96,11 @@ public class UserDaoImpl implements UserDao {
 	public int modify_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent) {
 		return sqlSession.update(nameSpace + ".modify_address");
 	}
+
+	@Override
+	public int delete_address(String uid, int uaNo) throws Exception {
+		return sqlSession.delete(nameSpace + ".delete_address");
+	}
 	
 	
 

@@ -59,6 +59,9 @@ public interface UserDao {
 	// 배송지 수정
 	public int modify_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent);
 	
+	// 배송지 삭제
+	public int delete_address(String uid, int uaNo) throws Exception;
+	
 	
 	
 	

@@ -92,6 +92,15 @@
 		WHERE uid = #{uid} AND uaNo = #{uaNo}
 	</update>
 	
+	<!-- 배송지 삭제 -->
+	<delete id="delete_address">
+		DELETE FROM userAddress WHERE uid = #{uid} AND uaNo = #{uaNo}
+	</delete>
+	
+	
+	
+	
+	
 	
 	
 </mapper>
