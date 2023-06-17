@@ -41,6 +41,10 @@ public interface AdminDao {
 	// 주문상태 
 	public List<Admin> statusCheck() throws Exception;
 	
+	// 주문상태변경
+	public void changeStatus (int pcNo, int pcStatus) throws Exception;
+	
+	
 	// 고객관리 notice
 	public List<Admin> customer() throws Exception;
 	

@@ -6,13 +6,13 @@
 	<select id="selectlist" resultType="com.springlec.base.model.Admin">
 		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  
 		FROM product p, productoption po, productfile pf 
-		where p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 
+		WHERE p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 
 	</select>
 	<!-- 검색  -->
 	<select id="querySelect" resultType="com.springlec.base.model.Admin">
 		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  
 		FROM product p, productoption po, productfile pf 
-		where p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 and ${query} like #{content}
+		WHERE p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 and ${query} like #{content}
 	</select>
 	<!-- 날짜별 매출 계산  -->
 	<select id="dailySale" resultType="com.springlec.base.model.Admin">
@@ -36,13 +36,13 @@
 	<select id="sharelist" resultType="com.springlec.base.model.Admin">
 		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  
 		FROM product p, productoption po, productfile pf 
-		where p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 
+		WHERE p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 
 	</select>
 	<!-- 상품수정  -->
 	<select id="contentviewDao" resultType="com.springlec.base.model.Admin">
-		select p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pupdatedate,pf.pfName, pf.pfRealName  
-		from product p, productoption po, productfile pf 
-		where p.pCode = po.pCode and p.pCode = pf.pCode and p.pCode=#{pCode} and po.pColor = #{pColor}
+		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pupdatedate,pf.pfName, pf.pfRealName  
+		FROM product p, productoption po, productfile pf 
+		WHERE p.pCode = po.pCode and p.pCode = pf.pCode and p.pCode=#{pCode} and po.pColor = #{pColor}
 	</select>
 	<!-- 상품등록  -->
 	<insert id="insert1">
@@ -61,18 +61,24 @@
 	 
 	 <!-- 주문상태  -->
 	<select id="statusCheck" resultType="com.springlec.base.model.Admin">
-		select pc.pcNo, pc.uid, pc.pCode, po.pColor, pc.pcQty, pc.pcInsertDate, pc.pcStatus from purchase pc, product p, productoption po
-		where p.pCode = pc.pCode and p.pCode = po.pCode and po.pCode = pc.pCode and pc.pColor = po.pColor order by pc.pcNo desc
+		SELECT pc.pcNo, pc.uid, pc.pCode, po.pColor, pc.pcQty, pc.pcInsertDate, pc.pcStatus FROM purchase pc, product p, productoption po
+		WHERE p.pCode = pc.pCode and p.pCode = po.pCode and po.pCode = pc.pCode and pc.pColor = po.pColor order by pc.pcNo desc
 	</select>
-	
+	 <!-- 주문상태  -->
+	 <update id="changeStatus">
+	 	UPDATE purchase pc,product p SET pc.pcStatus =#{pcStatus} WHERE p.pCode= pc.pCode and pc.pcNo = #{pcNo}
+	 </update>
+	 
+	 
 	 <!-- 고객관리 notice -->
 	<select id="customer" resultType="com.springlec.base.model.Admin">
-		select n.nNo, n.aid, n.nTitle, n.nInsertDate from notice n, admin a where n.aid = a.aid and n.nCgNo=1
+		SELECT n.nNo, n.aid, n.nTitle, n.nInsertDate FROM notice n, admin a WHERE n.aid = a.aid and n.nCgNo=1
 	</select>
 	
 	<!-- 고객관리 faq -->
 	<select id="faq" resultType="com.springlec.base.model.Admin">
-		select n.nNo, n.aid, n.nTitle, n.nInsertDate, n.nContent from notice n, admin a where n.aid = a.aid and n.nCgNo=2
+		SELECT n.nNo, n.aid, n.nTitle, n.nInsertDate, n.nContent FROM notice n, admin a WHERE n.aid = a.aid and n.nCgNo=2
 	</select>
+	
 	
 </mapper>

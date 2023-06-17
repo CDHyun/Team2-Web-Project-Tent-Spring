@@ -82,7 +82,7 @@ function changeStatus() {
             <th></th>
         </tr>
         <c:forEach items="${check}" var="dto">
-    <form id="adminstatusform" name="adminstatusform" action="adminStatusChange.do" method="post"  class="content">
+    <form id="adminstatusform" name="adminstatusform" action="adminStatusChange" method="post"  class="content">
    			 <tr>
        			 <td>
     				<input type="hidden" name="pcNo" value="${dto.pcNo}">
@@ -94,7 +94,7 @@ function changeStatus() {
         		<td>${dto.pcQty}</td>
         		<td>${dto.pcInsertdate}</td>
         		<td>
-           		 <select name="status">
+           		 <select name="pcStatus">
                		 <option value="-1" ${dto.pcStatus == -1 ? 'selected' : ''}>주문취소</option>
               		  <option value="0" ${dto.pcStatus == 0 ? 'selected' : ''}>상품준비중</option>
             		  <option value="1" ${dto.pcStatus == 1 ? 'selected' : ''}>배송중</option>

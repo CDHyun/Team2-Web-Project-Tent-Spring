@@ -86,6 +86,12 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectList(nameSpace + ".faq");	
 	}
 
+	@Override
+	public void changeStatus(int pcNo, int pcStatus) throws Exception {
+		// TODO Auto-generated method stub
+		 sqlSession.update(nameSpace + ".changeStatus");
+	}
+
 	
 
 	
