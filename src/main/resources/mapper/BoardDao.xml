@@ -32,6 +32,16 @@
 		INSERT INTO board(uid, uNickName, bCgNo, bTitle, bContent, bInsertDate)
 		VALUES(#{uid}, #{uNickName}, #{bCgNo}, #{bTitle}, #{bContent}, now())
 	</insert>
+	
+	<select id="board_detail" resultType="com.springlec.base.model.Board">
+		SELECT * FROM board WHERE bNo = #{bNo}
+	</select>
+	
+	
+	
+	<update id="IncreaseViewCount">
+		UPDATE board SET bViewCount = bViewCount +1 WHERE bNo = #{bNo}
+	</update>
 
 
 
