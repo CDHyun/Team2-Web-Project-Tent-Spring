@@ -109,7 +109,7 @@ $(".board_btn.new_write").on("click", function(){
 		Toast.fire({ icon: 'warning', title: "필수 입력값을 입력하지 않았습니다.\n 제목과 내용을 모두 입력해주세요" });
 		return;
 	}
-	$("#board_write_form").attr("action", "board_write.do");
+	$("#board_write_form").attr("action", "write_board");
 	$('#boardWriteModal').modal('hide');
 	$("#board_write_form").submit();
 });

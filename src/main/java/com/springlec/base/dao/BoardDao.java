@@ -12,5 +12,8 @@ public interface BoardDao {
 	// 게시판 글 개수 카운트
 	public int boardCount(String query) throws Exception;
 	
+	// 게시글 작성
+	public int write_board(Board board) throws Exception;
+	
 	
 }	// End Class

@@ -19,8 +19,12 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int boardCount(String query) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(nameSpace + ".boardCount");
+	}
+
+	@Override
+	public int write_board(Board board) throws Exception {
+		return sqlSession.insert(nameSpace + ".write_board");
 	}
 
 }	// End Class
