@@ -92,12 +92,12 @@ public class AdminController {
                 @RequestParam("file1") MultipartFile file1,
                 @RequestParam("pName") String pName,
                 @RequestParam("pBrandName") String pBrandName,
-                @RequestParam("pPrice") String pPrice,
-                @RequestParam("cgNo") String cgNo,
-                @RequestParam("pCode") String pCode,
+                @RequestParam("pPrice") int pPrice,
+                @RequestParam("cgNo") int cgNo,
+                @RequestParam("pCode") int pCode,
                 @RequestParam("pColor") String pColor,
-                @RequestParam("pStock") String pStock,
-                @RequestParam("pfNo") String pfNo,
+                @RequestParam("pStock") int pStock,
+                @RequestParam("pfNo") int pfNo,
                 Model model) throws Exception {
 			
 			
@@ -110,6 +110,19 @@ public class AdminController {
 		        String pfHoverRealName = file1.getOriginalFilename();
 		        // 파일 업로드 처리 로직 작성
 			
+		        
+		        System.out.println(pfName);
+		        System.out.println(pfRealName);
+		        System.out.println(pfHoverName);
+		        System.out.println(pfHoverRealName);
+		        System.out.println(pName);
+		        System.out.println(pBrandName);
+		        System.out.println(pPrice);
+		        System.out.println(cgNo);
+		        System.out.println(pCode);
+		        System.out.println(pStock);
+		        System.out.println(pColor);
+		        System.out.println(pfNo);
 		
 				adminService.insert(pName, pBrandName, pPrice, cgNo, pCode, pStock, pColor, pfNo, pfName, pfRealName, pfHoverName, pfHoverRealName);
 			

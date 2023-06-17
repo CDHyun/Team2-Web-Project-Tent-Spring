@@ -32,8 +32,8 @@ public interface AdminService {
 		public void deleteProduct(int pCode, String pColor) throws Exception;
 		
 		// admin 상품등록 transaction
-		public void insert( String pName, String pBrandName,String pPrice,String cgNo,String pCode
-				,String pStock,String pColor,String pfNo,String pfName,String pfRealName,String pfHoverName,String pfHoverRealName) throws Exception;
+		public void insert( String pName, String pBrandName,int pPrice,int cgNo,int pCode
+				,int pStock,String pColor,int pfNo,String pfName,String pfRealName,String pfHoverName,String pfHoverRealName) throws Exception;
 		
 		// 주문상태 
 		public List<Admin> statusCheck() throws Exception;

@@ -35,13 +35,13 @@ public interface AdminDao {
 	
 	
 	// admin 상품등록
-	public void insert1(String pName, String pBrandName, String pPrice, String cgNo) throws Exception;
+	public void insert1(String pName, String pBrandName, int pPrice, int cgNo) throws Exception;
 	
-	public void insert2(String pCode, String pStock,String pColor) throws Exception;
+	public void insert2(int pCode, int pStock, String pColor, String pName) throws Exception;
 
 	
 	// admin 상품사진등록
-	public void upload(String pfName,String pfRealName,String pfHoverName,String pfHoverRealName,String pCode) throws Exception;
+	public void upload(String pfName, String pfRealName, String pfHoverName,String pfHoverRealName,int pCode) throws Exception;
 	
 	
 	// 주문상태 

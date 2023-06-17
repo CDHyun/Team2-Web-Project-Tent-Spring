@@ -23,15 +23,23 @@
 		
 	<!-- 막대차트그리기 - SET sql_mode 포함 -->
 	<sql id="setSqlMode">
-	  SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+	  <![CDATA[
+	    SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+	  ]]>
 	</sql>
 	
 	<!-- 막대차트 -->
 	<select id="chart" resultType="com.springlec.base.model.Admin">
 	  <include refid="setSqlMode" />
-	  SELECT DAYNAME(pc.pcInsertDate), SUM(p.pPrice * pc.pcQty) FROM purchase pc, product p GROUP BY DAYNAME(pc.pcInsertDate)
-	  ORDER BY FIELD(DAYNAME(pc.pcInsertDate), 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+	  <![CDATA[
+	  SELECT DAYNAME(pc.pcInsertDate) , SUM(p.pPrice * pc.pcQty) 
+	  FROM purchase pc, product p
+	  GROUP BY DAYNAME(pc.pcInsertDate)
+	  ORDER BY FIELD(DAYNAME(pc.pcInsertDate), 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
+	  ]]>
 	</select>
+
+
 	<!-- 상품관리  -->
 	<select id="sharelist" resultType="com.springlec.base.model.Admin">
 		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  
@@ -49,13 +57,14 @@
 	 INSERT INTO product (pName, pBrandName, pPrice, pInsertDate, cgNo) VALUES (#{pName}, #{pBrandName}, #{pPrice}, NOW(), #{cgNo})
 	 </insert>
 	<insert id="insert2">
-	 INSERT INTO productoption (pStock, pColor, pCode) SELECT #{pStock}, #{pColor}, #{pCode} FROM product WHERE pName=#{pName}
+	 INSERT INTO productoption (pCode,pStock,pColor) SELECT  #{pCode}, #{pStock},#{pColor} FROM product p,productoption po WHERE pName= #{pName} and po.pCode = p.pCode
 	 </insert>
 	
 	
 	<!-- 상품사진등록  -->
 	<insert id="upload">
-	 INSERT INTO productfile (pfName, pfRealName,pfHoverName,pfHoverRealName, pCode) SELECT #{pfName}, #{pfRealName}, #{pfHoverName},#{pfHoverRealName},#{pCode} FROM product limit 1
+	 INSERT INTO productfile (pfName, pfRealName,pfHoverName,pfHoverRealName, pCode) 
+	 SELECT #{pfName}, #{pfRealName}, #{pfHoverName},#{pfHoverRealName},#{pCode} FROM product p LIMIT 1
 	 </insert>
 	 
 	 
