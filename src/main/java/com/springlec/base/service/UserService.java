@@ -16,6 +16,15 @@ public interface UserService {
 	// 로그인 유저의 닉네임 가져오기
 	public String getUserNickname(String uid) throws Exception;
 	
+	// 회원 정보
+	public User userInfo(String uid) throws Exception;
+	
+	// 핸드폰 번호 변경
+	public int modify_phone(String uid, String uPhone) throws Exception;
+	
+	//아이디 비밀번호 일치여부 확인
+	public int accordCheck(String uid, String uPassword) throws Exception;
+	
 	
 	
 	

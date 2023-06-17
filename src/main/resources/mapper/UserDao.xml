@@ -3,34 +3,59 @@
 
 <mapper namespace="com.springlec.base.dao.UserDao">
 
+	<!-- 회원가입(user 테이블) -->
 	<insert id="signUp1">
 		INSERT INTO user(uid, uPassword, uName, uNickName, uPhone, uEmail, uGender, uBirthday, uInsertDate)
 		VALUES(#{uid}, #{uPassword}, #{uName}, #{uNickName}, #{uPhone}, #{uEmail}, #{uGender}, #{uBirthday}, now())
 	</insert>
 	
+	<!-- 회원가입(userAddress 테이블) -->
 	<insert id="signUp2">
 		INSERT INTO userAddress(uaNo, uid, uaAddress, uaDetailAddress, uaZipcode)
 		VALUES(1, #{uid}, #{uaAddress}, #{uaDetailAddress}, #{uaZipcode})
 	</insert>
 	
+	<!-- 아이디 중복 확인 -->
 	<select id="checkDuplicateId" resultType="int">
 		SELECT count(*) FROM user WHERE uid = #{uid}
 	</select>
 	
+	<!-- 아이디 탈퇴 여부 확인 -->
 	<select id="statusCheck" resultType="int">
 		SELECT uSecessionStatus FROM user WHERE uid = #{uid}
 	</select>
 	
+	<!-- 아이디 존재 여부 확인 -->
 	<select id="existCheck" resultType="int">
 		SELECT count(*) FROM user WHERE uid = #{uid}
 	</select>
 	
+	<!-- 아이디, 비밀번호 일치 여부 확인 -->
 	<select id="accordCheck" resultType="int">
 		SELECT count(*) FROM user WHERE uid = #{uid} AND uPassword = #{uPassword}
 	</select>
 	
+	<!-- 로그인하는 유저의 닉네임 가져오기 -->
 	<select id="getUserNickname" resultType="String">
 		SELECT uNickName FROM user WHERE uid = #{uid}
 	</select>
+	
+	<!-- 회원 정보 조회 -->
+	<select id="userInfo" resultType="com.springlec.base.model.User">
+		SELECT * FROM user u, userAddress ua WHERE u.uid = ua.uid AND u.uid = #{uid} AND ua.uaNo = 1
+	</select>
+	
+	<!-- 핸드폰 번호 변경 -->
+	<update id="modify_phone">
+		UPDATE user SET uPhone = #{uPhone}, uUpdateDate = now() WHERE uid = #{uid}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>

@@ -71,5 +71,22 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserNickname(uid);
 	}
 
+	// 회원 정보
+	@Override
+	public User userInfo(String uid) throws Exception {
+		return userDao.userInfo(uid);
+	}
+
+	@Override
+	public int modify_phone(String uid, String uPhone) throws Exception {
+		int result = userDao.modify_phone(uid, uPhone);
+		return result;
+	}
+
+	@Override
+	public int accordCheck(String uid, String uPassword) throws Exception {
+		return userDao.accordCheck(uid, uPassword);
+	}
+
 
 }	// End Class

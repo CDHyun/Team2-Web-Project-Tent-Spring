@@ -743,7 +743,7 @@ function emptySessionUser() {
 							<c:if test="${!empty SUID}">
 								<ul class="user-meta-dropdown">
 									<li class="user-title"><span>Hello,&nbsp;</span>${SUNICKNAME}😉</li>
-									<li><a href="user_my_account">My Account</a></li>
+									<li><a href="my_account">My Account</a></li>
 									<li><a href="purchase_list.do">Orders List</a></li>
 									<li><a href="wishlist_view">Wishlist</a></li>
 									<li><a href="logout"><i class="icofont-logout"></i>Logout</a></li>
