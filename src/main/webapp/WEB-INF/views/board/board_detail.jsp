@@ -442,7 +442,7 @@
 		    <div class="modal-content">
 		      <div class="container">
 		        <h5 class="mb-3" style="display: inline-block; text-align: center;">Comment</h5>
-		        <form id="child_comment_form" action="child_comment_write.do?bNo=${bNo}&cmParentNo=${cmt.cmNo}" method="post">
+		        <form id="child_comment_form" action="child_comment_write?bNo=${bNo}&cmParentNo=${cmt.cmNo}" method="post">
 		        <c:out value="${cmt.cmNo}"></c:out>
 		          <div class="form-group">
 		            <label for="uid">작성자 : ${SUNICKNAME}</label>
@@ -470,7 +470,7 @@
 		    <div class="modal-content">
 		      <div class="container">
 		        <h5 class="mb-3" style="display: inline-block; text-align: center;">Comment</h5>
-		        <form id="child_comment_form" action="child_comment_modify.do?bNo=${bNo}&cmNo=${cmt.cmNo}" method="post">
+		        <form id="child_comment_form" action="child_comment_modify?bNo=${bNo}&cmNo=${cmt.cmNo}" method="post">
 		        <c:out value="${cmt.cmNo}"></c:out>
 		          <div class="form-group">
 		            <label for="uid">작성자 : ${SUNICKNAME}</label>
@@ -513,7 +513,7 @@
 		<div class="modal-content">
 			<div class="container">
 				<h5 class="mb-3" style="display: inline-block; text-align: center;">Comment</h5>
-				<form id="parent_comment_form" action="parent_comment_write.do?bNo=${bNo}" method="post">
+				<form id="parent_comment_form" action="parent_comment_write?bNo=${bNo}" method="post">
 						<div class="form-group">
 							<label for="uid">작성자 : ${SUNICKNAME}</label>
 						</div>
@@ -542,10 +542,10 @@
 			        <ul class="pagination pagination-sm justify-content-center">
 			            <c:if test="${pageMaker.page > 1}">
 			                <li class="page-item">
-			                    <a class="page-link" href="board_detail.do?bNo=${bNo}&pageNo=1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+			                    <a class="page-link" href="board_detail?bNo=${bNo}&pageNo=1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
 			                </li>
 			                <li class="page-item">
-			                    <a class="page-link" href="board_detail.do?bNo=${bNo}&pageNo=${pageMaker.page - 1}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+			                    <a class="page-link" href="board_detail?bNo=${bNo}&pageNo=${pageMaker.page - 1}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
 			                </li>
 			            </c:if>
 						<c:set var="halfDisplayPage" value="${Math.floor(pageMaker.displayPage/2)}" />
@@ -561,16 +561,16 @@
 						
 						<c:forEach var="pageNum" begin="${startPage}" end="${endPage}" step="1">
 						    <li class="page-item ${pageNum eq pageMaker.page ? 'active' : ''}">
-						        <a class="page-link" href="board_detail.do?bNo=${bNo}&pageNo=${pageNum}">${pageNum}</a>
+						        <a class="page-link" href="board_detail?bNo=${bNo}&pageNo=${pageNum}">${pageNum}</a>
 						    </li>
 						</c:forEach>
 			
 			            <c:if test="${pageMaker.next}">
 						    <li class="page-item">
-						        <a class="page-link" href="board_detail.do?bNo=${bNo}&pageNo=${pageMaker.page + 1}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+						        <a class="page-link" href="board_detail?bNo=${bNo}&pageNo=${pageMaker.page + 1}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
 						    </li>
 						    <li class="page-item">
-						        <a class="page-link" href="board_detail.do?bNo=${bNo}&pageNo=${pageMaker.totalPage}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+						        <a class="page-link" href="board_detail?bNo=${bNo}&pageNo=${pageMaker.totalPage}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 						    </li>
 						</c:if>
 			        </ul>
