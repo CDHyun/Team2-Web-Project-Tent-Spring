@@ -64,6 +64,12 @@ public class UserServiceImpl implements UserService {
 	    }
 	    return result;
 	}
+	
+	// 로그인 유저의 닉네임 가져오기
+	@Override
+	public String getUserNickname(String uid) throws Exception {
+		return userDao.getUserNickname(uid);
+	}
 
 
 }	// End Class

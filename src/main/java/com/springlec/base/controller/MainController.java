@@ -1,5 +1,9 @@
 package com.springlec.base.controller;
 
+/*
+ 23/06/16 : 메인 페이지 구현 시작 -> 23/06/16 : 완료.
+ */
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

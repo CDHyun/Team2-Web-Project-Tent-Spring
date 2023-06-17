@@ -29,4 +29,8 @@
 		SELECT count(*) FROM user WHERE uid = #{uid} AND uPassword = #{uPassword}
 	</select>
 	
+	<select id="getUserNickname" resultType="String">
+		SELECT uNickName FROM user WHERE uid = #{uid}
+	</select>
+	
 </mapper>
