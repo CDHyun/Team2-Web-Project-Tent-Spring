@@ -60,6 +60,11 @@
 		UPDATE user SET uEmail = #{uEmail}, uUpdateDate = now() WHERE uid = #{uid}
 	</update>
 	
+	<!-- 닉네임 변경 -->
+	<update id="modify_nickname">
+		UPDATE user SET uNickName = #{uNickName}, uUpdateDate = now() WHERE uid = #{uid}
+	</update>
+	
 	
 	
 	

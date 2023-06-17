@@ -772,20 +772,20 @@
 		  
 		  $.ajax({
 		    type: 'POST',
-		    url: './UserChangeNickName',
+		    url: 'modify_nickname',
 		    data: {
 		      uNickName: uNickName
 		    },
 		    success: function(result) {
 		      console.log(result);
-		      if (result === "0") {
+		      if (result == 0) {
 		        Swal.fire({ icon: 'warning', title: "변경 중 문제가 발생했습니다." });
 		        return;
 		      }
-		      if (result === "1") {
+		      if (result == 1) {
 		        Swal.fire({ icon: 'success', title: "닉네임이 변경 되었습니다." }).then(() => {
 		          $('#userChangeNickNameModal').modal('hide');
-		          window.location.href = "user_my_account.do";
+		          window.location.href = "my_account";
 		        });
 		      }
 		    },
