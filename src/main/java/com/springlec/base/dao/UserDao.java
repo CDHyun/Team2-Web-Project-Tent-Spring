@@ -62,6 +62,9 @@ public interface UserDao {
 	// 배송지 삭제
 	public int delete_address(String uid, int uaNo) throws Exception;
 	
+	// 비밀번호 변경
+	public int change_password(String uid, String uPassword) throws Exception;
+	
 	
 	
 	

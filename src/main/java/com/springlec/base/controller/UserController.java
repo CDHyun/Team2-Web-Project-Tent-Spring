@@ -188,6 +188,22 @@ public class UserController {
 		return result;
 	}
 	
+	// 비밀번호 변경
+	@RequestMapping("change_password")
+	@ResponseBody
+	public int change_password(HttpServletRequest request, HttpSession session) throws Exception {
+		int result = 0;
+		int check = userService.accordCheck((String)session.getAttribute("SUID"), request.getParameter("password"));
+		if(check == 0) {
+			result = -1;
+			return result;
+		} else {
+			result = userService.change_password((String)session.getAttribute("SUID"), request.getParameter("changePassword"));
+		}
+		
+		return result;
+	}
+	
 	
 	
 	

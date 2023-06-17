@@ -101,6 +101,11 @@ public class UserDaoImpl implements UserDao {
 	public int delete_address(String uid, int uaNo) throws Exception {
 		return sqlSession.delete(nameSpace + ".delete_address");
 	}
+
+	@Override
+	public int change_password(String uid, String uPassword) throws Exception {
+		return sqlSession.update(nameSpace + ".password_change");
+	}
 	
 	
 

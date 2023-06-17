@@ -135,6 +135,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.delete_address(uid, uaNo);
 	}
 
+	@Override
+	public int change_password(String uid, String uPassword) throws Exception {
+		return userDao.change_password(uid, uPassword);
+	}
+
 
 
 }	// End Class
