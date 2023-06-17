@@ -1,5 +1,7 @@
 package com.springlec.base.service;
 
+import java.util.List;
+
 import com.springlec.base.model.User;
 
 public interface UserService {
@@ -36,6 +38,9 @@ public interface UserService {
 	
 	// 회원 탈퇴
 	public int delete_account(String uid) throws Exception;
+	
+	// 배송지 조회
+	public List<User> my_address(String uid) throws Exception;
 	
 	
 	

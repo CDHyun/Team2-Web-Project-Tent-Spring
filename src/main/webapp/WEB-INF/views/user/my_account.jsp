@@ -209,7 +209,7 @@
 										</c:if>
 										<c:if test="${!empty CONFIRM}">
 											<br />
-											<a href="user_address.do"><button type="button" class="btn btn-success btn-sm">Manage Addresses</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<a href="my_address"><button type="button" class="btn btn-success btn-sm">Manage Addresses</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<button type="button" class="btn btn-primary btn-sm" onclick="openUserChangePasswordModal()">Change Password</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<button type="button" class="btn btn-danger btn-sm" onclick="deleteAccountQuestion()">Delete Account</button>
 										</c:if>

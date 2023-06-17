@@ -1,5 +1,7 @@
 package com.springlec.base.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 /*
@@ -141,6 +143,13 @@ public class UserController {
 		return result;
 	}
 	
+	// 회원 배송지 페이지
+	@RequestMapping("my_address")
+	public String my_address(HttpSession session, Model model) throws Exception {
+		List<User> addressList = userService.my_address((String)session.getAttribute("SUID"));
+		model.addAttribute("addressList", addressList);
+		return "user/my_address";
+	}
 	
 	
 	

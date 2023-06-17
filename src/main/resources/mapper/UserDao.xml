@@ -70,7 +70,10 @@
 		UPDATE user SET uSecessionStatus = 1, uDeleteDate = now() WHERE uid = #{uid}
 	</update>
 	
-	
+	<!-- 배송지 조회 -->
+	<select id="my_address" resultType="com.springlec.base.model.User">
+		SELECT * FROM user u, userAddress ua WHERE u.uid = ua.uid AND u.uid = #{uid}
+	</select>
 	
 	
 	
