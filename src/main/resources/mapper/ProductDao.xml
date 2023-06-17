@@ -14,4 +14,15 @@
 	    AND p.pDeleted = 0;
 	</select>
 	
+	<select id="product_detail" resultType="com.springlec.base.model.Product">
+		SELECT * FROM product p
+		LEFT JOIN productFile pf ON p.pCode = pf.pCode
+		LEFT JOIN category cg ON p.cgNo = cg.cgNo
+		WHERE p.pCode = #{pCode}
+	</select>
+	
+	<select id="colorList" resultType="com.springlec.base.model.Product">
+		SELECT * FROM productOption WHERE pCode = #{pCode}
+	</select>
+	
 </mapper>

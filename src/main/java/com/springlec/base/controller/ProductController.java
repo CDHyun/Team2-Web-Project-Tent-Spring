@@ -1,7 +1,10 @@
 package com.springlec.base.controller;
+/*
+ 23/06/17 : 상품 리스트 구현 시작 -> 23/06/17 : 완료
+ 23/06/17 : 상품 상세 페이지 구현 시작 -> 23/06/17 : 완료
+ */
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,5 +33,14 @@ public class ProductController {
 		return "product/product_list";
 	}
 	
+	// 상품 상세 페이지
+	@RequestMapping("/product_detail")
+	public String product_detail(HttpServletRequest request, Model model) throws Exception {
+		Product productInfo = productService.product_detail(Integer.parseInt(request.getParameter("pCode")));
+		model.addAttribute("product", productInfo);
+		List<Product> colorList = productService.colorList(Integer.parseInt(request.getParameter("pCode")));
+		model.addAttribute("colorList", colorList);
+		return "product/product_detail";
+	}
 
 }	// End Class

@@ -19,6 +19,16 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return sqlSession.selectList(nameSpace + ".productList");
 	}
+
+	@Override
+	public Product product_detail(int pCode) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".product_detail");
+	}
+
+	@Override
+	public List<Product> colorList(int pCode) throws Exception {
+		return sqlSession.selectList(nameSpace + ".colorList");
+	}
 	
 	
 	
