@@ -633,8 +633,8 @@ function emptySessionUser() {
 							</div>
 							<!-- Form -->
 							<div class="search-form">
-								<form action="product_list" method="get">
-									<input type="search" class="form-control" name="content" placeholder="Search">
+								<form action="product_list" method="post">
+									<input type="search" class="form-control" name="query" placeholder="Search">
 									<input type="submit" class="d-none" value="Send">
 								</form>
 							</div>

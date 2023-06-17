@@ -3,6 +3,15 @@
 
 <mapper namespace="com.springlec.base.dao.ProductDao">
 
-	
+	<select id="productList" resultType="com.springlec.base.model.Product">
+		SELECT * FROM product p
+		LEFT JOIN productFile pf ON p.pCode = pf.pCode
+		LEFT JOIN category c ON p.cgNo = c.cgNo
+	  	WHERE p.pName LIKE CONCAT('%', #{query}, '%')
+	    AND p.pDeleted = 0
+	    OR p.pBrandName LIKE CONCAT('%', #{query}, '%')
+	    OR c.cgName LIKE CONCAT('%', #{query}, '%')
+	    AND p.pDeleted = 0;
+	</select>
 	
 </mapper>

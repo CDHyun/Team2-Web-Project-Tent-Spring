@@ -1,4 +1,3 @@
-<%@page import="com.javalec.tent.dao.ProductDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
@@ -13,7 +12,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/product.css">
 	<!-- <script src="js/shop/product.js"></script> -->
@@ -59,36 +58,6 @@
 </head>
 
 <body>
-<%
-	ProductDao productDao = new ProductDao();
-
-    int currentPage = 1; // 현재 페이지 번호
-    int pageSize = 9; // 페이지당 상품 수
-    int totalProducts = productDao.productCount(); // 전체 상품 수
-
-    // 전체 페이지 수 계산
-    int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
-
-    // 페이지 번호가 파라미터로 전달될 경우, 현재 페이지로 설정
-    String pageParam = request.getParameter("page");
-    if (pageParam != null && !pageParam.isEmpty()) {
-        currentPage = Integer.parseInt(pageParam);
-    }
-
-    // 이전 페이지 및 다음 페이지 계산
-    int previousPage = currentPage - 1;
-    int nextPage = currentPage + 1;
-
-    // 이전 페이지가 1보다 작으면 1로 설정
-    if (previousPage < 1) {
-        previousPage = 1;
-    }
-
-    // 다음 페이지가 전체 페이지 수보다 크면 마지막 페이지로 설정
-    if (nextPage > totalPages) {
-        nextPage = totalPages;
-    }
-%>
 
     <!-- Preloader -->
     <div id="preloader">
@@ -98,7 +67,7 @@
     </div>
 
     <!-- Header Area -->
-    <jsp:include page="common/include_common_header.jsp"/>
+    <jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
     
     <!-- Quick View Modal Area -->
@@ -407,10 +376,10 @@
 	
 
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
         <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 
 
 </body>
