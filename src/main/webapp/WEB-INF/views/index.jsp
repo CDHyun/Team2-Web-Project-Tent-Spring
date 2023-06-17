@@ -39,7 +39,7 @@
                             <div class="welcome_slide_text text-center">
                                 <p class="text-white" data-animation="fadeInUp" data-delay="100ms">Trendy Interior </p>
                                 <h2 class="text-white" data-animation="fadeInUp" data-delay="300ms">Tent Goods</h2>
-                                <a href="product_list.do?pageno=1&content=텐트" class="btn btn-primary mt-4" data-animation="fadeInUp" data-delay="500ms">Shop Now</a>
+                                <a href="product_list?pageno=1&query=텐트" class="btn btn-primary mt-4" data-animation="fadeInUp" data-delay="500ms">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <div class="welcome_slide_text text-center">
                                 <p class="text-white" data-animation="fadeInUp" data-delay="100ms">eco friendly Space</p>
                                 <h2 class="text-white" data-animation="fadeInUp" data-delay="300ms">Sleeping-Bag Collection</h2>
-                                <a href="product_list.do?pageno=1&content=침낭" class="btn btn-primary mt-4" data-animation="fadeInUp" data-delay="500ms">Shop Now</a>
+                                <a href="product_list?pageno=1&query=침낭" class="btn btn-primary mt-4" data-animation="fadeInUp" data-delay="500ms">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             <div class="welcome_slide_text text-center">
                                 <p class="text-white" data-animation="fadeInUp" data-delay="100ms">emotional atmosphere</p>
                                 <h2 class="text-white" data-animation="fadeInUp" data-delay="300ms">Light Collection</h2>
-                                <a href="product_list.do?pageno=1&content=랜턴" class="btn btn-primary mt-4" data-animation="fadeInUp" data-delay="500ms">Shop Now</a>
+                                <a href="product_list?pageno=1&query=랜턴" class="btn btn-primary mt-4" data-animation="fadeInUp" data-delay="500ms">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                         <div class="single_cata_desc d-flex align-items-center justify-content-center">
                             <div class="single_cata_desc_text">
                                 <h5>Tent Collection</h5>
-                                <a href="product_list.do?pageno=1&content=텐트">Shop Now <i class="icofont-rounded-double-right"></i></a>
+                                <a href="product_list?pageno=1&query=텐트">Shop Now <i class="icofont-rounded-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                         <div class="single_cata_desc d-flex align-items-center justify-content-center">
                             <div class="single_cata_desc_text">
                                 <h5>Sleeping-Bag Collection</h5>
-                                <a href="product_list.do?pageno=1&content=침낭">Shop Now <i class="icofont-rounded-double-right"></i></a>
+                                <a href="product_list?pageno=1&query=침낭">Shop Now <i class="icofont-rounded-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                         <div class="single_cata_desc d-flex align-items-center justify-content-center">
                             <div class="single_cata_desc_text">
                                 <h5>Light Collection</h5>
-                                <a href="product_list.do?pageno=1&content=랜턴">Shop Now <i class="icofont-rounded-double-right"></i></a>
+                                <a href="product_list?pageno=1&query=랜턴">Shop Now <i class="icofont-rounded-double-right"></i></a>
                             </div>
                         </div>
                     </div>
