@@ -24,5 +24,7 @@ public interface BoardDao {
 	// 게시글 삭제
 	public int delete_board(int bNo) throws Exception;
 	
+	// 게시글 수정
+	public int modify_board(Board board) throws Exception;
 	
 }	// End Class

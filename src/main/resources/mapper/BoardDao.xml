@@ -44,6 +44,10 @@
 	<update id="delete_board">
 		UPDATE board SET bDeleted = 1, bDeleteDate = now() WHERE bNo = #{bNo}
 	</update>
+	
+	<update id="modify_board">
+		UPDATE board SET bTitle = #{bTitle}, bContent = #{bContent}, bUpdateDate = now() WHERE bNo = #{bNo}
+	</update>
 
 
 
