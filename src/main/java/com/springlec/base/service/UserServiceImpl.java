@@ -115,5 +115,16 @@ public class UserServiceImpl implements UserService {
 		return userDao.my_address(uid);
 	}
 
+	@Override
+	public int add_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent) {
+		return userDao.add_address(uid, uaNo, uaAddress, uaDetailAddress, uaZipcode, uaContent);
+	}
+
+	@Override
+	public int getUaNo(String uid) throws Exception {
+		return userDao.getUaNo(uid);
+	}
+
+
 
 }	// End Class

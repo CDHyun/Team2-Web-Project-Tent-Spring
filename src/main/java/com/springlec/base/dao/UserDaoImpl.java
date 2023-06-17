@@ -81,6 +81,16 @@ public class UserDaoImpl implements UserDao {
 	public List<User> my_address(String uid) throws Exception {
 		return sqlSession.selectList(nameSpace + ".my_address");
 	}
+
+	@Override
+	public int add_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent) {
+		return sqlSession.insert(nameSpace + ".add_address");
+	}
+
+	@Override
+	public int getUaNo(String uid) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".getUaNo");
+	}
 	
 	
 

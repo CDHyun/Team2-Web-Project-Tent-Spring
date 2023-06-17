@@ -75,8 +75,17 @@
 		SELECT * FROM user u, userAddress ua WHERE u.uid = ua.uid AND u.uid = #{uid}
 	</select>
 	
+	<!-- 가장 높은 uaNo 조회 -->
+	<select id="getUaNo" resultType="int">
+		SELECT MAX(uaNo) + 1 FROM userAddress WHERE uid = #{uid}
+	</select>
 	
-	
+	<!-- 배송지 추가 -->
+	<insert id="add_address">
+	    INSERT INTO userAddress (uid, uaNo, uaAddress, uaDetailAddress, uaZipcode, uaContent)
+	    VALUES (#{uid}, #{uaNo}, #{uaAddress}, #{uaDetailAddress}, #{uaZipcode}, #{uaContent})
+	</insert>
+
 	
 	
 	
