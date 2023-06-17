@@ -92,6 +92,12 @@ public class AdminDaoImpl implements AdminDao {
 		 sqlSession.update(nameSpace + ".changeStatus");
 	}
 
+	@Override
+	public void deleteProduct(int pCode, String pColor) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".deleteProduct");
+	}
+
 	
 
 	

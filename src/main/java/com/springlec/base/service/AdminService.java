@@ -28,6 +28,9 @@ public interface AdminService {
 		// admin 상품수정,삭제 페이지
 		public Admin contentviewDao(int pCode, String pColor) throws Exception;
 		
+		// 상품삭제
+		public void deleteProduct(int pCode, String pColor) throws Exception;
+		
 		// admin 상품등록 transaction
 		public void insert( String pName, String pBrandName,String pPrice,String cgNo,String pCode
 				,String pStock,String pColor,String pfNo,String pfName,String pfRealName,String pfHoverName,String pfHoverRealName) throws Exception;
