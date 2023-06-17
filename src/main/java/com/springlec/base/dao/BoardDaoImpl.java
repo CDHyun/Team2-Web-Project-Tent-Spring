@@ -29,7 +29,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int increaseViewCount(int bNo) throws Exception {
-		return sqlSession.update(nameSpace + ".IncreaseViewCount");
+		return sqlSession.update(nameSpace + ".increaseViewCount");
 	}
 
 	@Override

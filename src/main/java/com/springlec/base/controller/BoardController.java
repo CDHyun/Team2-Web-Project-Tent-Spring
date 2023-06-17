@@ -61,11 +61,6 @@ public class BoardController {
 		return "board/board_detail";
 	}
 	
-	@RequestMapping("increaseViewCount")
-	public void increaseViewCount(HttpServletRequest request) throws Exception {
-		boardService.increaseViewCount(Integer.parseInt(request.getParameter("bNo")));
-	}
-	
 	
 	
 	
