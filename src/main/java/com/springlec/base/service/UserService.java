@@ -42,6 +42,12 @@ public interface UserService {
 	// 배송지 조회
 	public List<User> my_address(String uid) throws Exception;
 	
+	// 가장 높은 uaNo 조회
+	public int getUaNo(String uid) throws Exception;
+	
+	// 배송지 추가
+	public int add_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent);
+	
 	
 	
 	

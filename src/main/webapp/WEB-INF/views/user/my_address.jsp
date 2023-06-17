@@ -57,7 +57,7 @@
 		
 		$.ajax({
 			type : 'POST',
-			url : './UserAddressAdd',
+			url : 'add_address',
 			data : {
 				uaAddress : uaAddress,
 				uaDetailAddress : uaDetailAddress,
@@ -66,17 +66,17 @@
 			},
 			success : function(result) {
 				console.log(result);
-				if (result === "0") {
+				if (result == 0) {
 					Toast.fire({
 						icon : 'warning',
 						title : "배송지 입력 중 문제가 발생했습니다."
 					});
 					return;
 				}
-				if (result === "1") {
+				if (result == 1) {
 					Toast.fire({ icon: 'success', title: "배송지가 추가 되었습니다." }).then(() => {
 						  $('#userAddressAddModal').modal('hide');
-						  window.location.href = "user_address.do";
+						  window.location.href = "my_address";
 						});
 				}
 			},

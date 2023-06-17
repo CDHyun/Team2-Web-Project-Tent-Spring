@@ -151,8 +151,18 @@ public class UserController {
 		return "user/my_address";
 	}
 	
-	
-	
+	// 배송지 추가
+	@RequestMapping("add_address")
+	@ResponseBody
+	public int addShippingAddress(HttpServletRequest request, HttpSession session) throws Exception {
+		int uaNo = userService.getUaNo((String)session.getAttribute("SUID"));
+		int result = userService.add_address((String)session.getAttribute("SUID"), uaNo,
+				request.getParameter("uaAddress"),
+				request.getParameter("uaDetailAddress"),
+				request.getParameter("uaZipcode"),
+				request.getParameter("uaContent"));	
+		return result;
+	}
 	
 	
 	
