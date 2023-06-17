@@ -1,6 +1,9 @@
 package com.springlec.base.service;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminDao adminDao;
+	
+	
 	
 	
 	@Override
@@ -67,21 +72,19 @@ public class AdminServiceImpl implements AdminService {
 
 
 	@Override
-	public void insert(String pName, String pBrandName, String pPrice, String cgNo, String pCode, String pStock,
-			String pColor, String pfNo, String pfName, String pfRealName, String pfHoverName, String pfHoverRealName)
+	public void insert(String pName, String pBrandName, int pPrice, int cgNo, int pCode, int pStock,
+			String pColor, int pfNo, String pfName, String pfRealName, String pfHoverName, String pfHoverRealName)
 			throws Exception {
 		// TODO Auto-generated method stub
 		
-	      
-	        
-		adminDao.insert1(pName, pBrandName, pPrice, cgNo);
-		adminDao.insert2(pStock, pColor,pCode);
-		adminDao.upload(pfName, pfRealName, pfHoverName, pfHoverRealName, pCode);
-		
-		
-		
-	}
 
+	  
+	    // 나머지 비즈니스 로직 수행
+	    adminDao.insert1(pName, pBrandName, pPrice, cgNo);
+	    adminDao.insert2(pCode, pStock, pColor,pName );
+	    adminDao.upload(pfName, pfRealName,pfHoverName, pfHoverRealName, pCode);
+	}
+		
 
 	@Override
 	public List<Admin> statusCheck() throws Exception {
