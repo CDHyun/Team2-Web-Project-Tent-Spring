@@ -92,7 +92,7 @@
 		
 		<br/>
 		<input type="submit" value="수정" class="update" >&nbsp;&nbsp;&nbsp;
-		<a href="adminDeleteAction.do?pCode=${content_view.pCode }&pColor=${content_view.pColor}">삭제</a>
+		<a href="adminDeleteAction?pCode=${content_view.pCode }&pColor=${content_view.pColor}">삭제</a>
 		
 		
 	
