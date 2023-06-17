@@ -22,4 +22,9 @@ public class CommentDaoImpl implements CommentDao {
 		return sqlSession.selectList(nameSpace + ".commentList");
 	}
 
+	@Override
+	public int write_parent_comment(Comment comment) throws Exception {
+		return sqlSession.insert(nameSpace + ".write_parent_comment");
+	}
+
 }
