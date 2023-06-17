@@ -24,8 +24,8 @@
 	function addModalOpen() {
 		$('#userAddressAddModal').modal('show');
 		}
-	function modifyModalOpen(uaNo) {
-		globalUaNo = uaNo;
+	function modifyModalOpen(index) {
+		globalUaNo = document.getElementById("modal_uaNo_" + index).getAttribute("uaNo");
 		$('#userModifyAddressModal').modal('show');
 		}
 	  
@@ -91,6 +91,7 @@
 	function userModifyAddress() {
 		/* var uaNo = $('#m_uaNo').val(); */
 		var uaNo = globalUaNo;
+		console.log(uaNo);
 		var uaAddress = $('#m_uaAddress').val();
 		var uaDetailAddress = $('#m_uaDetailAddress').val();
 		var uaZipcode = $('#m_uaZipcode').val();
@@ -118,7 +119,7 @@
 		
 		$.ajax({
 			type : 'POST',
-			url : './UserModifyAddress',
+			url : 'modify_address',
 			data : {
 				uaNo : uaNo,
 				uaAddress : uaAddress,
@@ -128,17 +129,17 @@
 			},
 			success : function(result) {
 				console.log(result);
-				if (result === "0") {
+				if (result == 0) {
 					Toast.fire({
 						icon : 'warning',
 						title : "배송지 정보 변경 중 문제가 발생했습니다."
 					});
 					return;
 				}
-				if (result === "1") {
+				if (result == 1) {
 					Toast.fire({ icon: 'success', title: "배송지 정보가 변경 되었습니다." }).then(() => {
 						  $('#userModifyAddressModal').modal('hide');
-						  window.location.href = "user_address.do";
+						  window.location.href = "my_address";
 						});
 				}
 			},
@@ -149,14 +150,14 @@
 	}
 	
 	
-	function userDeleteAddress(uaNo) {
-		/* var uaNo = $('#d_uaNo').val(); */
+	function userDeleteAddress(index) {
+		globalUaNo = document.getElementById("modal_uaNo_" + index).getAttribute("uaNo");
 		var uaNo = globalUaNo;
 		ToastConfirm.fire({ icon: 'question', title: "배송지를 삭제 하시겠습니까?" }).then((result) => {
 			if(result.isConfirmed){
 				$.ajax({
 					type : 'POST',
-					url : './UserDeleteAddress',
+					url : 'delete_address',
 					data : {
 						uaNo : uaNo,
 					},
@@ -239,13 +240,10 @@
 									    <td style="vertical-align: middle;">${address.uaAddress}&nbsp;${address.uaDetailAddress}</td>
 									    <td style="vertical-align: middle;">${address.uPhone}</td>
 									    <td style="vertical-align: middle;">
-									   		<c:if test="${address.uaNo == 1}">
-										      <button type="button" class="btn btn-primary btn-sm" onclick="modifyModalOpen('${address.uaNo}')">Modify</button>
-									   		</c:if>
+										      <button type="button" class="btn btn-primary btn-sm" onclick="modifyModalOpen(${loop.index})">Modify</button>
+										    	<input type="hidden" id="modal_uaNo_${loop.index}" name="modal_uaNo_${loop.index}" uaNo='${address.uaNo}' value="${address.uaNo}">
 									   		<c:if test="${address.uaNo > 1}">
-										    	<button type="button" class="btn btn-primary btn-sm" onclick="modifyModalOpen('${address.uaNo}')">Modify</button>
-										    	<input type="hidden" id="d_uaNo" name="d_uaNo" value="${address.uaNo}">
-									      		<button type="button" class="btn btn-danger btn-sm delete-button" onclick="userDeleteAddress('${address.uaNo}')">Delete</button>
+									      		<button type="button" class="btn btn-danger btn-sm delete-button" onclick="userDeleteAddress(${loop.index})">Delete</button>
 									   		</c:if>
 									    </td>
 									  </tr>
@@ -259,21 +257,20 @@
 												            <div class="col-12">
 													            <div class="form-group">
 													                <label for="Address">Address *</label>
-													                <input type="hidden" id="m_uaNo" name="m_uaNo" value="${address.uaNo}">
-													                <input type="text" class="form-control address m_u_check" id="m_uaAddress" name="m_uaAddress" value="${address.uaAddress}" placeholder="Address" readonly="readonly">
+													                <input type="text" class="form-control address m_u_check" id="m_uaAddress" name="m_uaAddress" placeholder="Address" readonly="readonly">
 													            </div>
 													        </div>
 													         <div class="col-12">
 													            <div class="form-group">
 													                <label for="Address">DetailAddress *</label>
-													                <input type="text" class="form-control" id="m_uaDetailAddress" name="m_uaDetailAddress" value="${address.uaDetailAddress}" placeholder="Detailed Address">
+													                <input type="text" class="form-control" id="m_uaDetailAddress" name="m_uaDetailAddress" placeholder="Detailed Address">
 													            </div>
 													        </div>
 													         <div class="col-12">
 													             <div class="form-group">
 														                <label for="Post">Post *</label><br>
 														             <div class="input-form-group" style="display: flex; align-items: center;">
-													                	<input type="text" class="form-control postcode m_u_check" id="m_uaZipcode" name="m_uaZipcode" value="${address.uaZipcode}" placeholder="Zipcode" readonly="readonly">
+													                	<input type="text" class="form-control postcode m_u_check" id="m_uaZipcode" name="m_uaZipcode" placeholder="Zipcode" readonly="readonly">
 																		<button type="button" class="btn btn-outline-primary btn-sm searchAddr" style="margin-left: 15px;">search</button>
 																	</div>
 											                	</div>
@@ -281,7 +278,7 @@
 											                <div class="col-12">
 													            <div class="form-group">
 													                <label for="Address">Shipping address<span style="color: gray; font-size: 14px">&nbsp;Optional</span></label>
-													                <input type="text" class="form-control" id="m_uaContent" name="m_uaContent" value="${address.uaContent}" placeholder="Shipping address">
+													                <input type="text" class="form-control" id="m_uaContent" name="m_uaContent" placeholder="Shipping address">
 													            </div>
 													        </div>
 													        <div class="button-container">

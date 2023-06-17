@@ -125,6 +125,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUaNo(uid);
 	}
 
+	@Override
+	public int modify_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent) {
+		return userDao.modify_address(uid, uaNo, uaAddress, uaDetailAddress, uaZipcode, uaContent);
+	}
+
 
 
 }	// End Class

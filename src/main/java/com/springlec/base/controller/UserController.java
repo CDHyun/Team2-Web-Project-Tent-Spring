@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 23/06/16 : User 회원가입 구현 시작 -> 23/06/16 : 완료.
 23/06/16 : User 로그인 구현 시작 -> 23/06/17 : 완료.
 23/06/17 : User 로그아웃 구현 시작 -> 23/06/17 : 완료.
+23/06/17 : 회원정보 조회(My Account), 비밀번호 확인 구현 -> 23/06/17 : 완료.
+23/06/17 : 회원정보 변경(이름, 닉네임, 비밀번호, 전화번호, 이메일), 회원 탈퇴 구현 시작 -> 23/06/17 : 완료.
+23/06/17 : 배송지 페이지(추가, 수정, 삭제) 구현 시작 -> 
 */
 
 import org.springframework.stereotype.Controller;
@@ -157,6 +160,19 @@ public class UserController {
 	public int addShippingAddress(HttpServletRequest request, HttpSession session) throws Exception {
 		int uaNo = userService.getUaNo((String)session.getAttribute("SUID"));
 		int result = userService.add_address((String)session.getAttribute("SUID"), uaNo,
+				request.getParameter("uaAddress"),
+				request.getParameter("uaDetailAddress"),
+				request.getParameter("uaZipcode"),
+				request.getParameter("uaContent"));	
+		return result;
+	}
+	
+	// 배송지 추가
+	@RequestMapping("modify_address")
+	@ResponseBody
+	public int modify_address(HttpServletRequest request, HttpSession session) throws Exception {
+		int result = userService.modify_address((String)session.getAttribute("SUID"),
+				Integer.parseInt(request.getParameter("uaNo")),
 				request.getParameter("uaAddress"),
 				request.getParameter("uaDetailAddress"),
 				request.getParameter("uaZipcode"),

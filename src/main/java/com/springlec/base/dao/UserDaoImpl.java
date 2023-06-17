@@ -83,13 +83,18 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public int getUaNo(String uid) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".getUaNo");
+	}
+
+	@Override
 	public int add_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent) {
 		return sqlSession.insert(nameSpace + ".add_address");
 	}
 
 	@Override
-	public int getUaNo(String uid) throws Exception {
-		return sqlSession.selectOne(nameSpace + ".getUaNo");
+	public int modify_address(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent) {
+		return sqlSession.update(nameSpace + ".modify_address");
 	}
 	
 	
