@@ -1,5 +1,7 @@
 package com.springlec.base.dao;
 
+import java.util.List;
+
 import com.springlec.base.model.User;
 
 /*
@@ -21,10 +23,16 @@ public interface UserDao {
 	// 로그인 존재 여부 체크
 	public int existCheck(String uid) throws Exception;
 	
-	// 로그인 일치 여부 체크
+	// 아이디, 비밀번호 일치 여부 체크
 	public int accordCheck(String uid, String uPassword) throws Exception;
 	
 	// 로그인 유저의 닉네임 가져오기
 	public String getUserNickname(String uid) throws Exception;
+	
+	// 유저 회원 정보
+	public User userInfo(String uid) throws Exception;
+	
+	// 유저 핸드폰 번호 변경
+	public int modify_phone(String uid, String uPhone) throws Exception;
 	
 }	// End Class

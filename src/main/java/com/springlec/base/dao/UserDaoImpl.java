@@ -44,6 +44,16 @@ public class UserDaoImpl implements UserDao {
 	public String getUserNickname(String uid) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".getUserNickname");
 	}
+
+	@Override
+	public User userInfo(String uid) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".userInfo");
+	}
+
+	@Override
+	public int modify_phone(String uid, String uPhone) throws Exception {
+		return sqlSession.update(nameSpace + ".modify_phone");
+	}
 	
 	
 

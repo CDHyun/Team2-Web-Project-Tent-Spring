@@ -1,6 +1,5 @@
 
-<%@page import="com.javalec.tent.dto.UserDto"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="com.springlec.base.model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -15,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <link rel="stylesheet" href="css/shop/user.css">
 
 	<script src="js/shop/user.js"></script>
@@ -30,7 +29,7 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="common/include_common_header.jsp"/>
+  	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
 
     <!-- Breadcumb Area -->
@@ -40,7 +39,7 @@
                 <div class="col-12">
                     <h5>My Account</h5>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.do">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index">Home</a></li>
                         <li class="breadcrumb-item active">My Account</li>
                     </ol>
                 </div>
@@ -56,15 +55,14 @@
 				<div class="col-12 col-lg-3" >
 				    <div class="my-account-navigation mb-50">
 				        <ul>
-				            <li><a href="user_my_account.do?uid=${SUID}">My Account</a></li>
-				            <li><a href="purchase_list.do">Orders</a></li>
-				            <li><a href="logout.do">Logout</a></li>
+				            <li><a href="my_account?uid=${SUID}">My Account</a></li>
+				            <li><a href="purchase_list">Orders</a></li>
+				            <li><a href="logout">Logout</a></li>
 				        </ul>
 				    </div>
 				</div>
                 <div class="col-12 col-lg-9">
                     <div class="my-account-content mb-50">
-					<c:forEach items="${userInfo}" var="user">
                         <h5 class="mb-3">My Account</h5>
 						
 						<h3>기본 회원정보<span style="color: gray; font-size: 16px">&nbsp; * : 필수</span> </h3>
@@ -106,8 +104,8 @@
 	                                        <label for="uEmail">Email Address *</label>
 		                                        <div class="input-form-group" style="display: flex; align-items: center;">
 													<%
-													    ArrayList<UserDto> userInfo = (ArrayList<UserDto>) request.getAttribute("userInfo");
-													    String userEmail = userInfo.get(0).getuEmail();
+													    User user = (User)request.getAttribute("user");
+													    String userEmail = user.getuEmail();
 													    String[] parts = userEmail.split("@");
 													    String username = parts[0];
 													    String domain = parts[1];
@@ -220,7 +218,6 @@
                                 </div> 
                             </div>
                         </form>
-						</c:forEach>
                     </div>
                 </div>
             </div>
@@ -384,10 +381,10 @@
 	
 
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 	<!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	
 <script type="text/javascript">
 
@@ -410,24 +407,24 @@
 		
 		$.ajax({
 			type : 'POST',
-			url : './UserPasswordCheck',
+			url : 'passwordCheck',
 			data : {
 				uid : uid,
 				uPassword : uPassword
 			},
 			success : function(result) {
 				console.log(result);
-				if (result === "0") {
+				if (result == 0) {
 					Toast.fire({
 						icon : 'warning',
 						title : "비밀번호를 확인해주세요."
 					});
 					return;
 				}
-				if (result === "1") {
+				if (result == 1) {
 					Toast.fire({ icon: 'success', title: "비밀번호가 확인 되었습니다." }).then(() => {
 					    $('#passwordCheckModal').modal('hide');
-					    window.location.href = "user_my_account.do";
+					    window.location.href = "my_account";
 					  });
 				}
 			},
@@ -584,7 +581,7 @@
 	  });
 	}
 
-	
+	/* 핸드폰 번호 변경 */
 	function userRePhone() {
 		const uPhone1 = $('#uPhone1').val();
 		const uPhone2 = $('#uPhone2').val();
@@ -618,23 +615,23 @@
 		
 		$.ajax({
 			type : 'POST',
-			url : './UserPhoneModify',
+			url : 'user_modify_phone',
 			data : {
 				uPhone : uPhone
 			},
 			success : function(result) {
 				console.log(result);
-				if (result === "0") {
+				if (result == 0) {
 					Toast.fire({
 						icon : 'warning',
 						title : "변경 중 문제가 발생했습니다."
 					});
 					return;
 				}
-				if (result === "1") {
+				if (result == 1) {
 					Toast.fire({ icon: 'success', title: "핸드폰 번호가 변경 되었습니다." }).then(() => {
 						  $('#userRePhoneModal').modal('hide');
-						  window.location.href = "user_my_account.do";
+						  window.location.href = "my_account";
 						});
 				}
 			},
