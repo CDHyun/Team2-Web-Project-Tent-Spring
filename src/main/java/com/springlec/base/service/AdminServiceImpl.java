@@ -103,4 +103,12 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.faq();
 	}
 
+
+	@Override
+	public void changeStatus(int pcNo, int pcStatus) throws Exception {
+		// TODO Auto-generated method stub
+		adminDao.changeStatus(pcNo, pcStatus);
+		
+	}
+
 }

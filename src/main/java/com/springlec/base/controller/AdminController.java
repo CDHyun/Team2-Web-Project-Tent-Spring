@@ -152,6 +152,12 @@ public class AdminController {
 			return "admin/adminPurchaseStatus";
 		}
 
+		// 주문상태 변경
+		@RequestMapping("/adminStatusChange")
+		public String changeStatus(HttpServletRequest request, Model model) throws Exception{
+			adminService.changeStatus(Integer.parseInt(request.getParameter("pcNo")), Integer.parseInt(request.getParameter("pcStatus")));
+			return "redirect:adminpurchaseCheck";
+		}
 
 		
 		// 고객관리
