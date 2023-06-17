@@ -10,4 +10,11 @@ public interface UserService {
 	// 아이디 중복 체크
 	public int checkDuplicateId(String uid) throws Exception;
 	
+	// 로그인 체크
+	public int loginCheck(String uid, String uPassword) throws Exception;
+	
+	
+	
+	
+	
 }	// End Class

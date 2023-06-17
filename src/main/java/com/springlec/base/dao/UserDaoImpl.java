@@ -25,4 +25,19 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.selectOne(nameSpace + ".checkDuplicateId");
 	}
 
+	@Override
+	public int statusCheck(String uid) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".statusCheck");
+	}
+
+	@Override
+	public int existCheck(String uid) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".existCheck");
+	}
+
+	@Override
+	public int accordCheck(String uid, String uPassword) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".accordCheck");
+	}
+
 }

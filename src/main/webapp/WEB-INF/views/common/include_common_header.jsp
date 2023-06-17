@@ -31,12 +31,12 @@ function loginCheck() {
                     type: 'POST',
                     url: './AdminLogin',
                     data: {
-                        luid: luid,
-                        luPassword: luPassword
+                        uid: luid,
+                        uPassword: luPassword
                     },
                     success: function(result) {
                         console.log(result);
-                        if (result === "0") {
+                        if (result == 0) {
                             Swal.fire({
                                 icon: 'warning',
                                 title: "ID 혹은 비밀번호를 확인해주세요."
@@ -44,7 +44,7 @@ function loginCheck() {
                             return;
                         }
 
-                        if (result === "1") {
+                        if (result == 1) {
                             Swal.fire({
                                 icon: 'success',
                                 title: "로그인 성공! \n 관리자님 오늘도 화이팅입니다."
@@ -76,35 +76,35 @@ function loginCheck() {
 
     $.ajax({
         type: 'POST',
-        url: './UserLogin',
+        url: '/loginCheck',
         data: {
-            luid: luid,
-            luPassword: luPassword
+            uid: luid,
+            uPassword: luPassword
         },
         success: function(result) {
             console.log(result);
-            if (result === "0") {
+            if (result == 0) {
                 Swal.fire({
                     icon: 'warning',
                     title: "ID 혹은 비밀번호를 확인해주세요."
                 });
                 return;
             }
-            if (result === "-1") {
+            if (result == -1) {
                 Swal.fire({
                     icon: 'warning',
                     title: "탈퇴한 회원입니다."
                 });
                 return;
             }
-            if (result === "-2") {
+            if (result == -2) {
                 Swal.fire({
                     icon: 'warning',
                     title: "존재하지 않는 회원입니다."
                 });
                 return;
             }
-            if (result === "1") {
+            if (result == 1) {
                 Swal.fire({
                     icon: 'success',
                     title: "로그인 성공! \n 환영합니다."
@@ -767,7 +767,7 @@ function emptySessionUser() {
 			<div class="container">
 				<h5 class="mb-3" style="display: inline-block">Login</h5>
 				<span style="color: red">${l_msg}</span>
-				<form id="user_login_form" method="post" action="login.do">
+				<form id="user_login_form" method="post" action="login">
 					<div class="form-group">
 						<input type="text" class="form-control" id="luid" name="luid"
 							placeholder="ID">

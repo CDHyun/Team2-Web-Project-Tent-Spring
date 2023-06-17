@@ -17,4 +17,16 @@
 		SELECT count(*) FROM user WHERE uid = #{uid}
 	</select>
 	
+	<select id="statusCheck" resultType="int">
+		SELECT uSecessionStatus FROM user WHERE uid = #{uid}
+	</select>
+	
+	<select id="existCheck" resultType="int">
+		SELECT count(*) FROM user WHERE uid = #{uid}
+	</select>
+	
+	<select id="accordCheck" resultType="int">
+		SELECT count(*) FROM user WHERE uid = #{uid} AND uPassword = #{uPassword}
+	</select>
+	
 </mapper>
