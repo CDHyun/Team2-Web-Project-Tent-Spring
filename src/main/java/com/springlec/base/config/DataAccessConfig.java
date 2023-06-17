@@ -26,4 +26,7 @@ public class DataAccessConfig {
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
+	
+	
+	
 }	// End Class
