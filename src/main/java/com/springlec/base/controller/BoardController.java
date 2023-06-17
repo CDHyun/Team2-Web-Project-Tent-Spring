@@ -109,6 +109,17 @@ public class BoardController {
 		return "redirect:board_detail?bNo=" + bNo;
 	}
 	
+	@RequestMapping("write_child_comment")
+	public String write_child_comment(Comment comment, HttpServletRequest request, HttpSession session) throws Exception {
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		String uid = (String)session.getAttribute("SUID");
+		String uNickName = (String)session.getAttribute("SUNICKNAME");
+		String cmContent = request.getParameter("cmContent");
+		int cmParentNo = Integer.parseInt(request.getParameter("cmNo"));
+		commentService.saveReply(bNo, uid, uNickName, cmContent, cmParentNo);
+		return "redirect:board_detail?bNo=" + bNo;
+	}
+	
 	
 	
 	

@@ -53,14 +53,14 @@
 		console.log(cmContent);
 		$.ajax({
 	        type: 'POST',
-	        url: './ChildCommentWrite',
+	        url: 'write_child_comment',
 	        data: {
 	            cmNo : cmNo,
 	            bNo: bNo,
 	            cmContent: cmContent
 	        },
 	        success: function() {
-	            window.location.href = "board_detail.do?bNo=" + bNo;
+	            window.location.href = "board_detail?bNo=" + bNo;
 	        }
 	    });
 		
@@ -442,7 +442,7 @@
 		    <div class="modal-content">
 		      <div class="container">
 		        <h5 class="mb-3" style="display: inline-block; text-align: center;">Comment</h5>
-		        <form id="child_comment_form" action="child_comment_write?bNo=${bNo}&cmParentNo=${cmt.cmNo}" method="post">
+		        <form id="child_comment_form" action="write_child_comment?bNo=${bNo}&cmParentNo=${cmt.cmNo}" method="post">
 		        <c:out value="${cmt.cmNo}"></c:out>
 		          <div class="form-group">
 		            <label for="uid">작성자 : ${SUNICKNAME}</label>

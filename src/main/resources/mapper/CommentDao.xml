@@ -34,32 +34,47 @@
 	WHERE bNo = #{bNo}
 	</insert>
 	
-	<!-- 게시글 작성 -->
-	<insert id="write_board">
-		INSERT INTO board(uid, uNickName, bCgNo, bTitle, bContent, bInsertDate)
-		VALUES(#{uid}, #{uNickName}, #{bCgNo}, #{bTitle}, #{bContent}, now())
-	</insert>
-	
-	<!-- 게시글 상세 조회 -->
-	<select id="board_detail" resultType="com.springlec.base.model.Board">
-		SELECT * FROM board WHERE bNo = #{bNo}
+	<!-- MaxCmRef 찾기 -->
+	<select id="getMaxCmRef" resultType="int">
+		SELECT MAX(cmRef) FROM comment WHERE bNo = #{bNo}
 	</select>
 	
-	<!-- 게시글 조회수 증가 -->
-	<update id="increaseViewCount">
-		UPDATE board SET bViewCount = bViewCount +1 WHERE bNo = #{bNo}
+	<!-- 자식 댓글 작성 전에 부모 댓글 정보 불러오기 -->
+	<select id="getCommentByCmNo" resultType="com.springlec.base.model.Comment">
+		SELECT * FROM comment WHERE cmNo = #{cmNo}
+	</select>
+	
+		<!-- 부모 댓글의 AnswerCount 가져오기 -->
+	<select id="getAnswerCount" resultType="int">
+		SELECT cmAnswerCount FROM comment WHERE bNo = #{bNo} and cmNo = #{cmNo}
+	</select>
+	
+	<!-- cmRef내의 MaxStep 가져오기 -->
+	<select id="getMaxStep" resultType="int">
+		SELECT MAX(cmStep) FROM comment WHERE cmRef = #{cmRef} and bNo = #{bNo}
+	</select>
+	
+	<!-- 그룹 내 댓글들의 cmRefOrder 증가 시키기 -->
+	<update id="updateRefOrderGreaterThan">
+		UPDATE comment SET cmRefOrder = cmRefOrder + 1 WHERE cmRef = #{cmRef} AND bNo = #{bNo} AND cmRefOrder >= #{cmRefOrder}
 	</update>
 	
-	<!-- 게시글 삭제 -->
-	<update id="delete_board">
-		UPDATE board SET bDeleted = 1, bDeleteDate = now() WHERE bNo = #{bNo}
+	<!-- 댓글 저장하기 -->
+	<insert id="saveComment">
+		INSERT INTO comment (bNo, uid, uNickName, cmRef, cmStep, cmRefOrder, cmParentNo, cmContent, cmInsertDate)
+		VALUES (#{bNo}, #{uid}, #{uNickName}, #{cmRef}, #{cmStep}, #{cmRefOrder}, #{cmParentNo}, #{cmContent}, now())
+	</insert>
+	
+	<!-- 부모 댓글의 AnserCount 증가 시키기 -->
+	<update id="increaseCount">
+		UPDATE comment SET cmAnswerCount = cmAnswerCount + 1 WHERE cmNo = #{cmNo}
 	</update>
 	
-	<!-- 게시글 수정 -->
-	<update id="modify_board">
-		UPDATE board SET bTitle = #{bTitle}, bContent = #{bContent}, bUpdateDate = now() WHERE bNo = #{bNo}
-	</update>
-
+	<!-- 부모 댓글의 cmRefOrder 가져오기 -->
+	<select id="getRefOrder" resultType="int">
+		SELECT cmRefOrder FROM comment WHERE cmNo = #{cmNo} and bNo = #{bNo}
+	</select>
+	
 
 
 	
