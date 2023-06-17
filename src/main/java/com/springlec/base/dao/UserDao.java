@@ -35,4 +35,10 @@ public interface UserDao {
 	// 유저 핸드폰 번호 변경
 	public int modify_phone(String uid, String uPhone) throws Exception;
 	
+	// 유저 이름 변경
+	public int modify_name(String uid, String uName) throws Exception;
+	
+	// 유저 이메일 변경
+	public int modify_email(String uid, String uEmail) throws Exception;
+	
 }	// End Class

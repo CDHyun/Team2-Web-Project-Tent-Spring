@@ -88,5 +88,15 @@ public class UserServiceImpl implements UserService {
 		return userDao.accordCheck(uid, uPassword);
 	}
 
+	@Override
+	public int modify_name(String uid, String uName) throws Exception {
+		return userDao.modify_name(uid, uName);
+	}
+
+	@Override
+	public int modify_email(String uid, String uEmail) throws Exception {
+		return userDao.modify_email(uid, uEmail);
+	}
+
 
 }	// End Class

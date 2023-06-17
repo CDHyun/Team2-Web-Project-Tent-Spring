@@ -94,6 +94,23 @@ public class UserController {
 		return result;
 	}
 	
+	//이름 변경
+	@RequestMapping("modify_name")
+	@ResponseBody
+	public int user_modify_name(HttpServletRequest request, HttpSession session) throws Exception {
+		int result = userService.modify_name((String)session.getAttribute("SUID"), request.getParameter("uName"));
+		return result;
+	}
+	
+	//이메일 변경
+	@RequestMapping("modify_email")
+	@ResponseBody
+	public int user_modify_email(HttpServletRequest request, HttpSession session) throws Exception {
+		int result = userService.modify_email((String)session.getAttribute("SUID"), request.getParameter("uEmail"));
+		return result;
+	}
+	
+	
 	
 	
 	

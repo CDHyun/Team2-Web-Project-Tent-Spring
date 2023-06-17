@@ -25,6 +25,11 @@ public interface UserService {
 	//아이디 비밀번호 일치여부 확인
 	public int accordCheck(String uid, String uPassword) throws Exception;
 	
+	// 이름 변경
+	public int modify_name(String uid, String uName) throws Exception;
+	
+	// 이메일 변경
+	public int modify_email(String uid, String uEmail) throws Exception;
 	
 	
 	
