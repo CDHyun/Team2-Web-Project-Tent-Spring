@@ -474,20 +474,20 @@
 		  }
 		  $.ajax({
 		    type: 'POST',
-		    url: './UserRename',
+		    url: 'modify_name',
 		    data: {
-		      uReName: uReName
+		      uName: uReName
 		    },
 		    success: function(result) {
 		      console.log(result);
-		      if (result === "0") {
+		      if (result == 0) {
 		        Swal.fire({ icon: 'warning', title: "변경 중 문제가 발생했습니다." });
 		        return;
 		      }
-		      if (result === "1") {
+		      if (result == 1) {
 		        Swal.fire({ icon: 'success', title: "이름이 변경 되었습니다." }).then(() => {
 		          $('#userRenameModal').modal('hide');
-		          window.location.href = "user_my_account.do";
+		          window.location.href = "my_account";
 		        });
 		      }
 		    },
@@ -533,26 +533,26 @@
 		  }
 		  $.ajax({
 		    type: 'POST',
-		    url: './UserEmailModify',
+		    url: 'modify_email',
 		    data: {
-		      uReEmail: uReEmail
+		      uEmail: uReEmail
 		    },
 		    success: function(result) {
 		      console.log(result);
-		      if (result === "0") {
+		      if (result == 0) {
 		        Swal.fire({
 		          icon: 'warning',
 		          title: "변경 중 문제가 발생했습니다."
 		        });
 		        return;
 		      }
-		      if (result === "1") {
+		      if (result == 1) {
 		        Swal.fire({
 		          icon: 'success',
 		          title: "이메일이 변경 되었습니다."
 		        }).then(() => {
 		          $('#userReEmailModal').modal('hide');
-		          window.location.href = "user_my_account.do";
+		          window.location.href = "my_account";
 		        });
 		      }
 		    },

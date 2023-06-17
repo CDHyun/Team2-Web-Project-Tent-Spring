@@ -54,6 +54,16 @@ public class UserDaoImpl implements UserDao {
 	public int modify_phone(String uid, String uPhone) throws Exception {
 		return sqlSession.update(nameSpace + ".modify_phone");
 	}
+
+	@Override
+	public int modify_name(String uid, String uName) throws Exception {
+		return sqlSession.update(nameSpace + ".modify_name");
+	}
+
+	@Override
+	public int modify_email(String uid, String uEmail) throws Exception {
+		return sqlSession.update(nameSpace + ".modify_email");
+	}
 	
 	
 
