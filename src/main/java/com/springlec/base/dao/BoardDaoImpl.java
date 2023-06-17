@@ -42,4 +42,9 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.update(nameSpace + ".delete_board");
 	}
 
+	@Override
+	public int modify_board(Board board) throws Exception {
+		return sqlSession.update(nameSpace + ".modify_board");
+	}
+
 }	// End Class

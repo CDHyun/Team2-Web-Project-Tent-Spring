@@ -204,7 +204,7 @@
 		    if (result.isConfirmed) {
 		      $.ajax({
 		        type: 'POST',
-		        url: './ModifyBoardCommand',
+		        url: 'modify_board',
 		        data: {
 		          bNo: bNo,
 		          bTitle : bTitle,
@@ -212,7 +212,7 @@
 		        },
 		        success: function (result) {
 		          console.log(result);
-		          if (result === "0") {
+		          if (result == 0) {
 		            Swal.fire({
 		              icon: 'warning',
 		              title: "게시글 수정 중 문제가 발생했습니다."
@@ -220,7 +220,7 @@
 		            return;
 		          }
 
-		          if (result === "1") {
+		          if (result == 1) {
 		        	  Swal.fire({
 		        		  icon: 'success',
 		        		  title: "게시글이 수정되었습니다.",
@@ -229,7 +229,7 @@
 		        		  confirmButtonText: "OK"
 		        		}).then((result) => {
 		        		  if (result.isConfirmed) {
-		        		    window.location.href = "board_detail.do?bNo=" + bNo;
+		        		    window.location.href = "board_detail?bNo=" + bNo;
 		        		  }
 		        		});
 		          }
