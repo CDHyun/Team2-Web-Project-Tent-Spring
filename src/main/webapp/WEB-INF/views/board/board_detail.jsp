@@ -151,20 +151,20 @@
 		    if (result.isConfirmed) {
 		      $.ajax({
 		        type: 'POST',
-		        url: './DeleteBoardCommand',
+		        url: 'delete_board',
 		        data: {
 		          bNo: bNo
 		        },
 		        success: function(result) {
 		          console.log(result);
-		          if (result === "0") {
+		          if (result == 0) {
 		            Swal.fire({
 		              icon: 'warning',
 		              title: '게시글 삭제 중 문제가 발생했습니다.'
 		            });
 		            return;
 		          }
-		          if (result === "1") {
+		          if (result == 1) {
 		        	  Swal.fire({
 		        		  icon: 'success',
 		        		  title: "게시글이 삭제되었습니다!",
@@ -173,7 +173,7 @@
 		        		  confirmButtonText: "OK"
 		        		}).then((result) => {
 		        		  if (result.isConfirmed) {
-		        		    window.location.href = 'board_list.do';
+		        		    window.location.href = 'board_list';
 		        		  }
 		        		});
 		          }

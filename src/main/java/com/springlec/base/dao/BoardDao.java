@@ -21,5 +21,8 @@ public interface BoardDao {
 	// 게시글 상세 보기
 	public Board board_detail(int bNo) throws Exception;
 	
+	// 게시글 삭제
+	public int delete_board(int bNo) throws Exception;
+	
 	
 }	// End Class

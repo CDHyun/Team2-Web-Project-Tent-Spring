@@ -37,4 +37,9 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne(nameSpace + ".board_detail");
 	}
 
+	@Override
+	public int delete_board(int bNo) throws Exception {
+		return sqlSession.update(nameSpace + ".delete_board");
+	}
+
 }	// End Class
