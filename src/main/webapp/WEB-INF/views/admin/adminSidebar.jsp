@@ -83,14 +83,14 @@
       <li class="active"><a href="adminindex" style="color: #000000;">상품관리</a>
         <ul class="sub-menu">
           <li><a href="writeForm" style="color: #000000;">상품추가</a></li>
-          <li><a href="adminUpdate.do" style="color: #000000;">상품수정</a></li>
-          <li><a href="adminDelete.do" style="color: #000000;">상품삭제</a></li>
+          <li><a href="adminUpdate" style="color: #000000;">상품수정</a></li>
+          <li><a href="adminUpdate" style="color: #000000;">상품삭제</a></li>
         </ul>
       </li>
-      <li><a href="adminpurchaseCheck.do" style="color: #000000;">주문처리</a></li>
+      <li><a href="adminpurchaseCheck" style="color: #000000;">주문처리</a></li>
       <li>리뷰관리</li>
-      <li><a href="adminNotice.do" style="color: #000000;">고객관리</a></li>
-      <li><a href="index.do" style="color: #000000;">쇼핑몰사이트로 이동</a></li>
+      <li><a href="adminNotice" style="color: #000000;">고객관리</a></li>
+      <li><a href="" style="color: #000000;">쇼핑몰사이트로 이동</a></li>
     </ul>
   </div>
 

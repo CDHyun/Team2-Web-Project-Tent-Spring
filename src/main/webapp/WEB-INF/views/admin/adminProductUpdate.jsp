@@ -61,7 +61,7 @@
 	<!-- Header End -->
 	
 	<div class="card content" style="width: 25rem;" >
-<form action="adminUpdateAction.do" method="post" class="content2" enctype="multipart/form-data" >
+<form action="adminUpdateAction" method="post" class="content2" enctype="multipart/form-data" >
  				<img alt="image" src="images/product/${content_view.pfName}" width="250" height="250"><br/>
 		 <br/>
 		 <label for="pCode">상품코드:</label>
