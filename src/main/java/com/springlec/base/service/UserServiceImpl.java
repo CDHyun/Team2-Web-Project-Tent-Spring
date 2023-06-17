@@ -130,6 +130,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.modify_address(uid, uaNo, uaAddress, uaDetailAddress, uaZipcode, uaContent);
 	}
 
+	@Override
+	public int delete_address(String uid, int uaNo) throws Exception {
+		return userDao.delete_address(uid, uaNo);
+	}
+
 
 
 }	// End Class

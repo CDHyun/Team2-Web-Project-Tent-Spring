@@ -163,13 +163,13 @@
 					},
 					success : function(result) {
 						console.log(result);
-						if (result === "0") {
+						if (result == 0) {
 							Toast.fire({ icon : 'warning', title : "배송지 정보 삭제 중 문제가 발생했습니다." });
 							return;
 						}
-						if (result === "1") {
+						if (result == 1) {
 							Toast.fire({ icon: 'success', title: "배송지 삭제 되었습니다." }).then(() => {
-								  window.location.href = "user_address.do";
+								  window.location.href = "my_address";
 								});
 						}
 					},

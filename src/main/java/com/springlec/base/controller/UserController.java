@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 23/06/17 : User 로그아웃 구현 시작 -> 23/06/17 : 완료.
 23/06/17 : 회원정보 조회(My Account), 비밀번호 확인 구현 -> 23/06/17 : 완료.
 23/06/17 : 회원정보 변경(이름, 닉네임, 비밀번호, 전화번호, 이메일), 회원 탈퇴 구현 시작 -> 23/06/17 : 완료.
-23/06/17 : 배송지 페이지(추가, 수정, 삭제) 구현 시작 -> 
+23/06/17 : 배송지 페이지(추가, 수정, 삭제) 구현 시작 -> 23/06/17 추가, 수정 완료 ....
 */
 
 import org.springframework.stereotype.Controller;
@@ -177,6 +177,14 @@ public class UserController {
 				request.getParameter("uaDetailAddress"),
 				request.getParameter("uaZipcode"),
 				request.getParameter("uaContent"));	
+		return result;
+	}
+	
+	// 배송지 삭제
+	@RequestMapping("delete_address")
+	@ResponseBody
+	public int delete_address(HttpServletRequest request, HttpSession session) throws Exception {
+		int result = userService.delete_address((String)session.getAttribute("SUID"), Integer.parseInt(request.getParameter("uaNo")));
 		return result;
 	}
 	
