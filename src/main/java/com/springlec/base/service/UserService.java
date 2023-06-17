@@ -34,6 +34,9 @@ public interface UserService {
 	// 닉네임 변경
 	public int modify_nickname(String uid, String uNickName) throws Exception;
 	
+	// 회원 탈퇴
+	public int delete_account(String uid) throws Exception;
+	
 	
 	
 	

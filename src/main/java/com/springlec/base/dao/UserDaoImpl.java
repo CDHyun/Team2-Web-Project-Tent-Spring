@@ -69,6 +69,11 @@ public class UserDaoImpl implements UserDao {
 	public int modify_nickname(String uid, String uNickName) throws Exception {
 		return sqlSession.update(nameSpace + ".modify_nickname");
 	}
+
+	@Override
+	public int delete_account(String uid) throws Exception {
+		return sqlSession.update(nameSpace + ".delete_account");
+	}
 	
 	
 
