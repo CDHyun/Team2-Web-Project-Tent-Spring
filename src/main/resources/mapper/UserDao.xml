@@ -97,6 +97,10 @@
 		DELETE FROM userAddress WHERE uid = #{uid} AND uaNo = #{uaNo}
 	</delete>
 	
+	<!-- 비밀번호 변경 -->
+	<update id="change_password">
+		UPDATE user SET uPassword = #{uPassword} WHERE uid = #{uid}
+	</update>
 	
 	
 	

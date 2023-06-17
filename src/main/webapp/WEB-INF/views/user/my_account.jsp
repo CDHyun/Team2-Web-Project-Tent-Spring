@@ -715,25 +715,25 @@
 
 		  $.ajax({
 		    type: 'POST',
-		    url: './UserChangePassword',
+		    url: 'change_password',
 		    data: {
 		      password: password,
 		      changePassword: changePassword
 		    },
 		    success: function(result) {
 		      console.log(result);
-		      if (result === "-1") {
+		      if (result == -1) {
 		        Swal.fire({ icon: 'warning', title: "비밀번호가 일치하지 않습니다." });
 		        return;
 		      }
-		      if (result === "0") {
+		      if (result == 0) {
 		        Swal.fire({ icon: 'warning', title: "변경 중 문제가 발생했습니다." });
 		        return;
 		      }
-		      if (result === "1") {
+		      if (result == 1) {
 		        Swal.fire({ icon: 'success', title: "비밀번호가 변경 되었습니다." }).then(() => {
 		          $('#userChangePasswordModal').modal('hide');
-		          window.location.href = "user_my_account.do";
+		          window.location.href = "my_account";
 		        });
 		      }
 		    },
