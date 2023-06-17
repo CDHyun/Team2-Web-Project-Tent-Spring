@@ -583,7 +583,7 @@ function emptySessionUser() {
 				<nav class="classy-navbar" id="bigshopNav">
 
 					<!-- Nav Brand -->
-					<a href="index.do" class="nav-brand"> <img
+					<a href="index" class="nav-brand"> <img
 						src="img/core-img/logo.png" alt="logo" id="logo_img"
 						style="width: 220px; height: 50px;">
 					</a>
@@ -605,20 +605,20 @@ function emptySessionUser() {
 						<!-- Nav -->
 						<div class="classynav">
 							<ul>
-								<li><a href="index.do">Home</a></li>
+								<li><a href="index">Home</a></li>
 								<c:if test="${empty SUID}">
-									<li><a href="product_list.do" id="shop_main_menu">Shop</a></li>
-									<li><a href="notice_list.do">Notice</a></li>
+									<li><a href="product_list" id="shop_main_menu">Shop</a></li>
+									<li><a href="notice_list">Notice</a></li>
 									<li><a onclick="emptySessionUser()">Orders</a></li>
 									<li><a onclick="emptySessionUser()">QNA</a></li>
 									<li><a onclick="emptySessionUser()">Board</a></li>
 								</c:if>
 								<c:if test="${!empty SUID}">
-									<li><a href="product_list.do" id="shop_main_menu">Shop</a></li>
-									<li><a href="notice_list.do">Notice</a></li>
-									<li><a href="purchase_list.do">Orders</a></li>
-									<li><a href="question_list.do">QNA</a></li>
-									<li><a href="board_list.do">Board</a></li>
+									<li><a href="product_list" id="shop_main_menu">Shop</a></li>
+									<li><a href="notice_list">Notice</a></li>
+									<li><a href="purchase_list">Orders</a></li>
+									<li><a href="question_list">QNA</a></li>
+									<li><a href="board_list">Board</a></li>
 								</c:if>
 							</ul>
 						</div>
@@ -633,7 +633,7 @@ function emptySessionUser() {
 							</div>
 							<!-- Form -->
 							<div class="search-form">
-								<form action="product_list.do" method="get">
+								<form action="product_list" method="get">
 									<input type="search" class="form-control" name="content" placeholder="Search">
 									<input type="submit" class="d-none" value="Send">
 								</form>
@@ -743,10 +743,10 @@ function emptySessionUser() {
 							<c:if test="${!empty SUID}">
 								<ul class="user-meta-dropdown">
 									<li class="user-title"><span>Hello,&nbsp;</span>${SUNICKNAME}😉</li>
-									<li><a href="user_my_account.do">My Account</a></li>
+									<li><a href="user_my_account">My Account</a></li>
 									<li><a href="purchase_list.do">Orders List</a></li>
 									<li><a href="wishlist_view">Wishlist</a></li>
-									<li><a href="logout.do"><i class="icofont-logout"></i>Logout</a></li>
+									<li><a href="logout"><i class="icofont-logout"></i>Logout</a></li>
 								</ul>
 							</c:if>
 						</div>

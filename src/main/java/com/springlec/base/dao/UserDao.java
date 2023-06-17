@@ -24,4 +24,7 @@ public interface UserDao {
 	// 로그인 일치 여부 체크
 	public int accordCheck(String uid, String uPassword) throws Exception;
 	
+	// 로그인 유저의 닉네임 가져오기
+	public String getUserNickname(String uid) throws Exception;
+	
 }	// End Class

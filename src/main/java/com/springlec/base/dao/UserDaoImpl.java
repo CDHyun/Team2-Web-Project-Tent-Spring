@@ -40,4 +40,11 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.selectOne(nameSpace + ".accordCheck");
 	}
 
+	@Override
+	public String getUserNickname(String uid) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".getUserNickname");
+	}
+	
+	
+
 }

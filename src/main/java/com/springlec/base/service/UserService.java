@@ -13,6 +13,9 @@ public interface UserService {
 	// 로그인 체크
 	public int loginCheck(String uid, String uPassword) throws Exception;
 	
+	// 로그인 유저의 닉네임 가져오기
+	public String getUserNickname(String uid) throws Exception;
+	
 	
 	
 	
