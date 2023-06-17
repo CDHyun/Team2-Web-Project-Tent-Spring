@@ -110,6 +110,18 @@ public class UserController {
 		return result;
 	}
 	
+	//이메일 변경
+	@RequestMapping("modify_nickname")
+	@ResponseBody
+	public int user_modify_nickname(HttpServletRequest request, HttpSession session) throws Exception {
+		int result = userService.modify_nickname((String)session.getAttribute("SUID"), request.getParameter("uNickName"));
+		if(result == 1) {
+			session.removeAttribute("SUNICKNAME");
+			session.setAttribute("SUNICKNAME", request.getParameter("uNickName"));
+		}
+		return result;
+	}
+	
 	
 	
 	

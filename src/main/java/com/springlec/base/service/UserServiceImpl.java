@@ -98,5 +98,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.modify_email(uid, uEmail);
 	}
 
+	@Override
+	public int modify_nickname(String uid, String uNickName) throws Exception {
+		return userDao.modify_nickname(uid, uNickName);
+	}
+
 
 }	// End Class
