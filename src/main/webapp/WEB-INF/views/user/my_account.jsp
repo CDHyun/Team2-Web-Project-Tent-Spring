@@ -810,35 +810,33 @@
 		  });
 		}
 
-
-
-
+		/* 회원 탈퇴 */
 		function deleteAcount() {
-		  var password = $("#dPassword").val();
+		  var uPassword = $("#dPassword").val();
 		  if ($("#dPassword").length === 0) {
 		    Swal.fire({ icon: 'warning', title: "비밀번호를 입력해주세요." });
 		    return;
 		  }
 		  $.ajax({
 		    type: 'POST',
-		    url: './UserDeleteAccount',
+		    url: 'delete_account',
 		    data: {
-		      password: password
+		    	uPassword : uPassword
 		    },
 		    success: function(result) {
 		      console.log(result);
-		      if (result === "-1") {
+		      if (result == -1) {
 		        Swal.fire({ icon: 'warning', title: "비밀번호가 일치하지 않습니다." });
 		        return;
 		      }
-		      if (result === "0") {
+		      if (result == 0) {
 		        Swal.fire({ icon: 'warning', title: "탈퇴 중 문제가 발생했습니다." });
 		        return;
 		      }
-		      if (result === "1") {
+		      if (result == 1) {
 		        Swal.fire({ icon: 'success', title: "탈퇴가 완료 되었습니다. 이용해주셔서 감사합니다." }).then(() => {
 		          $('#deletePasswordCheckModal').modal('hide');
-		          window.location.href = "logout.do";
+		          window.location.href = "logout";
 		        });
 		      }
 		    },

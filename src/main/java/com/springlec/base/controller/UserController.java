@@ -122,6 +122,25 @@ public class UserController {
 		return result;
 	}
 	
+	//회원 탈퇴
+	@RequestMapping("delete_account")
+	@ResponseBody
+	public int user_delete_account(HttpServletRequest request, HttpSession session) throws Exception {
+		int result = 0;
+		int check = userService.accordCheck((String)session.getAttribute("SUID"), request.getParameter("uPassword"));
+		if(check == 0) {
+			result = -1;
+		} else {
+			check = userService.delete_account((String)session.getAttribute("SUID"));
+			if(check == 0) {
+				result = 0;
+			} else {
+				result = check;
+			}
+		}
+		return result;
+	}
+	
 	
 	
 	

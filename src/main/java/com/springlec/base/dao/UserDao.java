@@ -44,4 +44,7 @@ public interface UserDao {
 	// 유저 이메일 변경
 	public int modify_nickname(String uid, String uNickName) throws Exception;
 	
+	// 유저 회원 탈퇴
+	public int delete_account(String uid) throws Exception;
+	
 }	// End Class

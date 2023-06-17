@@ -65,6 +65,11 @@
 		UPDATE user SET uNickName = #{uNickName}, uUpdateDate = now() WHERE uid = #{uid}
 	</update>
 	
+	<!-- 회원 탈퇴 -->
+	<update id="delete_account">
+		UPDATE user SET uSecessionStatus = 1, uDeleteDate = now() WHERE uid = #{uid}
+	</update>
+	
 	
 	
 	

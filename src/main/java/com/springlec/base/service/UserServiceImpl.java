@@ -103,5 +103,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.modify_nickname(uid, uNickName);
 	}
 
+	@Override
+	public int delete_account(String uid) throws Exception {
+		return userDao.delete_account(uid);
+	}
+
 
 }	// End Class
