@@ -27,6 +27,11 @@
 	    WHERE row_num >= #{startRow} AND row_num &lt;= #{endRow}
 	    ORDER BY bNo DESC;
 	</select>
+	
+	<insert id="write_board">
+		INSERT INTO board(uid, uNickName, bCgNo, bTitle, bContent, bInsertDate)
+		VALUES(#{uid}, #{uNickName}, #{bCgNo}, #{bTitle}, #{bContent}, now())
+	</insert>
 
 
 

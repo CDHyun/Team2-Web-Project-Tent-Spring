@@ -202,7 +202,7 @@
 	                    </div>
 	                    <div class="shortcodes_content">
 	                        <div class="table-responsive">
-	                        	<form action="board_write.do" id="board_write_form" name="board_write_form" method="post">
+	                        	<form action="write_board" id="board_write_form" name="board_write_form" method="post">
 		                            <table class="table mb-0 table-bordered" style="width: 100%;">
 		                                <thead>
 		                                    <tr>
@@ -249,7 +249,7 @@
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<jsp:include page="../common/include_common_script.jsp"/>
 	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-	<script src="js/shop/board.js?after" defer></script>
+	<script src="js/shop/board.js" defer></script>
 
 </body>
 

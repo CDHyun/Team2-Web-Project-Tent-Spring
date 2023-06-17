@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springlec.base.model.Board;
 import com.springlec.base.service.BoardService;
 import com.springlec.base.util.BoardPageMaker;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BoardController {
@@ -42,5 +44,18 @@ public class BoardController {
 		model.addAttribute("pageMaker", boardPageMaker);
 		return "board/board";
 	}
+	
+	@RequestMapping("write_board")
+	public String write_board(Board board, HttpSession session) throws Exception {
+		board.setUid((String)session.getAttribute("SUID"));
+		board.setuNickName((String)session.getAttribute("SUNICKNAME"));
+		boardService.write_board(board);
+		return "redirect:board_list";
+	}
+	
+	
+	
+	
+	
 	
 }	// End Class
