@@ -30,7 +30,7 @@ public class Purchase {
 	String pBrandName;                  //상품 브랜드 이름
 	String pcInsertDate;             //상품 주문 날짜
 	String pcDeleteDate;		        //상품 주문 취소 날짜
-	String pcStatus;                    //상품 주문 상태 
+	int pcStatus;                    //상품 주문 상태 
 	String pcDM;
 	String pcPay;
 	
@@ -56,7 +56,7 @@ public class Purchase {
 	public Purchase(String uid, String uPassword, String uName, String uPhone, String uEmail, int uaNo,
 			String uaZipcode, String uaAddress, String uaDetailAddress, String uaContent, int pcNo, int pCode,
 			int pPrice, int pcQty, int pStock, int cgNo, String pColor, String pName, String pBrandName,
-			String pcInsertDate, String pcDeleteDate, String pcStatus, String pcDM, String pcPay, String pfName,
+			String pcInsertDate, String pcDeleteDate, int pcStatus, String pcDM, String pcPay, String pfName,
 			String pfRealName, String pfHoverName, String pfHoverRealName) {
 		super();
 		this.uid = uid;
@@ -101,9 +101,13 @@ public class Purchase {
 
 
 
+
+
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
+
+
 
 
 
@@ -115,9 +119,13 @@ public class Purchase {
 
 
 
+
+
 	public void setuPassword(String uPassword) {
 		this.uPassword = uPassword;
 	}
+
+
 
 
 
@@ -129,9 +137,13 @@ public class Purchase {
 
 
 
+
+
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
+
+
 
 
 
@@ -143,9 +155,13 @@ public class Purchase {
 
 
 
+
+
 	public void setuPhone(String uPhone) {
 		this.uPhone = uPhone;
 	}
+
+
 
 
 
@@ -157,9 +173,13 @@ public class Purchase {
 
 
 
+
+
 	public void setuEmail(String uEmail) {
 		this.uEmail = uEmail;
 	}
+
+
 
 
 
@@ -171,9 +191,13 @@ public class Purchase {
 
 
 
+
+
 	public void setUaNo(int uaNo) {
 		this.uaNo = uaNo;
 	}
+
+
 
 
 
@@ -185,9 +209,13 @@ public class Purchase {
 
 
 
+
+
 	public void setUaZipcode(String uaZipcode) {
 		this.uaZipcode = uaZipcode;
 	}
+
+
 
 
 
@@ -199,9 +227,13 @@ public class Purchase {
 
 
 
+
+
 	public void setUaAddress(String uaAddress) {
 		this.uaAddress = uaAddress;
 	}
+
+
 
 
 
@@ -213,9 +245,13 @@ public class Purchase {
 
 
 
+
+
 	public void setUaDetailAddress(String uaDetailAddress) {
 		this.uaDetailAddress = uaDetailAddress;
 	}
+
+
 
 
 
@@ -227,9 +263,13 @@ public class Purchase {
 
 
 
+
+
 	public void setUaContent(String uaContent) {
 		this.uaContent = uaContent;
 	}
+
+
 
 
 
@@ -241,9 +281,13 @@ public class Purchase {
 
 
 
+
+
 	public void setPcNo(int pcNo) {
 		this.pcNo = pcNo;
 	}
+
+
 
 
 
@@ -255,9 +299,13 @@ public class Purchase {
 
 
 
+
+
 	public void setpCode(int pCode) {
 		this.pCode = pCode;
 	}
+
+
 
 
 
@@ -269,9 +317,13 @@ public class Purchase {
 
 
 
+
+
 	public void setpPrice(int pPrice) {
 		this.pPrice = pPrice;
 	}
+
+
 
 
 
@@ -283,9 +335,13 @@ public class Purchase {
 
 
 
+
+
 	public void setPcQty(int pcQty) {
 		this.pcQty = pcQty;
 	}
+
+
 
 
 
@@ -297,9 +353,13 @@ public class Purchase {
 
 
 
+
+
 	public void setpStock(int pStock) {
 		this.pStock = pStock;
 	}
+
+
 
 
 
@@ -311,9 +371,13 @@ public class Purchase {
 
 
 
+
+
 	public void setCgNo(int cgNo) {
 		this.cgNo = cgNo;
 	}
+
+
 
 
 
@@ -325,9 +389,13 @@ public class Purchase {
 
 
 
+
+
 	public void setpColor(String pColor) {
 		this.pColor = pColor;
 	}
+
+
 
 
 
@@ -339,9 +407,13 @@ public class Purchase {
 
 
 
+
+
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
+
+
 
 
 
@@ -353,9 +425,13 @@ public class Purchase {
 
 
 
+
+
 	public void setpBrandName(String pBrandName) {
 		this.pBrandName = pBrandName;
 	}
+
+
 
 
 
@@ -367,9 +443,13 @@ public class Purchase {
 
 
 
+
+
 	public void setPcInsertDate(String pcInsertDate) {
 		this.pcInsertDate = pcInsertDate;
 	}
+
+
 
 
 
@@ -381,6 +461,8 @@ public class Purchase {
 
 
 
+
+
 	public void setPcDeleteDate(String pcDeleteDate) {
 		this.pcDeleteDate = pcDeleteDate;
 	}
@@ -388,16 +470,22 @@ public class Purchase {
 
 
 
-	public String getPcStatus() {
+
+
+	public int getPcStatus() {
 		return pcStatus;
 	}
 
 
 
 
-	public void setPcStatus(String pcStatus) {
+
+
+	public void setPcStatus(int pcStatus) {
 		this.pcStatus = pcStatus;
 	}
+
+
 
 
 
@@ -409,9 +497,13 @@ public class Purchase {
 
 
 
+
+
 	public void setPcDM(String pcDM) {
 		this.pcDM = pcDM;
 	}
+
+
 
 
 
@@ -423,9 +515,13 @@ public class Purchase {
 
 
 
+
+
 	public void setPcPay(String pcPay) {
 		this.pcPay = pcPay;
 	}
+
+
 
 
 
@@ -437,9 +533,13 @@ public class Purchase {
 
 
 
+
+
 	public void setPfName(String pfName) {
 		this.pfName = pfName;
 	}
+
+
 
 
 
@@ -451,9 +551,13 @@ public class Purchase {
 
 
 
+
+
 	public void setPfRealName(String pfRealName) {
 		this.pfRealName = pfRealName;
 	}
+
+
 
 
 
@@ -465,9 +569,13 @@ public class Purchase {
 
 
 
+
+
 	public void setPfHoverName(String pfHoverName) {
 		this.pfHoverName = pfHoverName;
 	}
+
+
 
 
 
@@ -479,11 +587,17 @@ public class Purchase {
 
 
 
+
+
 	public void setPfHoverRealName(String pfHoverRealName) {
 		this.pfHoverRealName = pfHoverRealName;
 	}
-	
-	
+
+
+
+
+
+
 	
 	
 	

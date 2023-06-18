@@ -33,4 +33,10 @@
 		ORDER BY pc.pcInsertDate DESC
 		LIMIT 0, 7
 	</select>
+	
+	<select id="getProductInfo" resultType="com.springlec.base.model.Purchase">
+		SELECT * FROM product p, productFile pf WHERE p.pCode = pf.pCode AND p.pCode = #{pCode}
+	</select>
+	
+	
 </mapper>
