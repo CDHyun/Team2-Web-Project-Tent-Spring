@@ -24,8 +24,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public int write_notice(Notice notice) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(nameSpace + ".write_notice");
 	}
 
 	@Override
