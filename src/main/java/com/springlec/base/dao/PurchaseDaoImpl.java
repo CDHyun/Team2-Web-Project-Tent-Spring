@@ -22,7 +22,7 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		return sqlSession.selectList(nameSpace + ".purchaseCheck"); 
 	}
 	@Override
-	public List<Purchase> purchaseComplete(String uid, String pcStatus) throws Exception {
+	public List<Purchase> purchaseComplete(String uid, int pcStatus) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".purchaseComplete"); 
 	}
@@ -46,6 +46,10 @@ public class PurchaseDaoImpl implements PurchaseDao {
 			String pcInsertDate, String pfRealName, String pcPay, String pcDM, String uName) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".purchaseDetail"); 
+	}
+	@Override
+	public List<Purchase> getProductInfo(int pCode) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".getProductInfo");
 	}
 
 

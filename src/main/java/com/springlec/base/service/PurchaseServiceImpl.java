@@ -30,7 +30,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public List<Purchase> purchaseComplete(String uid, String pcStatus) throws Exception {
+	public List<Purchase> purchaseComplete(String uid, int pcStatus) throws Exception {
 		// TODO Auto-generated method stub
 		return purchaseDao.purchaseComplete(uid, pcStatus);
 	}
@@ -55,6 +55,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 			String pcInsertDate, String pfRealName, String pcPay, String pcDM, String uName) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Purchase> getProductInfo(int pCode) throws Exception {
+		return purchaseDao.getProductInfo(pCode);
 	}
 	
 
