@@ -39,5 +39,11 @@ public interface CommentDao {
 	// 부모 댓글의 cmRefOrder 가져오기
 	public int getRefOrder(int cmNo, int bNo) throws Exception;
 	
+	// 댓글 삭제하기
+	public int delete_comment(int cmNo, int bNo) throws Exception;
+	
+	// 댓글 수정하기
+	public int modify_comment(int cmNo, int bNo, String cmContent) throws Exception;
+	
 	
 }	// End Class

@@ -42,4 +42,10 @@ public interface CommentService {
 	// 댓글 저장 전 정렬을 수행해주는 메소드
 	public void saveReply(int bNo, String uid, String uNickName, String cmContent, int cmParentNo) throws Exception;
 	
+	// 댓글 삭제하기
+	public int delete_comment(int cmNo, int bNo) throws Exception;
+	
+	// 댓글 수정하기
+	public int modify_comment(int cmNo, int bNo, String cmContent) throws Exception;
+	
 }	// End Class

@@ -67,4 +67,14 @@ public class CommentDaoImpl implements CommentDao {
 		return sqlSession.selectOne(nameSpace + ".getRefOrder");
 	}
 
+	@Override
+	public int delete_comment(int cmNo, int bNo) throws Exception {
+		return sqlSession.update(nameSpace + ".delete_comment");
+	}
+
+	@Override
+	public int modify_comment(int cmNo, int bNo, String cmContent) throws Exception {
+		return sqlSession.update(nameSpace + ".modify_comment");
+	}
+
 }

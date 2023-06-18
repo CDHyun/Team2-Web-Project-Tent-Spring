@@ -81,14 +81,14 @@
 		    if (result.isConfirmed) {
 		      $.ajax({
 		        type: 'POST',
-		        url: './DeleteComment',
+		        url: 'delete_comment',
 		        data: {
 		          cmNo: cmNo,
 		          bNo: bNo
 		        },
 		        success: function(result) {
 		          console.log(result);
-		          if (result === "0") {
+		          if (result == 0) {
 		            Swal.fire({
 		              icon: 'warning',
 		              title: '댓글 삭제 중 문제가 발생했습니다.'
@@ -96,8 +96,8 @@
 		            return;
 		          }
 
-		          if (result === "1") {
-		            window.location.href = "board_detail.do?bNo=" + bNo;
+		          if (result == 1) {
+		            window.location.href = "board_detail?bNo=" + bNo;
 		          }
 		        },
 		        error: function() {
