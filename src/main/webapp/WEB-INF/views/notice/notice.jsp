@@ -77,6 +77,38 @@
     	  window.location.href = "notice_list_byCgNo?nCgNo=" + nCgNo;
     	}
     
+    function delete_notice(nNo) {
+    	Swal.fire({
+    	    title: "정말 삭제하시겠습니까?",
+    	    text: "한 번 삭제하면 되돌릴 수 없습니다.",
+    	    icon: "warning",
+    	    showCancelButton: true,
+    	    confirmButtonText: "삭제",
+    	    cancelButtonText: "취소"
+    	  }).then((result) => {
+    	    if (result.isConfirmed) {
+    	    	  $.ajax({
+    	    		    url: "delete_post.php",
+    	    		    type: "POST",
+    	    		    data: {
+    	    		      nNo : nNo
+    	    		    },
+    	    		    success: function(response) {
+    	    		      if (response === "success") {
+    	    		        Swal.fire("삭제되었습니다.", "", "success");
+    	    		      } else {
+    	    		        Swal.fire("삭제 실패", "삭제 중 오류가 발생했습니다.", "error");
+    	    		      }
+    	    		    },
+    	    		    error: function() {
+    	    		      Swal.fire("오류", "서버와의 연결에 문제가 발생했습니다.", "error");
+    	    		      // AJAX 요청 실패 시 수행할 로직을 추가합니다.
+    	    		    }
+    	    		  });
+    	    }
+    	  });
+    }
+    
 	</script>
 </head>
 
@@ -135,6 +167,11 @@
                                         <th scope="col" class="board_writer">작성자</th>
                                         <th scope="col" class="board_date">날짜</th>
                                         <th scope="col" class="board_count">조회수</th>
+                                        <c:choose>
+											  <c:when test="${SUID == 'admin'}">
+											  	<th scope="col" class="board_title">관리</th>
+											  </c:when>
+									  	</c:choose>
                                     </tr>
                                 </thead>
                                 <tbody id="qna_list_tbody">
@@ -162,6 +199,14 @@
 									        <fmt:formatDate var="formattedDate" value="${date}" type="date" pattern="yyyy년-MM월-dd일" />
 									        <td style="text-align: center;">${formattedDate}</td>
 									        <td style="text-align: center;">${notice.nViewCount}</td>
+									        <c:choose>
+											  <c:when test="${SUID == 'admin'}">
+											  	<td style="text-align: center;">
+													<input name="notice-modify-btn" type="button" value="수정" onclick="modify_notice()">
+													<input name="notice-delete-btn" type="button" value="삭제" onclick="delete_notice('${notice.aNo}')">
+												</td>
+											  </c:when>
+									  	</c:choose>
 									    </tr>
 									     <c:set var="rowNumber" value="${rowNumber + 1}" />
 									</c:forEach>
