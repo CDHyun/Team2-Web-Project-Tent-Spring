@@ -75,7 +75,7 @@
     					</tr>
   					</c:forEach>
 			</table>	
-			<a href="adminWriteNotice.do" class="btn btn-primary ">글쓰기</a>	
+			<a href="adminWriteNotice" class="btn btn-primary ">글쓰기</a>	
 		</div>
 	</div>
 	
