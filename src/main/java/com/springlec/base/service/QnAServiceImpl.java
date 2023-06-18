@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.springlec.base.dao.QnADao;
 import com.springlec.base.model.Answer;
 import com.springlec.base.model.Question;
 
 @Service
+@Transactional
 public class QnAServiceImpl implements QnAService {
 
 	@Autowired
@@ -47,6 +49,8 @@ public class QnAServiceImpl implements QnAService {
 
 	@Override
 	public int write_answer(Answer answer) throws Exception {
+		int qNo = answer.getqNo();
+		qnADao.answer_complete(qNo);
 		return qnADao.write_answer(answer);
 	}
 

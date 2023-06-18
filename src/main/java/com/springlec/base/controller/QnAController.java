@@ -61,4 +61,12 @@ public class QnAController {
 		return "redirect:question_list";
 	}
 	
+	@RequestMapping("write_answer")
+	public String write_answer(Answer answer, HttpSession session) throws Exception {
+		int qNo = answer.getqNo();
+		answer.setAid((String)session.getAttribute("SUID"));
+		qnAService.write_answer(answer);
+		return "redirect:question_detail?qNo=" + qNo;
+	}
+	
 }	// End Class

@@ -139,6 +139,8 @@ $(".qna_btn.write_form, .qna_btn.reply").on("click", function(){
 	location.href = "question_write_form.do?pageno=" + pageno;
 });
 
+
+
 /*
 답글 등록 폼 
 */
@@ -161,12 +163,29 @@ $(".qna_btn.reply_write").on("click", function(){
 	$("#qna_reply_write_form").submit();
 });
 
+/* QnA 답변 등록 */
+$(".answer_btn.new_write").on("click", function(){
+	if($("#aTitle").val() == "" || CKEDITOR.instances.a_content_area.getData() == ""){
+		Toast.fire({ icon: 'warning', title: "필수 입력값을 입력하지 않았습니다.\n 제목과 내용을 모두 입력해주세요" });
+		return;
+	}
+	$("#qna_answer_form").submit();
+});
+
 /*
 ckeditor
 */
 $(() => {
 	if($("#q_content_area").length != 0){
 		 CKEDITOR.replace('q_content_area', {
+						height: 500                                                  
+                 	});
+	}
+});
+
+$(() => {
+	if($("#a_content_area").length != 0){
+		 CKEDITOR.replace('a_content_area', {
 						height: 500                                                  
                  	});
 	}

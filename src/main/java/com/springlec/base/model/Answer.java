@@ -7,6 +7,7 @@ public class Answer {
 	int aNo;
 	int qNo;
 	String aid;
+	String aTitle;
 	String aContent;
 	String aInsertDate;
 	String aUpdateDate;
@@ -17,12 +18,13 @@ public class Answer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Answer(int aNo, int qNo, String aid, String aContent, String aInsertDate, String aUpdateDate,
+	public Answer(int aNo, int qNo, String aid, String aTitle, String aContent, String aInsertDate, String aUpdateDate,
 			String aDeleteDate, boolean aDeleted) {
 		super();
 		this.aNo = aNo;
 		this.qNo = qNo;
 		this.aid = aid;
+		this.aTitle = aTitle;
 		this.aContent = aContent;
 		this.aInsertDate = aInsertDate;
 		this.aUpdateDate = aUpdateDate;
@@ -52,6 +54,14 @@ public class Answer {
 
 	public void setAid(String aid) {
 		this.aid = aid;
+	}
+
+	public String getaTitle() {
+		return aTitle;
+	}
+
+	public void setaTitle(String aTitle) {
+		this.aTitle = aTitle;
 	}
 
 	public String getaContent() {
@@ -93,6 +103,7 @@ public class Answer {
 	public void setaDeleted(boolean aDeleted) {
 		this.aDeleted = aDeleted;
 	}
+
 	
 	
 	

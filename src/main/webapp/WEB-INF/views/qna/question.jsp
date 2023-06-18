@@ -78,7 +78,14 @@
 									    <tr>
 									        <th scope="row">${qna.qNo}</th>
 									        <td>
-									            <a href="question_detail?qNo=${qna.qNo}" onclick="toggleQnaContent(this);">${qna.qTitle}</a>
+									       	<c:choose>
+											    <c:when test="${qna.qAnswerd}">
+											        <a href="question_detail?qNo=${qna.qNo}" onclick="toggleQnaContent(this);">[답변완료]${qna.qTitle}</a>
+											    </c:when>
+											    <c:otherwise>
+											        <a href="question_detail?qNo=${qna.qNo}" onclick="toggleQnaContent(this);">${qna.qTitle}</a>
+											    </c:otherwise>
+											</c:choose>
 <%-- 									            <a href="#" onclick="toggleQnaContent(this);">${qna.qTitle}</a>
 									            <div class="qna-content" style="display: none;">${qna.qContent}</div> --%>
 									        </td>
