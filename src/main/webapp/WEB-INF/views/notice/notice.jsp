@@ -34,7 +34,8 @@
     }
     
     function increaseViewCount(row) {
-        var nNo = row.find('th').text();
+        /* var nNo = row.find('th').text(); */
+        var nNo = row.find('input[name="nNo"]').val();
         if (viewedQnas.includes(nNo)) return; // 이미 조회한 Q&A인 경우 더 이상 증가하지 않도록 처리
         
         var viewCountCell = row.find('td:last-child');
@@ -45,11 +46,13 @@
         
         // viewCount 증가를 서버에 요청
         $.ajax({
-            url: "./IncreaseNoticeViewCount", // 서버의 증가시키는 기능을 처리하는 URL
+            url: "increaseNoticeViewCount", // 서버의 증가시키는 기능을 처리하는 URL
             method: "POST",
             data: { nNo: nNo }, // 서버에 전달할 데이터 (여기서는 qNo를 전달)
-            success: function(response) {
-                console.log("View count increased successfully.");
+            success: function(result) {
+                if(result == 1) {
+                	console.log("조회수 증가 완료");
+                }
             },
             error: function() {
                 console.log("Error occurred while increasing view count.");
@@ -58,7 +61,8 @@
     }
     
     function decreaseViewCount(row) {
-        var nNo = row.find('th').text();
+        /* var nNo = row.find('th').text(); */
+        var nNo = row.find('input[name="nNo"]').val();
         var index = viewedQnas.indexOf(nNo);
         if (index > -1) {
             viewedQnas.splice(index, 1); // 조회한 Q&A 번호를 배열에서 제거
@@ -140,7 +144,7 @@
 									<c:forEach var="notice" items="${noticeList}">
 									    <tr>
 									        <%-- <th scope="row">${notice.nNo}</th> --%>
-									         <th scope="row">${rowNumber}</th>
+									         <th scope="row"> ${rowNumber} <input type="hidden" name="nNo" value="${notice.nNo}"> </th>
 									        <td>
 									        	<span>
 									        	<c:choose>

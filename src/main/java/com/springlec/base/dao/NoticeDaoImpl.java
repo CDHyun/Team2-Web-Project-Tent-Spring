@@ -31,8 +31,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public int increaseNoticeViewCount(int nNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(nameSpace + ".increaseNoticeViewCount");
 	}
 
 	@Override

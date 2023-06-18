@@ -33,8 +33,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int increaseNoticeViewCount(int nNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return noticeDao.increaseNoticeViewCount(nNo);
 	}
 
 	@Override
