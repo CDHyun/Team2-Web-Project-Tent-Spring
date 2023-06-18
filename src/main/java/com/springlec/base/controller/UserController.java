@@ -211,6 +211,10 @@ public class UserController {
 		String aid = request.getParameter("aid");
 		String aPassword = request.getParameter("aPassword");
 		int result = userService.admin_login(aid, aPassword);
+		if(result == 1) {
+			session.setAttribute("SUID", aid);
+			session.setAttribute("SUNICKNAME", "관리자");
+		}
 		return result;
 	}
 	

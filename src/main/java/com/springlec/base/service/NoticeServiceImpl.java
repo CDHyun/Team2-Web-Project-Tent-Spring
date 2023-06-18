@@ -26,8 +26,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int write_notice(Notice notice) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return noticeDao.write_notice(notice);
 	}
 
 	@Override
