@@ -1,4 +1,3 @@
-<%@page import="com.javalec.tent.dto.AdminDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,7 +13,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/cart.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -104,7 +103,7 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="common/include_common_header.jsp"/>
+  	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
     
     <!-- Breadcumb Area -->
@@ -154,12 +153,12 @@
                                 
                                 
                                     <%
-                                    	ArrayList<String> cNoList = new ArrayList<String>();
-                                    	AdminDto dto = new AdminDto();
+                                    	//ArrayList<String> cNoList = new ArrayList<String>();
+                                    //	AdminDto dto = new AdminDto();
                                     %>
                                     
-                                     <c:forEach items="${cart}" var="dto" varStatus="st">
-                           				<form name="adminCartForm" action="adminCartDelete.do" method="post">	
+                                     <c:forEach items="${ITEM}" var="dto" varStatus="st">
+                           				<form name="adminCartForm" action="adminCartDelete" method="post">	
                                      
 										    <tr>   
 										    	<th scope="row">${st.index+1}</th>   <!--${dto.cNo} 이값을 대신해서 index로 해줌  -->
@@ -173,12 +172,12 @@
 										      <td>
 										      <div class="input-form-group" style="display: flex; align-items: center;">
 	                            					<button type="button" id="plusQtyBtn_${dto.cNo}" class="btn btn-dark btn-sm" onclick="decreaseQuantity('${dto.cNo}')">-</button>&nbsp;&nbsp;
-	                            					<input type="text" id="quantity_${dto.cNo}" name="quantity_${dto.cNo}" class="form-control" style="width: 45px" value="${dto.pcQty}" min="1" max="10" >&nbsp;&nbsp;
+	                            					<input type="text" id="quantity_${dto.cNo}" name="quantity_${dto.cNo}" class="form-control" style="width: 45px" value="${dto.cQty}" min="1" max="10" >&nbsp;&nbsp;
 	                            					<button type="button" id="minusQtyBtn_${dto.cNo}" class="btn btn-dark btn-sm" onclick="increaseQuantity('${dto.cNo}')">+</button>
                             					</div>
 										      </td>
 										      
-										       <td>&#8361;&nbsp;<fmt:formatNumber value="${dto.ctotal}" type="number" pattern="#,###"></fmt:formatNumber></td>
+										       <td>&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
 										     
 										     
 										      <td>
@@ -228,7 +227,7 @@
                             </table>
                         </div>
                        
-                        <form id="myForm" action="cart_to_purchase.do" method="post">
+                        <form id="myForm" action="carttopurchase" method="post">
   						<input type="hidden" id="cNoArrayInput" name="cNoArrayInput" value="">
 						<input type="submit" class="btn btn-primary d-block" onclick="submitForm()" value="Proceed To Checkout">
 						</form>
@@ -286,11 +285,11 @@
 
 	
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	<script src="js/shop/cart.js"></script>
 
 </body>
