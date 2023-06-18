@@ -53,6 +53,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Admin> chart() throws Exception {
 		// TODO Auto-generated method stub
+		adminDao.setSQL();
 		return adminDao.chart();
 	}
 

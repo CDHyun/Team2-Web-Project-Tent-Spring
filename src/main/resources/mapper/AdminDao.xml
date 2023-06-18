@@ -22,21 +22,20 @@
 	</select>
 		
 	<!-- 막대차트그리기 - SET sql_mode 포함 -->
-	<sql id="setSqlMode">
+	<select id="setSqlMode">
 	  <![CDATA[
 	    SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
 	  ]]>
-	</sql> 
+	</select> 
 	
 	<!-- 막대차트 -->
 	<select id="chart" resultType="com.springlec.base.model.Admin">
-	  <include refid="setSqlMode" />
-	  <![CDATA[
+	  
 	  SELECT DAYNAME(pc.pcInsertDate) , SUM(p.pPrice * pc.pcQty) 
 	  FROM purchase pc, product p
 	  GROUP BY DAYNAME(pc.pcInsertDate)
 	  ORDER BY FIELD(DAYNAME(pc.pcInsertDate), 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
-	  ]]>
+	
 	</select>
 
 

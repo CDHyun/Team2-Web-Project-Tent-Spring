@@ -18,6 +18,9 @@ public interface AdminDao {
 	//  날짜별 매출
 	public List<Admin> dailySale(String startDate, String endDate) throws Exception;
 	
+	
+	// sql 설정변경
+	public void setSQL() throws Exception;
 	// 막대차트
 	public List<Admin> chart() throws Exception;
 	
