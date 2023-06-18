@@ -129,7 +129,7 @@
 				  cancelButtonText: "Cancel"
 				}).then((result) => {
 				  if (result.isConfirmed) {
-				    var url = "purchase_info.do?pCode=" + encodeURIComponent(pCode) + "&pcQty=" + encodeURIComponent(pcQty) + "&pColor=" + encodeURIComponent(pColor);
+				    var url = "purchaseInfo?pCode=" + encodeURIComponent(pCode) + "&pcQty=" + encodeURIComponent(pcQty) + "&pColor=" + encodeURIComponent(pColor);
 				    window.location.href = url;
 				  } else if (result.dismiss === Swal.DismissReason.cancel) {
 				    // Handle cancel button action here
