@@ -22,8 +22,8 @@ public class PurchaseController {
 
     // 주문자 정보 불러오기
     @RequestMapping("/purchaseInfo")
-    public String selectlist(HttpServletRequest request, Model model) throws Exception {
-        Purchase selectlist = purchaseService.PurchaseInfoDao(request.getParameter("uid"));
+    public String selectlist(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+        Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));
         model.addAttribute("user", selectlist);
         return "purchase/purchase_info";
     }

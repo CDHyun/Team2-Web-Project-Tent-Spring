@@ -11,9 +11,9 @@ public class PurchaseDaoImpl implements PurchaseDao {
 	SqlSession sqlSession; 
 	public static String nameSpace = "com.springlec.base.dao.PurchaseDao";
 	@Override
-	public Purchase PurchaseInfoDao(String uid) throws Exception {
+	public Purchase purchaseInfoDao(String uid) throws Exception {
 		// TODO Auto-generated method stub
-		return (Purchase) sqlSession.selectList(nameSpace + ".PurchaseInfoDao"); 
+		return sqlSession.selectOne(nameSpace + ".purchaseInfoDao"); 
 	}
 	@Override
 	public List<Purchase> purchaseCheck(int pCode, int pPrice, String pName, String pfRealName, String pfHoverRealName)

@@ -6,7 +6,7 @@ import com.springlec.base.model.Purchase;
 
 public interface PurchaseService {
 
-	public Purchase PurchaseInfoDao(String uid) throws Exception;
+	public Purchase purchaseInfoDao(String uid) throws Exception;
 
 	public List<Purchase> purchaseCheck(int pCode, int pPrice, String pName, String pfRealName, String pfHoverRealName) throws Exception;
 	

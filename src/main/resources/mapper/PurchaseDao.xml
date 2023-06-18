@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.springlec.base.dao.PurchaseDao">
-	<select id="PurchaseInfoDao" resultType="com.springlec.base.model.Purchase">
-		SELECT u.uPhone, u.uEmail, ua.uaAddress, ua.uaDetailAddress, ua.uaZipcode 
+
+	<select id="purchaseInfoDao" resultType="com.springlec.base.model.Purchase">
+		SELECT * 
 		FROM user u, userAddress ua 
 		WHERE u.uid = ua.uid and u.uid = #{uid}
 	</select>
