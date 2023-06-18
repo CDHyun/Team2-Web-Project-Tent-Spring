@@ -142,7 +142,7 @@
                         </div>
                     </div>
                     <div style="text-align: right;">
-						<a href="question_write_form.do"><input type="button" class="btn btn-secondary btn-sm" value="게시글작성" /></a>
+						<a href="question_write_form"><input type="button" class="btn btn-secondary btn-sm" value="게시글작성" /></a>
                     </div>
                 </div>
             </div>
