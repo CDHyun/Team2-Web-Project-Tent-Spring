@@ -98,6 +98,12 @@ public class AdminDaoImpl implements AdminDao {
 		sqlSession.update(nameSpace + ".deleteProduct");
 	}
 
+	@Override
+	public void setSQL() throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne(nameSpace + ".setSqlMode");
+	}
+
 	
 
 	
