@@ -154,8 +154,51 @@ public class AdminController {
 			return "admin/adminProductUpdate";
 		}
 
+		
+		
+		
+		
+		
+		
+		
 		// 상품수정 
-		//@RequestMapping("/adminUpdateAction")
+		//@Value("${upload.path}")
+		@RequestMapping("/adminUpdateAction")
+		public String updateProduct(@RequestParam("file") MultipartFile file,
+                @RequestParam("pName") String pName,
+                @RequestParam("pBrandName") String pBrandName,
+                @RequestParam("pPrice") int pPrice,
+                @RequestParam("pCode") int pCode,
+                @RequestParam("pColor") String pColor,
+                @RequestParam("pColor") String lastfile,
+                @RequestParam("pStock") int pStock,
+                Model model) throws Exception{
+			
+			System.out.println(lastfile);
+			// 파일 업로드 처리 로직
+						String pfName =  file.getOriginalFilename();
+						String pfRealName =  file.getOriginalFilename();
+						// 파일 업로드 처리 로직 작성
+
+						if(!pfRealName.equals("")) {
+							// 파일 저장
+							File destFile = new File(pfRealName);
+							file.transferTo(destFile);
+							adminService.updateProduct(pName,pBrandName,pPrice,pCode,pColor,pStock);
+							adminService.uploadFile1(pfName, pfRealName, pCode);
+							
+						}else {
+							adminService.updateProduct1(pName,pBrandName,pPrice,pCode,pColor,pStock,lastfile);
+						}
+
+
+						
+
+			
+	
+			
+			return "redirect:adminUpdate";
+		}
 		
 
 		// 상품 삭제
