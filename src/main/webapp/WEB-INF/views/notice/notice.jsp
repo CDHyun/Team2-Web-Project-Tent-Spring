@@ -74,7 +74,7 @@
 	}
     
     function changeCategory(nCgNo) {
-    	  window.location.href = "notice_cg_list.do?nCgNo=" + nCgNo;
+    	  window.location.href = "notice_list_byCgNo?nCgNo=" + nCgNo;
     	}
     
 	</script>

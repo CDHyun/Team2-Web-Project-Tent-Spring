@@ -9,8 +9,8 @@
 	</select>
 	
 	<!-- 카테고리에 따라 리스트 불러오기 (공지사항/FAQ) -->
-	<select id="noticeCgNoList" resultType="com.springlec.base.model.Notice">
-	SELECT * from NOTICE where nDeleted = 0 AND nCgNo = ?
+	<select id="notice_list_byCgNo" resultType="com.springlec.base.model.Notice">
+	SELECT * from NOTICE where nDeleted = 0 AND nCgNo = #{nCgNo}
 	</select>
 	
 	<!-- 공지사항 작성 -->
