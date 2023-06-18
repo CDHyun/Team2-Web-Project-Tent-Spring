@@ -114,6 +114,10 @@
 		UPDATE productfile SET pfName = #{pfName}, pfRealName = #{pfRealName} WHERE pCode = #{pCode}
 	</update>
 	
-	
+	//공지작성
+	<!-- <insert id="writeNotice">
+		INSERT INTO notice (aid,nCgNo, nTitle, nContent, nInsertDate) SELECT ?, 1,  ?, ?, NOW() FROM admin a WHERE a.aid = #{aid}
+	</insert>
+	 -->
 	
 </mapper>
