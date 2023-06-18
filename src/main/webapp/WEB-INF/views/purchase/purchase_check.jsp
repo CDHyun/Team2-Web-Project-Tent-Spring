@@ -14,7 +14,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/order.css">
 
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="common/include_common_header.jsp"/>
+  	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
 
     <!-- Breadcumb Area -->
@@ -143,9 +143,9 @@
                             </table>
                         </div>
                         <div class="checkout_pagination d-flex justify-content-end mt-3">
-                        	<a href="payment.do"><button type="button" class="btn btn-primary mt-2 ml-2" id="back_payment" >Go Back</button></a>
+                        	<a href="payment"><button type="button" class="btn btn-primary mt-2 ml-2" id="back_payment" >Go Back</button></a>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="purchaseinsert.do"><button type="button" class="btn btn-primary mt-2 ml-2" id="purchase_complete_btn">Order</button></a>
+							<a href="purchaseinsert"><button type="button" class="btn btn-primary mt-2 ml-2" id="purchase_complete_btn">Order</button></a>
           
                         </div>     
                         <form id="order_create_form" method="post">
@@ -169,11 +169,11 @@
     <!-- Checkout Area End -->
 
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	<script src="js/shop/order.js"></script>
 
 </body>

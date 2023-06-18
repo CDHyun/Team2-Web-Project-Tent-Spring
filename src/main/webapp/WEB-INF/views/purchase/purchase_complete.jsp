@@ -11,7 +11,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/order.css">
 
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="common/include_common_header.jsp"/>
+  	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
     
     <!-- Breadcumb Area -->
@@ -58,7 +58,7 @@
                         <p class="orderid mb-0">${SUID}님의 주문은 
                   <c:if test="${complete.pcStatus == 0}">배송 준비중입니다.</c:if></p> 
                         <br>
-                   <a href="purchase_list.do"><button type="button" class="order_list_btn" id="order list">order list</button></a>
+                   <a href="purchase_list"><button type="button" class="order_list_btn" id="order list">order list</button></a>
                     </div>
                 </div>
             </div>
@@ -67,11 +67,11 @@
     <!-- Checkout Area End -->
 
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	<script src="js/shop/order.js"></script>
 </body>
 

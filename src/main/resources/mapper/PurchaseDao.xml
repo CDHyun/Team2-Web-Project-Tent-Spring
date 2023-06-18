@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.PurchaseDao">
+	<select id="PurchaseInfoDao" resultType="com.springlec.base.model.Purchase">
+		SELECT u.uPhone, u.uEmail, ua.uaAddress, ua.uaDetailAddress, ua.uaZipcode 
+		FROM user u, userAddress ua 
+		WHERE u.uid = ua.uid and u.uid = #{uid}
+	</select>
+
+	<insert id="purchaseInsert">
+		INSERT INTO purchase (uid, pCode, pcInsertDate, pcQty, pcDM, pColor, pcPay)
+		VALUES (#{uid}, #{pCode}, #{pcInsertDate}, #{pcQty}, #{pcDM}, #{pColor}, #{pcPay})
+	</insert>
+
+	<select id="purchaseCheck" resultType="com.springlec.base.model.Purchase">
+		SELECT p.pName, p.pPrice, pf.pfRealName, pf.pfHoverRealName
+		FROM user u, purchase pc
+		WHERE u.uid = pc.uid and u.uid = #{uid}
+	</select>
+
+	<select id="purchaseComplete" resultType="com.springlec.base.model.Purchase">
+		SELECT u.uid, pc.pcstatus
+		FROM user u, purchase pc
+		WHERE u.uid = pc.uid and u.uid = #{uid}
+	</select>
+
+	<select id="purchaseList" resultType="com.springlec.base.model.Purchase">
+		SELECT pc.pcNo, p.pCode, p.pName, p.pPrice, pc.pcQty, pc.pcStatus, pc.pcInsertDate, u.uPhone, pf.pfRealName, pf.pfHoverRealName, pcPay
+		FROM product p, user u, purchase pc, productfile pf
+		WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND pc.pcDeleted = 0 AND u.uid = #{uid}
+		ORDER BY pc.pcInsertDate DESC
+		LIMIT 0, 7
+	</select>
+</mapper>
