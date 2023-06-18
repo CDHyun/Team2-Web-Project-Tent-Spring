@@ -41,6 +41,17 @@ public class AdminCartController {
 	}
 	
 	
+	// 상품디테일에서 카트로 상품추가
+	@RequestMapping("/cart")
+	public String addCart(HttpServletRequest request,Model model, HttpSession session ) throws Exception{
+		adminCartService.addCart((String)session.getAttribute("SUID"),Integer.parseInt(request.getParameter("pCode")),
+				Integer.parseInt(request.getParameter("pcQty")),request.getParameter("pColor") );
+		
+		return "redirect:admincartSelect";
+	}
+	
+	
+	
 	// 카트항목삭제
 	@RequestMapping("/adminCartDelete")
 	public String deleteCart(HttpServletRequest request, Model model) throws Exception{
