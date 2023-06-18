@@ -57,6 +57,9 @@ public interface UserService {
 	// 비밀번호 변경
 	public int change_password(String uid, String uPassword) throws Exception;
 	
+	// 관리자 로그인
+	public int admin_login(String aid, String aPassword) throws Exception;
+		
 	
 	
 	

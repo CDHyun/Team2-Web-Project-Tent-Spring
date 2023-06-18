@@ -204,6 +204,16 @@ public class UserController {
 		return result;
 	}
 	
+	// 어드민 로그인
+	@RequestMapping("admin_login")
+	@ResponseBody
+	public int admin_login(HttpServletRequest request, HttpSession session) throws Exception {
+		String aid = request.getParameter("aid");
+		String aPassword = request.getParameter("aPassword");
+		int result = userService.admin_login(aid, aPassword);
+		return result;
+	}
+	
 	
 	
 	
