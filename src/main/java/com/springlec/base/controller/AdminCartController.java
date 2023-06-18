@@ -9,9 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springlec.base.model.Cart;
+import com.springlec.base.model.Purchase;
 import com.springlec.base.service.AdminCartService;
+import com.springlec.base.service.PurchaseService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminCartController {
@@ -19,6 +22,8 @@ public class AdminCartController {
 	
 	@Autowired
 	AdminCartService adminCartService;
+	@Autowired
+	PurchaseService purchaseService;
 	
 	//카트 리스트 불러오기
 	@RequestMapping("/admincartSelect")
@@ -46,11 +51,14 @@ public class AdminCartController {
 	
 	
 	@RequestMapping("/carttopurchase")
-	public String showUserInfo(HttpServletRequest request,Model model) throws Exception{
+	public String showUserInfo(HttpServletRequest request,Model model, HttpSession session) throws Exception{
 		String[] cNoArray = request.getParameterValues("cNoArrayInput");
 		  String cNoArrayString = Arrays.toString(cNoArray);
 		  model.addAttribute("cNoArrayString",cNoArrayString );
 		  
+		  
+		  Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));
+	       model.addAttribute("user", selectlist);
 		  //PurchaseDao dao = new PurchaseDao();
 			//ArrayList<PurchaseDto> dtos = new ArrayList<PurchaseDto>();
 			//UserDao userDao = new UserDao();
@@ -64,6 +72,8 @@ public class AdminCartController {
 		  
 		  return "purchase/purchase_info";
 	}
+	
+	
 	
 	
 }
