@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springlec.base.model.Question;
 import com.springlec.base.service.QnAService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class QnAController {
@@ -23,5 +27,24 @@ public class QnAController {
 		return "qna/question";
 	}
 	
+	@RequestMapping("increaseQuestionViewCount")
+	@ResponseBody
+	public int increaseQuestionViewCount(HttpServletRequest request) throws Exception {
+		int result = qnAService.increaseQuestionViewCount(Integer.parseInt(request.getParameter("qNo")));
+		return result;
+	}
+	
+	@RequestMapping("question_write_form")
+	public String question_write_form() throws Exception {
+		return "qna/question_write_form";
+	}
+	
+	@RequestMapping("write_question")
+	public String write_question(Question question, HttpSession session) throws Exception {
+		question.setUid((String)session.getAttribute("SUID"));
+		question.setuNickName((String)session.getAttribute("SUNICKNAME"));
+		qnAService.write_question(question);
+		return "redirect:question_list";
+	}
 	
 }	// End Class

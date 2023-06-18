@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.AdminCartDao">
+	<select id="cartSelect" resultType="com.springlec.base.model.Cart">
+		SELECT c.pColor,c.cNo,c.pCode,pf.pfRealName, p.pName, p.pPrice, c.cQty, (c.cQty*p.pPrice)
+		FROM product p, cart c, productfile pf, user u, productoption po
+		WHERE pf.pCode = p.pCode and p.pCode = c.pCode and u.uid = c.uid and c.pColor = po.pColor and pf.pCode = c.pCode and po.pCode = p.pCode 
+	</select>
+	
+	<select id="countSum" resultType="int">
+		SELECT SUM(subquery.totalPrice) FROM (SELECT c.cQty * p.pPrice AS totalPrice FROM product p, cart c, productfile pf, user u, 
+		productoption po WHERE pf.pCode = p.pCode AND p.pCode = c.pCode AND u.uid = c.uid AND c.pColor = po.pColor AND pf.pCode = c.pCode
+		AND po.pCode = p.pCode ) AS subquery
+	</select>
+	
+	<delete id="deleteCart">
+		delete from cart where cNo = #{cNo}
+	</delete>
+	
+	
+	<select id="recommend" resultType="com.springlec.base.model.Cart" >
+		SELECT p.pCode, p.pName, p.pBrandName, p.pPrice, po.pColor, pf.pfRealName
+		FROM product p
+		JOIN productoption po ON p.pCode = po.pCode
+		JOIN productfile pf ON p.pCode = pf.pCode
+		ORDER BY po.pStock desc LIMIT 3
+	</select>
+	
+	<insert id="addCart">
+		INSERT INTO cart (uid, pCode, cQty, pColor) VALUES (#{uid},#{pCode},#{pcQty},#{pColor} )
+	</insert>
+</mapper>

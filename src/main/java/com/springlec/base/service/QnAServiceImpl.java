@@ -21,14 +21,12 @@ public class QnAServiceImpl implements QnAService {
 
 	@Override
 	public int increaseQuestionViewCount(int qNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnADao.increaseQuestionViewCount(qNo);
 	}
 
 	@Override
 	public int write_question(Question question) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnADao.write_question(question);
 	}
 
 }

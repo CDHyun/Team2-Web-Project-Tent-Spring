@@ -61,7 +61,7 @@
 				  }).then((result) => {
 			    if (result.isConfirmed) {
 			      if (result.isConfirmed) {
-			        var url = "cart.do?pCode=" + encodeURIComponent(pCode) + "&pcQty=" + encodeURIComponent(pcQty) + "&pColor=" + encodeURIComponent(pColor);
+			        var url = "cart?pCode=" + encodeURIComponent(pCode) + "&pcQty=" + encodeURIComponent(pcQty) + "&pColor=" + encodeURIComponent(pColor);
 			        window.location.href = url;
 			      }
 			    }
@@ -93,7 +93,7 @@
 					  }).then((result) => {
 			    if (result.isConfirmed) {
 			      if (result.isConfirmed) {
-			        var url = "wishlists.do?pCode=" + encodeURIComponent(pCode) + "&pColor=" + encodeURIComponent(pColor);
+			        var url = "wishlists?pCode=" + encodeURIComponent(pCode) + "&pColor=" + encodeURIComponent(pColor);
 			        window.location.href = url;
 			      }
 			    }

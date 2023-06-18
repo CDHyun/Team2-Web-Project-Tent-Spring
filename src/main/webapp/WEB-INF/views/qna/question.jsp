@@ -45,11 +45,13 @@
         
         // viewCount 증가를 서버에 요청
         $.ajax({
-            url: "./increaseViewCount", // 서버의 증가시키는 기능을 처리하는 URL
+            url: "increaseQuestionViewCount", // 서버의 증가시키는 기능을 처리하는 URL
             method: "POST",
             data: { qNo: qNo }, // 서버에 전달할 데이터 (여기서는 qNo를 전달)
-            success: function(response) {
-                console.log("View count increased successfully.");
+            success: function(result) {
+            	if(result == 1){
+	                console.log("View count increased successfully.");
+            	}
             },
             error: function() {
                 console.log("Error occurred while increasing view count.");
@@ -140,7 +142,7 @@
                         </div>
                     </div>
                     <div style="text-align: right;">
-						<a href="question_write_form.do"><input type="button" class="btn btn-secondary btn-sm" value="게시글작성" /></a>
+						<a href="question_write_form"><input type="button" class="btn btn-secondary btn-sm" value="게시글작성" /></a>
                     </div>
                 </div>
             </div>
