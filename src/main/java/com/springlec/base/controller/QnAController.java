@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springlec.base.model.Question;
 import com.springlec.base.service.QnAService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class QnAController {
@@ -23,5 +26,11 @@ public class QnAController {
 		return "qna/question";
 	}
 	
+	@RequestMapping("increaseQuestionViewCount")
+	@ResponseBody
+	public int increaseQuestionViewCount(HttpServletRequest request) throws Exception {
+		int result = qnAService.increaseQuestionViewCount(Integer.parseInt(request.getParameter("qNo")));
+		return result;
+	}
 	
 }	// End Class
