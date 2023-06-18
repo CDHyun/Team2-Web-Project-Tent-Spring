@@ -14,6 +14,7 @@ public class Question {
 	String qDeleteDate; 			// QNA 삭제 일자
 	boolean qDeleted; 				// QNA 삭제 여부 ( 0 : false 삭제되지 않음, 1 : true 삭제됨. )
 	int qViewCount;					// QNA 조회수
+	boolean qStatus;				// QNA 답변 여부 ( 0 : false 미답변, 1 : true 답변 완료 )
 	
 	/* Contructor */
 	public Question() {

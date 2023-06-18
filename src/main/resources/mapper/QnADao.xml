@@ -24,9 +24,26 @@
 		VALUES(#{uid}, #{uNickName}, #{qCgNo}, #{qTitle}, #{qContent}, now())
 	</insert>
 	
+	<!-- 답변 불러오기 -->
+	<select id="getAnswer" resultType="com.springlec.base.model.Answer">
+		SELECT * FROM answer WHERE aDeleted = 0 and qNo = #{qNo}
+	</select>
+	
+	<!-- 미답변 목록 불러오기 -->
+	<select id="unanswered_list" resultType="com.springlec.base.model.Question">
+	   	SELECT * FROM question WHERE qDeleted = 0 and qStatus = 0
+	</select>
+	
+	<!-- 답변할 경우 상태 변경하기 -->
+	<update id="answer_complete">
+		UPDATE question SET qStatus = 1 WHERE qNo = #{qNo}
+	</update>
 
-
-
+	<!-- 답변 작성하기 -->
+	<insert id="write_answer">
+		INSERT INTO answer(qNo, aid, aTitle, aContent, aInsertDate)
+		VALUES(#{qNo}, #{aid}, #{aTitle}, #{aContent}, now())
+	</insert>
 	
 	
 	

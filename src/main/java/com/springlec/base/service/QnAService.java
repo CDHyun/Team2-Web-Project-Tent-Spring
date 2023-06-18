@@ -2,6 +2,7 @@ package com.springlec.base.service;
 
 import java.util.List;
 
+import com.springlec.base.model.Answer;
 import com.springlec.base.model.Question;
 
 public interface QnAService {
@@ -18,5 +19,13 @@ public interface QnAService {
 	// QnA 작성
 	public int write_question(Question question) throws Exception;
 	
+	// QnA 답변 불러오기
+	public Answer getAnswer(int qNo) throws Exception;
+	
+	// QnA 답변시 글 상태 변경하기
+	public int answer_complete(int qNo) throws Exception;
+	
+	// QNA 답변 작성하기
+	public int write_answer(Answer answer) throws Exception;
 	
 }	// End Class

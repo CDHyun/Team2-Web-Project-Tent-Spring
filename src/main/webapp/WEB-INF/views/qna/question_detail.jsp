@@ -113,6 +113,7 @@
 							<table class="table mb-0 table-bordered">
 								<thead>
 									<tr>
+										<c:if test="${not empty answer}">
 										<th scope="col" class="question_title" style="vertical-align: middle;">${answer.aTitle}</th>
 										<th scope="col" class="question_writer" style="vertical-align: middle;">관리자</th>
 										<c:set var="dateString" value="${answer.aInsertDate}" />
@@ -123,26 +124,30 @@
 										<fmt:formatDate var="formattedDate2" value="${date}"
 											type="date" pattern="HH시:mm분" />
 										<th scope="col" class="board_date" style="vertical-align: middle;">${formattedDate}<br />${formattedDate2}</th>
+										</c:if>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
+									<c:if test="${not empty answer}">
 										<td id="answer_content_td" colspan="3">${answer.aContent}</td>
+									</c:if>
+									<c:if test="${empty answer}">
+										<td id="answer_content_td" colspan="3">아직 답변이 달리지 않았습니다. 😢</td>
+									</c:if>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
+					<c:if test="${not empty answer}">
 					<div id="qna_btn_container">
-						<c:if test="${question.uid eq SUID}">
+						<c:if test="${SUID == 'admin'}">
 							<input class="btn btn-warning btn-sm" type="button" value="수정" onclick="openModifyModal()" />&nbsp;&nbsp;
 							<input class="btn btn-danger btn-sm" type="button" value="삭제" onclick="deleteBoard()" />&nbsp;&nbsp;
                     	</c:if>
-						<c:if test="${SUID == 'admin'}">
-						<input class="btn btn-primary btn-sm" type="button" value="답변 달기" onclick="openParentModal()" />&nbsp;&nbsp;
-						</c:if>
-						<a href="question_list"><input class="btn btn-secondary btn-sm" type="button" value="목록" /></a>&nbsp;&nbsp;
 					</div>
+					</c:if>
 				</div>
 			</div>
 			<!--  -->
