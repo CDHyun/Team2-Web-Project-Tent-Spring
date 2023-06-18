@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.springlec.base.model.Answer;
 import com.springlec.base.model.Question;
 
 public class QnADaoImpl implements QnADao {
@@ -30,6 +31,21 @@ public class QnADaoImpl implements QnADao {
 	@Override
 	public Question question_detail(int qNo) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".question_detail");
+	}
+
+	@Override
+	public Answer getAnswer(int qNo) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".getAnswer");
+	}
+
+	@Override
+	public int answer_complete(int qNo) throws Exception {
+		return sqlSession.update(nameSpace + ".answer_complete");
+	}
+
+	@Override
+	public int write_answer(Answer answer) throws Exception {
+		return sqlSession.insert(nameSpace + ".write_answer");
 	}
 
 }

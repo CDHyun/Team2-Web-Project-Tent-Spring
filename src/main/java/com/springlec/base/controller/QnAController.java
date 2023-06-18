@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.springlec.base.model.Answer;
 import com.springlec.base.model.Question;
 import com.springlec.base.service.QnAService;
 
@@ -39,7 +40,9 @@ public class QnAController {
 		int qNo = Integer.parseInt(request.getParameter("qNo"));
 		Question question = qnAService.question_detail(qNo);
 		qnAService.increaseQuestionViewCount(qNo);
+		Answer answer = qnAService.getAnswer(qNo);
 		model.addAttribute("question", question);
+		model.addAttribute("answer", answer);
 		return "qna/question_detail";
 	}
 	
