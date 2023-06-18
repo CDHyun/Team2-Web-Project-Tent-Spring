@@ -28,6 +28,10 @@ public interface AdminService {
 		// admin 상품수정,삭제 페이지
 		public Admin contentviewDao(int pCode, String pColor) throws Exception;
 		
+		// 상품수정
+		public void updateProduct(String pName,String pBrandName,int pPrice,int pCode,String pColor,int pStock) throws Exception;
+		public void updateProduct1(String pName,String pBrandName,int pPrice,int pCode,String pColor,int pStock,String lastfile) throws Exception;
+		
 		// 상품삭제 
 		public void deleteProduct(int pCode, String pColor) throws Exception;
 		
@@ -37,6 +41,7 @@ public interface AdminService {
 		// uploadFile
 		public void uploadFile(String pfName,String pfRealName,String pfHoverName,String pfHoverRealName,int pCode) throws Exception;
 		
+		public void uploadFile1(String pfName,String pfRealName, int pCode) throws Exception;
 		
 		// 주문상태 
 		public List<Admin> statusCheck() throws Exception;

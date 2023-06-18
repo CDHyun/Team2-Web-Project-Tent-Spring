@@ -128,6 +128,33 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 
+	@Override
+	public void updateProduct(String pName, String pBrandName, int pPrice, int pCode, String pColor,
+			int pStock) throws Exception {
+		// TODO Auto-generated method stub
+		adminDao.updateProduct1(pName, pBrandName, pPrice, pCode);
+		adminDao.updateProduct2( pColor, pStock, pCode);
+		
+	}
+
+
+	@Override
+	public void uploadFile1(String pfName, String pfRealName, int pCode) throws Exception {
+		// TODO Auto-generated method stub
+		adminDao.upload1(pfName, pfRealName, pCode);
+	}
+
+
+	@Override
+	public void updateProduct1(String pName, String pBrandName, int pPrice, int pCode, String pColor, int pStock,
+			String lastfile) throws Exception {
+		// TODO Auto-generated method stub
+		adminDao.updateProduct1(pName, pBrandName, pPrice, pCode);
+		adminDao.updateProduct2( pColor, pStock, pCode);
+		adminDao.updateProduct3(lastfile, pCode);
+	}
+
+
 	
 
 
