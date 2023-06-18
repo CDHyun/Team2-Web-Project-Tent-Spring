@@ -109,7 +109,7 @@ $(".qna_btn.new_write").on("click", function(){
 		Toast.fire({ icon: 'warning', title: "필수 입력값을 입력하지 않았습니다.\n 제목과 내용을 모두 입력해주세요" });
 		return;
 	}
-	$("#qna_write_form").attr("action", "question_write.do");
+	$("#qna_write_form").attr("action", "write_question");
 	$("#qna_write_form").submit();
 });
 
