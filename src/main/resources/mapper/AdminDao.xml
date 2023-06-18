@@ -26,7 +26,7 @@
 	  <![CDATA[
 	    SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
 	  ]]>
-	</sql>
+	</sql> 
 	
 	<!-- 막대차트 -->
 	<select id="chart" resultType="com.springlec.base.model.Admin">
