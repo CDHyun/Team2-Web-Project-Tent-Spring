@@ -20,9 +20,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<Notice> noticeCgNoList(int nCgNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Notice> notice_list_byCgNo(int nCgNo) throws Exception {
+		return noticeDao.notice_list_byCgNo(nCgNo);
 	}
 
 	@Override

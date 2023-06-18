@@ -18,9 +18,8 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public List<Notice> noticeCgNoList(int nCgNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Notice> notice_list_byCgNo(int nCgNo) throws Exception {
+		return sqlSession.selectList(nameSpace + ".notice_list_byCgNo");
 	}
 
 	@Override
