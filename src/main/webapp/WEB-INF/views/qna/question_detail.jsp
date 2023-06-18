@@ -19,7 +19,7 @@
 <!-- include_common_top -->
 <jsp:include page="../common/include_common_top.jsp" />
 <!-- include_common_top -->
-<link rel="stylesheet" href="css/shop/question.css">
+<link rel="stylesheet" href="css/shop/qna.css">
 
 <script type="text/javascript">
 	
@@ -163,7 +163,7 @@
 	<!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<jsp:include page="../common/include_common_script.jsp" />
 	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-	<script src="js/shop/question.js"></script>
+	<script src="js/shop/qna.js"></script>
 
 </body>
 
