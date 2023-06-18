@@ -21,8 +21,7 @@ public class QnAServiceImpl implements QnAService {
 
 	@Override
 	public int increaseQuestionViewCount(int qNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnADao.increaseQuestionViewCount(qNo);
 	}
 
 	@Override
