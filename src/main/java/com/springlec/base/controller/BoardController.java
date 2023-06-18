@@ -129,6 +129,12 @@ public class BoardController {
 		return result;
 	}
 	
+	@RequestMapping("modify_comment")
+	@ResponseBody
+	public int modify_comment(HttpServletRequest request) throws Exception {
+		int result = commentService.modify_comment(Integer.parseInt(request.getParameter("cmNo")), Integer.parseInt(request.getParameter("bNo")), request.getParameter("cmContent"));
+		return result;
+	}
 	
 	
 }	// End Class
