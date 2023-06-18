@@ -180,7 +180,7 @@
                     </div>
                 </div>
             </div>
-              <!-- boardWriteModal Start -->
+              <!-- noticeWriteModal Start -->
 		<div class="modal" id="noticeWriteModal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-xl" role="document">
 				<div class="modal-content modal-xl">
@@ -191,7 +191,7 @@
 		                    </div>
 		                    <div class="shortcodes_content">
 		                        <div class="table-responsive">
-		                        	<form action="notice_write" id="notice_write_form" name="notice_write_form" method="post">
+		                        	<form action="write_notice" id="notice_write_form" name="notice_write_form" method="post">
 			                            <table class="table mb-0 table-bordered" style="width: 100%;">
 			                                <thead>
 			                                    <tr>

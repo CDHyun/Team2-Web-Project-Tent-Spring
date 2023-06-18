@@ -29,10 +29,10 @@ function loginCheck() {
             if (result.isConfirmed) {
                 $.ajax({
                     type: 'POST',
-                    url: './AdminLogin',
+                    url: 'admin_login',
                     data: {
-                        uid: luid,
-                        uPassword: luPassword
+                        aid: luid,
+                        aPassword: luPassword
                     },
                     success: function(result) {
                         console.log(result);
@@ -49,7 +49,7 @@ function loginCheck() {
                                 icon: 'success',
                                 title: "로그인 성공! \n 관리자님 오늘도 화이팅입니다."
                             }).then(() => {
-                                $("#user_login_form").attr("action", "admin_login.do");
+                                $("#user_login_form").attr("action", "index");
                                 $("#user_login_form").submit();
                             });
                         }

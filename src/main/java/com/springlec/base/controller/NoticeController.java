@@ -18,6 +18,7 @@ import com.springlec.base.model.Notice;
 import com.springlec.base.service.NoticeService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class NoticeController {
@@ -48,6 +49,14 @@ public class NoticeController {
 		List<Notice> noticeList = noticeService.notice_list_byCgNo(Integer.parseInt(request.getParameter("nCgNo")));
 		model.addAttribute("noticeList", noticeList);
 		return "notice/notice";
+	}
+	
+	@RequestMapping("write_notice")
+	public String write_notice(Notice notice, HttpSession session) throws Exception {
+		String aid = (String)session.getAttribute("SUID");
+		notice.setAid(aid);
+		noticeService.write_notice(notice);
+		return("redirect:notice_list");
 	}
 	
 	

@@ -106,6 +106,11 @@ public class UserDaoImpl implements UserDao {
 	public int change_password(String uid, String uPassword) throws Exception {
 		return sqlSession.update(nameSpace + ".password_change");
 	}
+
+	@Override
+	public int admin_login(String aid, String aPassword) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".admin_login");
+	}
 	
 	
 
