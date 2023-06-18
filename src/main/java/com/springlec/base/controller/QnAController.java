@@ -34,10 +34,21 @@ public class QnAController {
 		return result;
 	}
 	
+	@RequestMapping("question_detail")
+	public String question_detail(HttpServletRequest request, Model model) throws Exception {
+		int qNo = Integer.parseInt(request.getParameter("qNo"));
+		Question question = qnAService.question_detail(qNo);
+		qnAService.increaseQuestionViewCount(qNo);
+		model.addAttribute("question", question);
+		return "qna/question_detail";
+	}
+	
+	
 	@RequestMapping("question_write_form")
 	public String question_write_form() throws Exception {
 		return "qna/question_write_form";
 	}
+	
 	
 	@RequestMapping("write_question")
 	public String write_question(Question question, HttpSession session) throws Exception {

@@ -29,4 +29,9 @@ public class QnAServiceImpl implements QnAService {
 		return qnADao.write_question(question);
 	}
 
+	@Override
+	public Question question_detail(int qNo) throws Exception {
+		return qnADao.question_detail(qNo);
+	}
+
 }

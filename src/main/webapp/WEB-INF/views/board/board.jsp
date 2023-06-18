@@ -179,10 +179,6 @@
 			</div>
 
 
-
-
-
-
 <!--  -->
 
 
@@ -191,57 +187,61 @@
          </div>
     </div>     
     
-    <!-- boardWriteModal Start -->
-	<div class="modal" id="boardWriteModal" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-xl" role="document">
-			<div class="modal-content modal-xl">
-				<div class="row">
-	                <div class="col-12">
-	                    <div class="shortcodes_title mb-30">
-	                        <h4>Board Write</h4>
-	                    </div>
-	                    <div class="shortcodes_content">
-	                        <div class="table-responsive">
-	                        	<form action="write_board" id="board_write_form" name="board_write_form" method="post">
-		                            <table class="table mb-0 table-bordered" style="width: 100%;">
-		                                <thead>
-		                                    <tr>
-		                                        <th scope="col" class="board_title">
-		                                        	<input type="text" name="bTitle" id="b_title_txt" placeholder=" title" style="vertical-align: middle;"/>
-		                                        </th>
-		                                        <th scope="col" class="board_date" style="vertical-align: middle;"><fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd' /></th>
-		                                        <th scope="col" class="board_writer" style="vertical-align: middle;">${SUNICKNAME}</th>
-		                                        <th scope=col class="board_writer" style="vertical-align: middle;">
-		                                        	<select name="bCgNo" style="vertical-align: middle;">
-		                                        		<option value="1">잡담</option>
-		                                        	</select>
-		                                        </th>
-		                                    </tr>
-		                                </thead>
-		                                <tbody>
-		                                    <tr>
-		                                        <td id="board_content_td" colspan="4">
-		                                        	<textarea name="bContent" id="b_content_area" placeholder=" content"></textarea>
-		                                        </td>
-		                                    </tr>
-		                                </tbody>
-		                            </table>
-	                			</form>
-	                      				<input type="hidden" name="pageno" value="${pageno}" />
-	                      				<input type="hidden" name="uid" value="${SUID}" />
-	                        </div>
-	                    </div>
-	                    	<div id="qna_btn_container">
-								<input class="btn btn-secondary btn-sm board_btn new_write" type="button" value="등록"/>&nbsp;&nbsp;&nbsp;
-								<input class="btn btn-secondary btn-sm board_btn list" type="button" pageno="${pageno}" value="목록" />
-	                    	</div>
-	                </div>
-	            </div>
-			</div>
+<!-- boardWriteModal Start -->
+<div class="modal" id="boardWriteModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content modal-xl">
+			<div class="row">
+                <div class="col-12">
+                    <div class="shortcodes_title mb-30">
+                        <h4>Board Write</h4>
+                    </div>
+                    <div class="shortcodes_content">
+                        <div class="table-responsive">
+                        	<form action="write_board" id="board_write_form" name="board_write_form" method="post">
+	                            <table class="table mb-0 table-bordered" style="width: 100%; height: 100%">
+	                                <thead>
+	                                    <tr>
+	                                        <th scope="col" class="board_title" style="width: 50%;">
+	                                        <div class="form-group">
+	                                        	<input type="text" name="bTitle" id="b_title_txt" placeholder="Title" style="vertical-align: middle; width: 100%; "/>
+	                                        </div>
+	                                        </th>
+	                                        <th scope="col" class="board_date" style="vertical-align: middle; white-space: nowrap;"><fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd' /></th>
+	                                        <th scope="col" class="board_writer" style="vertical-align: middle; white-space: nowrap;">${SUNICKNAME}</th>
+	                                        <th scope="col" class="board_writer" style="vertical-align: middle;">
+	                                        	<select name="bCgNo" style="vertical-align: middle; white-space: nowrap;">
+	                                        		<option value="1">잡담</option>
+	                                        	</select>
+	                                        </th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                    <tr>
+	                                        <td id="board_content_td" colspan="4">
+	                                        	<textarea name="bContent" id="b_content_area" placeholder="Content" style="width: 100%;"></textarea>
+	                                        </td>
+	                                    </tr>
+	                                </tbody>
+	                            </table>
+                			</form>
+                  				<input type="hidden" name="pageno" value="${pageno}" />
+                  				<input type="hidden" name="uid" value="${SUID}" />
+                        </div>
+                    </div>
+                    	<div id="qna_btn_container">
+							<input class="btn btn-secondary btn-sm board_btn new_write" type="button" value="등록"/>&nbsp;&nbsp;&nbsp;
+							<input class="btn btn-secondary btn-sm board_btn list" type="button" pageno="${pageno}" value="목록" />
+                    	</div>
+                </div>
+            </div>
 		</div>
 	</div>
-	<!-- boardWriteModal End -->
-	
+</div>
+<!-- boardWriteModal End -->
+
+
+
     <!-- Footer Area -->
  	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
