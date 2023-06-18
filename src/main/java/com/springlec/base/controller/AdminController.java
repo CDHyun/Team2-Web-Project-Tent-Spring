@@ -237,24 +237,6 @@ public class AdminController {
 			return "admin/adminNoticeBoard";
 		}
 
-		
-		// 공지작성 페이지
-		@RequestMapping("/adminWriteNotice")
-		public String write() throws Exception{
-			return "admin/adminWriteNotice";
-			
-		}
-		
-		// 글작성
-		@RequestMapping("/adminNoticeEnd")
-		public String writeNotice(HttpServletRequest request) throws Exception{
-			adminService.writeNotice(request.getParameter("title"), request.getParameter("content"));
-			
-			return ("redirect:adminNotice");
-			
-		}
-		
-		
 
 
 
