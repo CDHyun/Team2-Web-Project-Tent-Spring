@@ -1,6 +1,6 @@
 package com.springlec.base.model;
 
-public class PurchaseDto {
+public class Purchase {
 
 
 	/* User */
@@ -44,9 +44,52 @@ public class PurchaseDto {
 	
 	
 	
-	public PurchaseDto() {
+	public Purchase() {
 		// TODO Auto-generated constructor stub
 	}
+
+
+	
+	
+
+
+	public Purchase(String uid, String uPassword, String uName, String uPhone, String uEmail, int uaNo,
+			String uaZipcode, String uaAddress, String uaDetailAddress, String uaContent, int pcNo, int pCode,
+			int pPrice, int pcQty, int pStock, int cgNo, String pColor, String pName, String pBrandName,
+			String pcInsertDate, String pcDeleteDate, String pcStatus, String pcDM, String pcPay, String pfName,
+			String pfRealName, String pfHoverName, String pfHoverRealName) {
+		super();
+		this.uid = uid;
+		this.uPassword = uPassword;
+		this.uName = uName;
+		this.uPhone = uPhone;
+		this.uEmail = uEmail;
+		this.uaNo = uaNo;
+		this.uaZipcode = uaZipcode;
+		this.uaAddress = uaAddress;
+		this.uaDetailAddress = uaDetailAddress;
+		this.uaContent = uaContent;
+		this.pcNo = pcNo;
+		this.pCode = pCode;
+		this.pPrice = pPrice;
+		this.pcQty = pcQty;
+		this.pStock = pStock;
+		this.cgNo = cgNo;
+		this.pColor = pColor;
+		this.pName = pName;
+		this.pBrandName = pBrandName;
+		this.pcInsertDate = pcInsertDate;
+		this.pcDeleteDate = pcDeleteDate;
+		this.pcStatus = pcStatus;
+		this.pcDM = pcDM;
+		this.pcPay = pcPay;
+		this.pfName = pfName;
+		this.pfRealName = pfRealName;
+		this.pfHoverName = pfHoverName;
+		this.pfHoverRealName = pfHoverRealName;
+	}
+
+
 
 
 

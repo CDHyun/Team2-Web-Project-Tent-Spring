@@ -12,7 +12,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/order.css">
 
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="common/include_common_header.jsp"/>
+  	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
     
     <!-- Breadcumb Area -->
@@ -67,7 +67,7 @@
                         <div class="payment_method">
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <!-- Single Payment Method -->
-                                <form id="payment_info_form" method="post" action="purchase_check_info.do">
+                                <form id="payment_info_form" method="post" action="purchase_check_info">
 	                                <div class="panel panel-default">
 	                                    <div class="panel-heading" role="tab" id="one">
 	                                        <h6 class="panel-title">
@@ -173,11 +173,11 @@
     <!-- Checkout Area End -->
 
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	<script src="js/shop/order.js"></script>
 
 </body>
