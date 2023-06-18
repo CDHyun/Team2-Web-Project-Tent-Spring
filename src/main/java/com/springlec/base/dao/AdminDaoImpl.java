@@ -48,7 +48,7 @@ public class AdminDaoImpl implements AdminDao {
 		return (Admin) sqlSession.selectList(nameSpace + ".contentviewDao");
 	
 	}
-
+ 
 	@Override
 	public void insert1(String pName, String pBrandName, int pPrice, int cgNo) throws Exception {
 		// TODO Auto-generated method stub

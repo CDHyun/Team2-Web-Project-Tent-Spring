@@ -110,7 +110,7 @@ public class AdminController {
 			// 파일 업로드 처리 로직 작성
 
 			String pfHoverName =  file1.getOriginalFilename();
-			String pfHoverRealName = file1.getOriginalFilename();
+			String pfHoverRealName = file1.getOriginalFilename(); 
 			// 파일 업로드 처리 로직 작성
 
 			// 파일 저장
