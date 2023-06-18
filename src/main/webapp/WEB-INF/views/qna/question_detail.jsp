@@ -22,7 +22,19 @@
 <link rel="stylesheet" href="css/shop/qna.css">
 
 <script type="text/javascript">
-	
+function openWriteAnswerModal() {
+	$('#writeAnswerModal').modal('show');
+}
+
+function openAlert(){
+    Swal.fire({
+        icon: 'warning',
+        title: '답변이 완료된 글 입니다.',
+        text: '답변이 완료된 글은 조작할 수 없습니다!',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: '확인'
+    });
+}
 </script>
 
 
@@ -89,19 +101,32 @@
 						</div>
 					</div>
 					<div id="qna_btn_container">
-						<c:if test="${question.uid eq SUID}">
-							<input class="btn btn-warning btn-sm" type="button" value="수정" onclick="openModifyModal()" />&nbsp;&nbsp;
-							<input class="btn btn-danger btn-sm" type="button" value="삭제" onclick="deleteBoard()" />&nbsp;&nbsp;
-                    	</c:if>
-						<c:if test="${SUID == 'admin'}">
-						<input class="btn btn-primary btn-sm" type="button" value="답변 달기" onclick="openParentModal()" />&nbsp;&nbsp;
-						</c:if>
-						<a href="question_list"><input class="btn btn-secondary btn-sm" type="button" value="목록" /></a>&nbsp;&nbsp;
+			       	<c:choose>
+					    <c:when test="${question.qAnswerd}">
+							<c:if test="${question.uid eq SUID}">
+								<input class="btn btn-warning btn-sm" type="button" value="수정" onclick="openAlert()" />&nbsp;&nbsp;
+								<input class="btn btn-danger btn-sm" type="button" value="삭제" onclick="openAlert()" />&nbsp;&nbsp;
+	                    	</c:if>
+							<c:if test="${SUID == 'admin'}">
+							<input class="btn btn-primary btn-sm" type="button" value="답변 달기" onclick="openAlert()" />&nbsp;&nbsp;
+							</c:if>
+					    </c:when>
+					    <c:otherwise>
+					    	<c:if test="${question.uid eq SUID}">
+								<input class="btn btn-warning btn-sm" type="button" value="수정" onclick="openModifyModal()" />&nbsp;&nbsp;
+								<input class="btn btn-danger btn-sm" type="button" value="삭제" onclick="deleteBoard()" />&nbsp;&nbsp;
+	                    	</c:if>
+							<c:if test="${SUID == 'admin'}">
+							<input class="btn btn-primary btn-sm" type="button" value="답변 달기" onclick="openWriteAnswerModal()" />&nbsp;&nbsp;
+							</c:if>
+					    </c:otherwise>
+					</c:choose>
+					<a href="question_list"><input class="btn btn-secondary btn-sm" type="button" value="목록" /></a>&nbsp;&nbsp;
 					</div>
 				</div>
 			</div>
 			
-			<!-- Answer -->
+			<!------------------------------- Answer ------------------------------->
 			<div class="row">
 				<div class="col-12">
 					<div class="shortcodes_title mb-30">
@@ -150,9 +175,41 @@
 					</c:if>
 				</div>
 			</div>
-			<!--  -->
+			<!------------------------------- Answer ------------------------------->
 		</div>
 	</div>
+	
+	<!------------------------------- writeAnswerModal Start ------------------------------->
+	<div class="modal" id="writeAnswerModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="container">
+				<h5 class="mb-3" style="display: inline-block; text-align: center;">Answer</h5>
+				<form id="qna_answer_form" action="write_answer?qNo=${qNo}" method="post">
+						<div class="form-group">
+							<label for="aid">작성자 : ${SUNICKNAME}</label>
+						</div>
+						<div class="form-group">
+							<label for="aInsertDate">작성일자 : <fmt:formatDate value='${toDay}'
+									pattern='yyyy-MM-dd' /></label>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" id="aTitle" name="aTitle" placeholder=" title">
+						</div>
+						<div class="form-group">
+							<textarea id="a_content_area" name="aContent" placeholder=" content"></textarea>
+						</div>
+					<div class="button-container">
+						<input type="hidden" id="hidden_qNo" name="qNo" value="${qNo}">
+						<button type="button" class="btn btn-primary btn-sm answer_btn new_write">Answer</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-secondary btn-sm" id="cmCancelBtn" data-dismiss="modal">Cancle</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!------------------------------- writeAnswerModal End ------------------------------->
 	
 
 

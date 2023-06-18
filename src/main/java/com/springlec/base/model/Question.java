@@ -14,7 +14,7 @@ public class Question {
 	String qDeleteDate; 			// QNA 삭제 일자
 	boolean qDeleted; 				// QNA 삭제 여부 ( 0 : false 삭제되지 않음, 1 : true 삭제됨. )
 	int qViewCount;					// QNA 조회수
-	boolean qStatus;				// QNA 답변 여부 ( 0 : false 미답변, 1 : true 답변 완료 )
+	boolean qAnswerd;				// QNA 답변 여부 ( 0 : false 미답변, 1 : true 답변 완료 )
 	
 	/* Contructor */
 	public Question() {
@@ -22,7 +22,8 @@ public class Question {
 	}
 
 	public Question(int qNo, String uid, String uNickName, int qCgNo, String qTitle, String qContent,
-			String qInsertDate, String qUpdateDate, String qDeleteDate, boolean qDeleted, int qViewCount) {
+			String qInsertDate, String qUpdateDate, String qDeleteDate, boolean qDeleted, int qViewCount,
+			boolean qAnswerd) {
 		super();
 		this.qNo = qNo;
 		this.uid = uid;
@@ -35,8 +36,9 @@ public class Question {
 		this.qDeleteDate = qDeleteDate;
 		this.qDeleted = qDeleted;
 		this.qViewCount = qViewCount;
+		this.qAnswerd = qAnswerd;
 	}
-	
+
 	/* getter & setter */
 	public int getqNo() {
 		return qNo;
@@ -125,6 +127,15 @@ public class Question {
 	public void setqViewCount(int qViewCount) {
 		this.qViewCount = qViewCount;
 	}
+
+	public boolean isqAnswerd() {
+		return qAnswerd;
+	}
+
+	public void setqAnswerd(boolean qAnswerd) {
+		this.qAnswerd = qAnswerd;
+	}
+
 	
 	
 	
