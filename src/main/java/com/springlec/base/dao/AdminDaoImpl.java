@@ -48,7 +48,7 @@ public class AdminDaoImpl implements AdminDao {
 		return (Admin) sqlSession.selectList(nameSpace + ".contentviewDao");
 	
 	}
-
+ 
 	@Override
 	public void insert1(String pName, String pBrandName, int pPrice, int cgNo) throws Exception {
 		// TODO Auto-generated method stub
@@ -96,6 +96,12 @@ public class AdminDaoImpl implements AdminDao {
 	public void deleteProduct(int pCode, String pColor) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace + ".deleteProduct");
+	}
+
+	@Override
+	public void setSQL() throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne(nameSpace + ".setSqlMode");
 	}
 
 	
