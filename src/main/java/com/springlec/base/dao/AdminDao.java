@@ -32,7 +32,7 @@ public interface AdminDao {
 	// 상품삭제
 	public void deleteProduct(int pCode, String pColor) throws Exception;
 	
-	
+	 
 	
 	// admin 상품등록
 	public void insert1(String pName, String pBrandName, int pPrice, int cgNo) throws Exception;

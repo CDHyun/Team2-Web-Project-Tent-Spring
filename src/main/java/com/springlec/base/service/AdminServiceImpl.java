@@ -70,7 +70,7 @@ public class AdminServiceImpl implements AdminService {
 		return  adminDao.contentviewDao(pCode, pColor);
 	}
 
-
+ 
 	@Override
 	public void insert(String pName, String pBrandName, int pPrice, int cgNo, int pCode, int pStock,
 			String pColor, int pfNo) throws Exception {
