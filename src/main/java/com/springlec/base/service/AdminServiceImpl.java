@@ -73,18 +73,23 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public void insert(String pName, String pBrandName, int pPrice, int cgNo, int pCode, int pStock,
-			String pColor, int pfNo, String pfName, String pfRealName, String pfHoverName, String pfHoverRealName)
-			throws Exception {
+			String pColor, int pfNo) throws Exception {
 		// TODO Auto-generated method stub
 		
-
 	  
-	    // 나머지 비즈니스 로직 수행
 	    adminDao.insert1(pName, pBrandName, pPrice, cgNo);
 	    adminDao.insert2(pCode, pStock, pColor,pName );
-	    adminDao.upload(pfName, pfRealName,pfHoverName, pfHoverRealName, pCode);
+	   
 	}
 		
+	
+
+	@Override
+	public void uploadFile(String pfName, String pfRealName, String pfHoverName, String pfHoverRealName, int pCode)
+			throws Exception {
+		// TODO Auto-generated method stub
+		 adminDao.upload(pfName, pfRealName,pfHoverName, pfHoverRealName, pCode);
+	}
 
 	@Override
 	public List<Admin> statusCheck() throws Exception {
@@ -120,5 +125,10 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		adminDao.deleteProduct(pCode, pColor);
 	}
+
+
+	
+
+
 
 }

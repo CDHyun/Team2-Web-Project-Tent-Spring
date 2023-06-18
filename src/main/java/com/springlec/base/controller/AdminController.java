@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,6 +87,8 @@ public class AdminController {
 		}
 	
 		//  관리자 상품등록 
+		@Value("${upload.path}")
+		private String uploadPath;
 		@RequestMapping("/adminInsert")
 		public String insert(
 				@RequestParam("file") MultipartFile file,
@@ -101,30 +104,30 @@ public class AdminController {
                 Model model) throws Exception {
 			
 			
-			 // 파일 업로드 처리 로직
-		        String pfName = file.getOriginalFilename();
-		        String pfRealName = file.getOriginalFilename();
-		        // 파일 업로드 처리 로직 작성
-		    
-		        String pfHoverName = file1.getOriginalFilename();
-		        String pfHoverRealName = file1.getOriginalFilename();
-		        // 파일 업로드 처리 로직 작성
+			// 파일 업로드 처리 로직
+			String pfName =  file.getOriginalFilename();
+			String pfRealName =  file.getOriginalFilename();
+			// 파일 업로드 처리 로직 작성
+
+			String pfHoverName =  file1.getOriginalFilename();
+			String pfHoverRealName = file1.getOriginalFilename();
+			// 파일 업로드 처리 로직 작성
+
+			// 파일 저장
+			File destFile = new File(pfRealName);
+			file.transferTo(destFile);
+
+			File destFile1 = new File(pfHoverRealName);
+			file1.transferTo(destFile1);
+
+
 			
-		        
-		        System.out.println(pfName);
-		        System.out.println(pfRealName);
-		        System.out.println(pfHoverName);
-		        System.out.println(pfHoverRealName);
-		        System.out.println(pName);
-		        System.out.println(pBrandName);
-		        System.out.println(pPrice);
-		        System.out.println(cgNo);
-		        System.out.println(pCode);
-		        System.out.println(pStock);
-		        System.out.println(pColor);
-		        System.out.println(pfNo);
+		     
 		
-				adminService.insert(pName, pBrandName, pPrice, cgNo, pCode, pStock, pColor, pfNo, pfName, pfRealName, pfHoverName, pfHoverRealName);
+				adminService.insert(pName, pBrandName, pPrice, cgNo, pCode, pStock, pColor, pfNo);
+				adminService.uploadFile(pfName, pfRealName, pfHoverName, pfHoverRealName, pCode);
+				
+				
 			
 			
 				return "redirect:adminindex";	
