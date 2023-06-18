@@ -27,4 +27,9 @@ public class QnADaoImpl implements QnADao {
 		return sqlSession.insert(nameSpace + ".write_question");
 	}
 
+	@Override
+	public Question question_detail(int qNo) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".question_detail");
+	}
+
 }

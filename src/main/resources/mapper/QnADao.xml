@@ -8,6 +8,11 @@
 	   	SELECT * FROM question WHERE qDeleted = 0
 	</select>
 	
+	<!-- 게시글 상세 보기 -->
+	<select id="question_detail" resultType="com.springlec.base.model.Question">
+	   	SELECT * FROM question WHERE qNo = #{qNo}
+	</select>
+	
 	<!-- QnA 조회수 증가 -->
 	<update id="increaseQuestionViewCount">
 		update question set qViewCount = qViewCount +1 where qNo = #{qNo}

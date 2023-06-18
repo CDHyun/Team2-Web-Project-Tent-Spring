@@ -201,9 +201,9 @@
 									        <td style="text-align: center;">${notice.nViewCount}</td>
 									        <c:choose>
 											  <c:when test="${SUID == 'admin'}">
-											  	<td style="text-align: center;">
-													<input name="notice-modify-btn" type="button" value="수정" onclick="modify_notice()">
-													<input name="notice-delete-btn" type="button" value="삭제" onclick="delete_notice('${notice.aNo}')">
+											  	<td style="text-align: center; white-space: nowrap;">
+													<input class="btn btn-secondary btn-sm" name="notice-modify-btn" type="button" value="수정" onclick="modify_notice()"> &nbsp;
+													<input class="btn btn-danger btn-sm" name="notice-delete-btn" type="button" value="삭제" onclick="delete_notice('${notice.nNo}')">
 												</td>
 											  </c:when>
 									  	</c:choose>

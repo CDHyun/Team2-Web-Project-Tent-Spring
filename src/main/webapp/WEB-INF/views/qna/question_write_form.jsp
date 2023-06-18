@@ -82,8 +82,8 @@
 	                            <table class="table mb-0 table-bordered">
 	                                <thead>
 	                                    <tr>
-	                                        <th scope="col" class="board_title">
-	                                        	<input type="text" name="qTitle" id="q_title_txt" placeholder=" title" style="vertical-align: middle;"/>
+	                                        <th scope="col" class="board_title"  style="vertical-align: middle;">
+	                                        	<input type="text" name="qTitle" id="q_title_txt" placeholder=" title" style=" height: 100%; width: 100%"/>
 	                                        </th>
 	                                        <th scope="col" class="board_date" style="vertical-align: middle;"><fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd' /></th>
 	                                        <th scope="col" class="board_writer" style="vertical-align: middle;">${SUNICKNAME}</th>
@@ -107,9 +107,9 @@
                       				<input type="hidden" name="uid" value="${SUID}" />
                         </div>
                     </div>
-                    	<div id="qna_btn_container">
-							<input class="qna_btn new_write" type="button" value="등록"/>
-							<input class="qna_btn list" type="button" pageno="${pageno}" value="목록" />
+                    	<div id="qna_btn_container" style="text-align: right;">
+							<input class="btn btn-secondary btn-sm qna_btn new_write" type="button" value="등록"/>
+							<input class="btn btn-secondary btn-sm qna_btn list" type="button" pageno="${pageno}" value="목록" />
                     	</div>
                 </div>
             </div>

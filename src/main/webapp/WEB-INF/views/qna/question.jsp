@@ -20,52 +20,6 @@
     <link rel="stylesheet" href="css/shop/question.css">
 	<script type="text/javascript">
 	
-    var viewedQnas = []; // 조회한 Q&A 번호를 저장할 배열
-    
-    function toggleQnaContent(element) {
-        var contentDiv = $(element).next('.qna-content');
-        contentDiv.slideToggle(function() {
-            if (contentDiv.is(':visible')) {
-                increaseViewCount($(element).closest('tr'));
-            } else {
-                decreaseViewCount($(element).closest('tr'));
-            }
-        });
-    }
-    
-    function increaseViewCount(row) {
-        var qNo = row.find('th').text();
-        if (viewedQnas.includes(qNo)) return; // 이미 조회한 Q&A인 경우 더 이상 증가하지 않도록 처리
-        
-        var viewCountCell = row.find('td:last-child');
-        var viewCount = parseInt(viewCountCell.text());
-        viewCountCell.text(viewCount + 1);
-        
-        viewedQnas.push(qNo); // 조회한 Q&A 번호를 배열에 추가
-        
-        // viewCount 증가를 서버에 요청
-        $.ajax({
-            url: "increaseQuestionViewCount", // 서버의 증가시키는 기능을 처리하는 URL
-            method: "POST",
-            data: { qNo: qNo }, // 서버에 전달할 데이터 (여기서는 qNo를 전달)
-            success: function(result) {
-            	if(result == 1){
-	                console.log("View count increased successfully.");
-            	}
-            },
-            error: function() {
-                console.log("Error occurred while increasing view count.");
-            }
-        });
-    }
-    
-    function decreaseViewCount(row) {
-        var qNo = row.find('th').text();
-        var index = viewedQnas.indexOf(qNo);
-        if (index > -1) {
-            viewedQnas.splice(index, 1); // 조회한 Q&A 번호를 배열에서 제거
-        }
-    }
 	
 	</script>
 </head>
@@ -124,8 +78,9 @@
 									    <tr>
 									        <th scope="row">${qna.qNo}</th>
 									        <td>
-									            <a href="#" onclick="toggleQnaContent(this);">${qna.qTitle}</a>
-									            <div class="qna-content" style="display: none;">${qna.qContent}</div>
+									            <a href="question_detail?qNo=${qna.qNo}" onclick="toggleQnaContent(this);">${qna.qTitle}</a>
+<%-- 									            <a href="#" onclick="toggleQnaContent(this);">${qna.qTitle}</a>
+									            <div class="qna-content" style="display: none;">${qna.qContent}</div> --%>
 									        </td>
 									        <td style="text-align: center;">${qna.uNickName}</td>
 									        <c:set var="dateString" value="${qna.qInsertDate}" />
