@@ -102,6 +102,10 @@
 		UPDATE user SET uPassword = #{uPassword} WHERE uid = #{uid}
 	</update>
 	
+	<!-- 관리자 로그인 -->
+	<select id="admin_login" resultType="int">
+		SELECT count(*) FROM admin WHERE aid = #{aid} and aPassword = #{aPassword}
+	</select>
 	
 	
 	

@@ -140,6 +140,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.change_password(uid, uPassword);
 	}
 
+	@Override
+	public int admin_login(String aid, String aPassword) throws Exception {
+		return userDao.admin_login(aid, aPassword);
+	}
+
 
 
 }	// End Class

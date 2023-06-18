@@ -15,7 +15,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/question.css">
 	<script type="text/javascript">
@@ -34,7 +34,8 @@
     }
     
     function increaseViewCount(row) {
-        var nNo = row.find('th').text();
+        /* var nNo = row.find('th').text(); */
+        var nNo = row.find('input[name="nNo"]').val();
         if (viewedQnas.includes(nNo)) return; // 이미 조회한 Q&A인 경우 더 이상 증가하지 않도록 처리
         
         var viewCountCell = row.find('td:last-child');
@@ -45,11 +46,13 @@
         
         // viewCount 증가를 서버에 요청
         $.ajax({
-            url: "./IncreaseNoticeViewCount", // 서버의 증가시키는 기능을 처리하는 URL
+            url: "increaseNoticeViewCount", // 서버의 증가시키는 기능을 처리하는 URL
             method: "POST",
             data: { nNo: nNo }, // 서버에 전달할 데이터 (여기서는 qNo를 전달)
-            success: function(response) {
-                console.log("View count increased successfully.");
+            success: function(result) {
+                if(result == 1) {
+                	console.log("조회수 증가 완료");
+                }
             },
             error: function() {
                 console.log("Error occurred while increasing view count.");
@@ -58,7 +61,8 @@
     }
     
     function decreaseViewCount(row) {
-        var nNo = row.find('th').text();
+        /* var nNo = row.find('th').text(); */
+        var nNo = row.find('input[name="nNo"]').val();
         var index = viewedQnas.indexOf(nNo);
         if (index > -1) {
             viewedQnas.splice(index, 1); // 조회한 Q&A 번호를 배열에서 제거
@@ -70,8 +74,40 @@
 	}
     
     function changeCategory(nCgNo) {
-    	  window.location.href = "notice_cg_list.do?nCgNo=" + nCgNo;
+    	  window.location.href = "notice_list_byCgNo?nCgNo=" + nCgNo;
     	}
+    
+    function delete_notice(nNo) {
+    	Swal.fire({
+    	    title: "정말 삭제하시겠습니까?",
+    	    text: "한 번 삭제하면 되돌릴 수 없습니다.",
+    	    icon: "warning",
+    	    showCancelButton: true,
+    	    confirmButtonText: "삭제",
+    	    cancelButtonText: "취소"
+    	  }).then((result) => {
+    	    if (result.isConfirmed) {
+    	    	  $.ajax({
+    	    		    url: "delete_post.php",
+    	    		    type: "POST",
+    	    		    data: {
+    	    		      nNo : nNo
+    	    		    },
+    	    		    success: function(response) {
+    	    		      if (response === "success") {
+    	    		        Swal.fire("삭제되었습니다.", "", "success");
+    	    		      } else {
+    	    		        Swal.fire("삭제 실패", "삭제 중 오류가 발생했습니다.", "error");
+    	    		      }
+    	    		    },
+    	    		    error: function() {
+    	    		      Swal.fire("오류", "서버와의 연결에 문제가 발생했습니다.", "error");
+    	    		      // AJAX 요청 실패 시 수행할 로직을 추가합니다.
+    	    		    }
+    	    		  });
+    	    }
+    	  });
+    }
     
 	</script>
 </head>
@@ -85,7 +121,7 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="common/include_common_header.jsp"/>
+  	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
     
     <!-- Breadcumb Area -->
@@ -131,6 +167,11 @@
                                         <th scope="col" class="board_writer">작성자</th>
                                         <th scope="col" class="board_date">날짜</th>
                                         <th scope="col" class="board_count">조회수</th>
+                                        <c:choose>
+											  <c:when test="${SUID == 'admin'}">
+											  	<th scope="col" class="board_title">관리</th>
+											  </c:when>
+									  	</c:choose>
                                     </tr>
                                 </thead>
                                 <tbody id="qna_list_tbody">
@@ -140,7 +181,7 @@
 									<c:forEach var="notice" items="${noticeList}">
 									    <tr>
 									        <%-- <th scope="row">${notice.nNo}</th> --%>
-									         <th scope="row">${rowNumber}</th>
+									         <th scope="row"> ${rowNumber} <input type="hidden" name="nNo" value="${notice.nNo}"> </th>
 									        <td>
 									        	<span>
 									        	<c:choose>
@@ -158,6 +199,14 @@
 									        <fmt:formatDate var="formattedDate" value="${date}" type="date" pattern="yyyy년-MM월-dd일" />
 									        <td style="text-align: center;">${formattedDate}</td>
 									        <td style="text-align: center;">${notice.nViewCount}</td>
+									        <c:choose>
+											  <c:when test="${SUID == 'admin'}">
+											  	<td style="text-align: center;">
+													<input name="notice-modify-btn" type="button" value="수정" onclick="modify_notice()">
+													<input name="notice-delete-btn" type="button" value="삭제" onclick="delete_notice('${notice.aNo}')">
+												</td>
+											  </c:when>
+									  	</c:choose>
 									    </tr>
 									     <c:set var="rowNumber" value="${rowNumber + 1}" />
 									</c:forEach>
@@ -176,7 +225,7 @@
                     </div>
                 </div>
             </div>
-              <!-- boardWriteModal Start -->
+              <!-- noticeWriteModal Start -->
 		<div class="modal" id="noticeWriteModal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-xl" role="document">
 				<div class="modal-content modal-xl">
@@ -187,7 +236,7 @@
 		                    </div>
 		                    <div class="shortcodes_content">
 		                        <div class="table-responsive">
-		                        	<form action="notice_write.do" id="notice_write_form" name="notice_write_form" method="post">
+		                        	<form action="write_notice" id="notice_write_form" name="notice_write_form" method="post">
 			                            <table class="table mb-0 table-bordered" style="width: 100%;">
 			                                <thead>
 			                                    <tr>
@@ -232,11 +281,11 @@
     </div>     
             
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 	<script src="js/shop/notice.js?after" defer></script>
 

@@ -18,6 +18,9 @@ public interface AdminDao {
 	//  날짜별 매출
 	public List<Admin> dailySale(String startDate, String endDate) throws Exception;
 	
+	
+	// sql 설정변경
+	public void setSQL() throws Exception;
 	// 막대차트
 	public List<Admin> chart() throws Exception;
 	
@@ -27,7 +30,10 @@ public interface AdminDao {
 	// admin 상품수정,삭제 페이지
 	public Admin contentviewDao(int pCode, String pColor) throws Exception;
 	
-	
+	//상품수정
+	public void updateProduct1(String pName,String pBrandName,int pPrice,int pCode) throws Exception;
+	public void updateProduct2(String pColor,int pStock,int pCode) throws Exception;
+	public void updateProduct3(String lastfile, int pCode) throws Exception;
 	
 	// 상품삭제
 	public void deleteProduct(int pCode, String pColor) throws Exception;
@@ -43,6 +49,8 @@ public interface AdminDao {
 	// admin 상품사진등록
 	public void upload(String pfName, String pfRealName, String pfHoverName,String pfHoverRealName,int pCode) throws Exception;
 	
+	// admin 상품사진등록
+	public void upload1(String pfName, String pfRealName, int pCode) throws Exception;
 	
 	// 주문상태 
 	public List<Admin> statusCheck() throws Exception;
@@ -56,6 +64,9 @@ public interface AdminDao {
 	
 	// 고객관리 faq
 	public List<Admin> faq() throws Exception;
+	
+	
+	
 	
 	
 }

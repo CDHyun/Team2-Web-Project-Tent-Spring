@@ -204,6 +204,20 @@ public class UserController {
 		return result;
 	}
 	
+	// 어드민 로그인
+	@RequestMapping("admin_login")
+	@ResponseBody
+	public int admin_login(HttpServletRequest request, HttpSession session) throws Exception {
+		String aid = request.getParameter("aid");
+		String aPassword = request.getParameter("aPassword");
+		int result = userService.admin_login(aid, aPassword);
+		if(result == 1) {
+			session.setAttribute("SUID", aid);
+			session.setAttribute("SUNICKNAME", "관리자");
+		}
+		return result;
+	}
+	
 	
 	
 	

@@ -59,7 +59,7 @@
 		UPDATE comment SET cmRefOrder = cmRefOrder + 1 WHERE cmRef = #{cmRef} AND bNo = #{bNo} AND cmRefOrder >= #{cmRefOrder}
 	</update>
 	
-	<!-- 댓글 저장하기 -->
+	<!-- 댓글 작성하기 -->
 	<insert id="saveComment">
 		INSERT INTO comment (bNo, uid, uNickName, cmRef, cmStep, cmRefOrder, cmParentNo, cmContent, cmInsertDate)
 		VALUES (#{bNo}, #{uid}, #{uNickName}, #{cmRef}, #{cmStep}, #{cmRefOrder}, #{cmParentNo}, #{cmContent}, now())
@@ -75,8 +75,16 @@
 		SELECT cmRefOrder FROM comment WHERE cmNo = #{cmNo} and bNo = #{bNo}
 	</select>
 	
-
-
+	<!-- 댓글 삭제하기 -->
+	<update id="delete_comment">
+		UPDATE comment SET cmDeleted = 1, cmDeleteDate = now() WHERE bNo = #{bNo} AND cmNo = #{cmNo}
+	</update>
+	
+	<!-- 댓글 수정하기 -->
+	<update id="modify_comment">
+		UPDate comment SET cmContent = #{cmContent} WHERE bNo = #{bNo} and cmNo = #{cmNo}
+	</update>
+	
 	
 	
 	

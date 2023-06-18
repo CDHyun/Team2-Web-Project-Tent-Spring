@@ -138,4 +138,14 @@ public class CommentServiceImpl implements CommentService {
 		}
 
 	}
+
+	@Override
+	public int delete_comment(int cmNo, int bNo) throws Exception {
+		return commentDao.delete_comment(cmNo, bNo);
+	}
+
+	@Override
+	public int modify_comment(int cmNo, int bNo, String cmContent) throws Exception {
+		return commentDao.modify_comment(cmNo, bNo, cmContent);
+	}
 }

@@ -22,21 +22,20 @@
 	</select>
 		
 	<!-- 막대차트그리기 - SET sql_mode 포함 -->
-	<sql id="setSqlMode">
+	<select id="setSqlMode">
 	  <![CDATA[
 	    SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
 	  ]]>
-	</sql> 
+	</select> 
 	
 	<!-- 막대차트 -->
 	<select id="chart" resultType="com.springlec.base.model.Admin">
-	  <include refid="setSqlMode" />
-	  <![CDATA[
+	  
 	  SELECT DAYNAME(pc.pcInsertDate) , SUM(p.pPrice * pc.pcQty) 
 	  FROM purchase pc, product p
 	  GROUP BY DAYNAME(pc.pcInsertDate)
 	  ORDER BY FIELD(DAYNAME(pc.pcInsertDate), 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
-	  ]]>
+	
 	</select>
 
 
@@ -97,6 +96,24 @@
 	<update id="deleteProduct">
 		UPDATE product p, productoption po SET pDeleteDate=now() ,pDeleted =1 WHERE p.pCode = #{pCode} and po.pColor = #{pColor}
 	</update>
+	
+	<!-- 상품수정 -->
+	<update id="updateProduct1">
+		UPDATE product SET pName = #{pName}, pBrandName = #{pBrandName}, pPrice = #{pPrice}  WHERE pCode = #{pCode}
+	</update>
+	
+	<update id="updateProduct2">
+		UPDATE productoption SET  pColor = #{pColor}, pStock = #{pStock} WHERE pCode = #{pCode}
+	</update>
+	
+	<update id="updateProduct3">
+		UPDATE productfile SET  pfName = #{lastfile}, pfRealName = #{lastfile} WHERE pCode = #{pCode}
+	</update>
+	
+	<update id="upload1">
+		UPDATE productfile SET pfName = #{pfName}, pfRealName = #{pfRealName} WHERE pCode = #{pCode}
+	</update>
+	
 	
 	
 </mapper>

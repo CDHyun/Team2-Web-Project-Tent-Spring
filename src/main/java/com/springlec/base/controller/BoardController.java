@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  23/06/17 : 게시판 글 상세보기, 조회수 증가 구현 시작 -> 23/06/17 : 완료.
  23/06/17 : 게시판 글 작성, 삭제, 수정 구현 시작 -> 23/06/17 : 완료.
  23/06/17 : 댓글 리스트 불러오기 구현 시작 -> 23/06/17 : 리스트 출력, 페이징 구현 완료.
+ 23/06/17 : 댓글 달기 (무한댓글로직) 구현 시작 -> 23/06/18 : 구현 완료.
+ 23/06/18 : 댓글 수정, 삭제 구현 시작 ->
  */
 
 import org.springframework.stereotype.Controller;
@@ -120,7 +122,19 @@ public class BoardController {
 		return "redirect:board_detail?bNo=" + bNo;
 	}
 	
+	@RequestMapping("delete_comment")
+	@ResponseBody
+	public int delete_comment(HttpServletRequest request) throws Exception {
+		int result = commentService.delete_comment(Integer.parseInt(request.getParameter("cmNo")), Integer.parseInt(request.getParameter("bNo")));
+		return result;
+	}
 	
+	@RequestMapping("modify_comment")
+	@ResponseBody
+	public int modify_comment(HttpServletRequest request) throws Exception {
+		int result = commentService.modify_comment(Integer.parseInt(request.getParameter("cmNo")), Integer.parseInt(request.getParameter("bNo")), request.getParameter("cmContent"));
+		return result;
+	}
 	
 	
 }	// End Class

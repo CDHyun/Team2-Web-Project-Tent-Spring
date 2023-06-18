@@ -99,6 +99,41 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	
+	@Override
+	public void updateProduct1(String pName, String pBrandName, int pPrice, int pCode
+			) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".updateProduct1");
+	}
+
+	@Override
+	public void updateProduct2( String pColor, int pStock, int pCode) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".updateProduct2");
+	}
+
+	
+	
+	@Override
+	public void setSQL() throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne(nameSpace + ".setSqlMode");
+	}
+
+	@Override
+	public void upload1(String pfName, String pfRealName, int pCode) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".upload1");
+	}
+
+	@Override
+	public void updateProduct3(String lastfile, int pCode) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".updateProduct3");
+	}
+
+
+	
 
 	
 	
