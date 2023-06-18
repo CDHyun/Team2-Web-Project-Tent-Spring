@@ -65,7 +65,7 @@ public class AdminCartController {
 	public String showUserInfo(HttpServletRequest request,Model model, HttpSession session) throws Exception{
 		String[] cNoArray = request.getParameterValues("cNoArrayInput");
 		  String cNoArrayString = Arrays.toString(cNoArray);
-		  model.addAttribute("cNoArrayString",cNoArrayString );  // 구매확인에서 사용할 배열 넣어두기
+		  model.addAttribute("cNoArrayString",cNoArrayString );
 		  
 		  
 		  Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));

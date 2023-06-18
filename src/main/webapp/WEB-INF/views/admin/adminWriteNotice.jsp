@@ -18,7 +18,7 @@
   <jsp:include page="adminSidebar.jsp" />
 </div>
   <!-- Header End -->
-<form action="adminNoticeEnd" method="post">
+<form action="adminNoticeEnd.do" method="post">
 
 	<div class="container">
 		<div class="row">
@@ -37,7 +37,7 @@
 					
 			</table>
 				<input type="submit" value="작성완료" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;
-			<a  href="adminNotice"><button type="button" class="btn btn-danger">취소</button></a>
+			<a  href="adminNotice.do"><button type="button" class="btn btn-danger">취소</button></a>
 		
 		</div>
 	</div>

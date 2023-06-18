@@ -155,13 +155,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 
-	@Override
-	public void writeNotice(String title, String content) throws Exception {
-		// TODO Auto-generated method stub
-		adminDao.writeNotice(title, content);
-	}
-
-
 	
 
 
