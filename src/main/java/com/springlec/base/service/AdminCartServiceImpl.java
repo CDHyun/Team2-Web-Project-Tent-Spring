@@ -38,4 +38,10 @@ public class AdminCartServiceImpl implements AdminCartService {
 		// TODO Auto-generated method stub
 		return adminCartDao.recommend();
 	}
+
+	@Override
+	public void addCart(String uid, int pCode, int pcQty, String pColor) throws Exception {
+		// TODO Auto-generated method stub
+		adminCartDao.addCart(uid, pCode, pcQty, pColor);
+	}
 }

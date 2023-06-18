@@ -19,5 +19,6 @@ public interface AdminCartService {
 		//카트 상품추천
 		public List<Cart> recommend() throws Exception; 
 	
-	
+		// 상품디테일에서 카트에 상품담기
+		public void addCart(String uid, int pCode, int pcQty, String pColor) throws Exception;
 }

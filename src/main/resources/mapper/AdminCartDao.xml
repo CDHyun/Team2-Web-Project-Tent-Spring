@@ -26,4 +26,8 @@
 		JOIN productfile pf ON p.pCode = pf.pCode
 		ORDER BY po.pStock desc LIMIT 3
 	</select>
+	
+	<insert id="addCart">
+		INSERT INTO cart (uid, pCode, cQty, pColor) VALUES (#{uid},#{pCode},#{pcQty},#{pColor} )
+	</insert>
 </mapper>

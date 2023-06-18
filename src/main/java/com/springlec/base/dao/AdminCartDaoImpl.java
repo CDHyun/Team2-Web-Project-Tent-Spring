@@ -58,4 +58,15 @@ public class AdminCartDaoImpl implements AdminCartDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".recommend");
 	}
+
+
+
+
+
+
+	@Override
+	public void addCart(String uid, int pCode, int pcQty, String pColor) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".addCart"); 
+	}
 }
