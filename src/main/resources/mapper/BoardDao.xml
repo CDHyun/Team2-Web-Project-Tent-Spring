@@ -19,12 +19,11 @@
 	
 	<select id="boardList" resultType="com.springlec.base.model.Board">
 	    SELECT * FROM (
-	        SELECT derivedTable.*, ROW_NUMBER() OVER () AS row_num FROM (
+	        SELECT derivedTable.*, ROW_NUMBER() OVER (ORDER BY bInsertDate DESC) AS row_num FROM (
 	            <include refid="searchQuery"/>
 	        ) AS derivedTable
 	    ) AS finalResult
 	    WHERE row_num >= #{startRow} AND row_num &lt;= #{endRow}
-	    ORDER BY bNo DESC;
 	</select>
 	
 	<!-- 게시글 작성 -->
