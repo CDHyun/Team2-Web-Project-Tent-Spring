@@ -83,16 +83,33 @@
 	</table>
 
 
-<div class="content">
-  <%
-  //  int lastpage = (int) request.getAttribute("d_count");
-  //  int itemsPerPage = 7; // 페이지당 항목 개수
-  //  int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
-    
- //   for (int i = 1; i <= totalPages; i++) {
-  //    out.print("<a href='adminUpdate.do?vpage=" + i + "'>" + i + "</a> ");
- //   }
-  %>
+<br/>
+<div class="content" style="margin-left: 45%;">
+    <c:set var="lastpage" value="${d_count}" />
+	<c:set var="itemsPerPage" value="7" />
+	<c:set var="totalPages" value="${(lastpage div itemsPerPage) + (lastpage mod itemsPerPage > 0 ? 1 : 0)}" />
+
+				<nav aria-label="...">
+				  <ul class="pagination pagination-sm">
+				    <c:forEach begin="1" end="${totalPages}" var="i">
+				      <c:choose>
+				        <c:when test="${param.vpage == i}">
+				          <li class="page-item active" aria-current="page">
+				            <span class="page-link">
+				              ${i}
+				              <span class="sr-only">(current)</span>
+				            </span>
+				          </li>
+				        </c:when>
+				        <c:otherwise>
+				          <li class="page-item">
+				            <a class="page-link" href="adminUpdate?vpage=${i}">${i}</a>
+				          </li>
+				        </c:otherwise>
+				      </c:choose>
+				    </c:forEach>
+				  </ul>
+				</nav>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

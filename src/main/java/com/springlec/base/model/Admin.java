@@ -27,6 +27,9 @@ public class Admin {
 	int pcStatus;
 	Date pcInsertdate;
 	
+	// 페이징처리위한 상품갯수
+	int dCount;
+	
 	String wNo ;
 	
 	//공지사항에 필요한 변수
@@ -401,6 +404,18 @@ public class Admin {
 	public void setPcInsertdate(Date pcInsertdate) {
 		this.pcInsertdate = pcInsertdate;
 	}
+
+
+	public int getdCount() {
+		return dCount;
+	}
+
+
+
+	public void setdCount(int dCount) {
+		this.dCount = dCount;
+	}
+
 
 
 	public String getAid() {
