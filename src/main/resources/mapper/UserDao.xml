@@ -107,7 +107,20 @@
 		SELECT count(*) FROM admin WHERE aid = #{aid} and aPassword = #{aPassword}
 	</select>
 	
+	<!-- 이메일 중복 체크 -->
+	<select id="checkDuplicateEmail" resultType="int">
+		SELECT COUNT(*) FROM user WHERE uEmail = #{uEmail}
+	</select>
 	
+	<!-- 이메일 중복 체크 -->
+	<select id="statusCheckEmail" resultType="int">
+		SELECT uSecessionStatus FROM user WHERE uEmail = #{uEmail}
+	</select>
+	
+	<!-- 이메일로 아이디 가져오기 -->
+	<select id="getUserId" resultType="String">
+		SELECT uid FROM user WHERE uEmail = #{uEmail}
+	</select>
 	
 	
 	

@@ -59,6 +59,21 @@ public interface UserService {
 	
 	// 관리자 로그인
 	public int admin_login(String aid, String aPassword) throws Exception;
+	
+	// 이메일 중복 체크
+	public int checkDuplicateEmail(String uEmail) throws Exception;
+	
+	// 이메일 탈퇴 여부 체크
+	public int statusCheckEmail(String uEmail) throws Exception;
+	
+	// 카카오 로그인
+	public int kakao_login(String uEmail) throws Exception;
+	
+	// 이메일로 아이디 가져오기
+	public String getUserId(String uEmail) throws Exception;
+	
+	// 카카오 로그아웃
+	public void kakao_logout(String access_Token) throws Exception;
 		
 	
 	

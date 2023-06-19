@@ -139,7 +139,11 @@ function emptySessionUser() {
 	
 	
 	// 회원가입 모달 열기
-	function openSignUpModal() {
+	function openSignUpModal(uEmail, uNickName, uBirthday) {
+		$('#ruEmail').val(uEmail);
+		$('#ruNickName').val(uNickName);
+		$('#ruBirthday').val(uBirthday);
+		
 		$('#loginModal').modal('hide');
 		$('#signUpModal').modal('show');
 		$('#rcancelBtn').off('click').on('click', function() {
@@ -175,7 +179,7 @@ function emptySessionUser() {
 		}
 	};
 	
-	// 중복 체크
+	// 아이디 중복 체크
 	function checkDuplicateId() {
 	    const ruid = $('#ruid').val();
 	    var regExpuid = /^[a-z|A-Z|0-9]*$/;
@@ -221,6 +225,55 @@ function emptySessionUser() {
 	                Swal.fire({
 	                    icon: 'warning',
 	                    title: "중복되는 아이디입니다."
+	                });
+	            }
+	        },
+	        error: function() {
+	            Swal.fire({
+	                icon: 'warning',
+	                title: "오류가 발생했습니다. 다시 시도해주세요."
+	            });
+	        }
+	    });
+	}
+	
+	// 이메일 중복 체크
+	function checkDuplicateEmail() {
+	    const ruEmail = $('#ruEmail').val();
+	    const regExpuEmail = /^\w+@[a-zA-Z_]+?\.(com|co\.kr|net)$/;
+	    if (!regExpuEmail.test(ruEmail.toLowerCase())) {
+	        Swal.fire({
+	            icon: 'warning',
+	            title: "해당 이메일은 사용 불가능합니다."
+	        });
+	        form.ruid.select();
+	        return;
+	    }
+	    if (ruEmail.trim().length === 0) {
+	        Swal.fire({
+	            icon: 'warning',
+	            title: "이메일을 입력해주세요."
+	        });
+	        return;
+	    }
+	    console.log(ruid);
+	    $.ajax({
+	        type: 'GET',
+	        url: 'checkDuplicateEmail',
+	        data: {
+	            uEmail : ruEmail
+	        },
+	        success: function(result) {
+	            console.log(result);
+	            if (result == 0) {
+	                Swal.fire({
+	                    icon: 'warning',
+	                    title: "사용 가능한 이메일입니다."
+	                });
+	            } else {
+	                Swal.fire({
+	                    icon: 'warning',
+	                    title: "중복되는 이메일입니다."
 	                });
 	            }
 	        },
@@ -485,35 +538,92 @@ function emptySessionUser() {
 
 
 //f544dc7ed174c1cb80376d3cee1683f2
+// REST API : dd7da6e9a1d0fbb61bee671f56f3ddd4
+// JavaScript키 :f544dc7ed174c1cb80376d3cee1683f2
 //window.Kakao.init("f544dc7ed174c1cb80376d3cee1683f2");
-	Kakao.init('f544dc7ed174c1cb80376d3cee1683f2');
+//rKakao.init('f544dc7ed174c1cb80376d3cee1683f2');
 	
-	//카카오로그인
-	function kakaoLogin() {
-	    Kakao.Auth.login({
-	      	success: function (resultobj) {
-		      	console.log(resultobj);
-		        Kakao.API.request({
-		          url: '/v2/user/me',
-		          success: function (res) {
-		        	  scope:'profile_nickname, account_email, gender';
-		        	  console.log(res)
-		        	  var kakaoid = response.id+"K";
-		        	  Kakao.Auth.setAccessToken(authObj.access_token); 
-		        	  openSignUpModal();
-		          },
-		          fail: function (error) {
-		            console.log(error)
-		          },
-		        })
-		      },
-	      fail: function (error) {
-	        console.log(error)
-	      },
-	    })
-	  }
+	function kakao_login() {
+		Kakao.init('f544dc7ed174c1cb80376d3cee1683f2');
+		// 카카오 로그인 서비스 실행하기 및 사용자 정보 가져오기.
+		Kakao.Auth.login({
+			success: function(auth) {
+				Kakao.API.request({
+					url: '/v2/user/me',
+					success: function(response) {
+						// 사용자 정보를 가져와서 폼에 추가.
+						var account = response.kakao_account;
+						var uEmail = account.email;
+						var uNickName = account.profile.nickname;
+						var uGender = account.gender;
+						var uBirthday = account.birthday;
+						var uImg = account.profile.img;
+						var access_token = auth.access_token;
+						/* alert(JSON.stringify(auth)); */
+						console.log("access_token : " + access_token)
+
+						$('#form-kakao-login input[name=email]').val(uEmail);
+						$('#form-kakao-login input[name=name]').val(uNickName);
+						$('#form-kakao-login input[name=img]').val(uImg);
+						// 사용자 정보가 포함된 폼을 서버로 제출한다.
+						/* document.querySelector('#form-kakao-login').submit(); */
+
+						$.ajax({
+							  type: "POST",
+							  url: 'kakao_login',
+							  data: {
+							    uEmail: uEmail,
+							    uNickName: uNickName,
+							    uImg: uImg,
+							    access_token : access_token
+							  },
+							  success: function(result) {
+							    console.log("카카오 로그인 결과 : " + result);
+							    if (result == 0) {
+							      Swal.fire({
+							        icon: 'warning',
+							        title: "존재하지 않는 아이디입니다.",
+							        text: "회원가입 하시겠습니까?",
+							        showCancelButton: true,
+							        confirmButtonText: "OK",
+							        cancelButtonText: "NO"
+							      }).then((result) => {
+							        if (result.isConfirmed) {
+							          $('#ruEmail').prop('readonly', true);
+							          openSignUpModal(uEmail, uNickName, uBirthday);
+							        }
+							      });
+							    } else if (result == -1) {
+							      Swal.fire({
+							        icon: 'warning',
+							        title: "탈퇴한 회원입니다."
+							      });
+							    } else if (result == 1) {
+							      $('#loginModal').modal('hide');
+							      Swal.fire({
+							        icon: 'success',
+							        title: "로그인 성공!"
+							      }).then(() => {
+							        // user_login_form의 action 속성을 "index"로 변경
+							        $('#user_login_form').attr('action', 'index');
+							        // 폼 제출
+							        $('#user_login_form').submit();
+							      });
+							    }
+							  }
+							});
+					},
+				}); // api request
+			}, // success 결과.
+			fail: function(error) {
+				// 경고창에 에러메시지 표시
+				Swal.fire({ icon: 'warning', title: "카카오 로그인에 실패했습니다."});
+			}
+		}); // 로그인 인증.
+	}
+
 	
-    function kakaoLogout() {
+    function kakao_logout() {
         if (!Kakao.Auth.getAccessToken()) {
             alert('Not logged in.');
             return;
@@ -791,6 +901,17 @@ function emptySessionUser() {
 						<a onclick="kakaoLogout()">카카오 로그아웃</a>
 					 -->
 				</form>
+				<!-- Kakao Login -->
+				<!-- REST API : dd7da6e9a1d0fbb61bee671f56f3ddd4 -->
+				<a id="btn-kakao-login" onclick="kakao_login()" >
+					<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="200" alt="카카오 로그인 버튼"/>
+				</a>
+				<a onclick="kakao_logout()">카카오 로그아웃</a>
+				<form id="form-kakao-login" method="post" action="">
+		    			<input type="hidden" name="email"/>
+		    			<input type="hidden" name="name"/>
+		    			<input type="hidden" name="img"/>
+		    		</form>
 				<!-- Forget Password -->
 				<div class="forget_pass mt-15" style="text-align: center;"><a href="#">비밀번호를 잊으셨나요?</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="#" onclick="openSignUpModal()">아직 회원이 아니신가요?</a>
@@ -849,7 +970,10 @@ function emptySessionUser() {
 					  </div>
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="ruEmail" name="ruEmail" placeholder="ex) Email@domain.com">
+						<div class="input-form-group" style="display: flex; align-items: center;">
+							<input type="text" class="form-control" id="ruEmail" name="ruEmail" placeholder="ex) Email@domain.com">
+							 <button type="button" class="btn btn-primary btn-sm" onclick="checkDuplicateEmail()" style="margin-left: 15px;">Check</button>
+						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-form-group" style="display: flex; align-items: center;">
