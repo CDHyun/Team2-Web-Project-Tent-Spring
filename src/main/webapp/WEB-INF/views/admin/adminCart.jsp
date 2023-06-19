@@ -23,7 +23,7 @@
     function submitForm() {
     // JSP 코드에서 생성된 값을 JavaScript 배열로 변환하여 변수에 할당
     var cart = [
-      <c:forEach items="${cart}" var="dto" varStatus="st">
+      <c:forEach items="${ITEM}" var="dto" varStatus="st">
         '${dto.cNo}'${st.last ? '' : ','}
       </c:forEach>
     ];
@@ -48,7 +48,7 @@
 		    
 		   
 		   
-			var url = "adminCartDelete.do?cNo=" + encodeURIComponent(cNo) + "&pCode=" + encodeURIComponent(pCode);
+			var url = "adminCartDelete?cNo=" + encodeURIComponent(cNo) + "&pCode=" + encodeURIComponent(pCode);
 			window.location.href = url;
 			
 		  }
@@ -78,7 +78,7 @@
 				var pCode = ppCode;
 				
 			   
-				var url = "product_detail.do?pCode=" + encodeURIComponent(pCode);
+				var url = "product_detail?pCode=" + encodeURIComponent(pCode);
 				window.location.href = url;
 			   
 			  
@@ -113,8 +113,8 @@
                 <div class="col-12">
                     <h5>Cart</h5>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.do">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="product_list.do"> Product</a></li>
+                        <li class="breadcrumb-item"><a href="index">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="product_list"> Product</a></li>
                     </ol>
                 </div>
             </div>
@@ -251,7 +251,7 @@
 	</div>
 	 
 
-			<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="3000">
+			<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1500">
 			  <div class="carousel-inner">
 			    <c:forEach items="${recommend}" var="dto" varStatus="st">
 			      <div class="carousel-item ${st.first ? 'active' : ''}">
