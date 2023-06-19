@@ -153,8 +153,7 @@ public class AdminServiceImpl implements AdminService {
 
 
 	@Override
-	public void updateProduct1(String pName, String pBrandName, int pPrice, int pCode, String pColor, int pStock,
-			String lastfile) throws Exception {
+	public void updateProduct1(int pCode,String pBrandName,String pName,int pPrice,String pColor,int pStock,String lastfile) throws Exception {
 		// TODO Auto-generated method stub
 		adminDao.updateProduct1(pName, pBrandName, pPrice, pCode);
 		adminDao.updateProduct2( pColor, pStock, pCode);

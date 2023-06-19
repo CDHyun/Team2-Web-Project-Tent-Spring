@@ -111,7 +111,11 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace + ".updateProduct2");
 	}
-
+	@Override
+	public void updateProduct3(String lastfile, int pCode) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".updateProduct3");
+	}
 	
 	
 	@Override
@@ -126,11 +130,7 @@ public class AdminDaoImpl implements AdminDao {
 		sqlSession.update(nameSpace + ".upload1");
 	}
 
-	@Override
-	public void updateProduct3(String lastfile, int pCode) throws Exception {
-		// TODO Auto-generated method stub
-		sqlSession.update(nameSpace + ".updateProduct3");
-	}
+	
 
 	@Override
 	public void noticeInsert(String nTitle, String nContent,String aid,int nCgNo) throws Exception {

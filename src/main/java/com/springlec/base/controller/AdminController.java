@@ -169,7 +169,6 @@ public class AdminController {
 		
 		
 		// 상품수정 
-		//@Value("${upload.path}")
 		@RequestMapping("/adminUpdateAction")
 		public String updateProduct(@RequestParam("file") MultipartFile file,
                 @RequestParam("pName") String pName,
@@ -177,32 +176,32 @@ public class AdminController {
                 @RequestParam("pPrice") int pPrice,
                 @RequestParam("pCode") int pCode,
                 @RequestParam("pColor") String pColor,
-                @RequestParam("pColor") String lastfile,
+                @RequestParam("lastfile") String lastfile,
                 @RequestParam("pStock") int pStock,
                 Model model) throws Exception{
 			
-			System.out.println(lastfile);
-			// 파일 업로드 처리 로직
-						String pfName =  file.getOriginalFilename();
-						String pfRealName =  file.getOriginalFilename();
-						// 파일 업로드 처리 로직 작성
-
-						if(!pfRealName.equals("")) {
-							// 파일 저장
-							File destFile = new File(pfRealName);
-							file.transferTo(destFile);
-							adminService.updateProduct(pName,pBrandName,pPrice,pCode,pColor,pStock);
-							adminService.uploadFile1(pfName, pfRealName, pCode);
-							
-						}else {
-							adminService.updateProduct1(pName,pBrandName,pPrice,pCode,pColor,pStock,lastfile);
-						}
-
-
 						
-
-			
-	
+				
+						
+						
+				if(file != null && !file.isEmpty()) {  //이미지 수정할 때
+					// 파일 저장 경로
+					String uploadDirectory = uploadPath; // uploadPath는 앞서 설정한 업로드 디렉토리 경로입니다.
+							
+					// 파일 업로드 처리 로직
+					String pfName = file.getOriginalFilename();
+					String pfRealName = file.getOriginalFilename();
+					File destFile = new File(uploadDirectory, pfRealName);
+					file.transferTo(destFile);
+					
+					adminService.updateProduct(pName,pBrandName,pPrice,pCode,pColor,pStock);
+					adminService.uploadFile1(pfName, pfRealName, pCode);
+					
+					
+				}else {
+					
+					adminService.updateProduct1(pCode,pBrandName,pName,pPrice,pColor,pStock,lastfile);	
+				}
 			
 			return "redirect:adminUpdate";
 		}
