@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,17 +113,33 @@
 </div>
 
 
+<br/>
+<div class="content" style="margin-left: 45%;">
+    <c:set var="lastpage" value="${d_count}" />
+	<c:set var="itemsPerPage" value="7" />
+	<c:set var="totalPages" value="${(lastpage div itemsPerPage) + (lastpage mod itemsPerPage > 0 ? 1 : 0)}" />
 
-<div class="content">
-    <%
-   // int lastpage = (int) request.getAttribute("d_count");
-    //int itemsPerPage = 7; // 페이지당 항목 개수
-   //int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
-    
-   // for (int i = 1; i <= totalPages; i++) {
-    //  out.print("<a href='adminindex.do?vpage=" + i + "'>" + i + "</a> ");
-   // }
-  %>
+				<nav aria-label="...">
+				  <ul class="pagination pagination-sm">
+				    <c:forEach begin="1" end="${totalPages}" var="i">
+				      <c:choose>
+				        <c:when test="${param.vpage == i}">
+				          <li class="page-item active" aria-current="page">
+				            <span class="page-link">
+				              ${i}
+				              <span class="sr-only">(current)</span>
+				            </span>
+				          </li>
+				        </c:when>
+				        <c:otherwise>
+				          <li class="page-item">
+				            <a class="page-link" href="adminindex?vpage=${i}">${i}</a>
+				          </li>
+				        </c:otherwise>
+				      </c:choose>
+				    </c:forEach>
+				  </ul>
+				</nav>
 </div>
 
 

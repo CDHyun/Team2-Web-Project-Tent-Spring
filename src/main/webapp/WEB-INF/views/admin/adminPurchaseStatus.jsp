@@ -60,6 +60,31 @@ function changeStatus() {
 	    timer: 2000
 	  });
 	}
+	
+	
+function except() {
+	  var checkBox = document.getElementById("exceptComplete");
+	  if (checkBox.checked) {
+	    sessionStorage.setItem("checkBoxState", "checked");
+	    window.location.href = "except";
+	  } else {
+	    sessionStorage.setItem("checkBoxState", "unchecked");
+	    window.location.href = "adminpurchaseCheck";
+	  }
+	}
+
+	window.onload = function() {
+	  var checkBox = document.getElementById("exceptComplete");
+	  var checkBoxState = sessionStorage.getItem("checkBoxState");
+	  if (checkBoxState === "checked") {
+	    checkBox.checked = true;
+	  } else if (checkBoxState === "unchecked") {
+	    checkBox.checked = false;
+	  }
+	};
+
+
+
 </script>
 
 
@@ -69,7 +94,8 @@ function changeStatus() {
   <jsp:include page="adminSidebar.jsp" />
 </div>
     <!-- Header End -->
-<h2 class="content">주문 처리 시스템</h2>
+<h2 class="content">주문 처리 시스템</h2> 
+        <input type="checkbox" name="exceptComplete" id="exceptComplete" onclick="except()" class="content" style="margin-left: 70%;" >배송완료 가리기
         <table border="" class="content">
         <tr>
             <th>구매번호</th>

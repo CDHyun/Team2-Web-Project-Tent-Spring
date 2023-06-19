@@ -6,8 +6,16 @@
 	<select id="selectlist" resultType="com.springlec.base.model.Admin">
 		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  
 		FROM product p, productoption po, productfile pf 
-		WHERE p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 
+		WHERE p.pCode = po.pCode and p.pCode = pf.pCode and p.pDeleted=0 LIMIT #{index_no},7
 	</select>
+	<!-- 상품갯수  -->
+	<select id="productCount" resultType="int">
+		SELECT COUNT(*) AS dCount
+	    FROM product p, productoption po, productfile pf
+	    WHERE p.pCode = po.pCode AND p.pCode = pf.pCode
+	</select>
+	
+	
 	<!-- 검색  -->
 	<select id="querySelect" resultType="com.springlec.base.model.Admin">
 		SELECT p.pCode, p.pBrandName, p.pName ,po.pColor, p.pPrice, po.pStock, p.pinsertdate, pf.pfName, pf.pfRealName  
@@ -117,5 +125,18 @@
 	<insert id="noticeInsert">
 	 INSERT INTO notice (nTitle,nContent,nInsertDate,aid,nCgNo) VALUES (#{nTitle}, #{nContent}, NOW(),#{aid},#{nCgNo})
 	 </insert>
+	 
+	 <!-- 도넛차트 -->
+	 <select id="donut" resultType="com.springlec.base.model.Admin" >
+	 	SELECT pc.pColor AS pColor, SUM(pc.pcQty * p.pPrice) AS total
+		FROM purchase pc, product p
+		WHERE pc.pCode = p.pCode
+		GROUP BY pc.pColor
+	 </select>
 	
+	 <!-- 배송완료제외 -->
+	 <select id="except" resultType="com.springlec.base.model.Admin" >
+	 	SELECT pc.pcNo, pc.uid, pc.pCode, po.pColor, pc.pcQty, pc.pcInsertDate, pc.pcStatus FROM purchase pc, product p, productoption po
+		WHERE p.pCode = pc.pCode and p.pCode = po.pCode and po.pCode = pc.pCode and pc.pColor = po.pColor and pc.pcStatus != 2 order by pc.pcNo desc
+	 </select>
 </mapper>

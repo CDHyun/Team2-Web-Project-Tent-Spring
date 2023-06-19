@@ -30,11 +30,16 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public List<Admin> selectlist() throws Exception {
+	public List<Admin> selectlist(int index_no) throws Exception {
 		// TODO Auto-generated method stub
-		return adminDao.selectlist();
+		return adminDao.selectlist(index_no);
 	}
 
+	@Override
+	public int productCount() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.productCount();
+	}
 
 	@Override
 	public List<Admin> querySelect(String query, String content) throws Exception {
@@ -166,6 +171,22 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		adminDao.noticeInsert(nTitle, nContent,aid,nCgNo);
 	}
+
+
+	@Override
+	public List<Admin> donut() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.donut();
+	}
+
+	@Override
+	public List<Admin> except() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.except();
+	}
+
+
+	
 
 
 	

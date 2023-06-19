@@ -11,7 +11,10 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface AdminService {
 	
 		//admin 상품관리
-		public List<Admin> selectlist() throws Exception;
+		public List<Admin> selectlist(int index_no) throws Exception;
+		
+		// 상품 갯수 count
+		public int productCount() throws Exception;
 		
 		// 상품관리 검색
 		public List<Admin> querySelect(String query, String content) throws Exception;
@@ -58,4 +61,22 @@ public interface AdminService {
 		// 공지등록
 		public void noticeInsert(String nTitle, String nContent,String aid,int nCgNo) throws Exception;
 		
+		//도넛차트
+		public List<Admin> donut() throws Exception;
+
+		// 주문상태 배송완료 제외 리스트
+		public List<Admin> except() throws Exception;
+
+		
+
+
+
+
+
+
+
+
+
+
+
 }

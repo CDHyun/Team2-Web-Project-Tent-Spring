@@ -10,7 +10,10 @@ public interface AdminDao {
 	
 	
 	//admin 상품관리
-	public List<Admin> selectlist() throws Exception;
+	public List<Admin> selectlist(int index_no) throws Exception;
+	
+	// 상품 갯수 count
+	public int productCount() throws Exception;
 	
 	// 상품관리 검색
 	public List<Admin> querySelect(String query, String content) throws Exception;
@@ -68,6 +71,9 @@ public interface AdminDao {
 	// 공지등록
 	public void noticeInsert(String nTitle, String nContent,String aid,int nCgNo) throws Exception;
 	
+	//도넛차트
+	public List<Admin> donut() throws Exception;
 	
+	public List<Admin> except() throws Exception;
 	
 }

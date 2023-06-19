@@ -60,17 +60,52 @@ public class AdminController {
 	        }
 	        model.addAttribute("data", data.toString());
 	        
+	        
+	        //도넛차트 데이터가져오기
+	        List<Admin> colors = adminService.donut();
+	        model.addAttribute("donut", colors);
+	       
+	        // JSP 페이지로 전달되는 데이터를 JavaScript 배열로 변환
+	        StringBuilder data1 = new StringBuilder();
+	        for (Admin admin : colors) {
+	            data1.append(admin.getTotal()).append(",");
+	        }
+	        model.addAttribute("donuts", data1.toString());
+	        
+	        StringBuilder data2 = new StringBuilder();
+	        for (Admin admin : colors) {
+	        	 data2.append("'").append(admin.getpColor()).append("',");
+	        }
+	        model.addAttribute("COLOR", data2.toString());
+	        
+	        
+	        
 			return "admin/adminSummary";
 		}
 
 	
-	
+		
+		
+		
 	
 		//관리자 상품관리 기본페이지
 		@RequestMapping("/adminindex")
-		public String selectlist(Model model) throws Exception{
-			List<Admin> selectlist = adminService.selectlist();
+		public String selectlist(HttpServletRequest request, Model model) throws Exception{
+			
+			 String vpage = request.getParameter("vpage");
+			    if(vpage==null){
+			    	vpage = "1";
+			    }
+			int v_page = Integer.parseInt(vpage);
+			int index_no = (v_page-1)*7;
+			
+			// 상품관리페이징하기 위한 상품갯수 count
+			int dcount = adminService.productCount();
+			model.addAttribute("d_count", dcount);
+			
+			List<Admin> selectlist = adminService.selectlist(index_no);
 			model.addAttribute("list", selectlist);
+			
 			return "admin/adminProductSelect";
 		}
 		
@@ -146,8 +181,19 @@ public class AdminController {
 	
 		//관리자 상품수정 공유페이지
 		@RequestMapping("/adminUpdate")
-		public String sharelist(Model model) throws Exception{
-			List<Admin> selectlist = adminService.selectlist();
+		public String sharelist(HttpServletRequest request, Model model) throws Exception{
+			String vpage = request.getParameter("vpage");
+		    if(vpage==null){
+		    	vpage = "1";
+		    }
+		int v_page = Integer.parseInt(vpage);
+		int index_no = (v_page-1)*7;
+			
+		// 상품관리페이징하기 위한 상품갯수 count
+		int dcount = adminService.productCount();
+		model.addAttribute("d_count", dcount);
+					
+			List<Admin> selectlist = adminService.selectlist(index_no);
 			model.addAttribute("list", selectlist);
 			return "admin/adminProductShare";
 		}
@@ -264,7 +310,15 @@ public class AdminController {
 
 
 
-
+		@RequestMapping("/except")
+		public String except(Model model) throws Exception{
+			List<Admin> exceptproduct = adminService.except();
+			model.addAttribute("check", exceptproduct);
+			
+			return "admin/adminPurchaseStatus"; 
+				
+				
+		}
 
 
 
