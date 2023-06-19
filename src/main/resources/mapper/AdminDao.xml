@@ -16,7 +16,7 @@
 	</select>
 	<!-- 날짜별 매출 계산  -->
 	<select id="dailySale" resultType="com.springlec.base.model.Admin">
-		SELECT pc.pcInsertDate, p.pBrandName, p.pName, pc.pcQty, pc.pcQty*p.pPrice 
+		SELECT pc.pcInsertDate as pcInsertDate, p.pBrandName as pBrandName, p.pName as pName, pc.pcQty as pcQty, pc.pcQty*p.pPrice as sum
 		FROM product p, purchase pc 
 		WHERE p.pCode = pc.pCode and pc.pcInsertDate between #{startDate} and #{endDate} order by pc.pcInsertDate
 	</select>
@@ -30,8 +30,7 @@
 	
 	<!-- 막대차트 -->
 	<select id="chart" resultType="com.springlec.base.model.Admin">
-	  
-	  SELECT DAYNAME(pc.pcInsertDate) , SUM(p.pPrice * pc.pcQty) 
+	  SELECT DAYNAME(pc.pcInsertDate) , SUM(p.pPrice * pc.pcQty) as daySum
 	  FROM purchase pc, product p
 	  GROUP BY DAYNAME(pc.pcInsertDate)
 	  ORDER BY FIELD(DAYNAME(pc.pcInsertDate), 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')

@@ -20,7 +20,7 @@ public interface AdminDao {
 	
 	
 	// sql 설정변경
-	public void setSQL() throws Exception;
+	public void setSqlMode() throws Exception;
 	// 막대차트
 	public List<Admin> chart() throws Exception;
 	
