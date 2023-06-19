@@ -18,7 +18,7 @@
   <jsp:include page="adminSidebar.jsp" />
 </div>
   <!-- Header End -->
-<form action="adminNoticeEnd.do" method="post">
+<form action="adminNoticeEnd" method="post">
 
 	<div class="container">
 		<div class="row">
@@ -29,15 +29,16 @@
 					</tr>
 				</thead>
 					<tr>
-						<td><input type="text" name="title" size="20" placeholder="제목을 작성하세요" style="width: 100%"></td>
+						<td><input type="text" name="nTitle" size="20" placeholder="제목을 작성하세요" style="width: 100%"></td>
 					</tr>
 					<tr>
-						<td><textarea rows="5" cols="20" name="content" placeholder="200자 이내로 입력하세요" style="width: 100%"></textarea></td>
+						<td><textarea rows="5" cols="20" name="nContent" placeholder="200자 이내로 입력하세요" style="width: 100%"></textarea></td>
+						<td><input type="hidden" name="nCgNo" value="1"></td>
 					</tr>
 					
 			</table>
 				<input type="submit" value="작성완료" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;
-			<a  href="adminNotice.do"><button type="button" class="btn btn-danger">취소</button></a>
+			<a  href="adminNotice"><button type="button" class="btn btn-danger">취소</button></a>
 		
 		</div>
 	</div>

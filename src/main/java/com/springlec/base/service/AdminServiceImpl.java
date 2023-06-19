@@ -162,6 +162,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 
+	@Override
+	public void noticeInsert(String nTitle, String nContent,String aid,int nCgNo) throws Exception {
+		// TODO Auto-generated method stub
+		adminDao.noticeInsert(nTitle, nContent,aid,nCgNo);
+	}
+
+
 	
 
 
