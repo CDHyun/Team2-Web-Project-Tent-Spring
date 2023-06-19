@@ -1,4 +1,4 @@
-<%@page import="com.springlec.tent.dto.AdminDto"%>
+<%@page import="com.springlec.base.model.Admin"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.ArrayList" %>
@@ -158,7 +158,7 @@
   
   
 <h3 class="content">기간 매출 조회</h3>
-<form action="adminfirst.do" method="post" class="content">
+<form action="adminfirst" method="post" class="content">
   <label for="startDate">시작일:</label>
   <input type="date" id="startDate" name="startDate">&nbsp;&nbsp;
   <label for="endDate">종료일:</label>
@@ -183,7 +183,6 @@
   </tr>
   
  
-  
   <c:forEach items="${SALES}" var="dto" varStatus="st">
     <tr>
       <td>${st.index+1}</td>

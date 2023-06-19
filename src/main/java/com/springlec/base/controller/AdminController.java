@@ -31,13 +31,18 @@ public class AdminController {
 		@RequestMapping("/adminfirst")
 		public String mainView(HttpServletRequest request, Model model) throws Exception{
 			 // 날짜별 매출
-			List<Admin> dtos2 = adminService.dailySale(request.getParameter("startDate"), request.getParameter("endDate"));
+			
+			String startDate =request.getParameter("startDate");
+			String endDate =  request.getParameter("endDate");
+			
+			List<Admin> dtos2 = adminService.dailySale(startDate, endDate);
+			
 			model.addAttribute("SALES", dtos2);
+		
 			
 			 //매출액 보여주기
 			if (!dtos2.isEmpty()) {
-			    Admin lastDto = dtos2.get(dtos2.size() - 1);
-			    model.addAttribute("TOTAL", lastDto.getTotal());
+			    model.addAttribute("TOTAL", dtos2.stream().mapToInt(Admin::getSum).sum());
 			} else {
 			    model.addAttribute("TOTAL", 0); // 또는 적절한 기본값 설정
 			}
@@ -49,8 +54,8 @@ public class AdminController {
 	        
 	        // JSP 페이지로 전달되는 데이터를 JavaScript 배열로 변환
 	        StringBuilder data = new StringBuilder();
-	        for (Admin dto : dtos) {
-	            data.append(dto.getDaySum()).append(",");
+	        for (Admin admin : dtos) {
+	            data.append(admin.getDaySum()).append(",");
 	        }
 	        model.addAttribute("data", data.toString());
 	        

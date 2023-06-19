@@ -1,5 +1,6 @@
 package com.springlec.base.model;
 
+import java.math.BigInteger;
 import java.sql.Date;
 
 public class Admin {
@@ -40,7 +41,7 @@ public class Admin {
 	
 	//차트에 필요한 변수
 	String dayName;
-	int daySum;
+	BigInteger daySum;
 	int colorSum;
 	int addColor;
 	
@@ -61,11 +62,22 @@ public class Admin {
 	
 	
 
+	public Admin(int pCode, String pName, String pBrandName, int pPrice, Date pInsertdate) {
+		super();
+		this.pCode = pCode;
+		this.pName = pName;
+		this.pBrandName = pBrandName;
+		this.pPrice = pPrice;
+		this.pInsertdate = pInsertdate;
+	}
+
+
+
 	public Admin(int pCode, String pName, String pBrandName, int pPrice, Date pInsertdate, Date pupdatedate,
 			Date pdeletedate, String pfName, String pfRealName, int cgNo, String cgName, String pColor, int pStock,
 			String pfHoverName, String pfHoverRealName, int pcNo, String uid, int pcQty, int pcStatus,
 			Date pcInsertdate, String wNo, String aid, int nCgNo, String nTitle, String nContent, Date nInsertdate,
-			int nNo, String dayName, int daySum, int colorSum, int addColor, int sum, int total, int cQty, int ctotal,
+			int nNo, String dayName, BigInteger daySum, int colorSum, int addColor, int sum, int total, int cQty, int ctotal,
 			int cNo) {
 		super();
 		this.pCode = pCode;
@@ -435,12 +447,12 @@ public class Admin {
 	}
 
 
-	public int getDaySum() {
+	public BigInteger getDaySum() {
 		return daySum;
 	}
 
 
-	public void setDaySum(int daySum) {
+	public void setDaySum(BigInteger daySum) {
 		this.daySum = daySum;
 	}
 
