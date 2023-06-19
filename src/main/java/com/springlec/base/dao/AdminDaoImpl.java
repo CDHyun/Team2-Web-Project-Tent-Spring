@@ -115,7 +115,7 @@ public class AdminDaoImpl implements AdminDao {
 	
 	
 	@Override
-	public void setSQL() throws Exception {
+	public void setSqlMode() throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.selectOne(nameSpace + ".setSqlMode");
 	}

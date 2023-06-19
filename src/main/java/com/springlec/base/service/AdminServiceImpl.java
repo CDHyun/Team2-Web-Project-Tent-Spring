@@ -2,6 +2,7 @@ package com.springlec.base.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,6 +47,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Admin> dailySale(String startDate, String endDate) throws Exception {
 		// TODO Auto-generated method stub
+		LocalDate today = LocalDate.now();
+		if(startDate == null || endDate == null || startDate.equals("") || endDate.equals("")) {
+			startDate = "1950-01-03";
+		      endDate = today.toString();
+		}
+		
 		return adminDao.dailySale(startDate,endDate);
 	}
 
@@ -53,7 +60,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Admin> chart() throws Exception {
 		// TODO Auto-generated method stub
-		adminDao.setSQL();
+		adminDao.setSqlMode();
 		return adminDao.chart();
 	}
 
