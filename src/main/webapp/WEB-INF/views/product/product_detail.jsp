@@ -179,7 +179,7 @@
                 <div class="col-12">
                     <h5>Product Details</h5>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.do">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Shop</a></li>
                         <li class="breadcrumb-item active">Product Details</li>
                     </ol>
@@ -202,38 +202,12 @@
                                     <a class="gallery_img" href="images/product/${product.pfRealName}" title="First Slide">
                                         <img class="d-block w-100" src="images/product/${product.pfRealName}" alt="First slide">
                                     </a>
-                                    <!-- Product Badge -->
-                                   <!--  <div class="product_badge">
-                                        <span class="badge-new">New</span>
-                                    </div> -->
                                 </div>
                                 <div class="carousel-item">
                                     <a class="gallery_img" href="images/product/${product.pfHoverRealName}" title="Second Slide">
                                         <img class="d-block w-100" src="images/product/${product.pfHoverRealName}" alt="Second slide">
                                     </a>
-                                    <!-- Product Badge -->
-                                   <!--  <div class="product_badge">
-                                        <span class="badge-new">Sale</span>
-                                    </div> -->
                                 </div>
-                                <!-- <div class="carousel-item">
-                                    <a class="gallery_img" href="img/product-img/pd-big-thumb-3.png" title="Third Slide">
-                                        <img class="d-block w-100" src="img/product-img/pd-big-thumb-3.png" alt="Third slide">
-                                    </a>
-                                    Product Badge
-                                    <div class="product_badge">
-                                        <span class="badge-new">-20%</span>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="img/product-img/pd-big-thumb-4.png" title="Fourth Slide">
-                                        <img class="d-block w-100" src="img/product-img/pd-big-thumb-4.png" alt="Fourth slide">
-                                    </a>
-                                    Product Badge
-                                    <div class="product_badge">
-                                        <span class="badge-new">Hot</span>
-                                    </div>
-                                </div> -->
                             </div>
 
                             <!-- Carosel Indicators -->
@@ -242,10 +216,6 @@
                                 </li>
                                 <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(images/product/${product.pfHoverRealName});">
                                 </li>
-                                <!-- <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/pd-big-thumb-3.png);">
-                                </li>
-                                <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/pd-big-thumb-4.png);">
-                                </li> -->
                             </ol>
                         </div>
                     </div>
@@ -271,25 +241,6 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum dolores natus laboriosam accusantium, suscipit saepe eum deleniti mollitia at, odio, facere nisi aspernatur doloribus aperiam atque deserunt minima vitae rerum laudantium. Sapiente distinctio ipsam vitae dolorum odit, suscipit, aliquid.</p>
                         </div>
                         <!-- Color List -->
-					<%-- 	<c:forEach items="${colorList}" var="color">
-						    <div class="custom-control custom-radio">
-						        <input type="radio" id="customRadio${status.index + 1}" name="customRadio" class="custom-control-input" value="${color.pColor}">
-						        <label class="custom-control-label ${color.pColor}" for="customRadio${status.index + 1}"></label>
-						        <input type="button" style="color: ${color.pColor};">
-						    </div>
-						    <div class="custom-control custom-radio">
-						        <input type="radio" id="customRadio${status.index + 1}" name="customRadio" class="custom-control-input" value="${color.pColor}">
-						        <label class="custom-control-label black" for="customRadio${status.index + 1}"></label>
-						    </div>
-						    <div class="custom-control custom-radio">
-						        <input type="radio" id="customRadio${status.index + 1}" name="customRadio" class="custom-control-input" value="${color.pColor}">
-						        <label class="custom-control-label red" for="customRadio${status.index + 1}"></label>
-						    </div>
-						    <div class="custom-control custom-radio">
-						        <input type="radio" id="customRadio${status.index + 1}" name="customRadio" class="custom-control-input" value="${color.pColor}">
-						        <label class="custom-control-label khaki" for="customRadio${status.index + 1}"></label>
-						    </div>
-						</c:forEach> --%>
 						<div class="widget p-0 color mb-3">
                             <h6 class="widget-title">Color</h6>
                             <div class="widget-desc d-flex">
@@ -326,19 +277,6 @@
                             <a class="add_to_compare" href="compare.html"><i class="fa fa-th" aria-hidden="true"></i> COMPARE</a>
                             <a class="share_with_friend" href="#"><i class="fa fa-share" aria-hidden="true"></i> SHARE WITH FRIEND</a>
                         </div>
-
-                        <!-- Size Guide -->
-                       <!--  <div class="sizeguide">
-                            <h6>Size Guide</h6>
-                            <div class="size_guide_thumb d-flex">
-                                <a class="size_guide_img" href="img/bg-img/size-1.png" style="background-image: url(img/bg-img/size-1.png);">
-                                </a>
-                                <a class="size_guide_img" href="img/bg-img/size-2.png" style="background-image: url(img/bg-img/size-2.png);">
-                                </a>
-                                <a class="size_guide_img" href="img/bg-img/size-3.png" style="background-image: url(img/bg-img/size-3.png);">
-                                </a>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -354,7 +292,8 @@
                                 <a href="#description" class="nav-link active" data-toggle="tab" role="tab">Description</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">(3)</span></a>
+                            <c:set var="listSize" value="${reviewList.size()}" />
+                                <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">${listSize}</span></a>
                             </li>
                             <li class="nav-item">
                                 <a href="#addi-info" class="nav-link" data-toggle="tab" role="tab">Additional Information</a>
@@ -384,52 +323,47 @@
 
                             <div role="tabpanel" class="tab-pane fade" id="reviews">
                                 <div class="reviews_area">
-                                    <ul>
-                                        <li>
-                                            <div class="single_user_review mb-15">
-                                                <div class="review-rating">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <span>for Quality</span>
-                                                </div>
-                                                <div class="review-details">
-                                                    <p>by <a href="#">Designing World</a> on <span>12 Sep 2019</span></p>
-                                                </div>
+                                    <ul id="review_list">
+                                    	<div class="form-group">
+                                            <span>Average Score</span>
+                                            <div class="review-rating">
+                                            	<c:set var="averageScore" value="${Math.floor(avgScore)}" />
+                                                <c:forEach begin="1" end="${averageScore}">
+												    <i class="fa fa-star" aria-hidden="true"></i>
+												</c:forEach>
                                             </div>
-                                            <div class="single_user_review mb-15">
-                                                <div class="review-rating">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <span>for Design</span>
-                                                </div>
-                                                <div class="review-details">
-                                                    <p>by <a href="#">Designing World</a> on <span>12 Sep 2019</span></p>
-                                                </div>
-                                            </div>
-                                            <div class="single_user_review">
-                                                <div class="review-rating">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <span>for Value</span>
-                                                </div>
-                                                <div class="review-details">
-                                                    <p>by <a href="#">Designing World</a> on <span>12 Sep 2019</span></p>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        </div>
+                                        <span>Reviews</span>
+                                    	<c:forEach var="review" items="${reviewList}">
+	                                        <li id="review_li_${review.rNo}">
+	                                            <div class="single_user_review mb-15">
+	                                                <div class="review-rating">
+														<c:forEach begin="1" end="${review.rScore}">
+														    <i class="fa fa-star" aria-hidden="true"></i>
+														</c:forEach>
+	                                                	&nbsp;
+	                                                    <span>${review.rTitle}</span> &nbsp;
+	                                                    <c:if test="${review.uid eq SUID}">
+		                                                    <input type="button" value="수정" class="review_btn update_form" rNo="${review.rNo}" >&nbsp;
+		                                            		<input type="button" value="삭제" class="review_btn delete" rNo="${review.rNo}" pCode="${review.pCode}">
+	                                                    </c:if>
+	                                                </div>
+	                                                <div class="review-details">
+	                                                	<c:set var="dateString" value="${review.rInsertDate}" />
+														<fmt:parseDate var="date" value="${dateString}" pattern="yyyy-MM-dd HH:mm:ss" />
+														<fmt:formatDate var="formattedDate" value="${date}"	type="date" pattern="yyyy년-MM월-dd일" />
+	                                                    <p>by ${review.uNickName} on <span>${formattedDate}</span></p>
+	                                                </div>
+	                                                <div class="review-details">
+	                                                    <p>${review.rContent}</p>
+	                                                </div>
+	                                            </div>
+	                                        </li>
+                                        </c:forEach>
                                     </ul>
                                 </div>
 
-                                <div class="submit_a_review_area mt-50">
+                                <!-- <div class="submit_a_review_area mt-50">
                                     <h4>Submit A Review</h4>
                                     <form action="#" method="post">
                                         <div class="form-group">
@@ -469,7 +403,7 @@
                                         <button type="submit" class="btn btn-primary">Submit Review</button>
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div role="tabpanel" class="tab-pane fade" id="addi-info">
                                 <div class="additional_info_area">
