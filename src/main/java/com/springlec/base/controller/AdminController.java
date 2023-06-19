@@ -10,10 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.multipart.MultipartFile;
-
 
 import com.springlec.base.model.Admin;
 import com.springlec.base.service.AdminService;
@@ -104,29 +102,32 @@ public class AdminController {
                 Model model) throws Exception {
 			
 			
+			
+			
+			// 파일 저장 경로
+			String uploadDirectory = uploadPath; // uploadPath는 앞서 설정한 업로드 디렉토리 경로입니다.
+
 			// 파일 업로드 처리 로직
-			String pfName =  file.getOriginalFilename();
-			String pfRealName =  file.getOriginalFilename();
-			// 파일 업로드 처리 로직 작성
-
-			String pfHoverName =  file1.getOriginalFilename();
-			String pfHoverRealName = file1.getOriginalFilename(); 
-			// 파일 업로드 처리 로직 작성
-
-			// 파일 저장
-			File destFile = new File(pfRealName);
+			String pfName = file.getOriginalFilename();
+			String pfRealName = file.getOriginalFilename();
+			File destFile = new File(uploadDirectory, pfRealName);
 			file.transferTo(destFile);
 
-			File destFile1 = new File(pfHoverRealName);
+			String pfHoverName = file1.getOriginalFilename();
+			String pfHoverRealName = file1.getOriginalFilename();
+			File destFile1 = new File(uploadDirectory, pfHoverRealName);
 			file1.transferTo(destFile1);
 
+			// 파일 저장 후 사용할 경로 정보
+			String pfRealPath = uploadDirectory + "/" + pfRealName;
+			String pfHoverRealPath = uploadDirectory + "/" + pfHoverRealName;
 
-			
-		     
-		
-				adminService.insert(pName, pBrandName, pPrice, cgNo, pCode, pStock, pColor, pfNo);
-				adminService.uploadFile(pfName, pfRealName, pfHoverName, pfHoverRealName, pCode);
-				
+			// 나머지 로직 처리
+			adminService.insert(pName, pBrandName, pPrice, cgNo, pCode, pStock, pColor, pfNo);
+			adminService.uploadFile(pfName, pfRealName, pfHoverName, pfHoverRealName, pCode);
+
+			// 반환문 등 필요한 로직 추가
+
 				
 			
 			
