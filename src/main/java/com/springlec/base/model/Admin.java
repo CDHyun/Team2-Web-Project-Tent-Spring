@@ -71,6 +71,15 @@ public class Admin {
 		this.pInsertdate = pInsertdate;
 	}
 
+	//공지등록
+	public Admin( String nTitle, String nContent, Date nInsertdate, String aid,int nCgNo) {
+	super();
+	this.nCgNo = nCgNo;
+	this.aid = aid;
+	this.nTitle = nTitle;
+	this.nContent = nContent;
+	this.nInsertdate = nInsertdate;
+}
 
 
 	public Admin(int pCode, String pName, String pBrandName, int pPrice, Date pInsertdate, Date pupdatedate,
@@ -142,6 +151,9 @@ public class Admin {
 	
 	
 	
+
+
+
 
 
 

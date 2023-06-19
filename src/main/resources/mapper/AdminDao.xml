@@ -113,6 +113,9 @@
 		UPDATE productfile SET pfName = #{pfName}, pfRealName = #{pfRealName} WHERE pCode = #{pCode}
 	</update>
 	
-	
+	<!-- 공지등록  -->
+	<insert id="noticeInsert">
+	 INSERT INTO notice (nTitle,nContent,nInsertDate,aid,nCgNo) VALUES (#{nTitle}, #{nContent}, NOW(),#{aid},#{nCgNo})
+	 </insert>
 	
 </mapper>

@@ -65,7 +65,8 @@ public interface AdminDao {
 	// 고객관리 faq
 	public List<Admin> faq() throws Exception;
 	
-	
+	// 공지등록
+	public void noticeInsert(String nTitle, String nContent,String aid,int nCgNo) throws Exception;
 	
 	
 	

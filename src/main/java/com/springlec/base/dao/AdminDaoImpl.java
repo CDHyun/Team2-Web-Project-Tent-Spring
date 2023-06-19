@@ -132,6 +132,12 @@ public class AdminDaoImpl implements AdminDao {
 		sqlSession.update(nameSpace + ".updateProduct3");
 	}
 
+	@Override
+	public void noticeInsert(String nTitle, String nContent,String aid,int nCgNo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".noticeInsert");
+	}
+
 
 	
 

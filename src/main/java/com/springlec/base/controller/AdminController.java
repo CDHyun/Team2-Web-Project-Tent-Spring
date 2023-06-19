@@ -17,6 +17,7 @@ import com.springlec.base.model.Admin;
 import com.springlec.base.service.AdminService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminController {
@@ -244,8 +245,23 @@ public class AdminController {
 		}
 
 
+		@RequestMapping("/adminWriteNotice")
+		public String writeNotice() throws Exception{
+			return "admin/adminWriteNotice";
+		}
 
-
+		
+		@RequestMapping("/adminNoticeEnd")
+		public String noticeInsert(HttpServletRequest request, Model model, HttpSession session) throws Exception{
+			String aid =(String)session.getAttribute("SUID");
+			adminService.noticeInsert(request.getParameter("nTitle"), request.getParameter("nContent"),aid,Integer.parseInt(request.getParameter("nCgNo")));
+			
+			System.out.println(request.getParameter("nTitle"));
+			System.out.println(request.getParameter("nContent"));
+			
+			return "redirect:adminNotice";
+			
+		}
 
 
 
