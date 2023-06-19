@@ -47,20 +47,31 @@ public class PurchaseServiceImpl implements PurchaseService {
 			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return purchaseDao.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay);
 	}
 
-	@Override
-	public List<Purchase> purchaseDetail(String pName, String uPhone, int pcNo, int pPrice, int pcQty,
-			String pcInsertDate, String pfRealName, String pcPay, String pcDM, String uName) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<Purchase> getProductInfo(int pCode) throws Exception {
 		return purchaseDao.getProductInfo(pCode);
 	}
-	
 
+	@Override
+	public Purchase purchaseDetailList(String uid, int pcNo) throws Exception {
+		// TODO Auto-generated method stub
+		return purchaseDao.purchaseDetailList(uid, pcNo);
+	}
+
+	@Override
+	public int modifyaddress(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode,
+			String uaContent) {
+		// TODO Auto-generated method stub
+		return purchaseDao.modifyaddress(uid, uaNo, uaAddress, uaDetailAddress, uaZipcode, uaContent);
+	}
+
+
+
+	
+	
 }

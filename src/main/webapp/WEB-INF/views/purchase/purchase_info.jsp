@@ -67,21 +67,21 @@
 			},
 			success : function(result) {
 				console.log(result);
-				if (result === "0") {
+				if (result == 0) {
 					Toast.fire({
 						icon : 'warning',
 						title : "배송지 정보 변경 중 문제가 발생했습니다."
 					});
 					return;
 				}
-				if (result === "1") {
+				if (result == 1) {
 					Toast.fire({ icon: 'success', title: "배송지 정보가 변경 되었습니다." }).then(() => {
 						  $('#userModifyAddressModal').modal('hide');
 						  var pCode = "${PCODE}";
 						  var pcQty = "${PCQTY}";
 						  var pColor = "${PCOLOR}";
 
-						  var url = "purchase_info.do?pCode=" + encodeURIComponent(pCode) +
+						  var url = "purchaseInfo?pCode=" + encodeURIComponent(pCode) +
 						            "&pcQty=" + encodeURIComponent(pcQty) +
 						            "&pColor=" + encodeURIComponent(pColor);
 

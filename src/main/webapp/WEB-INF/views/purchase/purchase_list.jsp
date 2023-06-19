@@ -85,8 +85,8 @@
             <div class="col-12 col-lg-3">
                 <div class="my-account-navigation mb-50">
                     <ul>
-                        <li><a href="my_account.do">My Account</a></li>
-                        <li class="active"><a href="purchase_list.do">Orders</a></li>
+                        <li><a href="my_account">My Account</a></li>
+                        <li class="active"><a href="purchase_list">Orders</a></li>
                         <li><a href="member_logout">Logout</a></li>
                     </ul>
                 </div>
@@ -113,12 +113,12 @@
                                 </tr>
                                 </thead>
                                 <tbody id="order_list_tbody">
-                                <c:if test="${purchaseList.size() == 0}">
+                                <c:if test="${purchase.size() == 0}">
                                     <tr>
                                         <td colspan="5">등록된 주문목록이 없습니다 🙂</td>
                                     </tr>
                                 </c:if>
-                                <c:forEach items="${purchaseList}" var="purchase">
+                                <c:forEach items="${purchase}" var="purchase">
                                     <tr>
                                         <td>${purchase.pcNo}</td>
                                         <td>${purchase.pcInsertDate}</td>
@@ -142,7 +142,7 @@
                                                 value="${purchase.pcQty * purchase.pPrice}" type="number"
                                                 pattern="#,###"></fmt:formatNumber></td>
                                         <td>
-                                            <form action="purchaseDetailView.do" method="post">
+                                            <form action="purchaseDetailView?pcNo=${purchase.pcNo}" method="post">
                                                 <input type="hidden" name="pcNo" value="${purchase.pcNo}">
                                                 <input type="submit" name="view"
                                                        class="btn btn-secondary btn-sm view-btn" value="view">
@@ -159,31 +159,31 @@
                     <nav aria-label="Page navigation">
                         <ul class="pagination pagination-sm justify-content-center">
                             <%-- Get the current page from request parameter --%>
-                            <% int currentPage = 1;
-                            String currentPageParam = request.getParameter("vpage");
-                            if (currentPageParam != null && !currentPageParam.isEmpty()) {
-                                currentPage = Integer.parseInt(currentPageParam);
-                            }
+                            <% //int currentPage = 1;
+                            //String currentPageParam = request.getParameter("vpage");
+                           // if (currentPageParam != null && !currentPageParam.isEmpty()) {
+                             //   currentPage = Integer.parseInt(currentPageParam);
+                          //  }
 
-                            int lastpage = (int) request.getAttribute("d_count");
-                            int itemsPerPage = 7; // 페이지당 항목 개수
-                            int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
+                          //  int lastpage = (int) request.getAttribute("d_count");
+                          //  int itemsPerPage = 7; // 페이지당 항목 개수
+                          //  int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
 
-                            for (int i = 1; i <= totalPages; i++) {
-                                if (i == currentPage) {
-                                    out.print("<li class='page-item active'><a class='page-link' href='purchase_list.do?vpage=" + i + "'>" + i + "</a></li>");
-                                } else {
-                                    out.print("<li class='page-item'><a class='page-link' href='purchase_list.do?vpage=" + i + "'>" + i + "</a></li>");
-                                }
-                            }
+                         //   for (int i = 1; i <= totalPages; i++) {
+                          //      if (i == currentPage) {//
+                          //          out.print("<li class='page-item active'><a class='page-link' href='purchase_list.do?vpage=" + i + "'>" + i + "</a></li>");
+                         //       } else {
+                           //         out.print("<li class='page-item'><a class='page-link' href='purchase_list.do?vpage=" + i + "'>" + i + "</a></li>");
+                          //      }
+                          //  }
                             %>
                        </ul>
                     </nav>
                 </div>
     
-                <c:if test="${purchaseList.size() != 0}">
+                <c:if test="${purchase.size() != 0}">
                     <button type="button" class="btn btn-outline-primary mb-1" id="order_all_delete_btn">
-                        <a href="index.do">Check</a>
+                        <a href="index">Check</a>
                     </button>
                 </c:if>
             </div>

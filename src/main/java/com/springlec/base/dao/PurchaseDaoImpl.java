@@ -42,14 +42,19 @@ public class PurchaseDaoImpl implements PurchaseDao {
 	
 	
 	@Override
-	public List<Purchase> purchaseDetail(String pName, String uPhone, int pcNo, int pPrice, int pcQty,
-			String pcInsertDate, String pfRealName, String pcPay, String pcDM, String uName) throws Exception {
+	public Purchase purchaseDetailList(String uid, int pcNo) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(nameSpace + ".purchaseDetail"); 
+		return sqlSession.selectOne(nameSpace + ".purchaseDetail"); 
 	}
 	@Override
 	public List<Purchase> getProductInfo(int pCode) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".getProductInfo");
+	}
+	@Override
+	public int modifyaddress(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode,
+			String uaContent) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".modify_address");
 	}
 
 

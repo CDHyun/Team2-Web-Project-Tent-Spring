@@ -17,10 +17,11 @@ public interface PurchaseDao {
 	
 	public List<Purchase> purchaseList (String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName, String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay) throws Exception; 
 	
-	public List<Purchase> purchaseDetail(String pName, String uPhone, int pcNo, int pPrice, int pcQty, String pcInsertDate, String pfRealName, String pcPay, String pcDM, String uName ) throws Exception;
+	public Purchase purchaseDetailList(String uid, int pcNo) throws Exception;
 	
 	public List<Purchase> getProductInfo(int pCode) throws Exception;
 	
+	public int modifyaddress(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent);
 	
 	
 	

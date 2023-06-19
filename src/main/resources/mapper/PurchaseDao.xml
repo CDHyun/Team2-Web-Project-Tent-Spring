@@ -38,5 +38,19 @@
 		SELECT * FROM product p, productFile pf WHERE p.pCode = pf.pCode AND p.pCode = #{pCode}
 	</select>
 	
+	<select id="purchaseDetailList" resultType="com.springlec.base.model.Purchase">
+	SELECT pc.pcNo, pc.pcinsertDate, p.pName, u.uPhone, pf.pfRealName, pc.pcPay, pc.pcQty, p.pPrice, pc.pcDM, u.uName
+	FROM product p, purchase pc, productfile pf, user u
+	WHERE p.pCode = pc.pCode AND p.pCode = pf.pCode AND u.uid = #{uid} AND pcNo = #{pcNo}
+	</select>
+	
+
+	<update id="modifyaddress">
+		UPDATE userAddress 
+		SET uaAddress = #{uaAddress}, uaDetailAddress = #{uaDetailAddress}, uaZipcode = #{uaZipcode}, uaContent = #{uaContent}
+		WHERE uid = #{uid} AND uaNo = #{uaNo}
+	</update>
+
+	
 	
 </mapper>

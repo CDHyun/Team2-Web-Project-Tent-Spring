@@ -87,21 +87,21 @@
                                     <c:set var="tot_price" value="0" />
                                     <tbody>
                                     <c:forEach var="purchaseCheck" items="${ITEM}">
-                                    <c:set var="item_tot_price" value="${ITEM.pcQty * ITEM.pPrice}" />
+                                    <c:set var="item_tot_price" value="${purchaseCheck.pcQty * purchaseCheck.pPrice}" />
                                       <c:set var="tot_price" value="${tot_price + item_tot_price}" />
                                         <tr>
                                             <td>
-                                                <img src="images/product/${ITEM.pfRealName}" alt="Product">
+                                                <img src="images/product/${purchaseCheck.pfRealName}" alt="Product">
                                             </td>
                                             <td>
-                                                <a href="#">${ITEM.pName}</a>
+                                                <a href="#">${purchaseCheck.pName}</a>
                                             </td>
-                                            <c:set var="item_tot_price" value="${ITEM.pcQty * ITEM.pPrice}"></c:set>
+                                            <c:set var="item_tot_price" value="${purchaseCheck.pcQty * purchaseCheck.pPrice}"></c:set>
                                             
-                                             <td><fmt:formatNumber value="${ITEM.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                             <td><fmt:formatNumber value="${purchaseCheck.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
                                          <%--    <td>${purchase.pPrice}</td> --%>
-                                            <td>${ITEM.pColor}</td>
-                                            <td>${ITEM.pcQty}</td>
+                                            <td>${purchaseCheck.pColor}</td>
+                                            <td>${purchaseCheck.pcQty}</td>
                                             <td><fmt:formatNumber value="${item_tot_price}" type="number" pattern="#,###"></fmt:formatNumber></td>
                                             <%-- <td>${item_tot_price}</td> --%>
                                         </tr>
@@ -141,22 +141,17 @@
                                    
                                 </tbody>
                             </table>
-                        </div>
+                        </div> 
                         <div class="checkout_pagination d-flex justify-content-end mt-3">
                         	<a href="payment"><button type="button" class="btn btn-primary mt-2 ml-2" id="back_payment" >Go Back</button></a>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="purchaseinsert"><button type="button" class="btn btn-primary mt-2 ml-2" id="purchase_complete_btn">Order</button></a>
           
                         </div>     
-                        <form id="order_create_form" method="post">
-                        	<input type="hidden" name="total_price" value="${ITEM.pcQty * ITEM.pPrice}">
-                        </form> 
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
+     
     
     
     	
