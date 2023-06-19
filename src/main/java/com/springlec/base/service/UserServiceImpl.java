@@ -1,5 +1,10 @@
 package com.springlec.base.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,6 +148,75 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int admin_login(String aid, String aPassword) throws Exception {
 		return userDao.admin_login(aid, aPassword);
+	}
+
+	@Override
+	public int checkDuplicateEmail(String uEmail) throws Exception {
+		return userDao.checkDuplicateEmail(uEmail);
+	}
+
+	@Override
+	public int statusCheckEmail(String uEmail) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public int kakao_login(String uEmail) throws Exception {
+	    /*
+	     -1 : 탈퇴함
+	     0  : 존재하지 않음
+	     1  : 존재함
+	     */
+	    int result = 0;
+	    
+	    // 존재(중복) 여부 확인
+	    int exist = userDao.checkDuplicateEmail(uEmail);
+	    
+	    if(exist == 0) {
+	    	result = 0;	// 존재하지 않음
+	    	return result;
+	    } else {
+	    	int status = userDao.statusCheckEmail(uEmail);
+	    	if(status == 1) {
+	    		result = -1;	// 탈퇴함.
+	    		return result;
+	    	} else {
+	    		result = exist;
+	    	}
+	    }
+	    return result;
+	}
+
+	@Override
+	public String getUserId(String uEmail) throws Exception {
+		return userDao.getUserId(uEmail);
+	}
+
+	@Override
+	public void kakao_logout(String access_token) throws Exception {
+		String reqURL = "https://kapi.kakao.com/v1/user/logout";
+	    try {
+	        URL url = new URL(reqURL);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Authorization", "Bearer " + access_token);
+	        
+	        int responseCode = conn.getResponseCode();
+	        System.out.println("responseCode : " + responseCode);
+	        
+	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	        
+	        String result = "";
+	        String line = "";
+	        
+	        while ((line = br.readLine()) != null) {
+	            result += line;
+	        }
+	        System.out.println("결과" + result);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 

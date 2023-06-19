@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springlec.base.model.User;
@@ -66,6 +67,11 @@ public class UserController {
 	// 로그아웃
 	@RequestMapping("logout")
 	public String logout(HttpSession session) throws Exception {
+		String access_token = (String)session.getAttribute("access_token");
+		if(access_token != null) {
+			userService.kakao_logout(access_token);
+		}
+		
 		session.invalidate();
 		return "redirect:index";
 	}
@@ -215,6 +221,31 @@ public class UserController {
 			session.setAttribute("SUID", aid);
 			session.setAttribute("SUNICKNAME", "관리자");
 		}
+		return result;
+	}
+	
+	// 카카오 로그인
+	@RequestMapping("kakao_login")
+	@ResponseBody
+	public int kakao_login(HttpServletRequest request, HttpSession session) throws Exception {
+		String uEmail = request.getParameter("uEmail");
+		int result = userService.kakao_login(uEmail);
+		if(result == 1) {
+			String uid = userService.getUserId(uEmail);
+			session.setAttribute("SUID", uid);
+			String uNickName = userService.getUserNickname(uid);
+			session.setAttribute("SUNICKNAME", uNickName);
+			session.setAttribute("access_token", request.getParameter("access_token"));
+		}
+		return result;
+	}
+	
+	// 이메일 중복 체크
+	@RequestMapping("checkDuplicateEmail")
+	@ResponseBody
+	public int checkDuplicateEmail(HttpServletRequest request) throws Exception {
+		String uEmail = request.getParameter("uEmail");
+		int result = userService.checkDuplicateEmail(uEmail);
 		return result;
 	}
 	

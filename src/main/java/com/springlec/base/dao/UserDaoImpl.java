@@ -111,6 +111,21 @@ public class UserDaoImpl implements UserDao {
 	public int admin_login(String aid, String aPassword) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".admin_login");
 	}
+
+	@Override
+	public int checkDuplicateEmail(String uEmail) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".checkDuplicateEmail");
+	}
+
+	@Override
+	public int statusCheckEmail(String uEmail) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".statusCheckEmail");
+	}
+
+	@Override
+	public String getUserId(String uEmail) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".getUserId");
+	}
 	
 	
 

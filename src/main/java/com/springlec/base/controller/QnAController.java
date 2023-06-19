@@ -1,5 +1,11 @@
 package com.springlec.base.controller;
 
+/*
+ 23/06/18 : QNA 질문 리스트 불러오기 구현, 조회수 증가 기능 구현.
+ 23/06/18 : QNA 질문 작성 구현.
+ 23/06/18 : QNA 답변 작성 구현.
+ */
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
