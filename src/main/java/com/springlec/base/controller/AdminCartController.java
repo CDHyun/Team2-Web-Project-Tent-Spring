@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springlec.base.model.Cart;
 import com.springlec.base.model.Purchase;
@@ -95,7 +96,8 @@ public class AdminCartController {
 		model.addAttribute("ITEMTOTAL", total);
 		session.setAttribute("ITEMTOTAL", total);
 		
-		
+		List<Cart> recommendind = adminCartService.recommend();
+		model.addAttribute("recommend", recommendind);
 		
 		return "admin/adminCart";
 	}
@@ -132,4 +134,24 @@ public class AdminCartController {
 		
 		return ("redirect:wishlistselect");
 	}
+
+
+	@RequestMapping("/increaseQty")
+	@ResponseBody
+	public int increaseQty(HttpServletRequest request) throws Exception {
+		int result = adminCartService.increaseQty(Integer.parseInt(request.getParameter("cNo")));
+		return result;
+	}
+
+	@RequestMapping("/decreaseQty")
+	@ResponseBody
+	public int decreaseQty(HttpServletRequest request) throws Exception {
+		int result = adminCartService.decreaseQty(Integer.parseInt(request.getParameter("cNo")));
+		return result;
+	}
+
+
+
+
+
 }

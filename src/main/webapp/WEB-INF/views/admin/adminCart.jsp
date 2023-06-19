@@ -1,4 +1,3 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
@@ -60,19 +59,61 @@
 	
        	
        	
-		function increaseQuantity(cmNo) {
+       	function increaseQuantity(cmNo) {
+       		var cNo = cmNo;
 		    var quantityInput = document.getElementById("quantity_"+cmNo);
 		    var currentQuantity = parseInt(quantityInput.value);
-		    quantityInput.value = currentQuantity + 1;
+		    if (currentQuantity < 10) {
+		        quantityInput.value = currentQuantity + 1;
+		      } else{
+		    	  Swal.fire({
+		    		    text: "구매가능한 최대수량은 10개입니다.",
+		    		    icon: "error",
+		    		    showCancelButton: false,
+		    		  })
+		      }
+		    
+		    $.ajax({
+	            url: "increaseQty", // 서버의 증가시키는 기능을 처리하는 URL
+	            method: "POST",
+	            data: { cNo: cNo }, // 서버에 전달할 데이터 (여기서는 qNo를 전달)
+	            success: function(result) {
+	                if(result == 1) {
+	                	console.log("카트수량 증가 완료");
+	                }
+	            },
+	            error: function() {
+	                console.log("Error occurred while cart Updating .");
+	            }
+	        });
+		    
 		  }
 
 		  function decreaseQuantity(cmNo) {
+			  var cNo = cmNo;
 		    var quantityInput = document.getElementById("quantity_"+cmNo);
 		    var currentQuantity = parseInt(quantityInput.value);
 		    if (currentQuantity > 1) {
 		      quantityInput.value = currentQuantity - 1;
 		    }
+		    
+		    $.ajax({
+	            url: "decreaseQty", // 서버의 증가시키는 기능을 처리하는 URL
+	            method: "POST",
+	            data: { cNo: cNo }, // 서버에 전달할 데이터 (여기서는 qNo를 전달)
+	            success: function(result) {
+	                if(result == 1) {
+	                	console.log("카트수량 감소 완료");
+	                }
+	            },
+	            error: function() {
+	                console.log("Error occurred while cart Updating .");
+	            }
+	        });
+		    
 		  }
+		  
+		
 		  
 		  function buyProduct(ppCode) {
 				var pCode = ppCode;
@@ -85,6 +126,9 @@
 			  }
 		
        	
+		  
+		 
+
     </script>
         
         
@@ -152,10 +196,7 @@
                                     </tr>
                                 
                                 
-                                    <%
-                                    	//ArrayList<String> cNoList = new ArrayList<String>();
-                                    //	AdminDto dto = new AdminDto();
-                                    %>
+                                   
                                     
                                      <c:forEach items="${ITEM}" var="dto" varStatus="st">
                            				<form name="adminCartForm" action="adminCartDelete" method="post">	
@@ -177,7 +218,8 @@
                             					</div>
 										      </td>
 										      
-										       <td>&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+										       <td id="totalValue">&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+
 										     
 										     
 										      <td>

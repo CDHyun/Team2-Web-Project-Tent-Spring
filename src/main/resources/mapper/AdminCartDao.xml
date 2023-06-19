@@ -49,4 +49,17 @@
 	<delete id="deleteWish">
 		DELETE FROM wishlist where wNo = #{wNo}
 	</delete>
+	
+	<update id="increaseQty">
+		UPDATE cart SET cQty = cQty + 1 WHERE cNo = #{cNo}
+	</update>
+	
+	<update id="decreaseQty">
+		UPDATE cart SET cQty = cQty - 1 WHERE cNo = #{cNo}
+	</update>
+	
+	
+	
+	
+	
 </mapper>
