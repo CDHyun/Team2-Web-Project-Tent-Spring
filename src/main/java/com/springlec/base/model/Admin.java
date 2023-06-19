@@ -19,7 +19,7 @@ public class Admin {
 	int pStock;
 	String pfHoverName;
 	String pfHoverRealName;
-	
+	String lastfile;
 	// 주문처리에 필요한 변수
 	int pcNo;
 	String uid;
@@ -80,6 +80,20 @@ public class Admin {
 	this.nContent = nContent;
 	this.nInsertdate = nInsertdate;
 }
+
+	
+
+	public Admin(int pCode, String pBrandName,String pName, int pPrice, String pColor, int pStock, String lastfile) {
+		super();
+		this.pCode = pCode;
+		this.pName = pName;
+		this.pBrandName = pBrandName;
+		this.pPrice = pPrice;
+		this.pColor = pColor;
+		this.pStock = pStock;
+		this.lastfile = lastfile;
+	}
+
 
 
 	public Admin(int pCode, String pName, String pBrandName, int pPrice, Date pInsertdate, Date pupdatedate,
@@ -561,6 +575,18 @@ public class Admin {
 
 	public void setwNo(String wNo) {
 		this.wNo = wNo;
+	}
+
+
+
+	public String getLastfile() {
+		return lastfile;
+	}
+
+
+
+	public void setLastfile(String lastfile) {
+		this.lastfile = lastfile;
 	}
 
 	

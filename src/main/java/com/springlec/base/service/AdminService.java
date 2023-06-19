@@ -30,7 +30,7 @@ public interface AdminService {
 		
 		// 상품수정
 		public void updateProduct(String pName,String pBrandName,int pPrice,int pCode,String pColor,int pStock) throws Exception;
-		public void updateProduct1(String pName,String pBrandName,int pPrice,int pCode,String pColor,int pStock,String lastfile) throws Exception;
+		public void updateProduct1(int pCode,String pBrandName,String pName,int pPrice,String pColor,int pStock,String lastfile) throws Exception;
 		
 		// 상품삭제 
 		public void deleteProduct(int pCode, String pColor) throws Exception;
