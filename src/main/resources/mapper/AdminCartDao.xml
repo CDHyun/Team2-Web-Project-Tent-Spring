@@ -5,7 +5,7 @@
 	<select id="cartSelect" resultType="com.springlec.base.model.Cart">
 		SELECT c.pColor,c.cNo,c.pCode,pf.pfRealName, p.pName, p.pPrice, c.cQty, (c.cQty*p.pPrice)
 		FROM product p, cart c, productfile pf, user u, productoption po
-		WHERE pf.pCode = p.pCode and p.pCode = c.pCode and u.uid = c.uid and c.pColor = po.pColor and pf.pCode = c.pCode and po.pCode = p.pCode 
+		WHERE pf.pCode = p.pCode and p.pCode = c.pCode and u.uid = c.uid and c.pColor = po.pColor and pf.pCode = c.pCode and po.pCode = p.pCode and c.uid = #{uid}
 	</select>
 	
 	<select id="countSum" resultType="int">

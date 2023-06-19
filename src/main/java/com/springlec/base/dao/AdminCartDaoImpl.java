@@ -21,7 +21,7 @@ public class AdminCartDaoImpl implements AdminCartDao {
 	
 	
 	@Override
-	public List<Cart> cartSelect() throws Exception {
+	public List<Cart> cartSelect(String uid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".cartSelect");
 	}

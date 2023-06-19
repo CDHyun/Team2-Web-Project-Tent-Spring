@@ -16,9 +16,9 @@ public class AdminCartServiceImpl implements AdminCartService {
 	AdminCartDao adminCartDao;
 
 	@Override
-	public List<Cart> cartSelect() throws Exception {
+	public List<Cart> cartSelect(String uid) throws Exception {
 		// TODO Auto-generated method stub
-		return adminCartDao.cartSelect();
+		return adminCartDao.cartSelect(uid);
 	}
 
 	@Override

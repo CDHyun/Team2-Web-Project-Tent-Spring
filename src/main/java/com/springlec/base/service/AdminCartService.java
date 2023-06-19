@@ -8,7 +8,7 @@ public interface AdminCartService {
 
 	
 		//카트리스트불러오기
-		public List<Cart> cartSelect() throws Exception; 
+		public List<Cart> cartSelect(String uid) throws Exception; 
 		
 		// 카트합계금액
 		public int countSum() throws Exception;

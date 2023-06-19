@@ -27,9 +27,10 @@ public class AdminCartController {
 	
 	//카트 리스트 불러오기
 	@RequestMapping("/admincartSelect")
-	public String selectlist(Model model) throws Exception{
-		List<Cart> selectlist = adminCartService.cartSelect();
+	public String selectlist(HttpServletRequest request,HttpSession session, Model model) throws Exception{
+		List<Cart> selectlist = adminCartService.cartSelect((String)session.getAttribute("SUID"));
 		model.addAttribute("ITEM", selectlist);
+		session.setAttribute("ITEM", selectlist);
 		
 		int total = adminCartService.countSum();
 		model.addAttribute("ITEMTOTAL", total);
