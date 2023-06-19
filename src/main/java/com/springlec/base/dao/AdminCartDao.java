@@ -9,7 +9,7 @@ public interface AdminCartDao {
 	
 	
 	//카트리스트불러오기
-	public List<Cart> cartSelect() throws Exception; 
+	public List<Cart> cartSelect(String uid) throws Exception; 
 	
 	//카트 상품추천
 	public List<Cart> recommend() throws Exception; 
