@@ -32,7 +32,7 @@ public class AdminCartController {
 		model.addAttribute("ITEM", selectlist);
 		session.setAttribute("ITEM", selectlist);
 		
-		int total = adminCartService.countSum();
+		int total = adminCartService.countSum((String)session.getAttribute("SUID"));
 		model.addAttribute("ITEMTOTAL", total);
 		
 		List<Cart> recommendind = adminCartService.recommend();
@@ -85,9 +85,51 @@ public class AdminCartController {
 		  return "purchase/purchase_info";
 	}
 	
-	
+	@RequestMapping("/cart_list")
+	public String showCart(HttpServletRequest request,HttpSession session, Model model) throws Exception{
+		List<Cart> cartlist = adminCartService.cartSelect((String)session.getAttribute("SUID"));
+		model.addAttribute("ITEM", cartlist);
+		session.setAttribute("ITEM", cartlist);
+		
+		int total = adminCartService.countSum((String)session.getAttribute("SUID"));
+		model.addAttribute("ITEMTOTAL", total);
+		session.setAttribute("ITEMTOTAL", total);
+		
+		
+		
+		return "admin/adminCart";
+	}
 	 
+	// 위시리스트 헤더 보여주기
+	@RequestMapping("/wishlistselect")
+	public String showWishlist(HttpServletRequest request,HttpSession session, Model model) throws Exception{
+		List<Cart> dto = adminCartService.wishlistSelect((String)session.getAttribute("SUID"));
+		model.addAttribute("wishlist", dto);
+		return ("cart/wishlist");
+	}
 	
 	
+	@RequestMapping("/wishlists")
+	public String wish(HttpServletRequest request,HttpSession session, Model model) throws Exception{
+		adminCartService.insertWish((String)session.getAttribute("SUID"),Integer.parseInt(request.getParameter("pCode")),request.getParameter("pColor"));
+		
+		return ("redirect:wishlistselect");
+		
+	}
 	
+	
+	@RequestMapping("/wishlistInsertToCart")
+	public String wishToCart(HttpServletRequest request) throws Exception{
+		adminCartService.wishCart(request.getParameter("wNo"));
+		
+		return ("redirect:wishlistselect");
+	}
+	
+	
+	@RequestMapping("/wishlistDeletes")
+	public String deleteWish(HttpServletRequest request) throws Exception{
+		adminCartService.deleteWish(request.getParameter("wNo"));
+		
+		return ("redirect:wishlistselect");
+	}
 }

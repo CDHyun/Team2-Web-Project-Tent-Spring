@@ -11,7 +11,7 @@
 	<select id="countSum" resultType="int">
 		SELECT SUM(subquery.totalPrice) FROM (SELECT c.cQty * p.pPrice AS totalPrice FROM product p, cart c, productfile pf, user u, 
 		productoption po WHERE pf.pCode = p.pCode AND p.pCode = c.pCode AND u.uid = c.uid AND c.pColor = po.pColor AND pf.pCode = c.pCode
-		AND po.pCode = p.pCode ) AS subquery
+		AND po.pCode = p.pCode and c.uid = #{uid} ) AS subquery 
 	</select>
 	
 	<delete id="deleteCart">
@@ -30,4 +30,23 @@
 	<insert id="addCart">
 		INSERT INTO cart (uid, pCode, cQty, pColor) VALUES (#{uid},#{pCode},#{pcQty},#{pColor} )
 	</insert>
+	
+	<select id="wishlistSelect" resultType="com.springlec.base.model.Cart" >
+		SELECT w.pColor as pColor ,w.wNo as wNo ,w.pCode as pCode ,pf.pfRealName as pfRealName , p.pName as pName ,p.pBrandName as pBrandName , p.pPrice as pPrice
+		FROM product p, wishlist w, productfile pf, user u, productoption po
+		WHERE pf.pCode = p.pCode and p.pCode = w.pCode and u.uid = w.uid and w.pColor = po.pColor and pf.pCode = w.pCode and po.pCode = p.pCode and u.uid = #{uid}
+		
+	</select>
+	
+	<insert id="insertWish">
+		INSERT INTO wishlist (uid, pCode, pColor) VALUES (#{uid}, #{pCode}, #{pColor})
+	</insert>
+	
+	<insert id="wishCart">
+		INSERT into cart (uid, pColor, pCode) SELECT w.uid, w.pColor,w.pCode FROM wishlist w WHERE wNo = #{wNo}
+	</insert>
+	
+	<delete id="deleteWish">
+		DELETE FROM wishlist where wNo = #{wNo}
+	</delete>
 </mapper>

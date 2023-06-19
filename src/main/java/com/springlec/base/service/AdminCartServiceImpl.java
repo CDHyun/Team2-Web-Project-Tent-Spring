@@ -22,9 +22,9 @@ public class AdminCartServiceImpl implements AdminCartService {
 	}
 
 	@Override
-	public int countSum() throws Exception {
+	public int countSum(String uid) throws Exception {
 		// TODO Auto-generated method stub
-		return adminCartDao.countSum();
+		return adminCartDao.countSum(uid);
 	}
 
 	@Override
@@ -43,5 +43,29 @@ public class AdminCartServiceImpl implements AdminCartService {
 	public void addCart(String uid, int pCode, int pcQty, String pColor) throws Exception {
 		// TODO Auto-generated method stub
 		adminCartDao.addCart(uid, pCode, pcQty, pColor);
+	}
+
+	@Override
+	public List<Cart> wishlistSelect(String uid) throws Exception {
+		// TODO Auto-generated method stub
+		return adminCartDao.wishlistSelect(uid);
+	}
+
+	@Override
+	public void insertWish(String uid, int pCode, String pColor) throws Exception {
+		// TODO Auto-generated method stub
+		adminCartDao.insertWish(uid, pCode, pColor);
+	}
+
+	@Override
+	public void wishCart(String wNo) throws Exception {
+		// TODO Auto-generated method stub
+		adminCartDao.wishCart(wNo);
+	}
+
+	@Override
+	public void deleteWish(String wNo) throws Exception {
+		// TODO Auto-generated method stub
+		adminCartDao.deleteWish(wNo);
 	}
 }

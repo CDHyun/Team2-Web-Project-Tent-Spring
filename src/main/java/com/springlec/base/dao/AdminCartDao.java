@@ -16,12 +16,25 @@ public interface AdminCartDao {
 	
 	
 	// 카트합계금액
-	public int countSum() throws Exception;
+	public int countSum(String uid) throws Exception;
 	
 	// 카트항목삭제
 	public void deleteCart(int cNo) throws Exception;
 	
 	// 상품디테일에서 카트에 상품담기
 	public void addCart(String uid, int pCode, int pcQty, String pColor) throws Exception;
+	
+	// 위시리스트 보여주기
+	public List<Cart> wishlistSelect(String uid) throws Exception; 
+	
+	// 위시리스트에 담기
+	public void insertWish(String uid , int pCode, String pColor) throws Exception;
+	
+	// 위시리스트에서 카트로 이동
+	public void wishCart(String wNo) throws Exception;
+	
+	// 위시리스트 항목삭제
+	public void deleteWish(String wNo) throws Exception;
+
 	
 }
