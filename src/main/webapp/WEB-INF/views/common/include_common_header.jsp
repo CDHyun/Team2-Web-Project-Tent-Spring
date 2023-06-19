@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="css/shop/user.css">
 <!-- Header Area -->
 <header class="header_area">
@@ -755,7 +756,7 @@ function emptySessionUser() {
 									class="icofont-heart"></i></a>
 							</c:if>
 							<c:if test="${!empty SUID}">
-								<a href="wishlistselect.do" class="wishlist-btn"><i
+								<a href="wishlistselect" class="wishlist-btn"><i
 									class="icofont-heart"></i></a>
 							</c:if>
 						</div>
@@ -768,7 +769,7 @@ function emptySessionUser() {
 									<a onclick="emptySessionUser()"><i class="icofont-cart"></i></a>
 								</c:if>
 								<c:if test="${!empty SUID}">
-									<a href="cart_list.do"><i class="icofont-cart"></i><span
+									<a href="cart_list"><i class="icofont-cart"></i><span
 										class="cart_quantity">${cartList.size()}</span></a>
 								</c:if>
 							</div>
@@ -804,20 +805,15 @@ function emptySessionUser() {
 									<div class="cart-pricing my-4">
 										<ul>
 											<li><span>Sub Total:</span> <%-- <span>&#8361;<s:eval expression="new java.text.DecimalFormat('#,##0').format(tot_price)"/></span> --%>
-												<span id="header_cart_sub_tot">&#8361;${ITEMTOTAL}</span></li>
-											<li><span>Shipping:</span> <span
-												id="header_cart_shipping"> <c:if
-														test="${tot_price < 50000 && tot_price > 0}">
-			                                        	&#8361;<s:eval expression="new java.text.DecimalFormat('#,##0').format(2500)" />
-														<c:set var="shipping_price" value="2500" />
-													</c:if> <c:if test="${(tot_price >= 50000) || tot_price == 0}">
-			                                        	&#8361;0
-			                                        	<c:set var="shipping_price"
-															value="0" />
-													</c:if>
+												<span id="header_cart_sub_tot">&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL }" type="number" pattern="#,###"></fmt:formatNumber></span></li>
+											<li><span>Shipping:</span> <span id="header_cart_shipping"> 
+											<c:set var="shipping" value="${ITEMTOTAL >= 500000 ? 0 : 3000}" />
+												&#8361;&nbsp;<fmt:formatNumber value="${shipping}" type="number"></fmt:formatNumber>
 											</span></li>
-											<c:set var="all_total" value="${tot_price + shipping_price}" />
-											<li><span>Total:</span> <span id="header_cart_tot">&#8361;<s:eval expression="new java.text.DecimalFormat('#,##0').format(all_total)" /></span></li>
+											<c:set var="all_total" value="${ITEMTOTAL*1.1+shipping }" />
+											<li><span>Total:</span> 
+											<span id="header_cart_tot">&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL*1.1+shipping }" type="number" pattern="#,###"></fmt:formatNumber>
+											</span></li>
 										</ul>
 									</div>
 									<div class="cart-box">

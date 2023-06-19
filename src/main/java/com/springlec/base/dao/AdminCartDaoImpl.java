@@ -32,7 +32,7 @@ public class AdminCartDaoImpl implements AdminCartDao {
 
 
 	@Override
-	public int countSum() throws Exception {
+	public int countSum(String uid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".countSum");
 	}
@@ -68,5 +68,49 @@ public class AdminCartDaoImpl implements AdminCartDao {
 	public void addCart(String uid, int pCode, int pcQty, String pColor) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.insert(nameSpace + ".addCart"); 
+	}
+
+
+
+
+
+
+	@Override
+	public List<Cart> wishlistSelect(String uid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".wishlistSelect");
+	}
+
+
+
+
+
+
+	@Override
+	public void insertWish(String uid, int pCode, String pColor) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".insertWish");
+	}
+
+
+
+
+
+
+	@Override
+	public void wishCart(String wNo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".wishCart");
+	}
+
+
+
+
+
+
+	@Override
+	public void deleteWish(String wNo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(nameSpace + ".deleteWish");
 	}
 }
