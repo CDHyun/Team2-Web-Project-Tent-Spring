@@ -66,8 +66,8 @@ public class AdminCartController {
 	public String showUserInfo(HttpServletRequest request,Model model, HttpSession session) throws Exception{
 		String[] cNoArray = request.getParameterValues("cNoArrayInput");
 		  String cNoArrayString = Arrays.toString(cNoArray);
+		  System.out.println(cNoArrayString);
 		  model.addAttribute("cNoArrayString",cNoArrayString );
-		  
 		  
 		  Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));
 	       model.addAttribute("user", selectlist);
@@ -85,6 +85,8 @@ public class AdminCartController {
 		  return "purchase/purchase_info";
 	}
 	
+	
+	 
 	
 	
 	
