@@ -202,10 +202,8 @@
 	                            <table class="table mb-0 table-bordered" style="width: 100%; height: 100%">
 	                                <thead>
 	                                    <tr>
-	                                        <th scope="col" class="board_title" style="width: 50%;">
-	                                        <div class="form-group">
-	                                        	<input type="text" name="bTitle" id="b_title_txt" placeholder="Title" style="vertical-align: middle; width: 100%; "/>
-	                                        </div>
+	                                        <th scope="col" class="board_title" style="vertical-align: middle; white-space: nowrap;">
+	                                        	<input type="text" class="form-control" name="bTitle" id="b_title_txt" placeholder="Title"/>
 	                                        </th>
 	                                        <th scope="col" class="board_date" style="vertical-align: middle; white-space: nowrap;"><fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd' /></th>
 	                                        <th scope="col" class="board_writer" style="vertical-align: middle; white-space: nowrap;">${SUNICKNAME}</th>
@@ -229,7 +227,7 @@
                   				<input type="hidden" name="uid" value="${SUID}" />
                         </div>
                     </div>
-                    	<div id="qna_btn_container">
+                    	<div id="qna_btn_container" style="text-align: right;">
 							<input class="btn btn-secondary btn-sm board_btn new_write" type="button" value="등록"/>&nbsp;&nbsp;&nbsp;
 							<input class="btn btn-secondary btn-sm board_btn list" type="button" pageno="${pageno}" value="목록" />
                     	</div>

@@ -64,11 +64,11 @@
                             <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="board_no">번호</th>
-                                        <th scope="col" class="board_title">제목</th>
-                                        <th scope="col" class="board_writer">작성자</th>
-                                        <th scope="col" class="board_date">날짜</th>
-                                        <th scope="col" class="board_count">조회수</th>
+                                        <th scope="col" class="board_no" style="vertical-align: middle; text-align: center; white-space: nowrap;">번호</th>
+                                        <th scope="col" class="board_title" style="vertical-align: middle; text-align: center; white-space: nowrap;">제목</th>
+                                        <th scope="col" class="board_writer" style="vertical-align: middle; text-align: center; white-space: nowrap;">작성자</th>
+                                        <th scope="col" class="board_date" style="vertical-align: middle; text-align: center; white-space: nowrap;">날짜</th>
+                                        <th scope="col" class="board_count" style="vertical-align: middle; text-align: center; white-space: nowrap;">조회수</th>
                                     </tr>
                                 </thead>
                                 <tbody id="qna_list_tbody">

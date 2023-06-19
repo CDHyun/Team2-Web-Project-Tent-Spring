@@ -16,7 +16,7 @@
     <!-- include_common_top -->
 	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
-    <link rel="stylesheet" href="css/shop/board.css">
+    <link rel="stylesheet" href="css/shop/qna.css">
 
 	<script type="text/javascript">
 	
@@ -83,7 +83,7 @@
 	                                <thead>
 	                                    <tr>
 	                                        <th scope="col" class="board_title"  style="vertical-align: middle;">
-	                                        	<input type="text" name="qTitle" id="q_title_txt" placeholder=" title" style=" height: 100%; width: 100%"/>
+	                                        	<input type="text" class="form-control" name="qTitle" id="q_title_txt" placeholder=" title" style=" height: 100%; width: 100%"/>
 	                                        </th>
 	                                        <th scope="col" class="board_date" style="vertical-align: middle;"><fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd' /></th>
 	                                        <th scope="col" class="board_writer" style="vertical-align: middle;">${SUNICKNAME}</th>
@@ -97,19 +97,19 @@
 	                                <tbody>
 	                                    <tr>
 	                                        <td id="qna_content_td" colspan="4">
-	                                        	<textarea name="qContent" id="q_content_area" placeholder=" content"></textarea>
+	                                        	<textarea id="q_content_area" name="qContent" placeholder=" content"></textarea>
 	                                        </td>
 	                                    </tr>
 	                                </tbody>
 	                            </table>
                 			</form>
-                      				<input type="hidden" name="pageno" value="${pageno}" />
+                      				<input type="hidden" name="pageNo" value="${pageNo}" />
                       				<input type="hidden" name="uid" value="${SUID}" />
                         </div>
                     </div>
                     	<div id="qna_btn_container" style="text-align: right;">
 							<input class="btn btn-secondary btn-sm qna_btn new_write" type="button" value="등록"/>
-							<input class="btn btn-secondary btn-sm qna_btn list" type="button" pageno="${pageno}" value="목록" />
+							<input class="btn btn-secondary btn-sm qna_btn list" type="button" pageNo="${pageNo}" value="목록" />
                     	</div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<jsp:include page="../common/include_common_script.jsp"/>
 	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-	<script src="js/shop/question.js"></script>
+	<script src="js/shop/qna.js"></script>
 
 </body>
 
