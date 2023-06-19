@@ -77,7 +77,7 @@
 	</select>
 	 <!-- 주문상태  -->
 	 <update id="changeStatus">
-	 	UPDATE product p, productoption po SET pDeleteDate=now() ,pDeleted =1 WHERE p.pCode = #{pCode} and po.pColor = #{pColor}
+	 	update purchase pc,product p set pc.pcStatus =#{pcStatus} where p.pCode= pc.pCode and pc.pcNo = #{pcNo}
 	 </update>
 	 
 	 
