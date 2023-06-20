@@ -12,15 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 23/06/17 : 회원정보 조회(My Account), 비밀번호 확인 구현 -> 23/06/17 : 완료.
 23/06/17 : 회원정보 변경(이름, 닉네임, 비밀번호, 전화번호, 이메일), 회원 탈퇴 구현 시작 -> 23/06/17 : 완료.
 23/06/17 : 배송지 페이지(추가, 수정, 삭제) 구현 시작 -> 23/06/17 추가, 수정 완료 ....
+23/06/19 : 카카오 로그인 구현 시작 -> 23/06/19 :  완료
+23/06/20 : 이메일 인증 구현 중...
 */
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springlec.base.model.User;
+import com.springlec.base.service.MailSendService;
 import com.springlec.base.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +35,10 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	MailSendService mailSendService;
+	
 	
 	// 회원 가입
 	@RequestMapping("sign_up")
@@ -247,6 +255,14 @@ public class UserController {
 		String uEmail = request.getParameter("uEmail");
 		int result = userService.checkDuplicateEmail(uEmail);
 		return result;
+	}
+	
+	// 이메일 인증
+	@RequestMapping("mailCheck")
+	@ResponseBody
+	public String mailCheck(String email) {
+		System.out.println("이메일 인증 요청 : " + email);
+		return mailSendService.joinEmail(email);
 	}
 	
 	

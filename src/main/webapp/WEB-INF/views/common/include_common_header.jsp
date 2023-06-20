@@ -13,6 +13,18 @@
   
 <script type="text/javascript">
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'center-center',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: function(toast) {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+});
+
 // 로그인 확인
 function loginCheck() {
     var luid = $("#luid").val();
@@ -247,6 +259,7 @@ function emptySessionUser() {
 	            icon: 'warning',
 	            title: "해당 이메일은 사용 불가능합니다."
 	        });
+	        hideMailCheckDiv();
 	        form.ruid.select();
 	        return;
 	    }
@@ -255,6 +268,7 @@ function emptySessionUser() {
 	            icon: 'warning',
 	            title: "이메일을 입력해주세요."
 	        });
+	        hideMailCheckDiv();
 	        return;
 	    }
 	    console.log(ruid);
@@ -266,16 +280,21 @@ function emptySessionUser() {
 	        },
 	        success: function(result) {
 	            console.log(result);
-	            if (result == 0) {
+	            if (result === 0) {
 	                Swal.fire({
-	                    icon: 'warning',
-	                    title: "사용 가능한 이메일입니다."
+	                  icon: 'success',
+	                  title: "사용 가능한 이메일입니다.",
+	                  text: "잠시 후 인증번호가 발송됩니다."
+	                }).then(function() {
+                		showMailCheckDiv();
+                		mailCheck();
 	                });
-	            } else {
+	              } else {
 	                Swal.fire({
 	                    icon: 'warning',
 	                    title: "중복되는 이메일입니다."
 	                });
+	                hideMailCheckDiv();
 	            }
 	        },
 	        error: function() {
@@ -633,7 +652,118 @@ function emptySessionUser() {
             alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
         });
     }
+    
+    
+    var code;
+    function mailCheck() {
+		const email = $('#ruEmail').val() // 이메일 주소값 얻어오기!
+		console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
+		const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+		$.ajax({
+			type : 'post',
+			url : 'mailCheck',
+			data: {
+			    email : email
+			  },
+			success : function (data) {
+				console.log("data : " +  data);
+				checkInput.attr('disabled',false);
+				code = data;
+				Toast.fire({
+				    icon: 'success',
+				    title: '인증번호가 전송되었습니다.',
+				    timerProgressBar: true,
+				    timer: 3000, // 3초 후에 자동으로 사라짐
+				    showConfirmButton: false
+				});
+				startTimer()
+			}			
+		}); // end ajax
+	} // end send eamil
+	
+	function showMailCheckDiv() {
+		  var mailCheckDiv = document.querySelector('.mail-check-box');
+		  var mailCheckInput = document.querySelector('.mail-check-input');
 
+		  mailCheckDiv.style.display = 'block';
+		  mailCheckInput.disabled = false;
+		}
+
+		function hideMailCheckDiv() {
+		  var mailCheckDiv = document.querySelector('.mail-check-box');
+		  var mailCheckInput = document.querySelector('.mail-check-input');
+
+		  mailCheckDiv.style.display = 'none';
+		  mailCheckInput.disabled = true;
+		}
+
+	
+	// 인증번호 비교 
+	function codeCheck(){
+	    const inputCode = $('#confirmCode').val();
+	    const $resultMsg = $('#mail-check-warn');
+	    if (inputCode === code) {
+	    	 Swal.fire({
+	             icon: 'success',
+	             title: '인증번호가 일치합니다!',
+	             confirmButtonText: 'OK',
+	         });
+	    	clearInterval(timerInterval);
+	    	document.getElementById('timer').style.display = 'none';
+         	$('#registerBtn').prop('disabled', false);
+		    $('#confirmCode').prop('readonly', true);
+	        $('#mail-Check-Btn').attr('disabled', true);
+	        $('#ruEmail').attr('readonly', true);
+	    } else {
+         	$('#registerBtn').prop('disabled', true);
+         	Swal.fire({
+	             icon: 'warning',
+	             title: '인증번호가 일치 하지 않습니다.',
+	             text: '인증번호를 확인 해주세요.',
+	             confirmButtonText: 'OK'
+	         });
+	    }
+	}
+
+	let minutesRemaining = 0;
+	let secondsRemaining = 5;
+	let timerInterval;
+
+	function startTimer() {
+	  timerInterval = setInterval(updateTimer, 1000);
+	}
+
+
+	function updateTimer() {
+	  document.getElementById('minutes').textContent = "남은 시간 : " + minutesRemaining.toString().padStart(2, '0') + "분 ";
+	  document.getElementById('seconds').textContent = secondsRemaining.toString().padStart(2, '0') + "초";
+
+	  if (minutesRemaining > 0 || secondsRemaining > 0) {
+	    if (secondsRemaining > 0) {
+	      secondsRemaining--;
+	    } else {
+	      minutesRemaining--;
+	      secondsRemaining = 59;
+	    }
+	  } else {
+	    // Swal 창을 한 번만 표시하고 타이머를 멈추도록 수정
+        clearInterval(timerInterval); // 타이머 인터벌 멈추기
+	    Swal.fire({
+	      icon: 'warning',
+	      title: '제한 시간 초과',
+	      text: '이메일 인증을 다시 시도해주세요.',
+	      confirmButtonText: '확인',
+	    }).then((result) => {
+	      if (result.isConfirmed) {
+	        document.getElementById('mail-check-box').style.display = 'none';
+	      }
+	    });
+	    return;
+	  }
+	}
+
+	document.getElementById('timer').style.display = 'block';
+	startTimer();
 </script>
 
 
@@ -899,15 +1029,10 @@ function emptySessionUser() {
 				</form>
 				<!-- Kakao Login -->
 				<!-- REST API : dd7da6e9a1d0fbb61bee671f56f3ddd4 -->
-				<a id="btn-kakao-login" onclick="kakao_login()" >
-					<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="200" alt="카카오 로그인 버튼"/>
-				</a>
-				<a onclick="kakao_logout()">카카오 로그아웃</a>
-				<form id="form-kakao-login" method="post" action="">
-		    			<input type="hidden" name="email"/>
-		    			<input type="hidden" name="name"/>
-		    			<input type="hidden" name="img"/>
-		    		</form>
+				<br/>
+				<div class="button-container">
+				<input type="image" class="btn btn-light" src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오 로그인" onclick="kakao_login()">
+				</div>
 				<!-- Forget Password -->
 				<div class="forget_pass mt-15" style="text-align: center;"><a href="#">비밀번호를 잊으셨나요?</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="#" onclick="openSignUpModal()">아직 회원이 아니신가요?</a>
@@ -971,6 +1096,17 @@ function emptySessionUser() {
 							 <button type="button" class="btn btn-primary btn-sm" onclick="checkDuplicateEmail()" style="margin-left: 15px;">Check</button>
 						</div>
 					</div>
+						<div id="mail-check-box" class="mail-check-box" style="display: none;">
+							<div class="form-group">
+								<div class="input-form-group" style="display: flex; align-items: center;">
+									<input id="confirmCode" class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+									<br/>
+									<button type="button" class="btn btn-primary btn-sm" id="mail-Check-Btn" onclick="codeCheck()" style="margin-left: 15px;">Confirm</button>
+								</div>
+								<br/>
+								<div id="timer"><span id="minutes"></span><span id="seconds"></span></div>
+						</div>
+					</div>
 					<div class="form-group">
 						<div class="input-form-group" style="display: flex; align-items: center;">
 							<input type="text" class="form-control address" id="ruAddress" name="ruAddress" placeholder="Address">
@@ -984,7 +1120,7 @@ function emptySessionUser() {
 						<input type="text" class="form-control postcode" id="ruZipcode" name="ruZipcode" placeholder="Zipcode" readonly="readonly">
 					</div>
 					<div class="button-container">
-						<button type="button" class="btn btn-primary btn-sm" onclick="registerCheck()">Register</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" id="registerBtn" name="registerBtn" class="btn btn-primary btn-sm" onclick="registerCheck()" disabled="disabled">Register</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button type="button" class="btn btn-secondary btn-sm" id="rcancelBtn" data-dismiss="modal">Cancle</button>
 					</div>
 				</form>
