@@ -45,14 +45,19 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public List<Purchase> purchaseList(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
-			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return purchaseDao.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay, index_no);
-	}
+//	public List<Purchase> purchaseList(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
+//			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no)
+//			throws Exception {
+//		// TODO Auto-generated method stub
+//		return purchaseDao.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay, index_no);
+//	}
 
-
+	  public List<Purchase> getPurchaseListByPage(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
+	            String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int page, int itemsPerPage) throws Exception {
+	        int startIndex = (page - 1) * itemsPerPage;
+	        return purchaseDao.purchaseListByPage(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus,
+	                pfRealName, pfHoverRealName, pcPay, startIndex, itemsPerPage);
+	    }
 
 	@Override
 	public List<Purchase> getProductInfo(int pCode) throws Exception {
@@ -103,9 +108,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public int itemCount() throws Exception {
+	public int getItemCount(String uid) throws Exception {
 		// TODO Auto-generated method stub
-		return purchaseDao.itemCount();
+		return purchaseDao.getItemCount(uid);
 	}
 
 

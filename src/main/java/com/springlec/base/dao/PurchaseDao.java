@@ -15,8 +15,15 @@ public interface PurchaseDao {
 	
 	public void purchaseInsert(String uid, int pCode, int pcQty, String pcDM, String pColor, String pcPay) throws Exception;
 	
-	public List<Purchase> purchaseList (String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
-			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no) throws Exception; 
+//	public List<Purchase> purchaseList (String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
+//			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no) throws Exception; 
+	
+	
+	
+    // 페이징 처리를 위한 메서드
+    public List<Purchase> purchaseListByPage(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
+            String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int startIndex, int itemsPerPage) throws Exception;
+	
 	
 	public Purchase purchaseDetailList(String uid, int pcNo) throws Exception;
 	
@@ -34,7 +41,7 @@ public interface PurchaseDao {
 	
 	public void decreaseStock(int pStock, int pCode, String pColor);
 	
-	public int itemCount() throws Exception;
+	public int getItemCount(String uid) throws Exception;
 	
 
 	

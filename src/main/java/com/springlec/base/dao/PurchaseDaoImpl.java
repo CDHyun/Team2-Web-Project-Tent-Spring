@@ -33,12 +33,21 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		sqlSession.insert(nameSpace + ".purchaseInsert"); 
 	}
 	@Override
-	public List<Purchase> purchaseList(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
-			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(nameSpace + ".purchaseList");
-	}
+//	public List<Purchase> purchaseList(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
+//			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no)
+//			throws Exception {
+//		// TODO Auto-generated method stub
+//		return sqlSession.selectList(nameSpace + ".purchaseList");
+//	}
+	
+	
+	 public List<Purchase> purchaseListByPage(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
+	            String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int startIndex, int itemsPerPage) throws Exception {
+	       
+	        return sqlSession.selectList(nameSpace + "purchaseListByPage");
+	    }
+
+	
 	
 	
 	@Override
@@ -83,7 +92,7 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		sqlSession.update(nameSpace+".decreaseStock");
 	}
 	@Override
-	public int itemCount() throws Exception {
+	public int getItemCount(String uid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".itemCount");
 	}

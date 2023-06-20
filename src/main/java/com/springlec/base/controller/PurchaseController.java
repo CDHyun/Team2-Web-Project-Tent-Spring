@@ -77,26 +77,13 @@ public class PurchaseController {
 		session.setAttribute("cNoArrayString", cNoArrayString);
         
         
-        
-        
-        
-        
-        
-        
         return "purchase/purchase_info";
   
-    
-    
     
     
     }
 
    
-    
-    
-    
-    
-    
     
     // payment 값 저장하기
     @RequestMapping("/payment")
@@ -198,18 +185,20 @@ public class PurchaseController {
         if (vpage == null) {
             vpage = "1";
         }
+        System.out.println("uid"+ uid);
         int v_page = Integer.parseInt(vpage);
-        int index_no = (v_page - 1) * 7;
+        int itemsPerPage = 7;
+        int startIndex = (v_page - 1) * itemsPerPage;
 
-        int dcount = purchaseService.itemCount();
-        model.addAttribute("d_count", dcount);
-
-        List<Purchase> orderlist = purchaseService.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay, index_no);
-        model.addAttribute("purchase", orderlist);
+        int itemCount = purchaseService.getItemCount(uid);
+        model.addAttribute("dcount", itemCount);
+System.out.println("itemCount" + itemCount );
+        List<Purchase> orderList = purchaseService.getPurchaseListByPage(uid, uPhone, pcNo, pPrice, pcQty, pName,
+                pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay, v_page, itemsPerPage);
+        model.addAttribute("purchase", orderList);
 
         return "purchase/purchase_list";
     }
-    
 
     private int parseIntegerParameter(String parameter) {
         return parameter != null ? Integer.parseInt(parameter) : 0;

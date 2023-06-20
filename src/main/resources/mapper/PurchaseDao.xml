@@ -26,12 +26,12 @@
 		WHERE u.uid = pc.uid and u.uid = #{uid}
 	</select>
 
-	<select id="purchaseList" resultType="com.springlec.base.model.Purchase">
+	<select id="purchaseListByPage" resultType="com.springlec.base.model.Purchase">
 		SELECT pc.pcNo, p.pCode, p.pName, p.pPrice, pc.pcQty, pc.pcStatus, pc.pcInsertDate, u.uPhone, pf.pfRealName, pf.pfHoverRealName, pcPay
 		FROM product p, user u, purchase pc, productfile pf
 		WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND u.uid = #{uid}
 		ORDER BY pc.pcInsertDate DESC
-		LIMIT #{index_no}, 7
+		LIMIT #{startIndex},7
 	</select>
 	
 	<select id="getProductInfo" resultType="com.springlec.base.model.Purchase">
@@ -91,8 +91,8 @@
 	
 	
 	<!-- 페이징 위한 카운트 -->
-	<select id="itemCount" resultType="int">
-		SELECT COUNT(*) AS dCount
+	<select id="getItemCount" resultType="int">
+		SELECT COUNT(*) AS dCount 
 		FROM product p, user u, purchase pc, productfile pf
 		WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND pc.pcDeleted = 0 AND u.uid = #{uid}
 	</select> 

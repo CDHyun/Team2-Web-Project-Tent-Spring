@@ -1,3 +1,4 @@
+<%@page import="ch.qos.logback.core.recovery.ResilientSyslogOutputStream"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -26,7 +27,7 @@
             text-align: center;
         }
 
-       /*  .pagination .page-link {
+        /* .pagination .page-link {
             color: #007bff;
             border: 1px solid #007bff;
             background-color: #fff;
@@ -115,37 +116,34 @@
                                 <tbody id="order_list_tbody">
                                 <c:if test="${purchase.size() == 0}">
                                     <tr>
-                                        <td colspan="5">등록된 주문목록이 없습니다 🙂</td>
+                                        <td colspan="5">등록된 주문 목록이 없습니다 🙂</td>
                                     </tr>
                                 </c:if>
                                 <c:forEach items="${purchase}" var="purchase">
                                     <tr>
                                         <td>${purchase.pcNo}</td>
                                         <td>${purchase.pcInsertDate}</td>
-                                        <c:if test="${purchase.pcStatus == 0}">
-                                            <td><span class="bigshop-label bigshop-label-info">배송
-													준비중</span></td>
-                                        </c:if>
-                                        <c:if test="${purchase.pcStatus == -1}">
-                                            <td><span class="bigshop-label bigshop-label-danger">주문
-													취소</span></td>
-                                        </c:if>
-                                        <c:if test="${purchase.pcStatus == 1}">
-                                            <td><span class="bigshop-label bigshop-label-warning">배송중</span>
-                                            </td>
-                                        </c:if>
-                                        <c:if test="${purchase.pcStatus == 2}">
-                                            <td><span class="bigshop-label bigshop-label-success">배송
-													완료</span></td>
-                                        </c:if>
-                                        <td><fmt:formatNumber
-                                                value="${purchase.pcQty * purchase.pPrice}" type="number"
-                                                pattern="#,###"></fmt:formatNumber></td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${purchase.pcStatus == 0}">
+                                                    <span class="bigshop-label bigshop-label-info">배송 준비중</span>
+                                                </c:when>
+                                                <c:when test="${purchase.pcStatus == -1}">
+                                                    <span class="bigshop-label bigshop-label-danger">주문 취소</span>
+                                                </c:when>
+                                                <c:when test="${purchase.pcStatus == 1}">
+                                                    <span class="bigshop-label bigshop-label-warning">배송 중</span>
+                                                </c:when>
+                                                <c:when test="${purchase.pcStatus == 2}">
+                                                    <span class="bigshop-label bigshop-label-success">배송 완료</span>
+                                                </c:when>
+                                            </c:choose>
+                                        </td>
+                                        <td><fmt:formatNumber value="${purchase.pcQty * purchase.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
                                         <td>
                                             <form action="purchaseDetailView?pcNo=${purchase.pcNo}" method="post">
                                                 <input type="hidden" name="pcNo" value="${purchase.pcNo}">
-                                                <input type="submit" name="view"
-                                                       class="btn btn-secondary btn-sm view-btn" value="view">
+                                                <input type="submit" name="view" class="btn btn-secondary btn-sm view-btn" value="View">
                                             </form>
                                         </td>
                                     </tr>
@@ -155,32 +153,31 @@
                         </div>
                     </div>
                 </div>
-              
-<div class="shop_pagination_area mt-30">
-    <nav aria-label="Page navigation">
-        <ul class="pagination pagination-sm justify-content-center">
-            <% int currentPage = 1;
-            String currentPageParam = request.getParameter("vpage");
-            if (currentPageParam != null && !currentPageParam.isEmpty()) {
-                currentPage = Integer.parseInt(currentPageParam);
-            }
+                <div class="shop_pagination_area mt-30">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-sm justify-content-center">
+                            <% int currentPage = 1;
+                            String currentPageParam = request.getParameter("vpage");
+                            if (currentPageParam != null && !currentPageParam.isEmpty()) {
+                                currentPage = Integer.parseInt(currentPageParam);
+                            }
 
-            int lastpage = (int) request.getAttribute("d_count");
-            int itemsPerPage = 7; // 페이지당 항목 개수
-            int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
+                            int lastPage = (int) request.getAttribute("dcount");
+                            int itemsPerPage = 7; // 페이지당 항목 개수
+                            int totalPages = (int) Math.ceil(lastPage / (double) itemsPerPage);
+                        
+                            for (int i = 1; i <= totalPages; i++) {
+                                if (i == currentPage) {
+                                    out.print("<li class='page-item active'><a class='page-link' href='purchase_list?vpage=" + i + "'>" + i + "</a></li>");
+                                } else {
+                                    out.print("<li class='page-item'><a class='page-link' href='purchase_list?vpage=" + i + "'>" + i + "</a></li>");
+                                }
+                            }
+                            %>
+                        </ul>
+                    </nav>
+                </div>
 
-            for (int i = 1; i <= totalPages; i++) {
-                if (i == currentPage) {
-                    out.print("<li class='page-item active'><a class='page-link' href='purchase_list?vpage=" + i + "'>" + i + "</a></li>");
-                } else {
-                    out.print("<li class='page-item'><a class='page-link' href='purchase_list?vpage=" + i + "'>" + i + "</a></li>");
-                }
-            }
-            %>
-        </ul>
-    </nav>
-</div>
-    
                 <c:if test="${purchase.size() != 0}">
                     <button type="button" class="btn btn-outline-primary mb-1" id="order_all_delete_btn">
                         <a href="index">Check</a>
