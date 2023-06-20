@@ -41,4 +41,12 @@ public interface AdminCartDao {
 	public int decreaseQty(int cNo) throws Exception;
 
 	
+	
+	
+	
+	
+	
+	
+	
+	
 }

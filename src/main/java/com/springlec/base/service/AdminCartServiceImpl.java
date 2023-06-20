@@ -79,6 +79,15 @@ public class AdminCartServiceImpl implements AdminCartService {
 		// TODO Auto-generated method stub
 		return adminCartDao.decreaseQty(cNo);
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -71,8 +71,8 @@ public class AdminCartController {
 		  model.addAttribute("cNoArrayString",cNoArrayString );
 		  session.setAttribute("cNoArrayString",cNoArrayString);
 		
-		  
-		 
+		  List<Cart> cartlist = adminCartService.cartSelect((String)session.getAttribute("SUID"));
+		  session.setAttribute("ITEM", cartlist);
 		 
 		 
 		  Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));

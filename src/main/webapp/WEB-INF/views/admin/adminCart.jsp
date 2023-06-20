@@ -60,14 +60,19 @@
        	
        	
        	function increaseQuantity(cmNo) {
-       	    var cNo = cmNo;
+       		var cNo = cmNo;
        	    var quantityInput = document.getElementById("quantity_" + cmNo);
        	    var currentQuantity = parseInt(quantityInput.value);
+       	    var totalValueElement = document.getElementById("totalValue_" + cmNo);
+       	    var pPrice = parseFloat(totalValueElement.getAttribute("data-pPrice"));
+
        	    if (currentQuantity < 10) {
        	        quantityInput.value = currentQuantity + 1;
+       	        var newTotalValue = (currentQuantity + 1) * pPrice;
+       	        totalValueElement.innerText = "₩ " + newTotalValue.toLocaleString();
        	    } else {
        	        Swal.fire({
-       	            text: "구매가능한 최대수량은 10개입니다.",
+       	            text: "구매 가능한 최대 수량은 10개입니다.",
        	            icon: "error",
        	            showCancelButton: false,
        	        });
@@ -90,11 +95,16 @@
 
 		  function decreaseQuantity(cmNo) {
 			  var cNo = cmNo;
-		    var quantityInput = document.getElementById("quantity_"+cmNo);
-		    var currentQuantity = parseInt(quantityInput.value);
-		    if (currentQuantity > 1) {
-		      quantityInput.value = currentQuantity - 1;
-		    }
+			    var quantityInput = document.getElementById("quantity_" + cmNo);
+			    var currentQuantity = parseInt(quantityInput.value);
+			    var totalValueElement = document.getElementById("totalValue_" + cmNo);
+			    var pPrice = parseFloat(totalValueElement.getAttribute("data-pPrice"));
+
+			    if (currentQuantity > 1) {
+			        quantityInput.value = currentQuantity - 1;
+			        var newTotalValue = (currentQuantity - 1) * pPrice;
+			        totalValueElement.innerText = "₩ " + newTotalValue.toLocaleString();
+			    }
 		    
 		    $.ajax({
 	            url: "decreaseQty", // 서버의 증가시키는 기능을 처리하는 URL
@@ -125,9 +135,27 @@
 			  }
 		
 		  
-		
-		  
-		 
+		// 1. 테이블의 모든 <td> 요소를 선택합니다.
+		  var totalValueElements = document.querySelectorAll(".total-value");
+
+		  // 2. 총 가격 값을 합산할 변수를 초기화합니다.
+		  var totalSum = 0;
+
+		  // 각 <td> 요소에서 총 가격 값을 가져와 합산합니다.
+		  for (var i = 0; i < totalValueElements.length; i++) {
+		      var totalValueElement = totalValueElements[i];
+		      var pPrice = parseFloat(totalValueElement.getAttribute("data-pPrice"));
+		      var cQty = parseInt(totalValueElement.getAttribute("data-cQty"));
+
+		      // 총 가격 계산 및 합산
+		      var totalValue = pPrice * cQty;
+		      totalSum += totalValue;
+		  }
+
+		  // 3. 합산된 값을 적절한 형식으로 표시하는 <td> 요소에 설정합니다.
+		  var itemTotalElement = document.getElementById("itemTotal");
+		  itemTotalElement.setAttribute("value", totalSum);
+
 
     </script>
         
@@ -218,7 +246,9 @@
                             					</div>
 										      </td>
 										      
-										      <td id="totalValue_${dto.cNo}">&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+										      <td id="totalValue_${dto.cNo}" class="total-value" data-pPrice="${dto.pPrice}">&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+
+
 
 
 										     
@@ -251,7 +281,7 @@
                                  <tbody>
                                 <tr>
                                         <td>Sub Total</td>
-                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL }" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                        <td id="itemTotal">&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL }" type="number" pattern="#,###"></fmt:formatNumber></td>
                                     </tr>
                                     <tr>
                                         <td><c:set var="shipping" value="${ITEMTOTAL >= 500000 ? 0 : 3000}" />Shipping</td>
