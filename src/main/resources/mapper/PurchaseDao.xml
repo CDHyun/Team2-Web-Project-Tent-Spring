@@ -31,7 +31,7 @@
 		FROM product p, user u, purchase pc, productfile pf
 		WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND u.uid = #{uid}
 		ORDER BY pc.pcInsertDate DESC
-		LIMIT 0, 7
+		LIMIT #{index_no}, 7
 	</select>
 	
 	<select id="getProductInfo" resultType="com.springlec.base.model.Purchase">

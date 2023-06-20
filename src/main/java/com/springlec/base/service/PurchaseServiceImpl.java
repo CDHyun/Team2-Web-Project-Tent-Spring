@@ -46,10 +46,10 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	@Override
 	public List<Purchase> purchaseList(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
-			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay)
+			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return purchaseDao.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay);
+		return purchaseDao.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay, index_no);
 	}
 
 
@@ -127,13 +127,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		purchaseDao.cartInsertAction3(cNo);
 	}
 
-	@Override
-	public List<Purchase> selectlist(int index_no) throws Exception {
-		// TODO Auto-generated method stub
-		return purchaseDao.selectlist(index_no);
-	}
 	
-
 
 
 	

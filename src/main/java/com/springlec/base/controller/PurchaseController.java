@@ -181,9 +181,9 @@ public class PurchaseController {
     }
     
     //구매내역 보여주기
-  @RequestMapping("/purchase_list")
+    @RequestMapping("/purchase_list")
     public String orderlist(HttpServletRequest request, HttpSession session, Model model) throws Exception {
-    	String uid = (String)session.getAttribute("SUID");
+        String uid = (String) session.getAttribute("SUID");
         String uPhone = request.getParameter("uPhone");
         int pcNo = parseIntegerParameter(request.getParameter("pcNo"));
         int pPrice = parseIntegerParameter(request.getParameter("pPrice"));
@@ -194,33 +194,27 @@ public class PurchaseController {
         String pfRealName = request.getParameter("pfRealName");
         String pfHoverRealName = request.getParameter("pfHoverRealName");
         String pcPay = request.getParameter("pcPay");
-        List<Purchase> orderlist = purchaseService.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay);
+        String vpage = request.getParameter("vpage");
+        if (vpage == null) {
+            vpage = "1";
+        }
+        int v_page = Integer.parseInt(vpage);
+        int index_no = (v_page - 1) * 7;
+
+        int dcount = purchaseService.itemCount();
+        model.addAttribute("d_count", dcount);
+
+        List<Purchase> orderlist = purchaseService.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay, index_no);
         model.addAttribute("purchase", orderlist);
-       
-//        String vpage = request.getParameter("vpage");
-//	    if(vpage==null){
-//	    	vpage = "1";
-//	    }
-//	int v_page = Integer.parseInt(vpage);
-//	int index_no = (v_page-1)*7;
-//	
-//	// 상품관리페이징하기 위한 상품갯수 count
-//	int dcount = purchaseService.itemCount();
-//	model.addAttribute("d_count", dcount);
-//	
-//	List<Purchase> selectlist = purchaseService.selectlist(index_no);
-//	model.addAttribute("list", selectlist);
-        
-        
-        
-        
-        
+
         return "purchase/purchase_list";
     }
+    
 
     private int parseIntegerParameter(String parameter) {
         return parameter != null ? Integer.parseInt(parameter) : 0;
     }
+
     
     
     //구매 상세내역 보여주기
