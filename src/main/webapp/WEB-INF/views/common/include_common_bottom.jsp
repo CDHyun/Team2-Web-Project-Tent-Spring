@@ -21,6 +21,8 @@
    							Gangnam-gu, Seoul, South Korea.</span>
 						</a>
 						</li>
+						<li><span>File:</span> <a href="http://localhost:8080/download">
+						<span style="text-decoration: underline;  font-size: 70%; white-space: nowrap;">Personal Information Consent Guide</span></a></li>
 					</ul>
 					<div class="footer_social_area mt-15">
 						<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
