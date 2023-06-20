@@ -122,6 +122,7 @@
                         <div class="table-responsive">
                             <table class="table mb-0">
                                  <tbody>
+                                 <c:forEach var="ITEMTOTAL" items="${ITEMS}">
                                 <tr>
                                         <td>Sub Total</td>
                                         <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL }" type="number" pattern="#,###"></fmt:formatNumber></td>
@@ -138,7 +139,7 @@
                                         <td>Total</td>
                                          <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL*1.1 +shipping}" type="number" pattern="#,###"></fmt:formatNumber></td>
                                     </tr>
-                                   
+                                    </c:forEach> 
                                 </tbody>
                             </table>
                         </div> 

@@ -59,7 +59,8 @@ public class PurchaseController {
     	int pCode = (int)session.getAttribute("PCODE");
     	int pcQty = (int)session.getAttribute("PCQTY");
     	String pColor = (String)session.getAttribute("PCOLOR");
-    
+    	//바로구매 장바구니 조건 처리하기>>장바구니에서 결제 넘어갈때 에러남
+    	
         List<Purchase> purchaseInfo = purchaseService.getProductInfo(pCode);
         purchaseInfo.get(0).setPcQty(pcQty);
         purchaseInfo.get(0).setpColor(pColor);
@@ -69,9 +70,14 @@ public class PurchaseController {
 
     // 주문시 주문내용 입력
     @RequestMapping("/purchaseinsert")
-    public String insert(Model model) throws Exception {
-        return "purchase/purchase_complete";
+    public String insert(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+    	String uid =(String)session.getAttribute("SUID");
+    	purchaseService.purchaseInsert(uid,Integer.parseInt(request.getParameter("pCode")),Integer.parseInt(request.getParameter("pcQty")),request.getParameter("pcDM"), request.getParameter("pColor"),request.getParameter("pcPay"));
+        return "redirect:purchase_complete";
     }
+    
+    
+    
 
     // 주문완성 보여주기
     @RequestMapping("/purchaseComplete")
@@ -122,16 +128,16 @@ public class PurchaseController {
 
     
     
-	// 주문상태 변경
+//	 //주문상태 변경
 //	@RequestMapping("/purchaseStatusChange")
-//	public String changeStatus(HttpServletRequest request, Model model) throws Exception{
-//		purchaseService.changeStatus(Integer.parseInt(request.getParameter("pcNo")), Integer.parseInt(request.getParameter("pcStatus")));
+//	public String changePcStatus(HttpServletRequest request, Model model) throws Exception{
+//		purchaseService.changePcStatus(Integer.parseInt(request.getParameter("pcNo")), Integer.parseInt(request.getParameter("pcStatus")));
 //		return "redirect:purchaseCheck";
 //	}
     
     
     
-  //재고 수량 증가
+	//재고 수량 증가
     
     
     
@@ -143,7 +149,16 @@ public class PurchaseController {
     
     
     
-    
+//	// 페이징하기 위한 상품갯수 
+//		int dcount = purchaseService.purchaseCount();
+//		model.addAttribute("d_count", dcount);
+//						
+//		List<purchase> selectlist = purchaseService.selectlist(index_no);
+//		model.addAttribute("list", selectlist);
+//		return "purchase/purchase_list";
+//		
+//		}
+//			
     
     
    
@@ -171,22 +186,8 @@ public class PurchaseController {
 //		return "redirect:adminUpdate";
 //	}
 //	
-//	// 주문처리
-//	@RequestMapping("/adminpurchaseCheck")
-//	public String statusCheck(Model model) throws Exception{
-//		List<Admin> status = adminService.statusCheck();
-//		model.addAttribute("check", status);
-//		return "admin/adminPurchaseStatus";
-//	}
-//
-//	// 주문상태 변경
-//	@RequestMapping("/adminStatusChange")
-//	public String changeStatus(HttpServletRequest request, Model model) throws Exception{
-//		adminService.changeStatus(Integer.parseInt(request.getParameter("pcNo")), Integer.parseInt(request.getParameter("pcStatus")));
-//		return "redirect:adminpurchaseCheck";
-//	}
-//    
-//    
+
+
     
     
     
