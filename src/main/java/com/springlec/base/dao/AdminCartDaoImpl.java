@@ -129,10 +129,13 @@ public class AdminCartDaoImpl implements AdminCartDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update(nameSpace + ".decreaseQty");
 	}
-	
-	
-	
-	
+
+
+
+
+
+
+
 	
 	
 	

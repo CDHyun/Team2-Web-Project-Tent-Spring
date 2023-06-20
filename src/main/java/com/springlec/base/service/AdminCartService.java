@@ -38,5 +38,16 @@ public interface AdminCartService {
 		public int increaseQty(int cNo) throws Exception;
 		public int decreaseQty(int cNo) throws Exception;
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 }
