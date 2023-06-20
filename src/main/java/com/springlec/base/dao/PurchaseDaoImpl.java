@@ -22,7 +22,7 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		return sqlSession.selectList(nameSpace + ".purchaseCheck"); 
 	}
 	@Override
-	public List<Purchase> purchaseComplete(String uid, int pcStatus) throws Exception {
+	public List<Purchase> purchaseComplete(String uid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".purchaseComplete"); 
 	}

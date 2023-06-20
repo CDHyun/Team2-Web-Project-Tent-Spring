@@ -11,7 +11,7 @@
 
 	<insert id="purchaseInsert">
 		INSERT INTO purchase (uid, pCode, pcInsertDate, pcQty, pcDM, pColor, pcPay)
-		VALUES (#{uid}, #{pCode}, #{pcInsertDate}, #{pcQty}, #{pcDM}, #{pColor}, #{pcPay})
+		VALUES (#{uid}, #{pCode}, now(), #{pcQty}, #{pcDM}, #{pColor}, #{pcPay})
 	</insert>
 
 	<select id="purchaseCheck" resultType="com.springlec.base.model.Purchase">
@@ -21,7 +21,7 @@
 	</select>
 
 	<select id="purchaseComplete" resultType="com.springlec.base.model.Purchase">
-		SELECT u.uid, pc.pcstatus
+		SELECT u.uid as uid, pc.pcStatus as pcStatus
 		FROM user u, purchase pc
 		WHERE u.uid = pc.uid and u.uid = #{uid}
 	</select>
@@ -45,7 +45,7 @@
 	</select>
 	
 
-	<!-- <update id="modifyaddress">
+	<update id="modifyaddress">
 		UPDATE userAddress 
 		SET uaAddress = #{uaAddress}, uaDetailAddress = #{uaDetailAddress}, uaZipcode = #{uaZipcode}, uaContent = #{uaContent}
 		WHERE uid = #{uid} AND uaNo = #{uaNo}
@@ -53,8 +53,8 @@
 
 	
 	
-	주문 취소
-	<select id="purchaseDetailList" resultType="com.springlec.base.model.Purchase">
+ 	<!-- 주문 취소 -->
+<!-- 	<select id="purchaseDetailList" resultType="com.springlec.base.model.Purchase">
 	SELECT pcQty, pColor, pCode
 	FROM purchase
 	WHERE pcNo = #{pcNo}
@@ -64,7 +64,7 @@
 	UPDATE purchase 
 	SET pcStatus = -1
 	WHERE pcNo = #{pcNo}
-	</update> -->
+	</update>  -->
 	
 	<!-- 주문 취소 후 주문상태 삭제로 변경-->
 <!-- 	<update id=>

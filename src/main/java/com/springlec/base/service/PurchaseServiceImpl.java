@@ -30,16 +30,16 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public List<Purchase> purchaseComplete(String uid, int pcStatus) throws Exception {
+	public List<Purchase> purchaseComplete(String uid) throws Exception {
 		// TODO Auto-generated method stub
-		return purchaseDao.purchaseComplete(uid, pcStatus);
+		return purchaseDao.purchaseComplete(uid);
 	}
 
 	@Override
 	public void purchaseInsert(String uid, int pCode, int pcQty, String pcDM, String pColor, String pcPay)
 			throws Exception {
 		// TODO Auto-generated method stub
-		
+		purchaseDao.purchaseInsert(uid, pCode, pcQty, pcDM, pColor, pcPay);
 	}
 
 	@Override

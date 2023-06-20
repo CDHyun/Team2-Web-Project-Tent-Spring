@@ -59,6 +59,9 @@ public class PurchaseController {
     	int pCode = (int)session.getAttribute("PCODE");
     	int pcQty = (int)session.getAttribute("PCQTY");
     	String pColor = (String)session.getAttribute("PCOLOR");
+    	String pcPay = request.getParameter("o_pay_method");
+    	session.setAttribute("PCPAY", pcPay);
+    	
     	//바로구매 장바구니 조건 처리하기>>장바구니에서 결제 넘어갈때 에러남
     	
         List<Purchase> purchaseInfo = purchaseService.getProductInfo(pCode);
@@ -71,18 +74,24 @@ public class PurchaseController {
     // 주문시 주문내용 입력
     @RequestMapping("/purchaseinsert")
     public String insert(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-    	String uid =(String)session.getAttribute("SUID");
-    	purchaseService.purchaseInsert(uid,Integer.parseInt(request.getParameter("pCode")),Integer.parseInt(request.getParameter("pcQty")),request.getParameter("pcDM"), request.getParameter("pColor"),request.getParameter("pcPay"));
-        return "redirect:purchase_complete";
+    	String uid =(String)session.getAttribute("SUID");    	
+    	int pCode = (int)session.getAttribute("PCODE");
+    	int pcQty = (int)session.getAttribute("PCQTY");
+    	String pColor = (String)session.getAttribute("PCOLOR");
+    	String pcDM = (String)session.getAttribute("PCDM");
+    	String pcPay = (String)session.getAttribute("PCPAY");
+    	purchaseService.purchaseInsert(uid,pCode,pcQty,pcDM, pColor,pcPay);
+        return "redirect:purchaseComplete";
     }
-    
     
     
 
     // 주문완성 보여주기
     @RequestMapping("/purchaseComplete")
-    public String purchaseComplete(HttpServletRequest request, Model model) throws Exception {
-        List<Purchase> completeList = purchaseService.purchaseComplete(request.getParameter("uid"),Integer.parseInt(request.getParameter("pcStatus")));
+    public String purchaseComplete(HttpServletRequest request,HttpSession session, Model model)
+    throws Exception {
+    	String uid =(String)session.getAttribute("SUID"); 
+        List<Purchase> completeList = purchaseService.purchaseComplete(uid);
         model.addAttribute("complete", completeList);
         return "purchase/purchase_complete";
         

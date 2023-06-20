@@ -10,7 +10,7 @@ public interface PurchaseService {
 
 	public List<Purchase> purchaseCheck(int pCode, int pPrice, String pName, String pfRealName, String pfHoverRealName) throws Exception;
 	
-	public List<Purchase> purchaseComplete (String uid, int pcStatus) throws Exception;
+	public List<Purchase> purchaseComplete (String uid) throws Exception;
 	
 	public void purchaseInsert(String uid, int pCode, int pcQty, String pcDM, String pColor, String pcPay) throws Exception;
 	
