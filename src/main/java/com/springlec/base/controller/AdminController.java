@@ -1,11 +1,17 @@
 package com.springlec.base.controller;
 
 import java.io.File;
+import java.io.InputStream;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +23,7 @@ import com.springlec.base.model.Admin;
 import com.springlec.base.service.AdminService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -338,6 +345,24 @@ public class AdminController {
 			return "admin/adminReview";
 		}	
 	
+		
+		
+		@RequestMapping("/download")
+		public void download(HttpServletResponse response) throws Exception {
+		    String fileName = "tent_개인정보동의안내서.docx";
+		    Resource resource = new ClassPathResource("static/product/" + fileName);
+		    InputStream inputStream = resource.getInputStream();
+		    
+		    byte[] fileByte = IOUtils.toByteArray(inputStream);
+
+		    response.setContentType("application/octet-stream");
+		    response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(fileName, "UTF-8") + "\";");
+		    response.setHeader("Content-Transfer-Encoding", "binary");
+
+		    response.getOutputStream().write(fileByte);
+		    response.getOutputStream().flush();
+		    response.getOutputStream().close();
+		}
 
 
 }
