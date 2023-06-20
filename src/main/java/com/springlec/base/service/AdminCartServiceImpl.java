@@ -68,4 +68,25 @@ public class AdminCartServiceImpl implements AdminCartService {
 		// TODO Auto-generated method stub
 		adminCartDao.deleteWish(wNo);
 	}
+
+	@Override
+	public int increaseQty(int cNo) throws Exception {
+		// TODO Auto-generated method stub
+		return adminCartDao.increaseQty(cNo);
+	}
+	@Override
+	public int decreaseQty(int cNo) throws Exception {
+		// TODO Auto-generated method stub
+		return adminCartDao.decreaseQty(cNo);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

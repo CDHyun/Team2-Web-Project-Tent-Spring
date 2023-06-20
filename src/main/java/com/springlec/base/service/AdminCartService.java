@@ -34,4 +34,9 @@ public interface AdminCartService {
 		// 위시리스트 항목삭제
 		public void deleteWish(String wNo) throws Exception;
 
+		// 카트수량 ajax
+		public int increaseQty(int cNo) throws Exception;
+		public int decreaseQty(int cNo) throws Exception;
+		
+	
 }

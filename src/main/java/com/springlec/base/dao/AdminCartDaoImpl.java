@@ -113,4 +113,30 @@ public class AdminCartDaoImpl implements AdminCartDao {
 		// TODO Auto-generated method stub
 		sqlSession.delete(nameSpace + ".deleteWish");
 	}
+
+
+
+
+
+
+	@Override
+	public int increaseQty(int cNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".increaseQty");
+	}
+	@Override
+	public int decreaseQty(int cNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".decreaseQty");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
