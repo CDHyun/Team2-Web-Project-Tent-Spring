@@ -155,27 +155,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="shop_pagination_area mt-30">
+                 <div class="shop_pagination_area mt-30">
                     <nav aria-label="Page navigation">
                         <ul class="pagination pagination-sm justify-content-center">
                             <%-- Get the current page from request parameter --%>
-                            <% //int currentPage = 1;
-                            //String currentPageParam = request.getParameter("vpage");
-                           // if (currentPageParam != null && !currentPageParam.isEmpty()) {
-                             //   currentPage = Integer.parseInt(currentPageParam);
-                          //  }
+                            <% int currentPage = 1;
+                            String currentPageParam = request.getParameter("vpage");
+                            if (currentPageParam != null && !currentPageParam.isEmpty()) {
+                                currentPage = Integer.parseInt(currentPageParam);
+                            }
 
-                          //  int lastpage = (int) request.getAttribute("d_count");
-                          //  int itemsPerPage = 7; // 페이지당 항목 개수
-                          //  int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
+                            int lastpage = (int) request.getAttribute("d_count");
+                            int itemsPerPage = 7; // 페이지당 항목 개수
+                            int totalPages = (int) Math.ceil(lastpage / (double) itemsPerPage);
 
-                         //   for (int i = 1; i <= totalPages; i++) {
-                          //      if (i == currentPage) {//
-                          //          out.print("<li class='page-item active'><a class='page-link' href='purchase_list.do?vpage=" + i + "'>" + i + "</a></li>");
-                         //       } else {
-                           //         out.print("<li class='page-item'><a class='page-link' href='purchase_list.do?vpage=" + i + "'>" + i + "</a></li>");
-                          //      }
-                          //  }
+                            for (int i = 1; i <= totalPages; i++) {
+                                if (i == currentPage) {
+                                    out.print("<li class='page-item active'><a class='page-link' href='purchase_list.do?vpage=" + i + "'>" + i + "</a></li>");
+                                } else {
+                                    out.print("<li class='page-item'><a class='page-link' href='purchase_list.do?vpage=" + i + "'>" + i + "</a></li>");
+                                }
+                            }
                             %>
                        </ul>
                     </nav>

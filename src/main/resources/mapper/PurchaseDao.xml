@@ -78,14 +78,14 @@
 	<!-- 재고 수량 증가 -->
 	<update id="increaseStock">
 		UPDATE productOption
-		SET pStock = pStock + #{pcQty}
+		SET pStock = pStock + #{pStock}
 		WHERE pCode = #{pCode} and pColor = #{pColor}
 	</update>
 	
 	<!-- 재고 수량 차감 -->
 	<update id="decreaseStock">
 		UPDATE productOption
-		SET pStock = pStock - #{pcQty}
+		SET pStock = pStock - #{pStock}
 		WHERE pCode = #{pCode} and pColor = #{pColor}
 	</update>
 	
@@ -96,5 +96,21 @@
 		FROM product p, user u, purchase pc, productfile pf
 		WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND pc.pcDeleted = 0 AND u.uid = #{uid}
 	</select> 
+	
+	<insert id="cartInsertAction1">
+		INSERT INTO purchase (uid, pcQty, pColor, pCode,pcInsertDate)
+		SELECT #{uid}, c.cQty, c.pColor, c.pCode,now()
+		FROM cart c, productoption po, product p
+		WHERE uid = #{uid} and cNo=#{cNo} and c.pColor = po.pColor and p.pCode = c.pCode and po.pCode = c.pCode
+	</insert>
+	
+	<update id="cartInsertAction2">
+		update purchase set pcDM=#{pcDM}, pcPay=#{pcPay} ORDER BY pcNo DESC LIMIT #{count}
+	</update>
+	
+	<delete id="cartInsertAction3">
+		delete from cart where cNo = #{cNo}
+	</delete>
+	
 	
 </mapper>

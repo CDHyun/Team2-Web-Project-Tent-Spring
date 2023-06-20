@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.springlec.base.model.Admin;
 import com.springlec.base.model.Purchase;
 import com.springlec.base.model.User;
+import com.springlec.base.service.AdminCartService;
 import com.springlec.base.service.PurchaseService;
 import com.springlec.base.service.UserService;
 
@@ -63,15 +65,7 @@ public class PurchaseController {
     	String pcDM = (String)session.getAttribute("PCDM");
     	String pcPay = request.getParameter("o_pay_method");
     	session.setAttribute("PCPAY", pcPay);
-    	
-    	// 세션에서 카트 cNo배열 값 가져오기
-    			String cNoArrayString = (String) session.getAttribute("cNoArrayString");
-    			String[] values = cNoArrayString.substring(3, cNoArrayString.length() - 3).split("\",\"");
-    			int count = values.length;
-    	
-    			for (String value : values) {
-    			purchaseService.cartInsertAction(uid, value, pcDM, pcPay, count);
-    			}
+
     	//바로구매 장바구니 조건 처리하기>>장바구니에서 결제 넘어갈때 에러남
     	
         List<Purchase> purchaseInfo = purchaseService.getProductInfo(pCode);
@@ -91,8 +85,30 @@ public class PurchaseController {
     	String pcDM = (String)session.getAttribute("PCDM");
     	String pcPay = (String)session.getAttribute("PCPAY");
     	purchaseService.purchaseInsert(uid,pCode,pcQty,pcDM, pColor,pcPay);
-    	purchaseService.decreaseStock(pcQty,pCode,pColor);
+    	purchaseService.decreaseStock(pcQty, pCode, pColor);
     	purchaseService.increaseStock(pcQty, pCode, pColor);
+    	
+    	// 세션에서 카트 cNo배열 값 가져오기
+    	String cNoArrayString = (String) session.getAttribute("cNoArrayString");
+    	String[] values = cNoArrayString.substring(3, cNoArrayString.length() - 3).split("\",\"");
+    	for( int i = 0 ; i<values.length; i++) {
+    		System.out.println(values[i]);
+    	}
+    	int count = values.length;
+    	if(count != 1) {
+    		
+    	for (String value : values) {
+    		purchaseService.cartInsertAction1(uid, value);
+    		purchaseService.cartInsertAction2( pcDM, pcPay, count);
+    		purchaseService.cartInsertAction3(value);
+		}
+	
+    	}
+    	
+    	
+    	
+    	
+    	
     	
         return "redirect:purchaseComplete";
     }
@@ -160,20 +176,28 @@ public class PurchaseController {
 	
   
     
-
-    
-    
-//	// 페이징하기 위한 상품갯수 
-//		int dcount = purchaseService.purchaseCount();
-//		model.addAttribute("d_count", dcount);
-//						
-//		List<purchase> selectlist = purchaseService.selectlist(index_no);
-//		model.addAttribute("list", selectlist);
-//		return "purchase/purchase_list";
-//		
-//		}
+//
+//		//구매내역 확인 페이징
+//			@RequestMapping("/purchase_list")
+//			public String selectlist(HttpServletRequest request, Model model) throws Exception{
+//				
+//				 String vpage = request.getParameter("vpage");
+//				    if(vpage==null){
+//				    	vpage = "1";
+//				    }
+//				int v_page = Integer.parseInt(vpage);
+//				int index_no = (v_page-1)*7;
+//				
+//				// 상품관리페이징하기 위한 상품갯수 count
+//				int dcount = purchaseService.itemCount();
+//				model.addAttribute("d_count", dcount);
+//				
+//				List<Purchase> selectlist = purchaseService.selectlist(index_no);
+//				model.addAttribute("list", selectlist);
+//				
+//				return "purchase/purchase_list";
+//			}
 //			
-    
     
    
 	// 배송지 수정

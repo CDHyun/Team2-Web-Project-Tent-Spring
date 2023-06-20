@@ -41,6 +41,7 @@ public class Purchase {
 	String pfHoverName;		// 올린 호버 이미지 이름
 	String pfHoverRealName;	// 프로젝트에 저장되는 실제 호버 이미지 이름
 	
+	String cNo;
 	
 	
 	
@@ -51,6 +52,18 @@ public class Purchase {
 
 	
 	
+
+
+	public Purchase(String uid, String uEmail, int uaNo) {
+		super();
+		this.uid = uid;
+		this.uEmail = uEmail;
+		this.uaNo = uaNo;
+	}
+
+
+
+
 
 
 	public Purchase(String uid, String uPassword, String uName, String uPhone, String uEmail, int uaNo,
@@ -87,6 +100,25 @@ public class Purchase {
 		this.pfRealName = pfRealName;
 		this.pfHoverName = pfHoverName;
 		this.pfHoverRealName = pfHoverRealName;
+		
+	}
+
+
+
+
+
+
+	public String getcNo() {
+		return cNo;
+	}
+
+
+
+
+
+
+	public void setcNo(String cNo) {
+		this.cNo = cNo;
 	}
 
 

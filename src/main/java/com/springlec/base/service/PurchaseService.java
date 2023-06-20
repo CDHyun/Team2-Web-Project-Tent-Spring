@@ -33,6 +33,10 @@ public interface PurchaseService {
 	
 	public void decreaseStock(int pStock, int pCode, String pColor) throws Exception;
 	
-
-
+	public int itemCount() throws Exception;
+	
+	//
+	public void cartInsertAction1(String uid, String cNo) throws Exception;
+	public void cartInsertAction2(String pcDM, String pcPay, int count) throws Exception;
+	public void cartInsertAction3(String cNo) throws Exception;
 }

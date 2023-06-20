@@ -82,7 +82,40 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace+".decreaseStock");
 	}
+	@Override
+	public int itemCount() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".itemCount");
+	}
 
 
+	@Override
+	public void cartInsertAction1(String uid, String cNo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".cartInsertAction1") ;
+	}
+
+
+
+
+
+
+	@Override
+	public void cartInsertAction2(String pcDM, String pcPay, int count) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".cartInsertAction2");
+	}
+
+
+
+
+
+
+	@Override
+	public void cartInsertAction3(String cNo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(nameSpace + ".cartInsertAction3");
+	}
+	
 
 }

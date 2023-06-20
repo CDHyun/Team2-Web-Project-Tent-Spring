@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springlec.base.dao.AdminCartDao;
 import com.springlec.base.dao.PurchaseDao;
 import com.springlec.base.model.Purchase;
 
@@ -14,6 +15,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	
 	@Autowired
 	PurchaseDao purchaseDao;
+	
 
 
 	@Override
@@ -100,6 +102,30 @@ public class PurchaseServiceImpl implements PurchaseService {
 		purchaseDao.decreaseStock(pStock, pCode, pColor);
 	}
 
+	@Override
+	public int itemCount() throws Exception {
+		// TODO Auto-generated method stub
+		return purchaseDao.itemCount();
+	}
+
+
+	@Override
+	public void cartInsertAction1(String uid, String cNo) throws Exception {
+		// TODO Auto-generated method stub
+		purchaseDao.cartInsertAction1(uid, cNo);
+	}
+
+	@Override
+	public void cartInsertAction2(String pcDM, String pcPay, int count) throws Exception {
+		// TODO Auto-generated method stub
+		purchaseDao.cartInsertAction2(pcDM, pcPay, count);	
+		}
+
+	@Override
+	public void cartInsertAction3(String cNo) throws Exception {
+		// TODO Auto-generated method stub
+		purchaseDao.cartInsertAction3(cNo);
+	}
 	
 
 
