@@ -29,7 +29,7 @@
 	<select id="purchaseList" resultType="com.springlec.base.model.Purchase">
 		SELECT pc.pcNo, p.pCode, p.pName, p.pPrice, pc.pcQty, pc.pcStatus, pc.pcInsertDate, u.uPhone, pf.pfRealName, pf.pfHoverRealName, pcPay
 		FROM product p, user u, purchase pc, productfile pf
-		WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND pc.pcDeleted = 0 AND u.uid = #{uid}
+		WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND u.uid = #{uid}
 		ORDER BY pc.pcInsertDate DESC
 		LIMIT 0, 7
 	</select>
@@ -39,9 +39,9 @@
 	</select>
 	
 	<select id="purchaseDetailList" resultType="com.springlec.base.model.Purchase">
-	SELECT pc.pcNo, pc.pcinsertDate, p.pName, u.uPhone, pf.pfRealName, pc.pcPay, pc.pcQty, p.pPrice, pc.pcDM, u.uName
-	FROM product p, purchase pc, productfile pf, user u
-	WHERE p.pCode = pc.pCode AND p.pCode = pf.pCode AND u.uid = #{uid} AND pcNo = #{pcNo}
+		SELECT pc.pcNo, pc.pcinsertDate, p.pName, u.uPhone, pf.pfRealName, pc.pcPay, pc.pcQty, p.pPrice, pc.pcDM, u.uName
+		FROM product p, purchase pc, productfile pf, user u
+		WHERE p.pCode = pc.pCode AND p.pCode = pf.pCode AND u.uid = #{uid} AND pcNo = #{pcNo}
 	</select>
 	
 
@@ -54,44 +54,47 @@
 	
 	
  	<!-- 주문 취소 -->
-<!-- 	<select id="purchaseDetailList" resultType="com.springlec.base.model.Purchase">
-	SELECT pcQty, pColor, pCode
-	FROM purchase
-	WHERE pcNo = #{pcNo}
+	<!-- <select id="getPurchaseDetails" resultType="com.springlec.base.model.Purchase">
+		SELECT pcQty, pColor, pCode
+		FROM purchase
+		WHERE pcNo = #{pcNo}
 	</select>
+	 -->
 	
-	<update id="purchaseDetailList">
-	UPDATE purchase 
-	SET pcStatus = -1
-	WHERE pcNo = #{pcNo}
-	</update>  -->
+	<!-- <update id="cancelPurchase">
+		UPDATE purchase 
+		SET pcStatus = -1
+		WHERE pcNo = #{pcNo}
+	</update>   -->
+	
 	
 	<!-- 주문 취소 후 주문상태 삭제로 변경-->
-<!-- 	<update id=>
-	UPDATE purchase pc
-	SET pcDeleteDate = now(), pcDeleted = 1
-	WHERE pc.pcNo = #{pcNo}
+	<update id="purchaseDelete">
+		UPDATE purchase 
+		SET pcDeleteDate = now(), pcDeleted = 1 , pcStatus = -1
+		WHERE pcNo = #{pcNo}
 	</update>
 	
-	재고 수량 증가
-	<update id=>
-	UPDATE productOption
-	SET pStock = pStock + #{pcQty}
-	WHERE pCode = #{pCode} and pColor = #{pColor}
+	<!-- 재고 수량 증가 -->
+	<update id="increaseStock">
+		UPDATE productOption
+		SET pStock = pStock + #{pcQty}
+		WHERE pCode = #{pCode} and pColor = #{pColor}
 	</update>
 	
-	재고 수량 차감
-	<update id=>
-	UPDATE productOption
-	SET pStock = pStock - #{pcQty}
-	WHERE pCode = #{pCode} and pColor = #{pColor}
-		</update>
-		
-		
-	페이징 위한 카운트
-	<select id=>
-	  SELECT count(*) 
-	  FROM product p, user u, purchase pc, productfile pf
-	  WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND pc.pcDeleted = 0 AND u.uid = #{uid}
-	</select> --> 
+	<!-- 재고 수량 차감 -->
+	<update id="decreaseStock">
+		UPDATE productOption
+		SET pStock = pStock - #{pcQty}
+		WHERE pCode = #{pCode} and pColor = #{pColor}
+	</update>
+	
+	
+	<!-- 페이징 위한 카운트 -->
+	<select id="getProductCount" resultType="com.springlec.base.model.Purchase">
+		SELECT count(*) 
+		FROM product p, user u, purchase pc, productfile pf
+		WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND pc.pcDeleted = 0 AND u.uid = #{uid}
+	</select> 
+	
 </mapper>

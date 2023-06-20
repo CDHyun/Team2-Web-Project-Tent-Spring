@@ -70,6 +70,38 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return purchaseDao.modifyaddress(uid, uaNo, uaAddress, uaDetailAddress, uaZipcode, uaContent);
 	}
 
+//	@Override
+//	public Purchase getPurchaseDetails(int pcQty, String pColor, int pCode, int pcNo) {
+//		// TODO Auto-generated method stub
+//		return purchaseDao.getPurchaseDetails(pcQty, pColor, pCode, pcNo);
+//	}
+//
+//	@Override
+//	public void cancelPurchase(int pcNo, int pcStatus) {
+//		// TODO Auto-generated method stub
+//		purchaseDao.cancelPurchase(pcNo, pcStatus);
+//	}
+
+	@Override
+	public void purchaseDelete(int pcNo) throws Exception {
+		// TODO Auto-generated method stub
+		 purchaseDao.purchaseDelete(pcNo);
+	}
+
+	@Override
+	public void increaseStock(int pStock, int pCode, String pColor) throws Exception {
+		// TODO Auto-generated method stub
+		purchaseDao.increaseStock(pStock, pCode, pColor);
+	}
+
+	@Override
+	public void decreaseStock(int pStock, int pCode, String pColor) throws Exception {
+		// TODO Auto-generated method stub
+		purchaseDao.decreaseStock(pStock, pCode, pColor);
+	}
+
+	
+
 
 
 	

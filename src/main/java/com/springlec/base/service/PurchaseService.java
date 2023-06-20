@@ -19,7 +19,20 @@ public interface PurchaseService {
 	public Purchase purchaseDetailList(String uid, int pcNo) throws Exception;
 
 	public List<Purchase> getProductInfo(int pCode) throws Exception;
-	
-	
+
 	public int modifyaddress(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent);
+
+//	public Purchase getPurchaseDetails(int pcQty, String pColor, int pCode, int pcNo);
+//	
+//	public void cancelPurchase(int pcNo, int pcStatus);
+	
+	
+	public void purchaseDelete(int pcNo) throws Exception;
+	
+	public void increaseStock(int pStock, int pCode, String pColor) throws Exception;
+	
+	public void decreaseStock(int pStock, int pCode, String pColor) throws Exception;
+	
+
+
 }

@@ -56,12 +56,22 @@ public class PurchaseController {
 
     @RequestMapping("/purchase_check_info")
     public String purchaseCheck(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+    	String uid =(String)session.getAttribute("SUID");
     	int pCode = (int)session.getAttribute("PCODE");
     	int pcQty = (int)session.getAttribute("PCQTY");
     	String pColor = (String)session.getAttribute("PCOLOR");
+    	String pcDM = (String)session.getAttribute("PCDM");
     	String pcPay = request.getParameter("o_pay_method");
     	session.setAttribute("PCPAY", pcPay);
     	
+    	// 세션에서 카트 cNo배열 값 가져오기
+    			String cNoArrayString = (String) session.getAttribute("cNoArrayString");
+    			String[] values = cNoArrayString.substring(3, cNoArrayString.length() - 3).split("\",\"");
+    			int count = values.length;
+    	
+    			for (String value : values) {
+    			purchaseService.cartInsertAction(uid, value, pcDM, pcPay, count);
+    			}
     	//바로구매 장바구니 조건 처리하기>>장바구니에서 결제 넘어갈때 에러남
     	
         List<Purchase> purchaseInfo = purchaseService.getProductInfo(pCode);
@@ -81,6 +91,9 @@ public class PurchaseController {
     	String pcDM = (String)session.getAttribute("PCDM");
     	String pcPay = (String)session.getAttribute("PCPAY");
     	purchaseService.purchaseInsert(uid,pCode,pcQty,pcDM, pColor,pcPay);
+    	purchaseService.decreaseStock(pcQty,pCode,pColor);
+    	purchaseService.increaseStock(pcQty, pCode, pColor);
+    	
         return "redirect:purchaseComplete";
     }
     
@@ -137,25 +150,17 @@ public class PurchaseController {
 
     
     
-//	 //주문상태 변경
-//	@RequestMapping("/purchaseStatusChange")
-//	public String changePcStatus(HttpServletRequest request, Model model) throws Exception{
-//		purchaseService.changePcStatus(Integer.parseInt(request.getParameter("pcNo")), Integer.parseInt(request.getParameter("pcStatus")));
-//		return "redirect:purchaseCheck";
-//	}
+	 //주문상태 변경
+	@RequestMapping("/purchaseDelete")
+	public String deletePurchase(HttpServletRequest request) throws Exception{
+		purchaseService.purchaseDelete(Integer.parseInt(request.getParameter("pcNo")));
+		return "redirect:purchase_list";
+	}
+   
+	
+  
     
-    
-    
-	//재고 수량 증가
-    
-    
-    
-    //주문취소
 
-    
-    
-    //재고 수량 차감
-    
     
     
 //	// 페이징하기 위한 상품갯수 
@@ -188,13 +193,8 @@ public class PurchaseController {
     
     
 
-//주문삭제
-//	@RequestMapping("/adminDeleteAction")
-//	public String deleteProduct(HttpServletRequest request, Model model) throws Exception{
-//		adminService.deleteProduct(Integer.parseInt(request.getParameter("pCode")),request.getParameter("pColor"));
-//		return "redirect:adminUpdate";
-//	}
-//	
+
+
 
 
     

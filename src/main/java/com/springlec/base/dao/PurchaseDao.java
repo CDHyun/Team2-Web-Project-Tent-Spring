@@ -23,7 +23,19 @@ public interface PurchaseDao {
 	
 	public int modifyaddress(String uid, int uaNo, String uaAddress, String uaDetailAddress, String uaZipcode, String uaContent);
 	
+	public Purchase getPurchaseDetails(int pcQty, String pColor, int pCode, int pcNo);
+	
+	public void cancelPurchase(int pcNo, int pcStatus);
+	
+	public void purchaseDelete(int pcNo);
+	
+	public void increaseStock(int pStock, int pCode, String pColor);
+	
+	public void decreaseStock(int pStock, int pCode, String pColor);
 	
 	
+	
+	
+
 	
 }//END
