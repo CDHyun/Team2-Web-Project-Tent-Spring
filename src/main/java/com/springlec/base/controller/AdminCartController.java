@@ -69,6 +69,7 @@ public class AdminCartController {
 		  String cNoArrayString = Arrays.toString(cNoArray);
 		  System.out.println(cNoArrayString);
 		  model.addAttribute("cNoArrayString",cNoArrayString );
+		 
 		  
 		  Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));
 	       model.addAttribute("user", selectlist);
