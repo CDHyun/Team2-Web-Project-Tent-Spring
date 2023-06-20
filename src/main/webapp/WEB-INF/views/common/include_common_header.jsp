@@ -24,12 +24,59 @@ const Toast = Swal.mixin({
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
 });
+////////////////////
+// 쿠키 저장
+	function setCookie(name, value, days) {
+	  var expires = "";
+	  if (days) {
+	    var date = new Date();
+	    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+	    expires = "; expires=" + date.toUTCString();
+	  }
+	  document.cookie = name + "=" + value + expires + "; path=/";
+	}
+
+	// 쿠키 읽기
+	function getCookie(name) {
+	  var nameEQ = name + "=";
+	  var ca = document.cookie.split(';');
+	  for (var i = 0; i < ca.length; i++) {
+	    var c = ca[i];
+	    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+	    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+	  }
+	  return null;
+	}
+
+	// 쿠키 삭제
+	function deleteCookie(name) {
+	  setCookie(name, "", -1);
+	}
+
+	
+
+////////////////////
+
+
+
+
+
+
 
 // 로그인 확인
 function loginCheck() {
     var luid = $("#luid").val();
     var luPassword = $("#luPassword").val();
     var form = document.user_login_form;
+    var rememberMe = $("#rememberId").is(':checked');
+    /* 쿠키 저장 */
+    if(rememberMe){
+    	console.log("기억해줘")
+    	var userId =  $("#luid").val();
+	    setCookie("rememberedId", userId, 7); // 7일 동안 쿠키 저장
+	  } else {
+	    deleteCookie("rememberedId");
+	  }
 
     if ($("#luid").val() == "admin") {
         Swal.fire({
@@ -175,6 +222,12 @@ function emptySessionUser() {
 	}
 	
 	function openLoginModal() {
+		  var rememberedId = getCookie("rememberedId");
+		  console.log("쿠키 아이디 : " + rememberedId)
+		  if (rememberedId) {
+		    $('#luid').val(rememberedId);
+		    document.getElementById("rememberId").checked = true;
+		  }
 		$('#loginModal').modal('show');
 		$('#cancelBtn').off('click').on('click', function() {
 			$('#loginModal').modal('hide');
@@ -760,10 +813,13 @@ function emptySessionUser() {
 	    });
 	    return;
 	  }
-	}
-
 	document.getElementById('timer').style.display = 'block';
 	startTimer();
+	}
+	
+	
+	
+	
 </script>
 
 
@@ -1011,9 +1067,9 @@ function emptySessionUser() {
 					</div>
 					<div class="form-check">
 						<div class="custom-control custom-checkbox mb-3 pl-1">
-							<input type="checkbox" class="custom-control-input"
-								id="customChe"> <label class="custom-control-label"
-								for="customChe">Remember me for this computer</label>
+							<!-- 쿠키 저장 여부 -->
+							<input type="checkbox" class="custom-control-input" id="rememberId">
+							<label class="custom-control-label" for="rememberId">Remember me for this computer</label>
 						</div>
 					</div>
 					<div class="button-container">
@@ -1022,13 +1078,7 @@ function emptySessionUser() {
 						<button type="button" class="btn btn-secondary btn-sm" id="cancelBtn" data-dismiss="modal">취소</button>
 						<br/>
 					</div>
-					<!-- 
-						<a onclick="kakaoLogin()"><img alt=""src="images/user/kakao_login_medium_narrow.png" style=""></a>
-						<a onclick="kakaoLogout()">카카오 로그아웃</a>
-					 -->
 				</form>
-				<!-- Kakao Login -->
-				<!-- REST API : dd7da6e9a1d0fbb61bee671f56f3ddd4 -->
 				<br/>
 				<div class="button-container">
 				<input type="image" class="btn btn-light" src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오 로그인" onclick="kakao_login()">
