@@ -69,21 +69,21 @@ public class AdminCartController {
 		  String cNoArrayString = Arrays.toString(cNoArray);
 		  System.out.println(cNoArrayString);
 		  model.addAttribute("cNoArrayString",cNoArrayString );
-		 
-		  
-		  Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));
-	       model.addAttribute("user", selectlist);
-		  //PurchaseDao dao = new PurchaseDao();
-			//ArrayList<PurchaseDto> dtos = new ArrayList<PurchaseDto>();
-			//UserDao userDao = new UserDao();
-		//	ArrayList<UserDto> userInfo = new ArrayList<UserDto>();
-			//userInfo = userDao.userAddressInfo(uid);
-		//	dtos = dao.selectUser(uid);
+		  session.setAttribute("cNoArrayString",cNoArrayString);
 		
 		  
-		//  model.addAttribute("selectUser", dtos);
-		//  model.addAttribute("address", userInfo);
-		  
+		 
+		 
+		 
+		  Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));
+	       model.addAttribute("user", selectlist);
+		 
+	     
+	       
+	      
+	    	
+	    	
+	    	
 		  return "purchase/purchase_info";
 	}
 	
