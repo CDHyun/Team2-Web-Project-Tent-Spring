@@ -98,21 +98,6 @@ public class PurchaseController {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // payment 값 저장하기
     @RequestMapping("/payment")
     public String pay(HttpServletRequest request, HttpSession session) throws Exception {
@@ -211,6 +196,25 @@ public class PurchaseController {
         String pcPay = request.getParameter("pcPay");
         List<Purchase> orderlist = purchaseService.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay);
         model.addAttribute("purchase", orderlist);
+       
+//        String vpage = request.getParameter("vpage");
+//	    if(vpage==null){
+//	    	vpage = "1";
+//	    }
+//	int v_page = Integer.parseInt(vpage);
+//	int index_no = (v_page-1)*7;
+//	
+//	// 상품관리페이징하기 위한 상품갯수 count
+//	int dcount = purchaseService.itemCount();
+//	model.addAttribute("d_count", dcount);
+//	
+//	List<Purchase> selectlist = purchaseService.selectlist(index_no);
+//	model.addAttribute("list", selectlist);
+        
+        
+        
+        
+        
         return "purchase/purchase_list";
     }
 
@@ -220,8 +224,6 @@ public class PurchaseController {
     
     
     //구매 상세내역 보여주기
-
-    
     @RequestMapping("/purchaseDetailView")
     public String detailview(HttpServletRequest request, HttpSession session, Model model) throws Exception {
     	String uid = (String)session.getAttribute("SUID");
@@ -244,29 +246,8 @@ public class PurchaseController {
 	
   
     
-//
-//		//구매내역 확인 페이징
-//			@RequestMapping("/purchase_list")
-//			public String selectlist(HttpServletRequest request, Model model) throws Exception{
-//				
-//				 String vpage = request.getParameter("vpage");
-//				    if(vpage==null){
-//				    	vpage = "1";
-//				    }
-//				int v_page = Integer.parseInt(vpage);
-//				int index_no = (v_page-1)*7;
-//				
-//				// 상품관리페이징하기 위한 상품갯수 count
-//				int dcount = purchaseService.itemCount();
-//				model.addAttribute("d_count", dcount);
-//				
-//				List<Purchase> selectlist = purchaseService.selectlist(index_no);
-//				model.addAttribute("list", selectlist);
-//				
-//				return "purchase/purchase_list";
-//			}
-//			
-    
+
+		
    
 	// 배송지 수정
 	@RequestMapping("/UserModifyAddress")
