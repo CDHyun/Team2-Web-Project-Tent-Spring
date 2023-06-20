@@ -13,7 +13,7 @@
   
 <script type="text/javascript">
 
-const Toast = Swal.mixin({
+const Toast2 = Swal.mixin({
     toast: true,
     position: 'center-center',
     showConfirmButton: false,
@@ -722,7 +722,7 @@ function emptySessionUser() {
 				console.log("data : " +  data);
 				checkInput.attr('disabled',false);
 				code = data;
-				Toast.fire({
+				Toast2.fire({
 				    icon: 'success',
 				    title: '인증번호가 전송되었습니다.',
 				    timerProgressBar: true,
@@ -801,20 +801,15 @@ function emptySessionUser() {
 	  } else {
 	    // Swal 창을 한 번만 표시하고 타이머를 멈추도록 수정
         clearInterval(timerInterval); // 타이머 인터벌 멈추기
+        document.getElementById('mail-check-box').style.display = 'none';
 	    Swal.fire({
 	      icon: 'warning',
 	      title: '제한 시간 초과',
 	      text: '이메일 인증을 다시 시도해주세요.',
 	      confirmButtonText: '확인',
-	    }).then((result) => {
-	      if (result.isConfirmed) {
-	        document.getElementById('mail-check-box').style.display = 'none';
-	      }
 	    });
 	    return;
 	  }
-	document.getElementById('timer').style.display = 'block';
-	startTimer();
 	}
 	
 	
