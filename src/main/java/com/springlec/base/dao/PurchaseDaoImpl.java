@@ -22,7 +22,7 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		return sqlSession.selectList(nameSpace + ".purchaseCheck"); 
 	}
 	@Override
-	public List<Purchase> purchaseComplete(String uid, int pcStatus) throws Exception {
+	public List<Purchase> purchaseComplete(String uid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".purchaseComplete"); 
 	}
@@ -56,7 +56,66 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update(nameSpace + ".modify_address");
 	}
+	@Override
+	public Purchase getPurchaseDetails(int pcQty, String pColor, int pCode, int pcNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".getPurchaseDetails"); 
+		
+	}
+	@Override
+	public void cancelPurchase(int pcNo, int pcStatus) {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".cancelPurchase");
+	}
+	@Override
+	public void purchaseDelete(int pcNo) {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".purchaseDelete");
+	}
+	@Override
+	public void increaseStock(int pStock, int pCode, String pColor) {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace+".increaseStock");
+	}
+	@Override
+	public void decreaseStock(int pStock, int pCode, String pColor) {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace+".decreaseStock");
+	}
+	@Override
+	public int itemCount() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".itemCount");
+	}
 
 
+	@Override
+	public void cartInsertAction1(String uid, String cNo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".cartInsertAction1") ;
+	}
+
+
+
+
+
+
+	@Override
+	public void cartInsertAction2(String pcDM, String pcPay, int count) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".cartInsertAction2");
+	}
+
+
+
+
+
+
+	@Override
+	public void cartInsertAction3(String cNo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(nameSpace + ".cartInsertAction3");
+	}
+	
 
 }

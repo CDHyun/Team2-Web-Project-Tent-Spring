@@ -60,34 +60,33 @@
        	
        	
        	function increaseQuantity(cmNo) {
-       		var cNo = cmNo;
-		    var quantityInput = document.getElementById("quantity_"+cmNo);
-		    var currentQuantity = parseInt(quantityInput.value);
-		    if (currentQuantity < 10) {
-		        quantityInput.value = currentQuantity + 1;
-		      } else{
-		    	  Swal.fire({
-		    		    text: "구매가능한 최대수량은 10개입니다.",
-		    		    icon: "error",
-		    		    showCancelButton: false,
-		    		  })
-		      }
-		    
-		    $.ajax({
-	            url: "increaseQty", // 서버의 증가시키는 기능을 처리하는 URL
-	            method: "POST",
-	            data: { cNo: cNo }, // 서버에 전달할 데이터 (여기서는 qNo를 전달)
-	            success: function(result) {
-	                if(result == 1) {
-	                	console.log("카트수량 증가 완료");
-	                }
-	            },
-	            error: function() {
-	                console.log("Error occurred while cart Updating .");
-	            }
-	        });
-		    
-		  }
+       	    var cNo = cmNo;
+       	    var quantityInput = document.getElementById("quantity_" + cmNo);
+       	    var currentQuantity = parseInt(quantityInput.value);
+       	    if (currentQuantity < 10) {
+       	        quantityInput.value = currentQuantity + 1;
+       	    } else {
+       	        Swal.fire({
+       	            text: "구매가능한 최대수량은 10개입니다.",
+       	            icon: "error",
+       	            showCancelButton: false,
+       	        });
+       	    }
+
+       	    $.ajax({
+       	        url: "increaseQty",
+       	        method: "POST",
+       	        data: { cNo: cNo },
+       	        success: function(result) {
+       	            if (result == 1) {
+       	                console.log("카트수량 증가 완료");
+       	            }
+       	        },
+       	        error: function() {
+       	            console.log("Error occurred while cart Updating.");
+       	        }
+       	    });
+       	}
 
 		  function decreaseQuantity(cmNo) {
 			  var cNo = cmNo;
@@ -125,7 +124,8 @@
 			  
 			  }
 		
-       	
+		  
+		
 		  
 		 
 
@@ -209,7 +209,7 @@
 										      <img alt="no" src="images/product/${dto.pfRealName }"> </td>
 										      <td>${dto.pName}</td>
 										      <td>${dto.pColor}</td>
-										      <td>&#8361;&nbsp;<fmt:formatNumber value="${dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+										      <td id="pPrice">&#8361;&nbsp;<fmt:formatNumber value="${dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
 										      <td>
 										      <div class="input-form-group" style="display: flex; align-items: center;">
 	                            					<button type="button" id="plusQtyBtn_${dto.cNo}" class="btn btn-dark btn-sm" onclick="decreaseQuantity('${dto.cNo}')">-</button>&nbsp;&nbsp;
@@ -218,7 +218,8 @@
                             					</div>
 										      </td>
 										      
-										       <td id="totalValue">&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+										      <td id="totalValue_${dto.cNo}">&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+
 
 										     
 										     

@@ -156,6 +156,18 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectList(nameSpace + ".except");
 	}
 
+	@Override
+	public List<Admin> review() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".review");
+	}
+
+	@Override
+	public List<Admin> qna() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".qna");
+	}
+
 	
 
 

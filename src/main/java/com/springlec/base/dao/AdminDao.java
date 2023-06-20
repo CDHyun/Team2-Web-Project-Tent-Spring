@@ -76,4 +76,10 @@ public interface AdminDao {
 	
 	public List<Admin> except() throws Exception;
 	
+	//admin 리뷰관리 
+	public List<Admin> review() throws Exception;
+	
+	// 고객관리 QNA
+	public List<Admin> qna() throws Exception;
+	
 }

@@ -67,7 +67,11 @@ public interface AdminService {
 		// 주문상태 배송완료 제외 리스트
 		public List<Admin> except() throws Exception;
 
+		//admin 리뷰관리 
+		public List<Admin> review() throws Exception;
 		
+		// 고객관리 QNA
+		public List<Admin> qna() throws Exception;
 
 
 

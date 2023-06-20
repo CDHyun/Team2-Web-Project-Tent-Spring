@@ -121,7 +121,7 @@
                         </div>
                     </div>
                     <div class="text-right mt-4">
-                        <form action="purchaseDelete.do" method="post" style="display: inline;">
+                        <form action="purchaseDelete" method="post" style="display: inline;">
                             <input type="hidden" name="pcNo" id="pcNo" value="${purchaseDetail.pcNo}">
                             <input type="submit" value="Cancel" class="btn btn-danger">
                         </form>

@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
@@ -14,7 +13,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="../common/include_common_top.jsp"/>
+    <jsp:include page="../common/include_common_top.jsp" />
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/order.css">
 
@@ -31,7 +30,7 @@
     </div>
 
     <!-- Header Area -->
-  	<jsp:include page="../common/include_common_header.jsp"/>
+    <jsp:include page="../common/include_common_header.jsp" />
     <!-- Header Area End -->
 
     <!-- Breadcumb Area -->
@@ -81,35 +80,33 @@
                                             <th scope="col">Total</th>
                                         </tr>
                                     </thead>
-                                  
-                                    
+
                                     <!-- order item start -->
-                                    <c:set var="tot_price" value="0" />
+                                    <c:set var="ITEMTOTAL" value="0" />
                                     <tbody>
-                                    <c:forEach var="purchaseCheck" items="${ITEM}">
-                                    <c:set var="item_tot_price" value="${purchaseCheck.pcQty * purchaseCheck.pPrice}" />
-                                      <c:set var="tot_price" value="${tot_price + item_tot_price}" />
-                                        <tr>
-                                            <td>
-                                                <img src="images/product/${purchaseCheck.pfRealName}" alt="Product">
-                                            </td>
-                                            <td>
-                                                <a href="#">${purchaseCheck.pName}</a>
-                                            </td>
-                                            <c:set var="item_tot_price" value="${purchaseCheck.pcQty * purchaseCheck.pPrice}"></c:set>
-                                            
-                                             <td><fmt:formatNumber value="${purchaseCheck.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
-                                         <%--    <td>${purchase.pPrice}</td> --%>
-                                            <td>${purchaseCheck.pColor}</td>
-                                            <td>${purchaseCheck.pcQty}</td>
-                                            <td><fmt:formatNumber value="${item_tot_price}" type="number" pattern="#,###"></fmt:formatNumber></td>
-                                            <%-- <td>${item_tot_price}</td> --%>
-                                        </tr>
-                                    </c:forEach> 
+                                        <c:forEach var="purchaseCheck" items="${ITEM}">
+                                            <tr>
+                                                <td>
+                                                    <img src="images/product/${purchaseCheck.pfRealName}"
+                                                        alt="Product">
+                                                </td>
+                                                <td>
+                                                    <a href="#">${purchaseCheck.pName}</a>
+                                                </td>
+                                                <c:set var="item_tot_price"
+                                                    value="${purchaseCheck.pcQty * purchaseCheck.pPrice}" />
+                                                <c:set var="ITEMTOTAL" value="${ITEMTOTAL + item_tot_price}" />
+                                                <td><fmt:formatNumber value="${purchaseCheck.pPrice}" type="number"
+                                                        pattern="#,###"></fmt:formatNumber></td>
+                                                <td>${purchaseCheck.pColor}</td>
+                                                <td>${purchaseCheck.pcQty}</td>
+                                                <td><fmt:formatNumber value="${item_tot_price}" type="number"
+                                                        pattern="#,###"></fmt:formatNumber></td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
-                              
                                     <!-- order item end -->
-                                        
+
                                 </table>
                             </div>
                         </div>
@@ -121,30 +118,34 @@
                         <h5 class="mb-3">Cart Totals</h5>
                         <div class="table-responsive">
                             <table class="table mb-0">
-                                 <tbody>
-                                 <c:forEach var="ITEMTOTAL" items="${ITEMS}">
-                                <tr>
+                                <tbody>
+                                    <tr>
                                         <td>Sub Total</td>
-                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL }" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL}" type="number"
+                                                pattern="#,###" /></td>
                                     </tr>
                                     <tr>
-                                        <td><c:set var="shipping" value="${ITEMTOTAL >= 500000 ? 0 : 3000}" />Shipping</td>
-									   <td>&#8361;&nbsp;<fmt:formatNumber value="${shipping}" type="number"></fmt:formatNumber></td>
+                                        <td><c:set var="shipping" value="${ITEMTOTAL >= 500000 ? 0 : 3000}" />Shipping
+                                        </td>
+                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${shipping}" type="number" /></td>
                                     </tr>
                                     <tr>
                                         <td>VAT (10%)</td>
-                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL*0.1 }" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL * 0.1 }" type="number"
+                                                pattern="#,###" /></td>
                                     </tr>
                                     <tr>
                                         <td>Total</td>
-                                         <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL*1.1 +shipping}" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                        <td>&#8361;&nbsp;<fmt:formatNumber
+                                                value="${ITEMTOTAL * 1.1 + shipping}" type="number"
+                                                pattern="#,###" /></td>
                                     </tr>
-                                    </c:forEach> 
                                 </tbody>
                             </table>
-                        </div> 
+                        </div>
                         <div class="checkout_pagination d-flex justify-content-end mt-3">
-                        	<a href="payment"><button type="button" class="btn btn-primary mt-2 ml-2" id="back_payment" >Go Back</button></a>
+                            <a href="payment">
+<button type="button" class="btn btn-primary mt-2 ml-2" id="back_payment" >Go Back</button></a>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="purchaseinsert"><button type="button" class="btn btn-primary mt-2 ml-2" id="purchase_complete_btn">Order</button></a>
           
