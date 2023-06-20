@@ -40,6 +40,7 @@
 	<select id="chart" resultType="com.springlec.base.model.Admin">
 	  SELECT DAYNAME(pc.pcInsertDate) , SUM(p.pPrice * pc.pcQty) as daySum
 	  FROM purchase pc, product p
+	  WHERE pc.pCode = p.pCode
 	  GROUP BY DAYNAME(pc.pcInsertDate)
 	  ORDER BY FIELD(DAYNAME(pc.pcInsertDate), 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
 	
