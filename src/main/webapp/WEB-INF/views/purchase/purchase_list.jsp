@@ -155,7 +155,7 @@
                         </div>
                     </div>
                 </div>
-                 <div class="shop_pagination_area mt-30">
+                <div class="shop_pagination_area mt-30">
                     <nav aria-label="Page navigation">
                         <ul class="pagination pagination-sm justify-content-center">
                             <%-- Get the current page from request parameter --%>

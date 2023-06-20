@@ -126,6 +126,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 		// TODO Auto-generated method stub
 		purchaseDao.cartInsertAction3(cNo);
 	}
+
+	@Override
+	public List<Purchase> selectlist(int index_no) throws Exception {
+		// TODO Auto-generated method stub
+		return purchaseDao.selectlist(index_no);
+	}
 	
 
 

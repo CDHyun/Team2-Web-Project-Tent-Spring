@@ -2,6 +2,7 @@ package com.springlec.base.service;
 
 import java.util.List;
 
+import com.springlec.base.model.Admin;
 import com.springlec.base.model.Purchase;
 
 public interface PurchaseService {
@@ -32,6 +33,8 @@ public interface PurchaseService {
 	public void increaseStock(int pStock, int pCode, String pColor) throws Exception;
 	
 	public void decreaseStock(int pStock, int pCode, String pColor) throws Exception;
+	
+	public List<Purchase> selectlist(int index_no) throws Exception;
 	
 	public int itemCount() throws Exception;
 	

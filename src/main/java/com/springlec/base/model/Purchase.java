@@ -42,7 +42,7 @@ public class Purchase {
 	String pfHoverRealName;	// 프로젝트에 저장되는 실제 호버 이미지 이름
 	
 	String cNo;
-	
+	int dCount;
 	
 	
 	public Purchase() {
@@ -101,6 +101,24 @@ public class Purchase {
 		this.pfHoverName = pfHoverName;
 		this.pfHoverRealName = pfHoverRealName;
 		
+	}
+
+
+
+
+
+
+	public int getdCount() {
+		return dCount;
+	}
+
+
+
+
+
+
+	public void setdCount(int dCount) {
+		this.dCount = dCount;
 	}
 
 

@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.springlec.base.model.Admin;
 import com.springlec.base.model.Purchase;
 import com.springlec.base.model.User;
 import com.springlec.base.service.AdminCartService;
@@ -23,6 +22,8 @@ public class PurchaseController {
 
     @Autowired
     PurchaseService purchaseService;
+    @Autowired
+    AdminCartService adminCartService;
     
     @Autowired
     UserService userService;
@@ -30,7 +31,17 @@ public class PurchaseController {
     // 주문자 정보 불러오기
     @RequestMapping("/purchaseInfo")
     public String selectlist(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-        Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));
+       
+    	String uid = (String)session.getAttribute("SUID");
+		
+		int pCode = Integer.parseInt(request.getParameter("pCode"));
+		int pcQty = Integer.parseInt(request.getParameter("pcQty"));
+		String pColor = request.getParameter("pColor");
+		
+	
+    		
+    			
+    	Purchase selectlist = purchaseService.purchaseInfoDao((String)session.getAttribute("SUID"));
         // 상품 상세에서 넘겨주는 것들 세션에 저장 -> 구매 정보 확인 직전에 Service 하나 돌려서 상품 정보 불러오게 하고 그 정보를 ITEM에 담아서 보여주기.
         session.removeAttribute("PCODE");
         session.removeAttribute("PCQTY");
@@ -46,9 +57,62 @@ public class PurchaseController {
         
 //        session.removeAttribute("ITEMTOTAL");
 //		session.setAttribute("ITEMTOTAL", selectlist.getpPrice()*selectlist.getPcQty());
+       
+        
+        
+        // 바로구매할 시 ITEM에 데이터넣어두기
+        List<Purchase> purchaseInfo = purchaseService.getProductInfo(pCode);
+    	if(purchaseInfo.size() ==1) {
+    	purchaseInfo.get(0).setPcQty(pcQty);
+    	purchaseInfo.get(0).setpColor(pColor);
+    	model.addAttribute("ITEM", purchaseInfo);
+    	session.setAttribute("ITEM", purchaseInfo);
+    	}
+        
+        
+        
+        // 카트로 왔을때 
+    	String cNoArrayString = "[[]]";
+		session.removeAttribute("cNoArrayString");
+		session.setAttribute("cNoArrayString", cNoArrayString);
+        
+        
+        
+        
+        
+        
+        
+        
         return "purchase/purchase_info";
+  
+    
+    
+    
+    
     }
 
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // payment 값 저장하기
     @RequestMapping("/payment")
     public String pay(HttpServletRequest request, HttpSession session) throws Exception {
@@ -66,12 +130,8 @@ public class PurchaseController {
     	String pcPay = request.getParameter("o_pay_method");
     	session.setAttribute("PCPAY", pcPay);
 
-    	//바로구매 장바구니 조건 처리하기>>장바구니에서 결제 넘어갈때 에러남
     	
-        List<Purchase> purchaseInfo = purchaseService.getProductInfo(pCode);
-        purchaseInfo.get(0).setPcQty(pcQty);
-        purchaseInfo.get(0).setpColor(pColor);
-        model.addAttribute("ITEM", purchaseInfo);
+    	
         return "purchase/purchase_check";
     }
 
@@ -79,33 +139,42 @@ public class PurchaseController {
     @RequestMapping("/purchaseinsert")
     public String insert(HttpServletRequest request, Model model, HttpSession session) throws Exception {
     	String uid =(String)session.getAttribute("SUID");    	
+    	String pcDM = (String)session.getAttribute("PCDM");
+    	String pcPay = (String)session.getAttribute("PCPAY");
+    	
+    	List<Purchase> itemlength = (List<Purchase>) session.getAttribute("ITEM");
+    	if(itemlength.size()==1) {
+    		
+    	
     	int pCode = (int)session.getAttribute("PCODE");
     	int pcQty = (int)session.getAttribute("PCQTY");
     	String pColor = (String)session.getAttribute("PCOLOR");
-    	String pcDM = (String)session.getAttribute("PCDM");
-    	String pcPay = (String)session.getAttribute("PCPAY");
     	purchaseService.purchaseInsert(uid,pCode,pcQty,pcDM, pColor,pcPay);
     	purchaseService.decreaseStock(pcQty, pCode, pColor);
     	purchaseService.increaseStock(pcQty, pCode, pColor);
     	
-    	// 세션에서 카트 cNo배열 값 가져오기
-    	String cNoArrayString = (String) session.getAttribute("cNoArrayString");
-    	String[] values = cNoArrayString.substring(3, cNoArrayString.length() - 3).split("\",\"");
-    	for( int i = 0 ; i<values.length; i++) {
-    		System.out.println(values[i]);
-    	}
-    	int count = values.length;
-    	if(count != 1) {
-    		
-    	for (String value : values) {
-    		purchaseService.cartInsertAction1(uid, value);
-    		purchaseService.cartInsertAction2( pcDM, pcPay, count);
-    		purchaseService.cartInsertAction3(value);
-		}
-	
-    	}
+    	}else {
+	    	// 세션에서 카트 cNo배열 값 가져오기
+	    	String cNoArrayString = (String) session.getAttribute("cNoArrayString");
+	    	String[] values = cNoArrayString.substring(3, cNoArrayString.length() - 3).split("\",\"");
+	    	
+	    	for( int i = 0 ; i<values.length; i++) {
+	    		System.out.println(values[i]);
+	    	}
+	    	
+	    	int count = values.length;
+	    	
+	    		
+		    	for (String value : values) {
+		    		purchaseService.cartInsertAction1(uid, value);
+		    		purchaseService.cartInsertAction2( pcDM, pcPay, count);
+		    		purchaseService.cartInsertAction3(value);
+				}
+		
+	    	
     	
     	
+    	}
     	
     	
     	
@@ -140,7 +209,6 @@ public class PurchaseController {
         String pfRealName = request.getParameter("pfRealName");
         String pfHoverRealName = request.getParameter("pfHoverRealName");
         String pcPay = request.getParameter("pcPay");
-        System.out.println(uPhone);
         List<Purchase> orderlist = purchaseService.purchaseList(uid, uPhone, pcNo, pPrice, pcQty, pName, pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay);
         model.addAttribute("purchase", orderlist);
         return "purchase/purchase_list";

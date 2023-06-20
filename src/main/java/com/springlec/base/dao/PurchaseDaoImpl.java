@@ -116,6 +116,11 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		// TODO Auto-generated method stub
 		sqlSession.delete(nameSpace + ".cartInsertAction3");
 	}
+	@Override
+	public List<Purchase> selectlist(int index_no) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".selectlist");
+	}
 	
 
 }

@@ -91,11 +91,15 @@
 	
 	
 	<!-- 페이징 위한 카운트 -->
-	<select id="getProductCount" resultType="com.springlec.base.model.Purchase">
-		SELECT count(*) 
+	<select id="itemCount" resultType="int">
+		SELECT COUNT(*) AS dCount
 		FROM product p, user u, purchase pc, productfile pf
 		WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND pc.pcDeleted = 0 AND u.uid = #{uid}
 	</select> 
+	
+	
+	
+	
 	
 	<insert id="cartInsertAction1">
 		INSERT INTO purchase (uid, pcQty, pColor, pCode,pcInsertDate)
