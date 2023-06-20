@@ -125,31 +125,40 @@
  
    
     
-    data = {
-      datasets: [{
-        backgroundColor: ['beige','black','brown','gray','khakii','orange'],   // 색상은 나중에 고정되면 정해야함
-        borderColor: 'Black', // 검정색 테두리
-        borderWidth: 1, // 테두리의 너비 설정
-        data: [10,8,4,4,4,2]
-        //data: [${sumColorList}]
+   var data = {
+  datasets: [{
+    backgroundColor: [${COLOR}],   // 색상은 나중에 고정되면 정해야함
+    borderColor: 'Black', // 검정색 테두리
+    borderWidth: 1, // 테두리의 너비 설정
+    data: [${donuts}]
+  }],
+  labels: [${COLOR}] // 범례
+};
 
-      }],
-      // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-      labels: ['Beige','Black','Brown','Gray','Khakii','Orange'] // 범례
-    };
-
-    // 도넛형 차트
-    
-    
-    var ctx2 = document.getElementById("myChart2");
-    var myDoughnutChart = new Chart(ctx2, {
-      type: 'doughnut',
-      data: data,
-      options: {
-        maintainAspectRatio: true,
-        responsive: false
+var ctx2 = document.getElementById("myChart2");
+var myDoughnutChart = new Chart(ctx2, {
+  type: 'doughnut',
+  data: data,
+  options: {
+    maintainAspectRatio: true,
+    responsive: false,
+    tooltips: {
+      callbacks: {
+        label: function(tooltipItem, data) {
+          var dataset = data.datasets[tooltipItem.datasetIndex];
+          var total = dataset.data.reduce(function(previousValue, currentValue) {
+            return previousValue + currentValue;
+          });
+          var currentValue = dataset.data[tooltipItem.index];
+          var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+          return data.labels[tooltipItem.index] + ": " + percentage + "%";
+        }
       }
-    });
+    }
+  }
+});
+
+
   </script>
   
   <br/><br/><br/>

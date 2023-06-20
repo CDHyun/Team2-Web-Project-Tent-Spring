@@ -13,9 +13,15 @@ public class AdminDaoImpl implements AdminDao {
 	public static String nameSpace = "com.springlec.base.dao.AdminDao";
 	
 	@Override
-	public List<Admin> selectlist() throws Exception {
+	public List<Admin> selectlist(int index_no) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".selectlist");
+	}
+	
+	@Override
+	public int productCount() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".productCount");
 	}
 
 	@Override
@@ -111,7 +117,11 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace + ".updateProduct2");
 	}
-
+	@Override
+	public void updateProduct3(String lastfile, int pCode) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".updateProduct3");
+	}
 	
 	
 	@Override
@@ -126,11 +136,27 @@ public class AdminDaoImpl implements AdminDao {
 		sqlSession.update(nameSpace + ".upload1");
 	}
 
+	
+
 	@Override
-	public void updateProduct3(String lastfile, int pCode) throws Exception {
+	public void noticeInsert(String nTitle, String nContent,String aid,int nCgNo) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.update(nameSpace + ".updateProduct3");
+		sqlSession.insert(nameSpace + ".noticeInsert");
 	}
+
+	@Override
+	public List<Admin> donut() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".donut");
+	}
+
+	@Override
+	public List<Admin> except() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".except");
+	}
+
+	
 
 
 	

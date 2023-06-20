@@ -1,4 +1,3 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
@@ -23,7 +22,7 @@
     function submitForm() {
     // JSP 코드에서 생성된 값을 JavaScript 배열로 변환하여 변수에 할당
     var cart = [
-      <c:forEach items="${cart}" var="dto" varStatus="st">
+      <c:forEach items="${ITEM}" var="dto" varStatus="st">
         '${dto.cNo}'${st.last ? '' : ','}
       </c:forEach>
     ];
@@ -48,7 +47,7 @@
 		    
 		   
 		   
-			var url = "adminCartDelete.do?cNo=" + encodeURIComponent(cNo) + "&pCode=" + encodeURIComponent(pCode);
+			var url = "adminCartDelete?cNo=" + encodeURIComponent(cNo) + "&pCode=" + encodeURIComponent(pCode);
 			window.location.href = url;
 			
 		  }
@@ -60,31 +59,76 @@
 	
        	
        	
-		function increaseQuantity(cmNo) {
+       	function increaseQuantity(cmNo) {
+       		var cNo = cmNo;
 		    var quantityInput = document.getElementById("quantity_"+cmNo);
 		    var currentQuantity = parseInt(quantityInput.value);
-		    quantityInput.value = currentQuantity + 1;
+		    if (currentQuantity < 10) {
+		        quantityInput.value = currentQuantity + 1;
+		      } else{
+		    	  Swal.fire({
+		    		    text: "구매가능한 최대수량은 10개입니다.",
+		    		    icon: "error",
+		    		    showCancelButton: false,
+		    		  })
+		      }
+		    
+		    $.ajax({
+	            url: "increaseQty", // 서버의 증가시키는 기능을 처리하는 URL
+	            method: "POST",
+	            data: { cNo: cNo }, // 서버에 전달할 데이터 (여기서는 qNo를 전달)
+	            success: function(result) {
+	                if(result == 1) {
+	                	console.log("카트수량 증가 완료");
+	                }
+	            },
+	            error: function() {
+	                console.log("Error occurred while cart Updating .");
+	            }
+	        });
+		    
 		  }
 
 		  function decreaseQuantity(cmNo) {
+			  var cNo = cmNo;
 		    var quantityInput = document.getElementById("quantity_"+cmNo);
 		    var currentQuantity = parseInt(quantityInput.value);
 		    if (currentQuantity > 1) {
 		      quantityInput.value = currentQuantity - 1;
 		    }
+		    
+		    $.ajax({
+	            url: "decreaseQty", // 서버의 증가시키는 기능을 처리하는 URL
+	            method: "POST",
+	            data: { cNo: cNo }, // 서버에 전달할 데이터 (여기서는 qNo를 전달)
+	            success: function(result) {
+	                if(result == 1) {
+	                	console.log("카트수량 감소 완료");
+	                }
+	            },
+	            error: function() {
+	                console.log("Error occurred while cart Updating .");
+	            }
+	        });
+		    
 		  }
+		  
+		
 		  
 		  function buyProduct(ppCode) {
 				var pCode = ppCode;
 				
 			   
-				var url = "product_detail.do?pCode=" + encodeURIComponent(pCode);
+				var url = "product_detail?pCode=" + encodeURIComponent(pCode);
 				window.location.href = url;
 			   
 			  
 			  }
 		
        	
+		  
+		 
+
     </script>
         
         
@@ -113,8 +157,8 @@
                 <div class="col-12">
                     <h5>Cart</h5>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.do">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="product_list.do"> Product</a></li>
+                        <li class="breadcrumb-item"><a href="index">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="product_list"> Product</a></li>
                     </ol>
                 </div>
             </div>
@@ -152,10 +196,7 @@
                                     </tr>
                                 
                                 
-                                    <%
-                                    	//ArrayList<String> cNoList = new ArrayList<String>();
-                                    //	AdminDto dto = new AdminDto();
-                                    %>
+                                   
                                     
                                      <c:forEach items="${ITEM}" var="dto" varStatus="st">
                            				<form name="adminCartForm" action="adminCartDelete" method="post">	
@@ -177,7 +218,8 @@
                             					</div>
 										      </td>
 										      
-										       <td>&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+										       <td id="totalValue">&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+
 										     
 										     
 										      <td>
@@ -251,7 +293,7 @@
 	</div>
 	 
 
-			<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="3000">
+			<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="1500">
 			  <div class="carousel-inner">
 			    <c:forEach items="${recommend}" var="dto" varStatus="st">
 			      <div class="carousel-item ${st.first ? 'active' : ''}">

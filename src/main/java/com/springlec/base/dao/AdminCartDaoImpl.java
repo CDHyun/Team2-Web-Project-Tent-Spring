@@ -21,7 +21,7 @@ public class AdminCartDaoImpl implements AdminCartDao {
 	
 	
 	@Override
-	public List<Cart> cartSelect() throws Exception {
+	public List<Cart> cartSelect(String uid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".cartSelect");
 	}
@@ -32,7 +32,7 @@ public class AdminCartDaoImpl implements AdminCartDao {
 
 
 	@Override
-	public int countSum() throws Exception {
+	public int countSum(String uid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".countSum");
 	}
@@ -69,4 +69,74 @@ public class AdminCartDaoImpl implements AdminCartDao {
 		// TODO Auto-generated method stub
 		sqlSession.insert(nameSpace + ".addCart"); 
 	}
+
+
+
+
+
+
+	@Override
+	public List<Cart> wishlistSelect(String uid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".wishlistSelect");
+	}
+
+
+
+
+
+
+	@Override
+	public void insertWish(String uid, int pCode, String pColor) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".insertWish");
+	}
+
+
+
+
+
+
+	@Override
+	public void wishCart(String wNo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".wishCart");
+	}
+
+
+
+
+
+
+	@Override
+	public void deleteWish(String wNo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(nameSpace + ".deleteWish");
+	}
+
+
+
+
+
+
+	@Override
+	public int increaseQty(int cNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".increaseQty");
+	}
+	@Override
+	public int decreaseQty(int cNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".decreaseQty");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -13,7 +13,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- include_common_top -->
-	<jsp:include page="common/include_common_top.jsp"/>
+	<jsp:include page="../common/include_common_top.jsp"/>
     <!-- include_common_top -->
     <link rel="stylesheet" href="css/shop/wishlist.css">
 
@@ -31,7 +31,7 @@ function wishlistDeleteAction(wwNo) {
 	    cancelButtonText: "취소",
 	  }).then((result) => {
 	    if (result.isConfirmed) {
-	    	var url = "wishlistDeletes.do?wNo=" + encodeURIComponent(wNo);
+	    	var url = "wishlistDeletes?wNo=" + encodeURIComponent(wNo);
 	    	window.location.href = url;
 	    }
 	  });
@@ -53,7 +53,7 @@ function wishlistInsetTocart(wwNo) {
 	    cancelButtonText: "취소",
 	  }).then((result) => {
 	    if (result.isConfirmed) {
-	    	var url = "wishlistInsertToCart.do?wNo=" + encodeURIComponent(wNo);
+	    	var url = "wishlistInsertToCart?wNo=" + encodeURIComponent(wNo);
 	    	window.location.href = url;
 	       
 	    }
@@ -77,7 +77,7 @@ function wishlistInsetTocart(wwNo) {
     </div>
 
     <!-- Header Area -->
-	<jsp:include page="common/include_common_header.jsp"/>
+	<jsp:include page="../common/include_common_header.jsp"/>
     <!-- Header Area End -->
 
     <!-- Breadcumb Area -->
@@ -161,11 +161,11 @@ function wishlistInsetTocart(wwNo) {
     <!-- Wishlist Table Area -->
 
     <!-- Footer Area -->
- 	<jsp:include page="common/include_common_bottom.jsp"/>
+ 	<jsp:include page="../common/include_common_bottom.jsp"/>
     <!-- Footer Area -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-	<jsp:include page="common/include_common_script.jsp"/>
+	<jsp:include page="../common/include_common_script.jsp"/>
 	<script src="js/shop/wishlist.js"></script>
 
 </body>

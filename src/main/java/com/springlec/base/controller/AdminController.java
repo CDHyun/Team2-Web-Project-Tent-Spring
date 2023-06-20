@@ -17,6 +17,7 @@ import com.springlec.base.model.Admin;
 import com.springlec.base.service.AdminService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminController {
@@ -59,17 +60,52 @@ public class AdminController {
 	        }
 	        model.addAttribute("data", data.toString());
 	        
+	        
+	        //도넛차트 데이터가져오기
+	        List<Admin> colors = adminService.donut();
+	        model.addAttribute("donut", colors);
+	       
+	        // JSP 페이지로 전달되는 데이터를 JavaScript 배열로 변환
+	        StringBuilder data1 = new StringBuilder();
+	        for (Admin admin : colors) {
+	            data1.append(admin.getTotal()).append(",");
+	        }
+	        model.addAttribute("donuts", data1.toString());
+	        
+	        StringBuilder data2 = new StringBuilder();
+	        for (Admin admin : colors) {
+	        	 data2.append("'").append(admin.getpColor()).append("',");
+	        }
+	        model.addAttribute("COLOR", data2.toString());
+	        
+	        
+	        
 			return "admin/adminSummary";
 		}
 
 	
-	
+		
+		
+		
 	
 		//관리자 상품관리 기본페이지
 		@RequestMapping("/adminindex")
-		public String selectlist(Model model) throws Exception{
-			List<Admin> selectlist = adminService.selectlist();
+		public String selectlist(HttpServletRequest request, Model model) throws Exception{
+			
+			 String vpage = request.getParameter("vpage");
+			    if(vpage==null){
+			    	vpage = "1";
+			    }
+			int v_page = Integer.parseInt(vpage);
+			int index_no = (v_page-1)*7;
+			
+			// 상품관리페이징하기 위한 상품갯수 count
+			int dcount = adminService.productCount();
+			model.addAttribute("d_count", dcount);
+			
+			List<Admin> selectlist = adminService.selectlist(index_no);
 			model.addAttribute("list", selectlist);
+			
 			return "admin/adminProductSelect";
 		}
 		
@@ -145,8 +181,19 @@ public class AdminController {
 	
 		//관리자 상품수정 공유페이지
 		@RequestMapping("/adminUpdate")
-		public String sharelist(Model model) throws Exception{
-			List<Admin> selectlist = adminService.selectlist();
+		public String sharelist(HttpServletRequest request, Model model) throws Exception{
+			String vpage = request.getParameter("vpage");
+		    if(vpage==null){
+		    	vpage = "1";
+		    }
+		int v_page = Integer.parseInt(vpage);
+		int index_no = (v_page-1)*7;
+			
+		// 상품관리페이징하기 위한 상품갯수 count
+		int dcount = adminService.productCount();
+		model.addAttribute("d_count", dcount);
+					
+			List<Admin> selectlist = adminService.selectlist(index_no);
 			model.addAttribute("list", selectlist);
 			return "admin/adminProductShare";
 		}
@@ -168,7 +215,6 @@ public class AdminController {
 		
 		
 		// 상품수정 
-		//@Value("${upload.path}")
 		@RequestMapping("/adminUpdateAction")
 		public String updateProduct(@RequestParam("file") MultipartFile file,
                 @RequestParam("pName") String pName,
@@ -176,32 +222,32 @@ public class AdminController {
                 @RequestParam("pPrice") int pPrice,
                 @RequestParam("pCode") int pCode,
                 @RequestParam("pColor") String pColor,
-                @RequestParam("pColor") String lastfile,
+                @RequestParam("lastfile") String lastfile,
                 @RequestParam("pStock") int pStock,
                 Model model) throws Exception{
 			
-			System.out.println(lastfile);
-			// 파일 업로드 처리 로직
-						String pfName =  file.getOriginalFilename();
-						String pfRealName =  file.getOriginalFilename();
-						// 파일 업로드 처리 로직 작성
-
-						if(!pfRealName.equals("")) {
-							// 파일 저장
-							File destFile = new File(pfRealName);
-							file.transferTo(destFile);
-							adminService.updateProduct(pName,pBrandName,pPrice,pCode,pColor,pStock);
-							adminService.uploadFile1(pfName, pfRealName, pCode);
-							
-						}else {
-							adminService.updateProduct1(pName,pBrandName,pPrice,pCode,pColor,pStock,lastfile);
-						}
-
-
 						
-
-			
-	
+				
+						
+						
+				if(file != null && !file.isEmpty()) {  //이미지 수정할 때
+					// 파일 저장 경로
+					String uploadDirectory = uploadPath; // uploadPath는 앞서 설정한 업로드 디렉토리 경로입니다.
+							
+					// 파일 업로드 처리 로직
+					String pfName = file.getOriginalFilename();
+					String pfRealName = file.getOriginalFilename();
+					File destFile = new File(uploadDirectory, pfRealName);
+					file.transferTo(destFile);
+					
+					adminService.updateProduct(pName,pBrandName,pPrice,pCode,pColor,pStock);
+					adminService.uploadFile1(pfName, pfRealName, pCode);
+					
+					
+				}else {
+					
+					adminService.updateProduct1(pCode,pBrandName,pName,pPrice,pColor,pStock,lastfile);	
+				}
 			
 			return "redirect:adminUpdate";
 		}
@@ -244,12 +290,35 @@ public class AdminController {
 		}
 
 
+		@RequestMapping("/adminWriteNotice")
+		public String writeNotice() throws Exception{
+			return "admin/adminWriteNotice";
+		}
+
+		
+		@RequestMapping("/adminNoticeEnd")
+		public String noticeInsert(HttpServletRequest request, Model model, HttpSession session) throws Exception{
+			String aid =(String)session.getAttribute("SUID");
+			adminService.noticeInsert(request.getParameter("nTitle"), request.getParameter("nContent"),aid,Integer.parseInt(request.getParameter("nCgNo")));
+			
+			System.out.println(request.getParameter("nTitle"));
+			System.out.println(request.getParameter("nContent"));
+			
+			return "redirect:adminNotice";
+			
+		}
 
 
 
-
-
-
+		@RequestMapping("/except")
+		public String except(Model model) throws Exception{
+			List<Admin> exceptproduct = adminService.except();
+			model.addAttribute("check", exceptproduct);
+			
+			return "admin/adminPurchaseStatus"; 
+				
+				
+		}
 
 
 

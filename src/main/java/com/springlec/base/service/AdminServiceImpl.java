@@ -30,11 +30,16 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public List<Admin> selectlist() throws Exception {
+	public List<Admin> selectlist(int index_no) throws Exception {
 		// TODO Auto-generated method stub
-		return adminDao.selectlist();
+		return adminDao.selectlist(index_no);
 	}
 
+	@Override
+	public int productCount() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.productCount();
+	}
 
 	@Override
 	public List<Admin> querySelect(String query, String content) throws Exception {
@@ -153,13 +158,35 @@ public class AdminServiceImpl implements AdminService {
 
 
 	@Override
-	public void updateProduct1(String pName, String pBrandName, int pPrice, int pCode, String pColor, int pStock,
-			String lastfile) throws Exception {
+	public void updateProduct1(int pCode,String pBrandName,String pName,int pPrice,String pColor,int pStock,String lastfile) throws Exception {
 		// TODO Auto-generated method stub
 		adminDao.updateProduct1(pName, pBrandName, pPrice, pCode);
 		adminDao.updateProduct2( pColor, pStock, pCode);
 		adminDao.updateProduct3(lastfile, pCode);
 	}
+
+
+	@Override
+	public void noticeInsert(String nTitle, String nContent,String aid,int nCgNo) throws Exception {
+		// TODO Auto-generated method stub
+		adminDao.noticeInsert(nTitle, nContent,aid,nCgNo);
+	}
+
+
+	@Override
+	public List<Admin> donut() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.donut();
+	}
+
+	@Override
+	public List<Admin> except() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.except();
+	}
+
+
+	
 
 
 	

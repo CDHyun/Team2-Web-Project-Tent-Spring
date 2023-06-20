@@ -19,13 +19,16 @@ public class Admin {
 	int pStock;
 	String pfHoverName;
 	String pfHoverRealName;
-	
+	String lastfile;
 	// 주문처리에 필요한 변수
 	int pcNo;
 	String uid;
 	int pcQty;
 	int pcStatus;
 	Date pcInsertdate;
+	
+	// 페이징처리위한 상품갯수
+	int dCount;
 	
 	String wNo ;
 	
@@ -69,6 +72,29 @@ public class Admin {
 		this.pBrandName = pBrandName;
 		this.pPrice = pPrice;
 		this.pInsertdate = pInsertdate;
+	}
+
+	//공지등록
+	public Admin( String nTitle, String nContent, Date nInsertdate, String aid,int nCgNo) {
+	super();
+	this.nCgNo = nCgNo;
+	this.aid = aid;
+	this.nTitle = nTitle;
+	this.nContent = nContent;
+	this.nInsertdate = nInsertdate;
+}
+
+	
+
+	public Admin(int pCode, String pBrandName,String pName, int pPrice, String pColor, int pStock, String lastfile) {
+		super();
+		this.pCode = pCode;
+		this.pName = pName;
+		this.pBrandName = pBrandName;
+		this.pPrice = pPrice;
+		this.pColor = pColor;
+		this.pStock = pStock;
+		this.lastfile = lastfile;
 	}
 
 
@@ -142,6 +168,9 @@ public class Admin {
 	
 	
 	
+
+
+
 
 
 
@@ -377,6 +406,18 @@ public class Admin {
 	}
 
 
+	public int getdCount() {
+		return dCount;
+	}
+
+
+
+	public void setdCount(int dCount) {
+		this.dCount = dCount;
+	}
+
+
+
 	public String getAid() {
 		return aid;
 	}
@@ -549,6 +590,18 @@ public class Admin {
 
 	public void setwNo(String wNo) {
 		this.wNo = wNo;
+	}
+
+
+
+	public String getLastfile() {
+		return lastfile;
+	}
+
+
+
+	public void setLastfile(String lastfile) {
+		this.lastfile = lastfile;
 	}
 
 	

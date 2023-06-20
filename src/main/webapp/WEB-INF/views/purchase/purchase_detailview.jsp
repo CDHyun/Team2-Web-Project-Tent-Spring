@@ -48,7 +48,7 @@
                 <div class="col-12 col-lg-3 order-lg-first">
                     <div class="my-account-navigation mb-50">
                         <ul>
-                            <li><a href="my_account.do">My Account</a></li>
+                            <li><a href="my_account">My Account</a></li>
                             <li class="active"><a href="order_list">Orders</a></li>
                             <li><a href="member_logout">Logout</a></li>
                         </ul>  
@@ -126,7 +126,7 @@
                             <input type="submit" value="Cancel" class="btn btn-danger">
                         </form>
                         <button type="button" class="btn btn-outline-primary mb-1">
-                            <a href="purchase_list.do">Check</a>
+                            <a href="purchase_list">Check</a>
                         </button>
                     </div>
                 </div>

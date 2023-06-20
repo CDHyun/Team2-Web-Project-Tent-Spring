@@ -38,5 +38,60 @@
 		SELECT * FROM product p, productFile pf WHERE p.pCode = pf.pCode AND p.pCode = #{pCode}
 	</select>
 	
+	<select id="purchaseDetailList" resultType="com.springlec.base.model.Purchase">
+	SELECT pc.pcNo, pc.pcinsertDate, p.pName, u.uPhone, pf.pfRealName, pc.pcPay, pc.pcQty, p.pPrice, pc.pcDM, u.uName
+	FROM product p, purchase pc, productfile pf, user u
+	WHERE p.pCode = pc.pCode AND p.pCode = pf.pCode AND u.uid = #{uid} AND pcNo = #{pcNo}
+	</select>
 	
+
+	<!-- <update id="modifyaddress">
+		UPDATE userAddress 
+		SET uaAddress = #{uaAddress}, uaDetailAddress = #{uaDetailAddress}, uaZipcode = #{uaZipcode}, uaContent = #{uaContent}
+		WHERE uid = #{uid} AND uaNo = #{uaNo}
+	</update>
+
+	
+	
+	주문 취소
+	<select id="purchaseDetailList" resultType="com.springlec.base.model.Purchase">
+	SELECT pcQty, pColor, pCode
+	FROM purchase
+	WHERE pcNo = #{pcNo}
+	</select>
+	
+	<update id="purchaseDetailList">
+	UPDATE purchase 
+	SET pcStatus = -1
+	WHERE pcNo = #{pcNo}
+	</update> -->
+	
+	<!-- 주문 취소 후 주문상태 삭제로 변경-->
+<!-- 	<update id=>
+	UPDATE purchase pc
+	SET pcDeleteDate = now(), pcDeleted = 1
+	WHERE pc.pcNo = #{pcNo}
+	</update>
+	
+	재고 수량 증가
+	<update id=>
+	UPDATE productOption
+	SET pStock = pStock + #{pcQty}
+	WHERE pCode = #{pCode} and pColor = #{pColor}
+	</update>
+	
+	재고 수량 차감
+	<update id=>
+	UPDATE productOption
+	SET pStock = pStock - #{pcQty}
+	WHERE pCode = #{pCode} and pColor = #{pColor}
+		</update>
+		
+		
+	페이징 위한 카운트
+	<select id=>
+	  SELECT count(*) 
+	  FROM product p, user u, purchase pc, productfile pf
+	  WHERE pc.pCode = p.pCode AND pf.pCode = p.pCode AND u.uid = pc.uid AND pc.pcDeleted = 0 AND u.uid = #{uid}
+	</select> --> 
 </mapper>

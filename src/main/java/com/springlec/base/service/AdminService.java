@@ -11,7 +11,10 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface AdminService {
 	
 		//admin 상품관리
-		public List<Admin> selectlist() throws Exception;
+		public List<Admin> selectlist(int index_no) throws Exception;
+		
+		// 상품 갯수 count
+		public int productCount() throws Exception;
 		
 		// 상품관리 검색
 		public List<Admin> querySelect(String query, String content) throws Exception;
@@ -30,7 +33,7 @@ public interface AdminService {
 		
 		// 상품수정
 		public void updateProduct(String pName,String pBrandName,int pPrice,int pCode,String pColor,int pStock) throws Exception;
-		public void updateProduct1(String pName,String pBrandName,int pPrice,int pCode,String pColor,int pStock,String lastfile) throws Exception;
+		public void updateProduct1(int pCode,String pBrandName,String pName,int pPrice,String pColor,int pStock,String lastfile) throws Exception;
 		
 		// 상품삭제 
 		public void deleteProduct(int pCode, String pColor) throws Exception;
@@ -55,4 +58,25 @@ public interface AdminService {
 		// 고객관리 faq
 		public List<Admin> faq() throws Exception;
 		
+		// 공지등록
+		public void noticeInsert(String nTitle, String nContent,String aid,int nCgNo) throws Exception;
+		
+		//도넛차트
+		public List<Admin> donut() throws Exception;
+
+		// 주문상태 배송완료 제외 리스트
+		public List<Admin> except() throws Exception;
+
+		
+
+
+
+
+
+
+
+
+
+
+
 }
