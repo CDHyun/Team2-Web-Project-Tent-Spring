@@ -185,6 +185,18 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.except();
 	}
 
+	@Override
+	public List<Admin> review() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.review();
+	}
+
+	@Override
+	public List<Admin> qna() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.qna();
+	}
+
 
 	
 

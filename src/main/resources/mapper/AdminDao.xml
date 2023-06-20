@@ -139,4 +139,27 @@
 	 	SELECT pc.pcNo, pc.uid, pc.pCode, po.pColor, pc.pcQty, pc.pcInsertDate, pc.pcStatus FROM purchase pc, product p, productoption po
 		WHERE p.pCode = pc.pCode and p.pCode = po.pCode and po.pCode = pc.pCode and pc.pColor = po.pColor and pc.pcStatus != 2 order by pc.pcNo desc
 	 </select>
+	 
+	 <!-- 리뷰불러오기 -->
+	 <select id="review" resultType="com.springlec.base.model.Admin" >
+	 	SELECT r.rNo as rNo,p.pName as pName,  r.pcNo as pcNo, r.pCode as pCode, r.rScore as rScore, r.uid as uid , r.pColor as pColor, r.uNickName as uNickName, r.rTitle as rTitle, r.rContent as rContent, r.rInsertDate as rInsertDate 
+	 	FROM review r, product p WHERE p.pCode = r.pCode
+	 </select>
+	 
+	 
+	 <!-- 리뷰불러오기 -->
+	 <select id="qna" resultType="com.springlec.base.model.Admin" >
+	 	SELECT * FROM question;
+	 </select>
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 </mapper>

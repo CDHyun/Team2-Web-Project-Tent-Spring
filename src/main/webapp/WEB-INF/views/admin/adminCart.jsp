@@ -127,6 +127,8 @@
 		
        	
 		  
+		
+		  
 		 
 
     </script>
@@ -209,7 +211,7 @@
 										      <img alt="no" src="images/product/${dto.pfRealName }"> </td>
 										      <td>${dto.pName}</td>
 										      <td>${dto.pColor}</td>
-										      <td>&#8361;&nbsp;<fmt:formatNumber value="${dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+										      <td id="pPrice">&#8361;&nbsp;<fmt:formatNumber value="${dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
 										      <td>
 										      <div class="input-form-group" style="display: flex; align-items: center;">
 	                            					<button type="button" id="plusQtyBtn_${dto.cNo}" class="btn btn-dark btn-sm" onclick="decreaseQuantity('${dto.cNo}')">-</button>&nbsp;&nbsp;
@@ -218,7 +220,8 @@
                             					</div>
 										      </td>
 										      
-										       <td id="totalValue">&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+										      <td id="totalValue_${dto.cNo}">&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+
 
 										     
 										     

@@ -285,6 +285,11 @@ public class AdminController {
 			List<Admin> faqManage = adminService.faq();
 			model.addAttribute("FAQ", faqManage);
 			
+			List<Admin> qnaManage = adminService.qna();
+			model.addAttribute("QNA", qnaManage);
+			
+			
+			
 			
 			return "admin/adminNoticeBoard";
 		}
@@ -322,6 +327,17 @@ public class AdminController {
 
 
 
+		@RequestMapping("/adminReview")
+		public String review(Model model) throws Exception{
+			List<Admin> review = adminService.review();
+			model.addAttribute("list", review);
+			
+			
+			
+			
+			return "admin/adminReview";
+		}	
+	
 
 
 }
