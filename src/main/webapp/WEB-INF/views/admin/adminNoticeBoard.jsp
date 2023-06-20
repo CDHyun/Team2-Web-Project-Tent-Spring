@@ -44,6 +44,15 @@
     var nextTable = document.getElementById(no).nextElementSibling;
     view_content(nextTable);
   };
+  
+  
+  
+  function reply(qqNo){
+		var qNo = qqNo;
+		
+		var url = "question_detail?qNo=" + encodeURIComponent(qNo) ;
+  	window.location.href = url;
+	}
 </script>
 
 <body>
@@ -112,6 +121,33 @@
   </div>
 </div>
 
+
+	<br/><br/><br/><br/><br/><br/><br/>
+	
+	
+	<h3 class="container">Q&A</h3>
+<div class="container">
+  <div class="row">
+   <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+				<thead>
+					<tr>
+						<th style="background-color: #eeeeee; text-align: center;">No</th>
+						<th style="background-color: #eeeeee; text-align: center;">제목</th>
+						<th style="background-color: #eeeeee; text-align: center;">내용</th>
+						<th style="background-color: #eeeeee; text-align: center;">답변</th>
+					</tr>
+				</thead>
+					<c:forEach items="${QNA}" var="dto" varStatus="st">
+    					<tr>
+      						<td>${st.index+1}</td>
+      						<td>${dto.qTitle}</td>
+      						<td>${dto.qContent}</td>
+      						<td><input type="button" value="reply" class="btn btn-info" size="5" onclick="reply('${dto.qNo}')"></td>
+    					</tr>
+  					</c:forEach>
+			</table>	
+  </div>
+</div>
 
 	
 	

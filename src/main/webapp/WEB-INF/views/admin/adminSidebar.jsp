@@ -88,7 +88,7 @@
         </ul>
       </li>
       <li><a href="adminpurchaseCheck" style="color: #000000;">주문처리</a></li>
-      <li>리뷰관리</li>
+      <li><a href="adminReview" style="color: #000000;">리뷰관리</a></li>
       <li><a href="adminNotice" style="color: #000000;">고객관리</a></li>
       <li><a href="index" style="color: #000000;">쇼핑몰사이트로 이동</a></li>
     </ul>

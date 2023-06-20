@@ -59,6 +59,31 @@ public class Admin {
 	int cNo;
 	
 	
+	// 리뷰관리
+	int rNo;
+	String uNickName;
+	String rTitle;
+	String rContent;
+	int rScore;
+	Date rInsertDate;
+	Date rUpdateDate;
+	Date rDeleteDate;
+	int rDeleted;
+	
+	
+	// qna
+	int qNo;
+	int qCgNo;
+	String qTitle;
+	String qContent;
+	Date qInsertDate;
+	Date qUpdateDate;
+	Date qDeleteDate;
+	int qDeleted;
+	
+	
+	
+	
 	public Admin() {
 		// TODO Auto-generated constructor stub
 	}
@@ -84,7 +109,21 @@ public class Admin {
 	this.nInsertdate = nInsertdate;
 }
 
-	
+	//리뷰관리
+	public Admin(int rNo, int pCode,int pcNo, int rScore, String uid,  String pColor,  String uNickName, String rTitle,
+			String rContent,  Date rInsertDate) {
+		super();
+		this.pCode = pCode;
+		this.pColor = pColor;
+		this.pcNo = pcNo;
+		this.uid = uid;
+		this.rNo = rNo;
+		this.uNickName = uNickName;
+		this.rTitle = rTitle;
+		this.rContent = rContent;
+		this.rScore = rScore;
+		this.rInsertDate = rInsertDate;
+	}
 
 	public Admin(int pCode, String pBrandName,String pName, int pPrice, String pColor, int pStock, String lastfile) {
 		super();
@@ -192,6 +231,10 @@ public class Admin {
 
 
 	//
+
+
+
+	
 
 
 
@@ -602,6 +645,210 @@ public class Admin {
 
 	public void setLastfile(String lastfile) {
 		this.lastfile = lastfile;
+	}
+
+
+
+	public int getrNo() {
+		return rNo;
+	}
+
+
+
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
+	}
+
+
+
+	public String getuNickName() {
+		return uNickName;
+	}
+
+
+
+	public void setuNickName(String uNickName) {
+		this.uNickName = uNickName;
+	}
+
+
+
+	public String getrTitle() {
+		return rTitle;
+	}
+
+
+
+	public void setrTitle(String rTitle) {
+		this.rTitle = rTitle;
+	}
+
+
+
+	public String getrContent() {
+		return rContent;
+	}
+
+
+
+	public void setrContent(String rContent) {
+		this.rContent = rContent;
+	}
+
+
+
+	public int getrScore() {
+		return rScore;
+	}
+
+
+
+	public void setrScore(int rScore) {
+		this.rScore = rScore;
+	}
+
+
+
+	public Date getrInsertDate() {
+		return rInsertDate;
+	}
+
+
+
+	public void setrInsertDate(Date rInsertDate) {
+		this.rInsertDate = rInsertDate;
+	}
+
+
+
+	public Date getrUpdateDate() {
+		return rUpdateDate;
+	}
+
+
+
+	public void setrUpdateDate(Date rUpdateDate) {
+		this.rUpdateDate = rUpdateDate;
+	}
+
+
+
+	public Date getrDeleteDate() {
+		return rDeleteDate;
+	}
+
+
+
+	public void setrDeleteDate(Date rDeleteDate) {
+		this.rDeleteDate = rDeleteDate;
+	}
+
+
+
+	public int getrDeleted() {
+		return rDeleted;
+	}
+
+
+
+	public void setrDeleted(int rDeleted) {
+		this.rDeleted = rDeleted;
+	}
+
+
+
+	public int getqNo() {
+		return qNo;
+	}
+
+
+
+	public void setqNo(int qNo) {
+		this.qNo = qNo;
+	}
+
+
+
+	public int getqCgNo() {
+		return qCgNo;
+	}
+
+
+
+	public void setqCgNo(int qCgNo) {
+		this.qCgNo = qCgNo;
+	}
+
+
+
+	public String getqTitle() {
+		return qTitle;
+	}
+
+
+
+	public void setqTitle(String qTitle) {
+		this.qTitle = qTitle;
+	}
+
+
+
+	public String getqContent() {
+		return qContent;
+	}
+
+
+
+	public void setqContent(String qContent) {
+		this.qContent = qContent;
+	}
+
+
+
+	public Date getqInsertDate() {
+		return qInsertDate;
+	}
+
+
+
+	public void setqInsertDate(Date qInsertDate) {
+		this.qInsertDate = qInsertDate;
+	}
+
+
+
+	public Date getqUpdateDate() {
+		return qUpdateDate;
+	}
+
+
+
+	public void setqUpdateDate(Date qUpdateDate) {
+		this.qUpdateDate = qUpdateDate;
+	}
+
+
+
+	public Date getqDeleteDate() {
+		return qDeleteDate;
+	}
+
+
+
+	public void setqDeleteDate(Date qDeleteDate) {
+		this.qDeleteDate = qDeleteDate;
+	}
+
+
+
+	public int getqDeleted() {
+		return qDeleted;
+	}
+
+
+
+	public void setqDeleted(int qDeleted) {
+		this.qDeleted = qDeleted;
 	}
 
 	
