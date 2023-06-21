@@ -19,11 +19,9 @@ public interface PurchaseDao {
 //			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no) throws Exception; 
 	
 	
-	
     // 페이징 처리를 위한 메서드
     public List<Purchase> purchaseListByPage(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
             String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int startIndex, int itemsPerPage) throws Exception;
-	
 	
 	public Purchase purchaseDetailList(String uid, int pcNo) throws Exception;
 	
@@ -42,8 +40,6 @@ public interface PurchaseDao {
 	public void decreaseStock(int pStock, int pCode, String pColor);
 	
 	public int getItemCount(String uid) throws Exception;
-	
-
 	
 	//
 	public void cartInsertAction1(String uid, String cNo) throws Exception;

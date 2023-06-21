@@ -15,14 +15,10 @@ public interface PurchaseService {
 	
 	public void purchaseInsert(String uid, int pCode, int pcQty, String pcDM, String pColor, String pcPay) throws Exception;
 	
-//	public List<Purchase> purchaseList (String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
-//			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no) throws Exception; 
-//	
 	
 	 public List<Purchase> getPurchaseListByPage(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
 	            String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int page, int itemsPerPage) throws Exception;
 	    
-	
 	
 	public Purchase purchaseDetailList(String uid, int pcNo) throws Exception;
 

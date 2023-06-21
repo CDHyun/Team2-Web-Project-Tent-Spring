@@ -98,9 +98,6 @@
 	</select> 
 	
 	
-	
-	
-	
 	<insert id="cartInsertAction1">
 		INSERT INTO purchase (uid, pcQty, pColor, pCode,pcInsertDate)
 		SELECT #{uid}, c.cQty, c.pColor, c.pCode,now()

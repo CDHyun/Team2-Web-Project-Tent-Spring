@@ -234,6 +234,12 @@
 											                	</div>
 											                </div>
 													        </div>
+									        
+													        
+													        
+													        
+													        
+													        
 													        <div class="button-container">
 											            		<button type="button" class="btn btn-primary btn-sm" onclick="userModifyAddress()">Modify</button>&nbsp;&nbsp;&nbsp;&nbsp;
 																<button type="button" class="btn btn-secondary btn-sm" id="rcancelBtn" data-dismiss="modal">Cancel</button>

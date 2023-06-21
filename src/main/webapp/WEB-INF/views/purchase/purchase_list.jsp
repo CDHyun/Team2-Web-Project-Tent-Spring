@@ -139,7 +139,7 @@
                                                 </c:when>
                                             </c:choose>
                                         </td>
-                                        <td><fmt:formatNumber value="${purchase.pcQty * purchase.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                        <td><fmt:formatNumber value="${purchase.pcQty * purchase.pPrice*1.1}" type="number" pattern="#,###"></fmt:formatNumber></td>
                                         <td>
                                             <form action="purchaseDetailView?pcNo=${purchase.pcNo}" method="post">
                                                 <input type="hidden" name="pcNo" value="${purchase.pcNo}">

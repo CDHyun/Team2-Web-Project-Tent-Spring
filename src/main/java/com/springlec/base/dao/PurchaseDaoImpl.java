@@ -15,23 +15,27 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".purchaseInfoDao"); 
 	}
+	
 	@Override
 	public List<Purchase> purchaseCheck(int pCode, int pPrice, String pName, String pfRealName, String pfHoverRealName)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".purchaseCheck"); 
 	}
+	
 	@Override
 	public List<Purchase> purchaseComplete(String uid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".purchaseComplete"); 
 	}
+	
 	@Override
 	public void purchaseInsert(String uid, int pCode, int pcQty, String pcDM, String pColor, String pcPay)
 			throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.insert(nameSpace + ".purchaseInsert"); 
 	}
+	
 	@Override
 //	public List<Purchase> purchaseList(String uid, String uPhone, int pcNo, int pPrice, int pcQty, String pName,
 //			String pcInsertDate, String pcStatus, String pfRealName, String pfHoverRealName, String pcPay, int index_no)
@@ -47,9 +51,6 @@ public class PurchaseDaoImpl implements PurchaseDao {
 	        return sqlSession.selectList(nameSpace + "purchaseListByPage");
 	    }
 
-	
-	
-	
 	@Override
 	public Purchase purchaseDetailList(String uid, int pcNo) throws Exception {
 		// TODO Auto-generated method stub
@@ -91,6 +92,7 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace+".decreaseStock");
 	}
+	
 	@Override
 	public int getItemCount(String uid) throws Exception {
 		// TODO Auto-generated method stub
@@ -105,19 +107,11 @@ public class PurchaseDaoImpl implements PurchaseDao {
 	}
 
 
-
-
-
-
 	@Override
 	public void cartInsertAction2(String pcDM, String pcPay, int count) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace + ".cartInsertAction2");
 	}
-
-
-
-
 
 
 	@Override

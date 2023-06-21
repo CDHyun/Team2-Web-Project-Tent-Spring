@@ -112,9 +112,9 @@
                                         <th scope="row">${purchaseDetail.pcNo}</th>
                                         <td><img src="images/product/${purchaseDetail.pfRealName}" alt="Product"></td>
                                         <td>${purchaseDetail.pName}</td>
-                                        <td>${purchaseDetail.pcQty}</td>
                                         <td><fmt:formatNumber value="${purchaseDetail.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
-                                        <td><fmt:formatNumber value="${purchaseDetail.pcQty * purchaseDetail.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                        <td>${purchaseDetail.pcQty}</td>
+                                        <td><fmt:formatNumber value="${purchaseDetail.pcQty * purchaseDetail.pPrice*1.1}" type="number" pattern="#,###"></fmt:formatNumber></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -95,10 +95,10 @@ public class PurchaseController {
     @RequestMapping("/purchase_check_info")
     public String purchaseCheck(HttpServletRequest request, HttpSession session, Model model) throws Exception {
     	String uid =(String)session.getAttribute("SUID");
-    	int pCode = (int)session.getAttribute("PCODE");
-    	int pcQty = (int)session.getAttribute("PCQTY");
-    	String pColor = (String)session.getAttribute("PCOLOR");
-    	String pcDM = (String)session.getAttribute("PCDM");
+//    	int pCode = (int)session.getAttribute("PCODE");
+//    	int pcQty = (int)session.getAttribute("PCQTY");
+//    	String pColor = (String)session.getAttribute("PCOLOR");
+//    	String pcDM = (String)session.getAttribute("PCDM");
     	String pcPay = request.getParameter("o_pay_method");
     	session.setAttribute("PCPAY", pcPay);
 
@@ -185,14 +185,12 @@ public class PurchaseController {
         if (vpage == null) {
             vpage = "1";
         }
-        System.out.println("uid"+ uid);
         int v_page = Integer.parseInt(vpage);
         int itemsPerPage = 7;
         int startIndex = (v_page - 1) * itemsPerPage;
 
         int itemCount = purchaseService.getItemCount(uid);
         model.addAttribute("dcount", itemCount);
-System.out.println("itemCount" + itemCount );
         List<Purchase> orderList = purchaseService.getPurchaseListByPage(uid, uPhone, pcNo, pPrice, pcQty, pName,
                 pcInsertDate, pcStatus, pfRealName, pfHoverRealName, pcPay, v_page, itemsPerPage);
         model.addAttribute("purchase", orderList);
