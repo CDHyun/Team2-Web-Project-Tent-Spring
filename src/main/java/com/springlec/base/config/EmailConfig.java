@@ -13,8 +13,8 @@ public class EmailConfig {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("pdchoirian@gmail.com");
-        mailSender.setPassword("보안 상의 이유로 패스워드는 푸쉬하지 않습니다.");
+        mailSender.setUsername("{구글 ID}");
+        mailSender.setPassword("{앱 비밀번호}");
 
         Properties properties = new Properties();
         properties.put("mail.transport.protocol", "smtp");
