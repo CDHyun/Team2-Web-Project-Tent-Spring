@@ -84,7 +84,7 @@
     					</tr>
   					</c:forEach>
 			</table>	
-			<a href="notice_list" class="btn btn-primary ">글쓰기</a>	
+			<a href="notice_list?aid=admin" class="btn btn-primary ">글쓰기</a>	
 		</div>
 	</div>
 	
