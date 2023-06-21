@@ -65,11 +65,27 @@
        	    var currentQuantity = parseInt(quantityInput.value);
        	    var totalValueElement = document.getElementById("totalValue_" + cmNo);
        	    var pPrice = parseFloat(totalValueElement.getAttribute("data-pPrice"));
+       	    
+       	 var ALLTOTAL = parseFloat("${ALLTOTAL}");
 
        	    if (currentQuantity < 10) {
        	        quantityInput.value = currentQuantity + 1;
        	        var newTotalValue = (currentQuantity + 1) * pPrice;
        	        totalValueElement.innerText = "₩ " + newTotalValue.toLocaleString();
+       	        
+       	  		
+       	  		 ALLTOTAL += pPrice;
+       	  		
+       	  		
+       	  		
+       	  		
+       	  	 // 업데이트된 ALLTOTAL 값을 화면에 표시하는 코드
+       	  	  	var itemTotalElement = document.getElementById("itemTotal");
+       	  	  	itemTotalElement.innerText = "₩ " + ALLTOTAL.toLocaleString();
+       	  	  	
+       	  	  
+       	    
+       	        
        	    } else {
        	        Swal.fire({
        	            text: "구매 가능한 최대 수량은 10개입니다.",
@@ -225,7 +241,7 @@
                                 
                                 
                                    
-                                    
+                                     <c:set var="ALLTOTAL" value="0" ></c:set>
                                      <c:forEach items="${ITEM}" var="dto" varStatus="st">
                            				<form name="adminCartForm" action="adminCartDelete" method="post">	
                                      
@@ -247,12 +263,6 @@
 										      </td>
 										      
 										      <td id="totalValue_${dto.cNo}" class="total-value" data-pPrice="${dto.pPrice}">&#8361;&nbsp;<fmt:formatNumber value="${dto.cQty*dto.pPrice}" type="number" pattern="#,###"></fmt:formatNumber></td>
-
-
-
-
-										     
-										     
 										      <td>
 										      
                                            		  <input type="submit" value="x" class="fa fa-close" size="4"> 
@@ -263,6 +273,7 @@
                           			
                           			
                            				</form>
+                           				<c:set var="ALLTOTAL" value="${ALLTOTAL =ALLTOTAL+ dto.cQty*dto.pPrice }"></c:set>
   									</c:forEach>
                                     
                             </table>
@@ -281,19 +292,21 @@
                                  <tbody>
                                 <tr>
                                         <td>Sub Total</td>
-                                        <td id="itemTotal">&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL }" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                        <td id="itemTotal">&#8361;&nbsp;<fmt:formatNumber value="${ALLTOTAL }" type="number" pattern="#,###"></fmt:formatNumber></td>
                                     </tr>
                                     <tr>
-                                        <td><c:set var="shipping" value="${ITEMTOTAL >= 500000 ? 0 : 3000}" />Shipping</td>
+                                        <td><c:set var="shipping" value="${ALLTOTAL >= 500000 ? 0 : 3000}" />Shipping</td>
 									   <td>&#8361;&nbsp;<fmt:formatNumber value="${shipping}" type="number"></fmt:formatNumber></td>
                                     </tr>
                                     <tr>
+                                     <c:set var="vat" value="${ALLTOTAL*0.1 }" ></c:set>
                                         <td>VAT (10%)</td>
-                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL*0.1 }" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ALLTOTAL*0.1 }" type="number" pattern="#,###"></fmt:formatNumber></td>
                                     </tr>
                                     <tr>
+                                    <c:set var="whole" value="${ALLTOTAL*1.1 +shipping}" ></c:set>
                                         <td>Total</td>
-                                         <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL*1.1 +shipping}" type="number" pattern="#,###"></fmt:formatNumber></td>
+                                         <td>&#8361;&nbsp;<fmt:formatNumber value="${ALLTOTAL*1.1 +shipping}" type="number" pattern="#,###"></fmt:formatNumber></td>
                                     </tr>
                                    
                                 </tbody>

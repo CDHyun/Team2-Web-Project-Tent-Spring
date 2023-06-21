@@ -94,8 +94,8 @@ public class AdminCartController {
 		session.setAttribute("ITEM", cartlist);
 		
 		int total = adminCartService.countSum((String)session.getAttribute("SUID"));
-		model.addAttribute("ITEMTOTAL", total);
-		session.setAttribute("ITEMTOTAL", total);
+		model.addAttribute("ALLTOTAL", total);
+		session.setAttribute("ALLTOTAL", total);
 		
 		List<Cart> recommendind = adminCartService.recommend();
 		model.addAttribute("recommend", recommendind);
