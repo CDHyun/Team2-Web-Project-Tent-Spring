@@ -13,7 +13,7 @@
   
 <script type="text/javascript">
 
-const Toast = Swal.mixin({
+const Toast2 = Swal.mixin({
     toast: true,
     position: 'center-center',
     showConfirmButton: false,
@@ -722,7 +722,7 @@ function emptySessionUser() {
 				console.log("data : " +  data);
 				checkInput.attr('disabled',false);
 				code = data;
-				Toast.fire({
+				Toast2.fire({
 				    icon: 'success',
 				    title: '인증번호가 전송되었습니다.',
 				    timerProgressBar: true,
@@ -801,21 +801,34 @@ function emptySessionUser() {
 	  } else {
 	    // Swal 창을 한 번만 표시하고 타이머를 멈추도록 수정
         clearInterval(timerInterval); // 타이머 인터벌 멈추기
+        document.getElementById('mail-check-box').style.display = 'none';
 	    Swal.fire({
 	      icon: 'warning',
 	      title: '제한 시간 초과',
 	      text: '이메일 인증을 다시 시도해주세요.',
 	      confirmButtonText: '확인',
-	    }).then((result) => {
-	      if (result.isConfirmed) {
-	        document.getElementById('mail-check-box').style.display = 'none';
-	      }
 	    });
 	    return;
 	  }
-	document.getElementById('timer').style.display = 'block';
-	startTimer();
 	}
+	
+	function showCookieConsent() {
+		  Swal.fire({
+		    title: '쿠키 동의',
+		    text: '쿠키를 사용하여 개인정보를 수집하고 저장합니다.',
+		    icon: 'info',
+		    showCancelButton: true,
+		    confirmButtonText: '동의',
+		    cancelButtonText: '거부',
+		    reverseButtons: true
+		  }).then((result) => {
+		    if (result.isConfirmed) {
+		      $('#rememberId').prop('checked', true);
+		    } else {
+		      $('#rememberId').prop('checked', false);
+		    }
+		  });
+		}
 	
 	
 	
@@ -1068,7 +1081,7 @@ function emptySessionUser() {
 					<div class="form-check">
 						<div class="custom-control custom-checkbox mb-3 pl-1">
 							<!-- 쿠키 저장 여부 -->
-							<input type="checkbox" class="custom-control-input" id="rememberId">
+							<input type="checkbox" class="custom-control-input" id="rememberId" onclick="showCookieConsent()">
 							<label class="custom-control-label" for="rememberId">Remember me for this computer</label>
 						</div>
 					</div>
