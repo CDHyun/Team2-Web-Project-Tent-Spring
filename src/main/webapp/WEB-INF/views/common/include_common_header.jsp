@@ -812,6 +812,24 @@ function emptySessionUser() {
 	  }
 	}
 	
+	function showCookieConsent() {
+		  Swal.fire({
+		    title: '쿠키 동의',
+		    text: '쿠키를 사용하여 개인정보를 수집하고 저장합니다.',
+		    icon: 'info',
+		    showCancelButton: true,
+		    confirmButtonText: '동의',
+		    cancelButtonText: '거부',
+		    reverseButtons: true
+		  }).then((result) => {
+		    if (result.isConfirmed) {
+		      $('#rememberId').prop('checked', true);
+		    } else {
+		      $('#rememberId').prop('checked', false);
+		    }
+		  });
+		}
+	
 	
 	
 	
@@ -1063,7 +1081,7 @@ function emptySessionUser() {
 					<div class="form-check">
 						<div class="custom-control custom-checkbox mb-3 pl-1">
 							<!-- 쿠키 저장 여부 -->
-							<input type="checkbox" class="custom-control-input" id="rememberId">
+							<input type="checkbox" class="custom-control-input" id="rememberId" onclick="showCookieConsent()">
 							<label class="custom-control-label" for="rememberId">Remember me for this computer</label>
 						</div>
 					</div>
