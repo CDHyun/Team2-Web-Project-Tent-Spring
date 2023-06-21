@@ -82,8 +82,8 @@
                                     </thead>
 
                                     <!-- order item start -->
-                                    <c:set var="ITEMTOTAL" value="0" />
                                     <tbody>
+                                    <c:set var="ALLTOTAL" value="0" ></c:set>
                                         <c:forEach var="purchaseCheck" items="${ITEM}">
                                             <tr>
                                                 <td>
@@ -95,14 +95,25 @@
                                                 </td>
                                                 <c:set var="item_tot_price"
                                                     value="${purchaseCheck.pcQty * purchaseCheck.pPrice}" />
-                                                <c:set var="ITEMTOTAL" value="${ITEMTOTAL + item_tot_price}" />
                                                 <td><fmt:formatNumber value="${purchaseCheck.pPrice}" type="number"
                                                         pattern="#,###"></fmt:formatNumber></td>
                                                 <td>${purchaseCheck.pColor}</td>
-                                                <td>${purchaseCheck.pcQty}</td>
+                                                <td>
+                                               <c:choose>
+										      <c:when test="${not empty ITEM && ITEM.size() > 1}">
+										          ${purchaseCheck.cQty}
+										          <c:set var="item_tot_price" value="${purchaseCheck.cQty * purchaseCheck.pPrice}" />
+										        </c:when>
+										        <c:otherwise>
+										          ${purchaseCheck.pcQty}
+										        </c:otherwise>
+										      </c:choose>
+                                                </td>
                                                 <td><fmt:formatNumber value="${item_tot_price}" type="number"
                                                         pattern="#,###"></fmt:formatNumber></td>
+                                                        
                                             </tr>
+                                            <c:set var="ALLTOTAL" value="${ALLTOTAL =ALLTOTAL+ item_tot_price }"></c:set>
                                         </c:forEach>
                                     </tbody>
                                     <!-- order item end -->
@@ -121,23 +132,23 @@
                                 <tbody>
                                     <tr>
                                         <td>Sub Total</td>
-                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL}" type="number"
+                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ALLTOTAL}" type="number"
                                                 pattern="#,###" /></td>
                                     </tr>
                                     <tr>
-                                        <td><c:set var="shipping" value="${ITEMTOTAL >= 500000 ? 0 : 3000}" />Shipping
+                                        <td><c:set var="shipping" value="${ALLTOTAL >= 500000 ? 0 : 3000}" />Shipping
                                         </td>
                                         <td>&#8361;&nbsp;<fmt:formatNumber value="${shipping}" type="number" /></td>
                                     </tr>
                                     <tr>
                                         <td>VAT (10%)</td>
-                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ITEMTOTAL * 0.1 }" type="number"
+                                        <td>&#8361;&nbsp;<fmt:formatNumber value="${ALLTOTAL * 0.1 }" type="number"
                                                 pattern="#,###" /></td>
                                     </tr>
                                     <tr>
                                         <td>Total</td>
                                         <td>&#8361;&nbsp;<fmt:formatNumber
-                                                value="${ITEMTOTAL * 1.1 + shipping}" type="number"
+                                                value="${ALLTOTAL * 1.1 + shipping}" type="number"
                                                 pattern="#,###" /></td>
                                     </tr>
                                 </tbody>
