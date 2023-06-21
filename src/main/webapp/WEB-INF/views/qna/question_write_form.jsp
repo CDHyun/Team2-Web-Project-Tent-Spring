@@ -124,7 +124,7 @@
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<jsp:include page="../common/include_common_script.jsp"/>
 	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-	<script src="js/shop/qna.js"></script>
+	<script src="js/shop/qna.js?after"></script>
 
 </body>
 

@@ -162,14 +162,14 @@
                             <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="board_no">번호</th>
-                                        <th scope="col" class="board_title">제목</th>
-                                        <th scope="col" class="board_writer">작성자</th>
-                                        <th scope="col" class="board_date">날짜</th>
-                                        <th scope="col" class="board_count">조회수</th>
+                                        <th scope="col" class="board_no" style="text-align: center;">번호</th>
+                                        <th scope="col" class="board_title" style="text-align: center;">제목</th>
+                                        <th scope="col" class="board_writer" style="text-align: center;">작성자</th>
+                                        <th scope="col" class="board_date" style="text-align: center;">날짜</th>
+                                        <th scope="col" class="board_count" style="text-align: center;">조회수</th>
                                         <c:choose>
 											  <c:when test="${SUID == 'admin'}">
-											  	<th scope="col" class="board_title">관리</th>
+											  	<th scope="col" class="board_title" style="text-align: center;">관리</th>
 											  </c:when>
 									  	</c:choose>
                                     </tr>
@@ -190,15 +190,15 @@
 											      <c:otherwise>Notice</c:otherwise>
 											  </c:choose>
 									        	</span>
-									            <a href="#" onclick="toggleNoticeContent(this);">${notice.nTitle}</a>
-									            <div class="notice-content" style="display: none;">${notice.nContent}</div>
+									            <a href="#" onclick="toggleNoticeContent(this);" style=" vertical-align: middle;">${notice.nTitle}</a>
+									            <div class="notice-content" style="display: none;  vertical-align: middle;">${notice.nContent}</div>
 									        </td>
-									        <td style="text-align: center;">관리자</td>
+									        <td style="text-align: center; vertical-align: middle;">관리자</td>
 									        <c:set var="dateString" value="${notice.nInsertDate}" />
 									        <fmt:parseDate var="date" value="${dateString}" pattern="yyyy-MM-dd HH:mm:ss" />
 									        <fmt:formatDate var="formattedDate" value="${date}" type="date" pattern="yyyy년-MM월-dd일" />
-									        <td style="text-align: center;">${formattedDate}</td>
-									        <td style="text-align: center;">${notice.nViewCount}</td>
+									        <td style="text-align: center;  vertical-align: middle;" >${formattedDate}</td>
+									        <td style="text-align: center;  vertical-align: middle;">${notice.nViewCount}</td>
 									        <c:choose>
 											  <c:when test="${SUID == 'admin'}">
 											  	<td style="text-align: center; white-space: nowrap;">
@@ -241,10 +241,10 @@
 			                                <thead>
 			                                    <tr>
 			                                        <th scope="col" class="board_title">
-			                                        	<input type="text" name="nTitle" id="n_title_txt" placeholder=" title" style="vertical-align: middle;"/>
+			                                        	<input type="text" class="form-control" name="nTitle" id="n_title_txt" placeholder=" title" style="vertical-align: middle; white-space: nowrap;"/>
 			                                        </th>
-			                                        <th scope="col" class="board_date" style="vertical-align: middle;"><fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd' /></th>
-			                                        <th scope="col" class="board_writer" style="vertical-align: middle;">관리자</th>
+			                                        <th scope="col" class="board_date" style="vertical-align: middle; white-space: nowrap;"><fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd' /></th>
+			                                        <th scope="col" class="board_writer" style="vertical-align: middle; white-space: nowrap;">관리자</th>
 			                                        <th scope=col class="board_writer" style="vertical-align: middle;">
 			                                        	<select name="nCgNo" style="vertical-align: middle;">
 			                                        		<option value="1">공지사항</option>
@@ -267,8 +267,8 @@
 		                        </div>
 		                    </div>
 		                    	<div id="notice_btn_container">
-									<input class="notice_btn new_write" type="button" value="등록"/>
-									<input class="notice_btn list" type="button" pageno="${pageno}" value="목록" />
+									<input class="btn btn-secondary btn-sm notice_btn new_write" type="button" value="등록"/>
+									<input class="btn btn-secondary btn-sm notice_btn list" type="button" pageno="${pageno}" value="목록" />
 		                    	</div>
 		                </div>
 		            </div>
