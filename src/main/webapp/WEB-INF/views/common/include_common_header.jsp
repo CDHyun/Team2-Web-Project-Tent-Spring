@@ -284,7 +284,7 @@ function emptySessionUser() {
 	            console.log(result);
 	            if (result == 0) {
 	                Swal.fire({
-	                    icon: 'warning',
+	                    icon: 'success',
 	                    title: "사용 가능한 아이디입니다."
 	                });
 	            } else {
@@ -778,8 +778,8 @@ function emptySessionUser() {
 	    }
 	}
 
-	let minutesRemaining = 0;
-	let secondsRemaining = 5;
+	let minutesRemaining = 3;
+	let secondsRemaining = 0;
 	let timerInterval;
 
 	function startTimer() {

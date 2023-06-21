@@ -302,7 +302,7 @@
                     <br/>
                     <!-- 배송지 추가 버튼 -->
 					<button type="button" class="btn btn-primary btn-sm" onclick="addModalOpen()">배송지 추가</button>
-					<a href="user_my_account.do"><button type="button" class="btn btn-secondary btn-sm" onclick="">뒤로 가기</button></a>
+					<a href="my_account"><button type="button" class="btn btn-secondary btn-sm" onclick="">뒤로 가기</button></a>
                 </div>
             </div>
             
